@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>محصولات | ماهان سنتر ایران</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Tahoma,Arial,sans-serif;
+background:#090909;
+color:white;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.container{
+width:92%;
+max-width:1200px;
+margin:auto;
+}
+
+/* HEADER */
+
+header{
+background:#0d0d0d;
+border-bottom:1px solid #292929;
+}
+
+.header{
+min-height:95px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:13px;
+}
+
+.logo img{
+width:70px;
+height:70px;
+border-radius:50%;
+object-fit:cover;
+border:2px solid #777;
+}
+
+.logo span{
+font-size:22px;
+font-weight:bold;
+}
+
+.logo b{
+color:#e50914;
+}
+
+/* SEARCH */
+
+.search{
+flex:1;
+max-width:600px;
+display:flex;
+background:#181818;
+border:1px solid #333;
+border-radius:14px;
+overflow:hidden;
+}
+
+.search input{
+flex:1;
+background:none;
+border:0;
+outline:0;
+color:white;
+padding:15px;
+font-size:14px;
+}
+
+.search button{
+width:60px;
+border:0;
+background:#e50914;
+color:white;
+font-size:22px;
+cursor:pointer;
+}
+
+/* BACK */
+
+.back{
+display:inline-block;
+margin:25px 0;
+color:#aaa;
+}
+
+.back:hover{
+color:#e50914;
+}
+
+/* TITLE */
+
+.page-title{
+display:flex;
+align-items:center;
+justify-content:space-between;
+margin-bottom:25px;
+}
+
+.page-title h1{
+font-size:28px;
+}
+
+.page-title span{
+color:#999;
+font-size:13px;
+}
+
+/* PRODUCTS */
+
+.products{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+}
+
+.product{
+background:#151515;
+border:1px solid #292929;
+border-radius:18px;
+overflow:hidden;
+transition:.25s;
+}
+
+.product:hover{
+transform:translateY(-5px);
+border-color:#e50914;
+}
+
+.product-img{
+height:220px;
+background:#202020;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:75px;
+}
+
+.product-body{
+padding:16px;
+}
+
+.product h3{
+font-size:15px;
+margin-bottom:7px;
+}
+
+.product p{
+font-size:12px;
+color:#999;
+margin-bottom:12px;
+}
+
+.price{
+font-weight:bold;
+font-size:16px;
+}
+
+.price small{
+font-size:10px;
+color:#999;
+}
+
+.buy{
+display:block;
+width:100%;
+margin-top:13px;
+padding:10px;
+border:0;
+border-radius:10px;
+background:#e50914;
+color:white;
+cursor:pointer;
+}
+
+/* EMPTY */
+
+.empty{
+display:none;
+text-align:center;
+padding:70px 20px;
+color:#888;
+}
+
+.empty div{
+font-size:50px;
+margin-bottom:15px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.products{
+grid-template-columns:repeat(2,1fr);
+}
+
+.header{
+flex-wrap:wrap;
+padding:10px 0;
+}
+
+.search{
+order:3;
+flex-basis:100%;
+max-width:none;
+}
+
+}
+
+@media(max-width:550px){
+
+.logo img{
+width:58px;
+height:58px;
+}
+
+.logo span{
+font-size:17px;
+}
+
+.products{
+gap:9px;
+}
+
+.product-img{
+height:150px;
+font-size:52px;
+}
+
+.product-body{
+padding:10px;
+}
+
+.product h3{
+font-size:13px;
+}
+
+.page-title h1{
+font-size:22px;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="container header">
+
+<a href="index.html" class="logo">
+
+<img src="logo.jpg">
+
+<span>
+ماهان سنتر <b>ایران</b>
+</span>
+
+</a>
+
+
+<div class="search">
+
+<input
+id="search"
+type="search"
+placeholder="مثلاً A17، سامسونگ، آیفون..."
+>
+
+<button onclick="searchProducts()">
+⌕
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<main class="container">
+
+
+<a href="index.html" class="back">
+← برگشت به صفحه اصلی
+</a>
+
+
+<div class="page-title">
+
+<h1 id="title">
+محصولات
+</h1>
+
+<span id="count"></span>
+
+</div>
+
+
+<div class="products" id="products">
+</div>
+
+
+<div class="empty" id="empty">
+
+<div>
+🔍
+</div>
+
+<h2>
+محصولی پیدا نشد
+</h2>
+
+<p>
+عبارت دیگری را جستجو کنید.
+</p>
+
+</div>
+
+
+</main>
+
+
+<script>
+
+
+/* محصولات */
+
+const products=[
+
+
+/* MOBILE */
+
+{
+cat:"mobile",
+name:"Samsung Galaxy A17",
+search:"a17 سامسونگ گلکسی",
+price:"تماس بگیرید",
+icon:"📱",
+description:"گوشی سامسونگ Galaxy A17"
+},
+
+{
+cat:"mobile",
+name:"Samsung Galaxy A16",
+search:"a16 سامسونگ گلکسی",
+price:"تماس بگیرید",
+icon:"📱",
+description:"گوشی سامسونگ Galaxy A16"
+},
+
+{
+cat:"mobile",
+name:"iPhone 15",
+search:"iphone 15 آیفون",
+price:"تماس بگیرید",
+icon:"📱",
+description:"گوشی اپل آیفون 15"
+},
+
+{
+cat:"mobile",
+name:"Samsung Galaxy S24",
+search:"s24 سامسونگ",
+price:"تماس بگیرید",
+icon:"📱",
+description:"گوشی سامسونگ Galaxy S24"
+},
+
+
+/* GOLD */
+
+{
+cat:"gold",
+name:"انگشتر طلا",
+search:"انگشتر طلا",
+price:"تماس بگیرید",
+icon:"💎",
+description:"انگشتر طلای زیبا"
+},
+
+{
+cat:"gold",
+name:"گردنبند طلا",
+search:"گردنبند طلا",
+price:"تماس بگیرید",
+icon:"💎",
+description:"گردنبند طلای شیک"
+},
+
+
+/* CLOTHES */
+
+{
+cat:"clothes",
+name:"تیشرت مردانه",
+search:"تیشرت لباس پوشاک",
+price:"تماس بگیرید",
+icon:"👕",
+description:"تیشرت مردانه"
+},
+
+{
+cat:"clothes",
+name:"هودی",
+search:"هودی لباس پوشاک",
+price:"تماس بگیرید",
+icon:"👕",
+description:"هودی اسپرت"
+},
+
+
+/* ACCESSORIES */
+
+{
+cat:"accessories",
+name:"هدفون بی‌سیم",
+search:"هدفون هندزفری",
+price:"تماس بگیرید",
+icon:"🎧",
+description:"هدفون بی‌سیم"
+},
+
+{
+cat:"accessories",
+name:"شارژر موبایل",
+search:"شارژر کابل",
+price:"تماس بگیرید",
+icon:"🔌",
+description:"شارژر موبایل"
+},
+
+
+/* DIGITAL */
+
+{
+cat:"digital",
+name:"لپ‌تاپ",
+search:"لپ تاپ کامپیوتر",
+price:"تماس بگیرید",
+icon:"💻",
+description:"لپ‌تاپ"
+},
+
+
+/* SHOES */
+
+{
+cat:"shoes",
+name:"کتونی اسپرت",
+search:"کفش کتونی",
+price:"تماس بگیرید",
+icon:"👟",
+description:"کتونی اسپرت"
+},
+
+
+/* WATCH */
+
+{
+cat:"watches",
+name:"ساعت مچی",
+search:"ساعت مچی",
+price:"تماس بگیرید",
+icon:"⌚",
+description:"ساعت مچی"
+}
+
+
+];
+
+
+const params=
+new URLSearchParams(
+window.location.search
+);
+
+const category=
+params.get("cat");
+
+const search=
+params.get("search");
+
+
+const names={
+
+mobile:"موبایل",
+
+gold:"طلا و جواهرات",
+
+clothes:"پوشاک",
+
+accessories:"لوازم جانبی",
+
+digital:"دیجیتال",
+
+shoes:"کفش",
+
+watches:"ساعت",
+
+discount:"تخفیف‌ها"
+
+};
+
+
+document.getElementById("title").innerText=
+names[category] || "جستجوی محصولات";
+
+
+function showProducts(list){
+
+const box=
+document.getElementById("products");
+
+const empty=
+document.getElementById("empty");
+
+box.innerHTML="";
+
+
+if(list.length===0){
+
+empty.style.display="block";
+
+document.getElementById("count").innerText="";
+
+return;
+
+}
+
+
+empty.style.display="none";
+
+
+list.forEach(product=>{
+
+box.innerHTML+=`
+
+<div class="product">
+
+<div class="product-img">
+${product.icon}
+</div>
+
+<div class="product-body">
+
+<h3>
+${product.name}
+</h3>
+
+<p>
+${product.description}
+</p>
+
+<div class="price">
+
+${product.price}
+
+<small>
+تومان
+</small>
+
+</div>
+
+<button
+class="buy"
+onclick="buyProduct('${product.name}')"
+>
+
+افزودن به سبد خرید
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("count").innerText=
+list.length+" محصول";
+
+
+}
+
+
+/* نمایش اولیه */
+
+let currentProducts;
+
+
+if(search){
+
+document.getElementById("search").value=search;
+
+currentProducts=
+products.filter(product=>
+
+(
+product.name+
+" "+
+product.search
+)
+.toLowerCase()
+.includes(search.toLowerCase())
+
+);
+
+}else{
+
+currentProducts=
+products.filter(product=>
+product.cat===category
+);
+
+}
+
+
+showProducts(currentProducts);
+
+
+/* جستجو */
+
+function searchProducts(){
+
+const text=
+document.getElementById("search").value.trim();
+
+
+if(!text){
+
+if(category){
+
+showProducts(
+products.filter(p=>p.cat===category)
+);
+
+}
+
+return;
+
+}
+
+
+const result=
+products.filter(product=>
+
+(
+product.name+
+" "+
+product.search+
+" "+
+product.description
+)
+.toLowerCase()
+.includes(text.toLowerCase())
+
+);
+
+
+showProducts(result);
+
+}
+
+
+/* خرید */
+
+function buyProduct(name){
+
+alert(
+name+
+"\n\nبه سبد خرید اضافه شد 🛒"
+);
+
+}
+
+
+document
+.getElementById("search")
+.addEventListener("keydown",function(e){
+
+if(e.key==="Enter"){
+
+searchProducts();
+
+}
+
+});
+
+</script>
+
+
+</body>
+</html>
