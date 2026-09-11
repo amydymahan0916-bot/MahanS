@@ -15,13 +15,13 @@
 }
 
 body{
-  background:#0b0b0b;
+  background:#080808;
   color:#fff;
   min-height:100vh;
 }
 
 header{
-  background:linear-gradient(135deg,#170000,#b40000,#450000);
+  background:linear-gradient(135deg,#160000,#a90000,#350000);
   padding:22px 15px;
   text-align:center;
   border-bottom:2px solid #e00000;
@@ -38,18 +38,17 @@ header p{
 }
 
 .container{
-  max-width:850px;
-  margin:25px auto;
-  padding:15px;
+  max-width:1100px;
+  margin:auto;
+  padding:20px 15px 50px;
 }
 
 .card{
-  background:#151515;
+  background:#141414;
   border:1px solid #292929;
   border-radius:16px;
   padding:20px;
   margin-bottom:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
 
 .card h2{
@@ -60,8 +59,12 @@ header p{
 
 .grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:repeat(2,1fr);
   gap:14px;
+}
+
+.full{
+  grid-column:1/-1;
 }
 
 .field{
@@ -70,20 +73,16 @@ header p{
   gap:7px;
 }
 
-.field.full{
-  grid-column:1/-1;
-}
-
 label{
-  font-size:13px;
   color:#ccc;
+  font-size:13px;
 }
 
 input,
 select,
 textarea{
   width:100%;
-  background:#0d0d0d;
+  background:#0b0b0b;
   color:#fff;
   border:1px solid #333;
   border-radius:10px;
@@ -103,78 +102,171 @@ textarea{
   resize:vertical;
 }
 
+.image-preview{
+  margin-top:10px;
+  width:140px;
+  height:140px;
+  border-radius:12px;
+  border:1px solid #333;
+  object-fit:cover;
+  display:none;
+}
+
+.buttons{
+  display:flex;
+  gap:10px;
+  margin-top:18px;
+}
+
 button{
   border:0;
   border-radius:10px;
-  padding:13px 18px;
+  padding:12px 18px;
   cursor:pointer;
   font-size:14px;
   font-weight:bold;
 }
 
-.add-btn{
-  width:100%;
-  margin-top:18px;
-  background:linear-gradient(135deg,#ff0000,#9d0000);
+.primary{
+  background:linear-gradient(135deg,#ff0000,#950000);
+  color:white;
+  flex:1;
+}
+
+.secondary{
+  background:#292929;
   color:white;
 }
 
-.add-btn:hover{
+.primary:hover,
+.secondary:hover{
   opacity:.9;
 }
 
 .message{
   display:none;
+  margin-top:15px;
   padding:13px;
   border-radius:10px;
-  margin-top:15px;
   text-align:center;
   font-size:14px;
 }
 
 .success{
+  display:block;
   background:#063b1b;
   border:1px solid #00a83b;
   color:#7cffae;
 }
 
 .error{
+  display:block;
   background:#3b0606;
   border:1px solid #b40000;
   color:#ff8a8a;
 }
 
+.search-box{
+  margin-bottom:18px;
+}
+
 .products{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+  grid-template-columns:repeat(3,1fr);
+  gap:15px;
 }
 
 .product{
   background:#0d0d0d;
   border:1px solid #292929;
-  border-radius:12px;
+  border-radius:14px;
   padding:14px;
 }
 
-.product h3{
-  font-size:14px;
-  margin-bottom:8px;
+.product-image{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:10px;
+  background:#171717;
+  margin-bottom:12px;
 }
 
-.product p{
+.product h3{
+  font-size:15px;
+  margin-bottom:10px;
+  line-height:1.7;
+}
+
+.product-info{
   color:#aaa;
   font-size:12px;
-  margin:4px 0;
+  line-height:2;
 }
 
-@media(max-width:650px){
+.product-price{
+  color:#55ff88;
+  font-weight:bold;
+  font-size:14px;
+  margin-top:5px;
+}
+
+.product-actions{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.edit-btn{
+  background:#17456b;
+  color:white;
+  flex:1;
+}
+
+.delete-btn{
+  background:#750000;
+  color:white;
+  flex:1;
+}
+
+.empty{
+  text-align:center;
+  color:#888;
+  padding:30px;
+  grid-column:1/-1;
+}
+
+.status{
+  text-align:center;
+  padding:10px;
+  border-radius:10px;
+  margin-bottom:15px;
+  background:#101010;
+  color:#aaa;
+  font-size:13px;
+}
+
+@media(max-width:800px){
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+@media(max-width:600px){
   .grid{
     grid-template-columns:1fr;
   }
 
+  .full{
+    grid-column:auto;
+  }
+
   .products{
     grid-template-columns:1fr;
+  }
+
+  .buttons{
+    flex-direction:column;
   }
 
   header h1{
@@ -188,14 +280,18 @@ button{
 
 <header>
   <h1>🛍️ پنل مدیریت ماهان سنتر ایران</h1>
-  <p>مدیریت محصولات فروشگاه</p>
+  <p>افزودن، ویرایش و حذف محصولات</p>
 </header>
 
 <div class="container">
 
+  <!-- فرم محصول -->
+
   <div class="card">
 
-    <h2>➕ افزودن محصول جدید</h2>
+    <h2 id="formTitle">➕ افزودن محصول جدید</h2>
+
+    <input type="hidden" id="documentId">
 
     <div class="grid">
 
@@ -211,7 +307,9 @@ button{
 
       <div class="field">
         <label>دسته‌بندی</label>
+
         <select id="category">
+
           <option value="mobile">📱 موبایل</option>
           <option value="gold">💎 طلا</option>
           <option value="clothes">👕 پوشاک</option>
@@ -219,6 +317,22 @@ button{
           <option value="digital">💻 کالای دیجیتال</option>
           <option value="shoes">👟 کفش</option>
           <option value="watches">⌚ ساعت</option>
+
+        </select>
+      </div>
+
+      <div class="field">
+        <label>دسته طلایی</label>
+
+        <select id="goldCat">
+
+          <option value="">بدون دسته طلا</option>
+          <option value="necklace">📿 گردنبند</option>
+          <option value="ring">💍 انگشتر</option>
+          <option value="bangle">⭕ النگو</option>
+          <option value="bracelet">📿 دستبند</option>
+          <option value="earring">💎 گوشواره</option>
+
         </select>
       </div>
 
@@ -239,66 +353,106 @@ button{
 
       <div class="field">
         <label>موجودی</label>
-        <input id="stock" type="number" value="1">
-      </div>
-
-      <div class="field">
-        <label>آیکون</label>
-        <input id="icon" type="text" placeholder="📱">
+        <input id="stock" type="number" min="0" value="1">
       </div>
 
       <div class="field full">
-        <label>آدرس عکس محصول</label>
+        <label>مسیر عکس محصول</label>
+
         <input
           id="image"
           type="text"
-          placeholder="مثلاً images/gold/product.jpg"
+          placeholder="مثلاً images/gold/heart-small.jpg"
+          oninput="previewImage()"
         >
+
+        <img id="imagePreview" class="image-preview">
+
       </div>
 
       <div class="field full">
         <label>عبارت جستجو</label>
+
         <input
           id="search"
           type="text"
           placeholder="نام محصول، مدل، برند و..."
         >
+
       </div>
 
       <div class="field full">
+
         <label>توضیحات محصول</label>
+
         <textarea
           id="description"
           placeholder="توضیحات محصول..."
         ></textarea>
+
       </div>
 
       <div class="field full">
+
         <label>مشخصات محصول</label>
+
         <textarea
           id="specs"
           placeholder="مثلاً حافظه: 256GB | رم: 8GB | رنگ: مشکی"
         ></textarea>
+
       </div>
 
     </div>
 
-    <button class="add-btn" onclick="addProduct()">
-      ➕ افزودن محصول به فروشگاه
-    </button>
+    <div class="buttons">
+
+      <button
+        class="primary"
+        onclick="saveProduct()"
+        id="saveButton"
+      >
+        ➕ افزودن محصول
+      </button>
+
+      <button
+        class="secondary"
+        onclick="cancelEdit()"
+        id="cancelButton"
+        style="display:none"
+      >
+        ❌ لغو ویرایش
+      </button>
+
+    </div>
 
     <div id="message" class="message"></div>
 
   </div>
 
 
+  <!-- لیست محصولات -->
+
   <div class="card">
 
-    <h2>📦 محصولات موجود</h2>
+    <h2>📦 مدیریت محصولات</h2>
 
-    <div id="productsList" class="products">
+    <div class="search-box">
+
+      <input
+        id="adminSearch"
+        type="text"
+        placeholder="🔍 جستجوی نام، کد یا برند..."
+        oninput="filterProducts()"
+      >
+
+    </div>
+
+    <div id="status" class="status">
       در حال دریافت محصولات...
     </div>
+
+    <div id="productsList" class="products"></div>
 
   </div>
 
@@ -316,10 +470,15 @@ import {
   getFirestore,
   collection,
   addDoc,
-  getDocs
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc
 } from
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
+
+/* Firebase */
 
 const firebaseConfig = {
 
@@ -349,9 +508,188 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 
-/* افزودن محصول */
+/* محصولات */
 
-window.addProduct = async function(){
+let allProducts = [];
+
+
+/* گرفتن محصولات */
+
+async function loadProducts(){
+
+  const list =
+    document.getElementById("productsList");
+
+  const status =
+    document.getElementById("status");
+
+  status.textContent =
+    "در حال دریافت محصولات...";
+
+  try{
+
+    const snapshot =
+      await getDocs(collection(db,"products"));
+
+    allProducts = [];
+
+    snapshot.forEach(item => {
+
+      allProducts.push({
+
+        id:item.id,
+
+        ...item.data()
+
+      });
+
+    });
+
+
+    allProducts.sort((a,b)=>
+      Number(a.code || 0) -
+      Number(b.code || 0)
+    );
+
+
+    status.textContent =
+      `تعداد محصولات: ${allProducts.length}`;
+
+
+    renderProducts(allProducts);
+
+  }catch(error){
+
+    status.textContent =
+      "❌ خطا در دریافت محصولات";
+
+    list.innerHTML =
+      `<div class="empty">
+        ${error.message}
+      </div>`;
+
+  }
+
+}
+
+
+/* نمایش محصولات */
+
+function renderProducts(products){
+
+  const list =
+    document.getElementById("productsList");
+
+
+  if(!products.length){
+
+    list.innerHTML =
+      `<div class="empty">
+        محصولی پیدا نشد.
+      </div>`;
+
+    return;
+
+  }
+
+
+  let html = "";
+
+
+  products.forEach(p => {
+
+    const image =
+      p.image || "";
+
+
+    html += `
+
+      <div class="product">
+
+        ${
+          image
+          ?
+          `<img
+             src="${image}"
+             class="product-image"
+             onerror="this.style.display='none'"
+           >`
+          :
+          `<div class="product-image"></div>`
+        }
+
+        <h3>
+          ${p.icon || "🛍️"}
+          ${escapeHtml(p.name || "بدون نام")}
+        </h3>
+
+        <div class="product-info">
+
+          🆔 کد:
+          ${p.code ?? "-"}
+
+          <br>
+
+          🏷️ دسته:
+          ${escapeHtml(p.category || "-")}
+
+          <br>
+
+          📦 موجودی:
+          ${p.stock ?? 0}
+
+          <br>
+
+          💸 تخفیف:
+          ${p.discount ?? 0}%
+
+        </div>
+
+        <div class="product-price">
+
+          💰
+          ${Number(p.price || 0).toLocaleString("fa-IR")}
+          تومان
+
+        </div>
+
+        <div class="product-actions">
+
+          <button
+            class="edit-btn"
+            onclick="editProduct('${p.id}')"
+          >
+            ✏️ ویرایش
+          </button>
+
+          <button
+            class="delete-btn"
+            onclick="deleteProduct('${p.id}')"
+          >
+            🗑️ حذف
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+
+  list.innerHTML = html;
+
+}
+
+
+/* ذخیره محصول */
+
+window.saveProduct = async function(){
+
+  const documentId =
+    document.getElementById("documentId").value;
+
 
   const code =
     Number(document.getElementById("code").value);
@@ -361,6 +699,9 @@ window.addProduct = async function(){
 
   const category =
     document.getElementById("category").value;
+
+  const goldCat =
+    document.getElementById("goldCat").value;
 
   const brand =
     document.getElementById("brand").value.trim();
@@ -373,9 +714,6 @@ window.addProduct = async function(){
 
   const stock =
     Number(document.getElementById("stock").value || 0);
-
-  const icon =
-    document.getElementById("icon").value.trim() || "🛍️";
 
   const image =
     document.getElementById("image").value.trim();
@@ -393,84 +731,86 @@ window.addProduct = async function(){
   if(!code || !name || !price){
 
     showMessage(
-      "لطفاً کد، نام و قیمت محصول را وارد کنید.",
+      "کد، نام و قیمت محصول الزامی است.",
       false
     );
 
     return;
+
   }
+
+
+  const productData = {
+
+    code:code,
+
+    name:name,
+
+    category:category,
+
+    goldCat:goldCat,
+
+    brand:brand,
+
+    price:price,
+
+    discount:discount,
+
+    stock:stock,
+
+    image:image,
+
+    icon:"🛍️",
+
+    search:search,
+
+    description:description,
+
+    specs:specs,
+
+    active:true
+
+  };
 
 
   try{
 
-    await addDoc(
-      collection(db,"products"),
-      {
+    if(documentId){
 
-        code: code,
+      await updateDoc(
+        doc(db,"products",documentId),
+        productData
+      );
 
-        name: name,
+      showMessage(
+        "✅ محصول با موفقیت ویرایش شد.",
+        true
+      );
 
-        category: category,
+    }else{
 
-        brand: brand,
+      await addDoc(
+        collection(db,"products"),
+        {
 
-        goldCat: "",
+          ...productData,
 
-        price: price,
+          createdAt:new Date()
 
-        discount: discount,
+        }
+      );
 
-        stock: stock,
+      showMessage(
+        "✅ محصول با موفقیت اضافه شد.",
+        true
+      );
 
-        image: image,
-
-        icon: icon,
-
-        search: search,
-
-        description: description,
-
-        specs: specs,
-
-        active: true,
-
-        createdAt: new Date()
-
-      }
-    );
+    }
 
 
-    showMessage(
-      "✅ محصول با موفقیت اضافه شد.",
-      true
-    );
+    clearForm();
 
-
-    document.getElementById("code").value = "";
-
-    document.getElementById("name").value = "";
-
-    document.getElementById("brand").value = "";
-
-    document.getElementById("price").value = "";
-
-    document.getElementById("discount").value = "0";
-
-    document.getElementById("stock").value = "1";
-
-    document.getElementById("icon").value = "";
-
-    document.getElementById("image").value = "";
-
-    document.getElementById("search").value = "";
-
-    document.getElementById("description").value = "";
-
-    document.getElementById("specs").value = "";
-
-
-    loadProducts();
+    await loadProducts();
 
   }catch(error){
 
@@ -482,6 +822,258 @@ window.addProduct = async function(){
     );
 
   }
+
+};
+
+
+/* ویرایش */
+
+window.editProduct = function(id){
+
+  const product =
+    allProducts.find(p => p.id === id);
+
+  if(!product) return;
+
+
+  document.getElementById("documentId").value =
+    product.id;
+
+  document.getElementById("code").value =
+    product.code ?? "";
+
+  document.getElementById("name").value =
+    product.name ?? "";
+
+  document.getElementById("category").value =
+    product.category ?? "digital";
+
+  document.getElementById("goldCat").value =
+    product.goldCat ?? "";
+
+  document.getElementById("brand").value =
+    product.brand ?? "";
+
+  document.getElementById("price").value =
+    product.price ?? "";
+
+  document.getElementById("discount").value =
+    product.discount ?? 0;
+
+  document.getElementById("stock").value =
+    product.stock ?? 0;
+
+  document.getElementById("image").value =
+    product.image ?? "";
+
+  document.getElementById("search").value =
+    product.search ?? "";
+
+  document.getElementById("description").value =
+    product.description ?? "";
+
+  document.getElementById("specs").value =
+    product.specs ?? "";
+
+
+  document.getElementById("formTitle").textContent =
+    "✏️ ویرایش محصول";
+
+  document.getElementById("saveButton").textContent =
+    "💾 ذخیره تغییرات";
+
+  document.getElementById("cancelButton").style.display =
+    "block";
+
+
+  previewImage();
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+};
+
+
+/* حذف */
+
+window.deleteProduct = async function(id){
+
+  const product =
+    allProducts.find(p => p.id === id);
+
+
+  if(!product) return;
+
+
+  const ok =
+    confirm(
+      `آیا مطمئنی محصول «${product.name}» حذف شود؟`
+    );
+
+
+  if(!ok) return;
+
+
+  try{
+
+    await deleteDoc(
+      doc(db,"products",id)
+    );
+
+
+    showMessage(
+      "🗑️ محصول با موفقیت حذف شد.",
+      true
+    );
+
+
+    await loadProducts();
+
+  }catch(error){
+
+    showMessage(
+      "❌ خطا در حذف: " + error.message,
+      false
+    );
+
+  }
+
+};
+
+
+/* لغو ویرایش */
+
+window.cancelEdit = function(){
+
+  clearForm();
+
+};
+
+
+/* پاک کردن فرم */
+
+function clearForm(){
+
+  document.getElementById("documentId").value = "";
+
+  document.getElementById("code").value = "";
+
+  document.getElementById("name").value = "";
+
+  document.getElementById("category").value =
+    "mobile";
+
+  document.getElementById("goldCat").value = "";
+
+  document.getElementById("brand").value = "";
+
+  document.getElementById("price").value = "";
+
+  document.getElementById("discount").value = "0";
+
+  document.getElementById("stock").value = "1";
+
+  document.getElementById("image").value = "";
+
+  document.getElementById("search").value = "";
+
+  document.getElementById("description").value = "";
+
+  document.getElementById("specs").value = "";
+
+
+  document.getElementById("formTitle").textContent =
+    "➕ افزودن محصول جدید";
+
+  document.getElementById("saveButton").textContent =
+    "➕ افزودن محصول";
+
+  document.getElementById("cancelButton").style.display =
+    "none";
+
+
+  document.getElementById("imagePreview").style.display =
+    "none";
+
+}
+
+
+/* جستجو */
+
+window.filterProducts = function(){
+
+  const text =
+    document.getElementById("adminSearch")
+    .value
+    .trim()
+    .toLowerCase();
+
+
+  if(!text){
+
+    renderProducts(allProducts);
+
+    return;
+
+  }
+
+
+  const filtered =
+    allProducts.filter(p => {
+
+      const content = [
+
+        p.name,
+
+        p.brand,
+
+        p.search,
+
+        p.code,
+
+        p.category
+
+      ]
+      .join(" ")
+      .toLowerCase();
+
+
+      return content.includes(text);
+
+    });
+
+
+  renderProducts(filtered);
+
+};
+
+
+/* پیش نمایش عکس */
+
+window.previewImage = function(){
+
+  const url =
+    document.getElementById("image").value.trim();
+
+  const img =
+    document.getElementById("imagePreview");
+
+
+  if(!url){
+
+    img.style.display = "none";
+
+    return;
+
+  }
+
+
+  img.src = url;
+
+  img.style.display = "block";
 
 };
 
@@ -499,87 +1091,34 @@ function showMessage(text,success){
     "message " +
     (success ? "success" : "error");
 
-  box.style.display = "block";
+  setTimeout(() => {
+
+    box.style.display = "none";
+
+  },5000);
 
 }
 
 
-/* نمایش محصولات */
+/* جلوگیری از HTML */
 
-async function loadProducts(){
+function escapeHtml(value){
 
-  const list =
-    document.getElementById("productsList");
-
-  try{
-
-    const snapshot =
-      await getDocs(collection(db,"products"));
-
-    if(snapshot.empty){
-
-      list.innerHTML =
-        "<p>هنوز محصولی وجود ندارد.</p>";
-
-      return;
-
-    }
-
-
-    let html = "";
-
-    snapshot.forEach(docSnap => {
-
-      const p = docSnap.data();
-
-      html += `
-
-        <div class="product">
-
-          <h3>
-            ${p.icon || "🛍️"}
-            ${p.name || "بدون نام"}
-          </h3>
-
-          <p>
-            🆔 کد: ${p.code || "-"}
-          </p>
-
-          <p>
-            💰 ${Number(p.price || 0).toLocaleString("fa-IR")} تومان
-          </p>
-
-          <p>
-            📦 موجودی: ${p.stock ?? 0}
-          </p>
-
-          <p>
-            🏷️ ${p.category || "-"}
-          </p>
-
-        </div>
-
-      `;
-
-    });
-
-
-    list.innerHTML = html;
-
-  }catch(error){
-
-    list.innerHTML =
-      "❌ خطا در دریافت محصولات: " +
-      error.message;
-
-  }
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
+
+/* شروع */
 
 loadProducts();
 
 </script>
 
 </body>
-</html>
+  </html>
