@@ -258,7 +258,7 @@ header{
 .hero p{
   color:#aaa;
   max-width:600px;
-  margin-bottom:25px;
+  margin-bottom:15px;
 }
 
 .primary-btn{
@@ -376,6 +376,14 @@ header{
   align-items:center;
   justify-content:center;
   font-size:75px;
+  overflow:hidden;
+}
+
+.product-image img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:12px;
 }
 
 .product-info{
@@ -498,6 +506,10 @@ header{
   overflow-x:auto;
 }
 
+.filters::-webkit-scrollbar{
+  display:none;
+}
+
 .filter{
   border:1px solid #333;
   background:#151515;
@@ -534,6 +546,15 @@ header{
   align-items:center;
   justify-content:center;
   font-size:150px;
+  overflow:hidden;
+}
+
+.detail-image img{
+  width:100%;
+  height:100%;
+  max-height:500px;
+  object-fit:contain;
+  padding:20px;
 }
 
 .detail-info{
@@ -559,6 +580,26 @@ header{
 .detail-price small{
   font-size:12px;
   color:#888;
+}
+
+.product-specs{
+  margin:20px 0;
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:hidden;
+}
+
+.product-specs-title{
+  padding:13px 15px;
+  background:#171717;
+  font-weight:bold;
+}
+
+.product-specs-text{
+  padding:15px;
+  color:#aaa;
+  font-size:13px;
+  line-height:2;
 }
 
 .quantity{
@@ -610,6 +651,14 @@ header{
   align-items:center;
   justify-content:center;
   font-size:35px;
+  overflow:hidden;
+}
+
+.cart-icon img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:8px;
 }
 
 .cart-item-info{
@@ -896,7 +945,6 @@ footer a{
 
 </a>
 
-
 <div class="search-box">
 
 <input
@@ -910,7 +958,6 @@ placeholder="جستجوی محصول؛ مثلاً A17..."
 </button>
 
 </div>
-
 
 <div class="header-actions">
 
@@ -934,7 +981,6 @@ title="سبد خرید"
 </div>
 
 </div>
-
 
 <div class="navbar">
 
@@ -966,12 +1012,9 @@ title="سبد خرید"
 
 </header>
 
-
 <div id="app"></div>
 
-
 <div id="toast" class="toast"></div>
-
 
 <footer>
 
@@ -1012,7 +1055,6 @@ title="سبد خرید"
 
 </div>
 
-
 <div class="container copy">
 
 © 2026 ماهان سنتر ایران — تمامی حقوق محفوظ است.
@@ -1020,7 +1062,6 @@ title="سبد خرید"
 </div>
 
 </footer>
-
 
 <script>
 
@@ -1031,7 +1072,7 @@ title="سبد خرید"
 const categories = {
 
 mobile:{
-name:"موبایل",
+name:"گوشی",
 icon:"📱"
 },
 
@@ -1068,149 +1109,340 @@ icon:"⌚"
 };
 
 
+/* =====================================================
+   PRODUCTS
+===================================================== */
+
 const products=[
+
+/* ================= IPHONE ================= */
 
 {
 id:1,
 cat:"mobile",
-name:"Samsung Galaxy A17",
-search:"a17 سامسونگ گلکسی",
-price:0,
-displayPrice:"تماس بگیرید",
+brand:"iphone",
+name:"گوشی موبایل اپل مدل آیفون 17 پرو مکس حافظه 256 گیگابایت",
+search:"iphone 17 pro max آیفون 17 پرو مکس",
+price:456500000,
+displayPrice:"456,500,000",
+image:"images/phones/iphone17promax.jpg",
 icon:"📱",
-desc:"گوشی سامسونگ Galaxy A17"
+desc:"نمایشگر 6.9 اینچی OLED، تراشه A19 Pro، دوربین حرفه‌ای سه‌گانه و پشتیبانی از 5G.",
+specs:"ابعاد: 163.4 × 78 × 8.75 میلی‌متر | وزن: حدود 233 گرم | نمایشگر: 6.9 اینچ OLED با ProMotion تا 120Hz | حافظه: 256GB | شبکه: 5G | باتری: لیتیوم-یون داخلی"
 },
 
 {
 id:2,
 cat:"mobile",
-name:"Samsung Galaxy A16",
-search:"a16 سامسونگ",
-price:0,
-displayPrice:"تماس بگیرید",
+brand:"iphone",
+name:"گوشی موبایل اپل آیفون 13 پرو 5G حافظه 256 گیگابایت",
+search:"iphone 13 pro آیفون 13 پرو 5g",
+price:110000000,
+displayPrice:"110,000,000",
+image:"images/phones/iphone13pro.jpg",
 icon:"📱",
-desc:"گوشی سامسونگ Galaxy A16"
+desc:"نمایشگر Super Retina XDR، تراشه A15 Bionic، دوربین سه‌گانه و پشتیبانی از 5G.",
+specs:"ابعاد: 146.7 × 71.5 × 7.65 میلی‌متر | نمایشگر: 6.1 اینچ OLED | حافظه: 256GB | وزن: حدود 204 گرم | شبکه: 5G | باتری: لیتیوم-یون داخلی | استاندارد مقاومت: IP68"
 },
 
 {
 id:3,
 cat:"mobile",
-name:"Samsung Galaxy S24",
-search:"s24 سامسونگ",
-price:0,
-displayPrice:"تماس بگیرید",
+brand:"iphone",
+name:"گوشی اپل مدل آیفون 15 Pro Max 5G حافظه 256 گیگابایت",
+search:"iphone 15 pro max آیفون 15 پرو مکس 5g",
+price:175500000,
+displayPrice:"175,500,000",
+image:"images/phones/iphone15promax.jpg",
 icon:"📱",
-desc:"گوشی سامسونگ Galaxy S24"
+desc:"بدنه تیتانیومی، تراشه A17 Pro، نمایشگر ProMotion و دوربین اصلی 48 مگاپیکسلی.",
+specs:"ابعاد: 159.9 × 76.7 × 8.25 میلی‌متر | وزن: 221 گرم | نمایشگر: 6.7 اینچ OLED با 120Hz | حافظه: 256GB | شبکه: 5G | باتری: پخش ویدئو تا 29 ساعت | مقاومت: IP68"
 },
 
 {
 id:4,
 cat:"mobile",
-name:"iPhone 15",
-search:"iphone 15 آیفون",
-price:0,
-displayPrice:"تماس بگیرید",
+brand:"iphone",
+name:"گوشی موبایل اپل مدل آیفون 16 حافظه 128 گیگابایت",
+search:"iphone 16 آیفون 16",
+price:325000000,
+displayPrice:"325,000,000",
+image:"images/phones/iphone16.jpg",
 icon:"📱",
-desc:"گوشی اپل آیفون 15"
+desc:"نمایشگر Super Retina XDR، تراشه A18، Dynamic Island و دوربین دوگانه.",
+specs:"ابعاد: 147.6 × 71.6 × 7.8 میلی‌متر | وزن: 170 گرم | نمایشگر: 6.1 اینچ OLED | حافظه: 128GB | شبکه: 5G | باتری: لیتیوم-یون داخلی"
 },
+
+/* ================= SAMSUNG ================= */
 
 {
 id:5,
-cat:"gold",
-name:"انگشتر طلا",
-search:"انگشتر طلا",
-price:0,
-displayPrice:"تماس بگیرید",
-icon:"💎",
-desc:"انگشتر طلای زیبا"
+cat:"mobile",
+brand:"samsung",
+name:"گوشی موبایل سامسونگ مدل گلکسی A17 4G ظرفیت 6/128 گیگابایت",
+search:"samsung galaxy a17 سامسونگ a17",
+price:80000000,
+displayPrice:"80,000,000",
+image:"images/phones/galaxya17.jpg",
+icon:"📱",
+desc:"گوشی میان‌رده سامسونگ با نمایشگر بزرگ Super AMOLED و باتری 5000 میلی‌آمپرساعتی.",
+specs:"ابعاد: 164.4 × 77.9 × 7.5 میلی‌متر | وزن: 190 گرم | نمایشگر: 6.7 اینچ Super AMOLED | رم: 6GB | حافظه: 128GB | شبکه: 4G | باتری: 5000mAh | USB Type-C"
 },
 
 {
 id:6,
-cat:"gold",
-name:"گردنبند طلا",
-search:"گردنبند طلا",
-price:0,
-displayPrice:"تماس بگیرید",
-icon:"💎",
-desc:"گردنبند طلای شیک"
+cat:"mobile",
+brand:"samsung",
+name:"گوشی موبایل سامسونگ مدل Galaxy A07 4G ظرفیت 6/128 گیگابایت",
+search:"samsung galaxy a07 سامسونگ a07",
+price:62300000,
+displayPrice:"62,300,000",
+image:"images/phones/galaxya07.jpg",
+icon:"📱",
+desc:"گوشی اقتصادی سامسونگ با نمایشگر بزرگ، باتری پرظرفیت و دوربین اصلی باکیفیت.",
+specs:"نمایشگر: حدود 6.7 اینچ | رم: 6GB | حافظه: 128GB | شبکه: 4G | دو سیم‌کارت | USB Type-C | باتری: 5000mAh"
 },
 
 {
 id:7,
-cat:"clothes",
-name:"تیشرت مردانه",
-search:"تیشرت مردانه لباس",
-price:0,
-displayPrice:"تماس بگیرید",
-icon:"👕",
-desc:"تیشرت مردانه اسپرت"
+cat:"mobile",
+brand:"samsung",
+name:"گوشی موبایل سامسونگ مدل Galaxy S26 Ultra 5G ظرفیت 256 و رم 12 گیگابایت",
+search:"samsung galaxy s26 ultra s26 سامسونگ",
+price:215560000,
+displayPrice:"215,560,000",
+image:"images/phones/galaxys26ultra.jpg",
+icon:"📱",
+desc:"پرچمدار سامسونگ با نمایشگر Dynamic AMOLED 2X، دوربین حرفه‌ای و پشتیبانی از 5G.",
+specs:"نمایشگر: 6.9 اینچ Dynamic AMOLED 2X | رم: 12GB | حافظه: 256GB | شبکه: 5G | باتری: 5000mAh | دوربین اصلی: 200MP | USB Type-C"
 },
 
 {
 id:8,
-cat:"clothes",
-name:"هودی اسپرت",
-search:"هودی لباس",
-price:0,
-displayPrice:"تماس بگیرید",
-icon:"👕",
-desc:"هودی اسپرت"
+cat:"mobile",
+brand:"samsung",
+name:"گوشی موبایل سامسونگ A17 4G دوسیم کارت ظرفیت 256 گیگابایت و رم 8 گیگابایت",
+search:"samsung a17 256 8 سامسونگ a17 256",
+price:86000000,
+displayPrice:"86,000,000",
+image:"images/phones/galaxya17-256.jpg",
+icon:"📱",
+desc:"نسخه 256 گیگابایتی Galaxy A17 با رم 8 گیگابایت و پشتیبانی از دو سیم‌کارت.",
+specs:"ابعاد: 164.4 × 77.9 × 7.5 میلی‌متر | وزن: 190 گرم | نمایشگر: 6.7 اینچ Super AMOLED | رم: 8GB | حافظه: 256GB | شبکه: 4G | باتری: 5000mAh"
 },
 
 {
 id:9,
-cat:"accessories",
-name:"هدفون بی‌سیم",
-search:"هدفون هندزفری",
-price:0,
-displayPrice:"تماس بگیرید",
-icon:"🎧",
-desc:"هدفون بی‌سیم باکیفیت"
+cat:"mobile",
+brand:"samsung",
+name:"گوشی سامسونگ مدل Galaxy S25 Ultra ظرفیت 256 رم 12 گیگابایت 5G",
+search:"samsung galaxy s25 ultra s25 سامسونگ",
+price:200000000,
+displayPrice:"200,000,000",
+image:"images/phones/galaxys25ultra.jpg",
+icon:"📱",
+desc:"پرچمدار سری S با نمایشگر Dynamic AMOLED 2X، دوربین 200 مگاپیکسلی و قلم S Pen.",
+specs:"ابعاد: حدود 162.8 × 77.6 × 8.2 میلی‌متر | وزن: حدود 218 گرم | نمایشگر: 6.9 اینچ Dynamic AMOLED 2X | رم: 12GB | حافظه: 256GB | شبکه: 5G | باتری: 5000mAh"
 },
+
+/* ================= XIAOMI ================= */
 
 {
 id:10,
-cat:"accessories",
-name:"شارژر موبایل",
-search:"شارژر کابل",
-price:0,
-displayPrice:"تماس بگیرید",
-icon:"🔌",
-desc:"شارژر موبایل"
+cat:"mobile",
+brand:"xiaomi",
+name:"گوشی موبایل شیائومی مدل Poco C71 ظرفیت 64 گیگابایت رم 3 گیگابایت",
+search:"poco c71 پوکو c71 شیائومی",
+price:40000000,
+displayPrice:"40,000,000",
+image:"images/phones/pococ71.jpg",
+icon:"📱",
+desc:"گوشی اقتصادی پوکو با نمایشگر بزرگ و پردازنده Unisoc.",
+specs:"ابعاد: 171.79 × 77.8 × 8.26 میلی‌متر | وزن: 193 گرم | رم: 3GB | حافظه: 64GB | پردازنده: Unisoc T7250 | نمایشگر: حدود 6.9 اینچ | شبکه: 4G"
 },
 
 {
 id:11,
-cat:"digital",
-name:"لپ‌تاپ",
-search:"لپ تاپ کامپیوتر",
-price:0,
-displayPrice:"تماس بگیرید",
-icon:"💻",
-desc:"لپ‌تاپ مناسب کار و تحصیل"
+cat:"mobile",
+brand:"xiaomi",
+name:"گوشی موبایل شیائومی مدل Redmi Note 14S 4G دو سیم کارت ظرفیت 8/256 گیگابایت",
+search:"redmi note 14s شیائومی نوت 14s",
+price:80000000,
+displayPrice:"80,000,000",
+image:"images/phones/redminote14s.jpg",
+icon:"📱",
+desc:"نمایشگر AMOLED با نرخ نوسازی 120 هرتز و دوربین اصلی 200 مگاپیکسلی.",
+specs:"ابعاد: 161.1 × 74.95 × 7.98 میلی‌متر | وزن: 179 گرم | نمایشگر: 6.67 اینچ AMOLED، 120Hz | رم: 8GB | حافظه: 256GB | باتری: 5000mAh | شارژ: 67W | شبکه: 4G"
 },
 
 {
 id:12,
-cat:"shoes",
-name:"کتونی اسپرت",
-search:"کفش کتونی",
-price:0,
-displayPrice:"تماس بگیرید",
-icon:"👟",
-desc:"کتونی اسپرت"
+cat:"mobile",
+brand:"xiaomi",
+name:"گوشی موبایل شیائومی مدل Redmi Note 15 Pro 5G دو سیم کارت ظرفیت 256 گیگابایت و رم 12 گیگابایت",
+search:"redmi note 15 pro 5g شیائومی",
+price:118000000,
+displayPrice:"118,000,000",
+image:"images/phones/redminote15pro5g.jpg",
+icon:"📱",
+desc:"نمایشگر AMOLED با وضوح 1.5K، نرخ نوسازی 120 هرتز و پردازنده قدرتمند.",
+specs:"نمایشگر: 6.83 اینچ AMOLED | رزولوشن: 2772×1280 | رم: 12GB | حافظه: 256GB | شبکه: 5G | دو سیم‌کارت | باتری پرظرفیت"
 },
 
 {
 id:13,
-cat:"watches",
-name:"ساعت مچی",
-search:"ساعت مچی",
-price:0,
-displayPrice:"تماس بگیرید",
-icon:"⌚",
-desc:"ساعت مچی شیک"
+cat:"mobile",
+brand:"xiaomi",
+name:"گوشی موبایل شیائومی مدل Redmi Note 14 Pro 4G حافظه 8/256 گیگابایت",
+search:"redmi note 14 pro 4g شیائومی",
+price:85000000,
+displayPrice:"85,000,000",
+image:"images/phones/redminote14pro.jpg",
+icon:"📱",
+desc:"گوشی میان‌رده شیائومی با نمایشگر AMOLED و دوربین اصلی 200 مگاپیکسلی.",
+specs:"نمایشگر: 6.67 اینچ AMOLED | نرخ نوسازی: 120Hz | رم: 8GB | حافظه: 256GB | شبکه: 4G | دوربین اصلی: 200MP | باتری: 5500mAh"
+},
+
+{
+id:14,
+cat:"mobile",
+brand:"xiaomi",
+name:"گوشی موبایل شیائومی مدل Redmi A5 ظرفیت 3/64 گیگابایت",
+search:"redmi a5 شیائومی a5",
+price:47000000,
+displayPrice:"47,000,000",
+image:"images/phones/redmia5.jpg",
+icon:"📱",
+desc:"گوشی اقتصادی ردمی با نمایشگر بزرگ و باتری پرظرفیت.",
+specs:"رم: 3GB | حافظه: 64GB | شبکه: 4G | دو سیم‌کارت | نمایشگر: حدود 6.88 اینچ | باتری: 5200mAh | USB Type-C"
+},
+
+{
+id:15,
+cat:"mobile",
+brand:"xiaomi",
+name:"گوشی موبایل شیائومی مدل Redmi A3 ظرفیت 4/128 گیگابایت",
+search:"redmi a3 شیائومی a3",
+price:42000000,
+displayPrice:"42,000,000",
+image:"images/phones/redmia3.jpg",
+icon:"📱",
+desc:"گوشی اقتصادی شیائومی با حافظه 128 گیگابایت و رم 4 گیگابایت.",
+specs:"رم: 4GB | حافظه: 128GB | نمایشگر: 6.71 اینچ | باتری: 5000mAh | شبکه: 4G | دو سیم‌کارت | USB Type-C"
+},
+
+{
+id:16,
+cat:"mobile",
+brand:"xiaomi",
+name:"گوشی موبایل شیائومی مدل Redmi Note 15 4G دو سیم کارت ظرفیت 256 گیگابایت و رم 8 گیگابایت - گلوبال",
+search:"redmi note 15 4g شیائومی نوت 15",
+price:75000000,
+displayPrice:"75,000,000",
+image:"images/phones/redminote15.jpg",
+icon:"📱",
+desc:"نمایشگر AMOLED با نرخ نوسازی 120 هرتز و باتری پرظرفیت.",
+specs:"ابعاد: 164.03 × 75.42 × 7.94 میلی‌متر | وزن: حدود 184 گرم | نمایشگر: 6.77 اینچ AMOLED، 120Hz | رم: 8GB | حافظه: 256GB | باتری: 6000mAh | شارژ: 33W | شبکه: 4G"
+},
+
+{
+id:17,
+cat:"mobile",
+brand:"xiaomi",
+name:"گوشی شیائومی 15T 5G حافظه 256 گیگابایت رم 12 گیگابایت",
+search:"xiaomi 15t شیائومی 15t",
+price:170000000,
+displayPrice:"170,000,000",
+image:"images/phones/xiaomi15t.jpg",
+icon:"📱",
+desc:"گوشی قدرتمند شیائومی با نمایشگر AMOLED و پردازنده سری Dimensity.",
+specs:"نمایشگر: 6.83 اینچ AMOLED | نرخ نوسازی: 120Hz | رم: 12GB | حافظه: 256GB | شبکه: 5G | پردازنده: Dimensity 8400-Ultra"
+},
+
+/* ================= NOKIA ================= */
+
+{
+id:18,
+cat:"mobile",
+brand:"nokia",
+name:"گوشی موبایل نوکیا 106 2018 4G",
+search:"nokia 106 نوکیا 106",
+price:3000000,
+displayPrice:"3,000,000",
+image:"images/phones/nokia106.jpg",
+icon:"📱",
+desc:"گوشی دکمه‌ای ساده و مقاوم نوکیا مناسب تماس و استفاده روزمره.",
+specs:"ابعاد: 111.15 × 49.5 × 14.4 میلی‌متر | وزن: حدود 70 گرم | نمایشگر: 1.8 اینچ | باتری: 800mAh | طراحی دکمه‌ای | رادیو FM"
+},
+
+{
+id:19,
+cat:"mobile",
+brand:"nokia",
+name:"گوشی موبایل نوکیا Nokia 105 4G 2023",
+search:"nokia 105 4g نوکیا 105",
+price:3500000,
+displayPrice:"3,500,000",
+image:"images/phones/nokia1054g.jpg",
+icon:"📱",
+desc:"گوشی دکمه‌ای 4G با باتری قابل تعویض و پشتیبانی از رادیو.",
+specs:"ابعاد: حدود 121.5 × 50 × 14.4 میلی‌متر | وزن: حدود 93 گرم | نمایشگر: 1.8 اینچ | باتری: 1450mAh | شبکه: 4G | Bluetooth"
+},
+
+{
+id:20,
+cat:"mobile",
+brand:"nokia",
+name:"گوشی نوکیا BM10",
+search:"nokia bm10 نوکیا bm10",
+price:3000000,
+displayPrice:"3,000,000",
+image:"images/phones/nokiabm10.jpg",
+icon:"📱",
+desc:"گوشی کوچک و ساده نوکیا مناسب تماس و استفاده روزمره.",
+specs:"گوشی دکمه‌ای کوچک | طراحی کامپکت | باتری قابل تعویض | نمایشگر کوچک | مناسب تماس و استفاده ساده"
+},
+
+{
+id:21,
+cat:"mobile",
+brand:"nokia",
+name:"گوشی موبایل نوکیا مدل (2024) NOKIA 3210 FA",
+search:"nokia 3210 2024 نوکیا 3210",
+price:7000000,
+displayPrice:"7,000,000",
+image:"images/phones/nokia3210.jpg",
+icon:"📱",
+desc:"نسخه بازطراحی‌شده Nokia 3210 با شبکه 4G و طراحی کلاسیک.",
+specs:"ابعاد: حدود 122 × 52 × 13.1 میلی‌متر | وزن: حدود 87 گرم | نمایشگر: 2.4 اینچ QVGA | دوربین: 2MP | باتری: 1450mAh | شبکه: 4G | Bluetooth"
+},
+
+{
+id:22,
+cat:"mobile",
+brand:"nokia",
+name:"گوشی نوکیا 2700 اصل قدیمی",
+search:"nokia 2700 نوکیا 2700 کلاسیک",
+price:1200000,
+displayPrice:"1,200,000",
+image:"images/phones/nokia2700.jpg",
+icon:"📱",
+desc:"گوشی کلاسیک قدیمی نوکیا با طراحی دکمه‌ای و دوربین.",
+specs:"ابعاد: حدود 109 × 46 × 14 میلی‌متر | نمایشگر: 2 اینچ | دوربین: 2MP | باتری: حدود 1020mAh | شبکه: GSM | Bluetooth"
+},
+
+{
+id:23,
+cat:"mobile",
+brand:"nokia",
+name:"گوشی نوکیا 2600 ساخت مجارستان",
+search:"nokia 2600 نوکیا 2600 کلاسیک",
+price:1000000,
+displayPrice:"1,000,000",
+image:"images/phones/nokia2600.jpg",
+icon:"📱",
+desc:"گوشی کلاسیک قدیمی نوکیا با طراحی ساده و مقاوم.",
+specs:"ابعاد: حدود 109.6 × 46.7 × 12 میلی‌متر | وزن: حدود 73 گرم | نمایشگر: حدود 2 اینچ | باتری: حدود 870mAh | شبکه: GSM"
 }
 
 ];
@@ -1225,7 +1457,6 @@ JSON.parse(localStorage.getItem("mahanCart") || "[]");
 
 let favorites=
 JSON.parse(localStorage.getItem("mahanFavorites") || "[]");
-
 
 function saveData(){
 
@@ -1265,7 +1496,6 @@ behavior:"smooth"
 
 }
 
-
 window.addEventListener(
 "popstate",
 ()=>{
@@ -1273,14 +1503,12 @@ render(getRoute());
 }
 );
 
-
 window.addEventListener(
 "hashchange",
 ()=>{
 render(getRoute());
 }
 );
-
 
 function getRoute(){
 
@@ -1471,7 +1699,6 @@ document.getElementById("app").innerHTML=`
 
 </div>
 
-
 <div class="categories">
 
 ${Object.keys(categories).map(
@@ -1498,6 +1725,14 @@ let c=categories[cat];
 if(!c){
 
 renderCategories();
+
+return;
+
+}
+
+if(cat==="mobile"){
+
+renderPhones();
 
 return;
 
@@ -1535,7 +1770,6 @@ onclick="go('/categories')"
 
 </div>
 
-
 <div class="filters">
 
 <button class="filter active">
@@ -1552,7 +1786,6 @@ onclick="go('/categories')"
 
 </div>
 
-
 <div class="products">
 
 ${list.length
@@ -1565,6 +1798,143 @@ ${list.length
 </div>
 
 `;
+
+}
+
+
+/* =====================================================
+   PHONE PAGE
+===================================================== */
+
+function renderPhones(){
+
+let list=
+products.filter(
+p=>p.cat==="mobile"
+);
+
+document.getElementById("app").innerHTML=`
+
+<div class="container page">
+
+<div class="page-title">
+
+<div>
+
+<h1>
+📱 گوشی موبایل
+</h1>
+
+<p>
+${list.length} گوشی موجود است
+</p>
+
+</div>
+
+<button
+class="secondary-btn"
+onclick="go('/categories')"
+>
+← دسته‌بندی‌ها
+</button>
+
+</div>
+
+<div class="filters">
+
+<button
+class="filter active"
+onclick="filterPhones('all',this)"
+>
+همه
+</button>
+
+<button
+class="filter"
+onclick="filterPhones('iphone',this)"
+>
+آیفون
+</button>
+
+<button
+class="filter"
+onclick="filterPhones('samsung',this)"
+>
+سامسونگ
+</button>
+
+<button
+class="filter"
+onclick="filterPhones('xiaomi',this)"
+>
+شیائومی
+</button>
+
+<button
+class="filter"
+onclick="filterPhones('nokia',this)"
+>
+نوکیا
+</button>
+
+<button
+class="filter"
+onclick="filterPhones('budget',this)"
+>
+اقتصادی
+</button>
+
+</div>
+
+<div
+id="phoneProducts"
+class="products"
+>
+
+${list.map(productCard).join("")}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================================
+   PHONE FILTER
+===================================================== */
+
+function filterPhones(brand,button){
+
+document
+.querySelectorAll(".filters .filter")
+.forEach(
+b=>b.classList.remove("active")
+);
+
+button.classList.add("active");
+
+let list=
+products.filter(
+p=>p.cat==="mobile"
+);
+
+if(brand!=="all"){
+
+list=
+list.filter(
+p=>p.brand===brand
+);
+
+}
+
+document.getElementById("phoneProducts").innerHTML=
+
+list.length
+?list.map(productCard).join("")
+:emptyResult();
 
 }
 
@@ -1589,7 +1959,6 @@ onclick="toggleFavorite(${p.id})"
 ${fav?"♥":"♡"}
 </button>
 
-
 <a
 href="#/product/${p.id}"
 onclick="go('/product/${p.id}')"
@@ -1597,12 +1966,15 @@ onclick="go('/product/${p.id}')"
 
 <div class="product-image">
 
-${p.icon}
+${
+p.image
+?`<img src="${p.image}" alt="${escapeHTML(p.name)}">`
+:p.icon
+}
 
 </div>
 
 </a>
-
 
 <div class="product-info">
 
@@ -1621,18 +1993,13 @@ ${p.desc}
 
 </a>
 
-
 <div class="product-price">
 
 ${p.displayPrice}
 
-${p.price
-?`<small> تومان</small>`
-:""
-}
+<small> تومان</small>
 
 </div>
-
 
 <div class="product-actions">
 
@@ -1679,6 +2046,8 @@ return;
 
 }
 
+tempQty=1;
+
 document.getElementById("app").innerHTML=`
 
 <div class="container page">
@@ -1691,13 +2060,17 @@ style="margin-bottom:20px"
 ← برگشت
 </button>
 
-
 <div class="product-detail">
 
 <div class="detail-image">
-${p.icon}
-</div>
 
+${
+p.image
+?`<img src="${p.image}" alt="${escapeHTML(p.name)}">`
+:p.icon
+}
+
+</div>
 
 <div class="detail-info">
 
@@ -1715,8 +2088,20 @@ ${p.desc}
 
 <div class="detail-price">
 ${p.displayPrice}
+<small> تومان</small>
 </div>
 
+<div class="product-specs">
+
+<div class="product-specs-title">
+مشخصات محصول
+</div>
+
+<div class="product-specs-text">
+${p.specs || "اطلاعات تکمیلی محصول به‌زودی اضافه می‌شود."}
+</div>
+
+</div>
 
 <div class="quantity">
 
@@ -1733,7 +2118,6 @@ ${p.displayPrice}
 </button>
 
 </div>
-
 
 <div style="display:flex;gap:10px;flex-wrap:wrap">
 
@@ -1760,8 +2144,6 @@ onclick="toggleFavorite(${p.id})"
 </div>
 
 `;
-
-window.tempQty=1;
 
 }
 
@@ -1835,7 +2217,6 @@ p.name+" به سبد خرید اضافه شد 🛒"
 
 }
 
-
 function updateCartCount(){
 
 let count=
@@ -1893,9 +2274,7 @@ return;
 
 }
 
-
 let total=0;
-
 
 let items=
 cart.map(item=>{
@@ -1919,7 +2298,13 @@ return `
 <div class="cart-item">
 
 <div class="cart-icon">
-${p.icon}
+
+${
+p.image
+?`<img src="${p.image}" alt="${escapeHTML(p.name)}">`
+:p.icon
+}
+
 </div>
 
 <div class="cart-item-info">
@@ -1929,11 +2314,10 @@ ${p.name}
 </h3>
 
 <p>
-${p.displayPrice}
+${p.displayPrice} تومان
 </p>
 
 </div>
-
 
 <div class="qty">
 
@@ -1951,7 +2335,6 @@ ${item.qty}
 
 </div>
 
-
 <button
 class="remove"
 onclick="removeFromCart(${p.id})"
@@ -1964,7 +2347,6 @@ onclick="removeFromCart(${p.id})"
 `;
 
 }).join("");
-
 
 document.getElementById("app").innerHTML=`
 
@@ -1993,9 +2375,7 @@ onclick="go('/categories')"
 
 </div>
 
-
 ${items}
-
 
 <div class="cart-summary">
 
@@ -2011,7 +2391,6 @@ ${cart.reduce((s,x)=>s+x.qty,0)}
 
 </div>
 
-
 <div class="summary-row">
 
 <span>
@@ -2019,14 +2398,10 @@ ${cart.reduce((s,x)=>s+x.qty,0)}
 </span>
 
 <strong>
-${total
-?total.toLocaleString()+" تومان"
-:"پس از انتخاب قیمت نهایی"
-}
+${total.toLocaleString()} تومان
 </strong>
 
 </div>
-
 
 <div class="summary-row total">
 
@@ -2035,14 +2410,10 @@ ${total
 </span>
 
 <strong>
-${total
-?total.toLocaleString()+" تومان"
-:"تماس با فروشگاه"
-}
+${total.toLocaleString()} تومان
 </strong>
 
 </div>
-
 
 <button
 class="primary-btn"
@@ -2178,7 +2549,6 @@ document.getElementById("app").innerHTML=`
 
 </div>
 
-
 <div class="products">
 
 ${
@@ -2230,7 +2600,9 @@ p.name+
 " "+
 p.search+
 " "+
-p.desc
+p.desc+
+" "+
+(p.specs || "")
 )
 .toLowerCase()
 .includes(
@@ -2238,7 +2610,6 @@ q.toLowerCase()
 )
 
 );
-
 
 document.getElementById("app").innerHTML=`
 
@@ -2263,7 +2634,6 @@ ${result.length} محصول
 </span>
 
 </div>
-
 
 <div class="products">
 
@@ -2334,7 +2704,6 @@ document.getElementById("app").innerHTML=`
 
 </div>
 
-
 <div class="offer" style="margin:0 0 25px">
 
 <div>
@@ -2350,7 +2719,6 @@ document.getElementById("app").innerHTML=`
 </div>
 
 </div>
-
 
 <div class="products">
 
@@ -2426,7 +2794,7 @@ toast.classList.remove("show");
 
 function escapeHTML(text){
 
-return text
+return String(text)
 .replaceAll("&","&amp;")
 .replaceAll("<","&lt;")
 .replaceAll(">","&gt;")
