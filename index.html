@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ماهان سنتر ایران</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Tahoma,Arial,sans-serif;
+  background:#090909;
+  color:white;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+}
+
+.container{
+  width:92%;
+  max-width:1200px;
+  margin:auto;
+}
+
+/* HEADER */
+
+header{
+  background:#0d0d0d;
+  border-bottom:1px solid #292929;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.top{
+  min-height:80px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.logo img{
+  width:55px;
+  height:55px;
+  object-fit:cover;
+  border-radius:50%;
+  border:2px solid #777;
+}
+
+.logo span{
+  font-size:19px;
+}
+
+.logo b{
+  color:#e50914;
+}
+
+/* SEARCH */
+
+.search{
+  flex:1;
+  max-width:500px;
+  display:flex;
+  background:#181818;
+  border:1px solid #333;
+  border-radius:13px;
+  overflow:hidden;
+}
+
+.search input{
+  flex:1;
+  padding:14px;
+  border:0;
+  outline:0;
+  background:none;
+  color:white;
+  font-size:14px;
+}
+
+.search button{
+  width:55px;
+  border:0;
+  background:#e50914;
+  color:white;
+  font-size:21px;
+  cursor:pointer;
+}
+
+.cart{
+  border:1px solid #333;
+  background:#181818;
+  color:white;
+  padding:11px 16px;
+  border-radius:12px;
+  cursor:pointer;
+}
+
+/* NAV */
+
+nav{
+  border-top:1px solid #1d1d1d;
+}
+
+.nav{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  padding:10px 0;
+}
+
+.nav::-webkit-scrollbar{
+  display:none;
+}
+
+.nav a{
+  white-space:nowrap;
+  padding:9px 16px;
+  border-radius:10px;
+  color:#ddd;
+}
+
+.nav a:hover,
+.nav a.active{
+  background:#e50914;
+  color:white;
+}
+
+/* HERO */
+
+.hero{
+  margin:30px auto;
+  min-height:350px;
+  border-radius:25px;
+  border:1px solid #292929;
+  padding:45px;
+  display:flex;
+  align-items:center;
+  background:
+    radial-gradient(circle at 10% 40%,rgba(229,9,20,.35),transparent 35%),
+    linear-gradient(135deg,#191919,#070707);
+}
+
+.hero-content{
+  max-width:650px;
+}
+
+.badge{
+  display:inline-block;
+  background:#e50914;
+  padding:5px 13px;
+  border-radius:30px;
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.hero h1{
+  font-size:clamp(30px,5vw,55px);
+  margin-bottom:12px;
+}
+
+.hero h1 span{
+  color:#e50914;
+}
+
+.hero p{
+  color:#aaa;
+  margin-bottom:25px;
+}
+
+.btn{
+  display:inline-block;
+  background:#e50914;
+  color:white;
+  padding:12px 23px;
+  border-radius:12px;
+  font-weight:bold;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-3px);
+  background:#c90711;
+}
+
+/* TITLES */
+
+.section{
+  padding:25px 0;
+}
+
+.title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:18px;
+}
+
+.title h2{
+  font-size:22px;
+}
+
+.title a{
+  color:#e50914;
+  font-size:13px;
+}
+
+/* CATEGORIES */
+
+.categories{
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:10px;
+}
+
+.category{
+  background:#151515;
+  border:1px solid #292929;
+  border-radius:16px;
+  text-align:center;
+  padding:18px 5px;
+  transition:.2s;
+}
+
+.category:hover{
+  transform:translateY(-4px);
+  border-color:#e50914;
+}
+
+.category .icon{
+  display:block;
+  font-size:30px;
+  margin-bottom:7px;
+}
+
+.category span:last-child{
+  color:#ddd;
+  font-size:12px;
+}
+
+/* PRODUCTS */
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.product{
+  background:#141414;
+  border:1px solid #292929;
+  border-radius:18px;
+  overflow:hidden;
+  transition:.25s;
+}
+
+.product:hover{
+  transform:translateY(-5px);
+  border-color:#555;
+}
+
+.product-img{
+  height:210px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#202020;
+  font-size:70px;
+}
+
+.product-body{
+  padding:15px;
+}
+
+.product h3{
+  font-size:15px;
+  margin-bottom:7px;
+}
+
+.product p{
+  font-size:12px;
+  color:#999;
+  margin-bottom:12px;
+}
+
+.price{
+  font-size:16px;
+  font-weight:bold;
+}
+
+.price small{
+  color:#999;
+  font-size:10px;
+}
+
+.actions{
+  display:flex;
+  gap:8px;
+  margin-top:13px;
+}
+
+.actions button{
+  flex:1;
+  padding:9px;
+  border-radius:10px;
+  border:1px solid #333;
+  background:#202020;
+  color:white;
+  cursor:pointer;
+}
+
+.actions .buy{
+  background:#e50914;
+  border-color:#e50914;
+}
+
+/* OFFER */
+
+.offer{
+  margin:25px 0;
+  padding:25px;
+  border-radius:20px;
+  border:1px solid #64151a;
+  background:linear-gradient(90deg,#290306,#151515);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+.offer h2{
+  margin-bottom:5px;
+}
+
+.offer p{
+  color:#aaa;
+  font-size:13px;
+}
+
+/* FOOTER */
+
+footer{
+  margin-top:35px;
+  padding:35px 0;
+  background:#070707;
+  border-top:1px solid #292929;
+}
+
+.footer{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr;
+  gap:30px;
+}
+
+footer h3{
+  margin-bottom:10px;
+}
+
+footer p,
+footer a{
+  color:#999;
+  font-size:13px;
+}
+
+.copy{
+  border-top:1px solid #222;
+  margin-top:25px;
+  padding-top:18px;
+  text-align:center;
+  color:#777;
+  font-size:12px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+  .categories{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .top{
+    flex-wrap:wrap;
+    padding:10px 0;
+  }
+
+  .search{
+    order:3;
+    flex-basis:100%;
+    max-width:none;
+  }
+}
+
+@media(max-width:550px){
+
+  .logo span{
+    font-size:15px;
+  }
+
+  .logo img{
+    width:48px;
+    height:48px;
+  }
+
+  .cart{
+    font-size:11px;
+    padding:9px;
+  }
+
+  .hero{
+    min-height:280px;
+    padding:25px 20px;
+  }
+
+  .hero h1{
+    font-size:31px;
+  }
+
+  .categories{
+    grid-template-columns:repeat(4,1fr);
+    gap:7px;
+  }
+
+  .category{
+    padding:13px 3px;
+  }
+
+  .category .icon{
+    font-size:23px;
+  }
+
+  .category span:last-child{
+    font-size:10px;
+  }
+
+  .products{
+    gap:9px;
+  }
+
+  .product-img{
+    height:145px;
+    font-size:50px;
+  }
+
+  .product-body{
+    padding:10px;
+  }
+
+  .product h3{
+    font-size:13px;
+  }
+
+  .offer{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .footer{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<div class="container top">
+
+<a href="#" class="logo">
+<img src="logo.jpg" alt="ماهان سنتر ایران">
+<span>ماهان سنتر <b>ایران</b></span>
+</a>
+
+<div class="search">
+<input id="search" type="text" placeholder="جستجوی محصول...">
+<button onclick="searchProduct()">⌕</button>
+</div>
+
+<button class="cart" onclick="showCart()">
+🛒 سبد خرید
+</button>
+
+</div>
+
+<nav>
+<div class="container nav">
+
+<a href="#" class="active">خانه</a>
+<a href="#categories">دسته‌بندی‌ها</a>
+<a href="#products">محصولات</a>
+<a href="#offers">تخفیف‌ها</a>
+<a href="#contact">تماس با ما</a>
+
+</div>
+</nav>
+
+</header>
+
+
+<main class="container">
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<span class="badge">
+MAHAN CENTER IRAN
+</span>
+
+<h1>
+خرید آسان، <span>انتخاب مطمئن</span>
+</h1>
+
+<p>
+ماهان سنتر ایران؛ فروشگاهی برای خرید موبایل،
+طلا، پوشاک، لوازم جانبی و محصولات متنوع.
+</p>
+
+<a href="#products" class="btn">
+مشاهده محصولات
+</a>
+
+</div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+
+<section class="section" id="categories">
+
+<div class="title">
+<h2>دسته‌بندی‌ها</h2>
+<a href="#">مشاهده همه</a>
+</div>
+
+<div class="categories">
+
+<a href="#" class="category">
+<span class="icon">📱</span>
+<span>موبایل</span>
+</a>
+
+<a href="#" class="category">
+<span class="icon">💎</span>
+<span>طلا</span>
+</a>
+
+<a href="#" class="category">
+<span class="icon">👕</span>
+<span>پوشاک</span>
+</a>
+
+<a href="#" class="category">
+<span class="icon">🎧</span>
+<span>لوازم جانبی</span>
+</a>
+
+<a href="#" class="category">
+<span class="icon">💻</span>
+<span>دیجیتال</span>
+</a>
+
+<a href="#" class="category">
+<span class="icon">👟</span>
+<span>کفش</span>
+</a>
+
+<a href="#" class="category">
+<span class="icon">⌚</span>
+<span>ساعت</span>
+</a>
+
+<a href="#" class="category">
+<span class="icon">🔥</span>
+<span>تخفیف‌ها</span>
+</a>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section class="section" id="products">
+
+<div class="title">
+<h2>محصولات پیشنهادی</h2>
+<a href="#">همه محصولات ←</a>
+</div>
+
+<div class="products" id="productList">
+
+
+<div class="product" data-name="موبایل هوشمند">
+
+<div class="product-img">
+📱
+</div>
+
+<div class="product-body">
+
+<h3>موبایل هوشمند</h3>
+
+<p>
+مدل‌های جدید و محبوب
+</p>
+
+<div class="price">
+قیمت تماس
+<small>تومان</small>
+</div>
+
+<div class="actions">
+
+<button>
+جزئیات
+</button>
+
+<button class="buy" onclick="addCart('موبایل هوشمند')">
+خرید
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+
+<div class="product" data-name="هدفون بی سیم">
+
+<div class="product-img">
+🎧
+</div>
+
+<div class="product-body">
+
+<h3>هدفون بی‌سیم</h3>
+
+<p>
+صدای باکیفیت و طراحی شیک
+</p>
+
+<div class="price">
+قیمت تماس
+<small>تومان</small>
+</div>
+
+<div class="actions">
+
+<button>جزئیات</button>
+
+<button class="buy" onclick="addCart('هدفون بی‌سیم')">
+خرید
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+
+<div class="product" data-name="پوشاک جدید">
+
+<div class="product-img">
+👕
+</div>
+
+<div class="product-body">
+
+<h3>پوشاک جدید</h3>
+
+<p>
+مدل‌های جدید و متنوع
+</p>
+
+<div class="price">
+قیمت تماس
+<small>تومان</small>
+</div>
+
+<div class="actions">
+
+<button>جزئیات</button>
+
+<button class="buy" onclick="addCart('پوشاک جدید')">
+خرید
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+
+<div class="product" data-name="طلا و جواهر">
+
+<div class="product-img">
+💎
+</div>
+
+<div class="product-body">
+
+<h3>طلا و جواهر</h3>
+
+<p>
+طرح‌های خاص و زیبا
+</p>
+
+<div class="price">
+قیمت تماس
+<small>تومان</small>
+</div>
+
+<div class="actions">
+
+<button>جزئیات</button>
+
+<button class="buy" onclick="addCart('طلا و جواهر')">
+خرید
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+</div>
+</section>
+
+
+<!-- OFFER -->
+
+<section class="section" id="offers">
+
+<div class="offer">
+
+<div>
+
+<h2>🔥 تخفیف‌های ویژه</h2>
+
+<p>
+محصولات منتخب ماهان سنتر ایران را با پیشنهادهای ویژه ببینید.
+</p>
+
+</div>
+
+<a href="#products" class="btn">
+مشاهده تخفیف‌ها
+</a>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer id="contact">
+
+<div class="container footer">
+
+<div>
+
+<h3>ماهان سنتر ایران</h3>
+
+<p>
+خرید آسان، انتخاب مطمئن.
+</p>
+
+</div>
+
+
+<div>
+
+<h3>دسترسی سریع</h3>
+
+<p>
+<a href="#categories">دسته‌بندی‌ها</a>
+</p>
+
+<p>
+<a href="#products">محصولات</a>
+</p>
+
+<p>
+<a href="#offers">تخفیف‌ها</a>
+</p>
+
+</div>
+
+
+<div>
+
+<h3>ارتباط با ما</h3>
+
+<p>
+اطلاعات تماس فروشگاه به‌زودی اضافه می‌شود.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="container copy">
+
+© 2026 ماهان سنتر ایران — تمامی حقوق محفوظ است.
+
+</div>
+
+</footer>
+
+
+<script>
+
+let cart=[];
+
+function addCart(product){
+
+cart.push(product);
+
+alert(product + " به سبد خرید اضافه شد 🛒");
+
+}
+
+function showCart(){
+
+if(cart.length===0){
+
+alert("سبد خرید خالی است 🛒");
+
+}else{
+
+alert(
+"محصولات سبد خرید:\n\n" +
+cart.join("\n")
+);
+
+}
+
+}
+
+
+function searchProduct(){
+
+let text=
+document.getElementById("search").value
+.trim()
+.toLowerCase();
+
+let products=
+document.querySelectorAll(".product");
+
+products.forEach(function(product){
+
+let name=
+product.dataset.name.toLowerCase();
+
+if(text==="" || name.includes(text)){
+
+product.style.display="block";
+
+}else{
+
+product.style.display="none";
+
+}
+
+});
+
+document
+.getElementById("products")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+</script>
+
+</body>
+</html>
