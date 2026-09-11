@@ -36,13 +36,18 @@ color:var(--text);
 min-height:100vh;
 }
 
-button,input,textarea,select{
+button,
+input,
+textarea,
+select{
 font-family:inherit;
 }
 
 button{
 cursor:pointer;
 }
+
+/* ================= LOGIN ================= */
 
 #loginScreen{
 position:fixed;
@@ -116,6 +121,10 @@ color:#fff;
 font-weight:bold;
 }
 
+.login-button:hover{
+background:var(--red2);
+}
+
 .login-error{
 display:none;
 color:#ff5555;
@@ -128,6 +137,8 @@ color:#444;
 font-size:9px;
 margin-top:20px;
 }
+
+/* ================= ADMIN ================= */
 
 #adminPanel{
 display:none;
@@ -311,6 +322,8 @@ transform:none;
 }
 }
 
+/* ================= DASHBOARD ================= */
+
 .welcome{
 background:
 radial-gradient(circle at 10% 50%,rgba(229,9,20,.25),transparent 35%),
@@ -380,6 +393,8 @@ grid-template-columns:1.4fr .8fr;
 gap:18px;
 }
 
+/* ================= PANELS ================= */
+
 .panel{
 background:var(--card);
 border:1px solid var(--border);
@@ -404,6 +419,8 @@ font-size:13px;
 .panel-body{
 padding:18px;
 }
+
+/* ================= QUICK ================= */
 
 .quick-grid{
 display:grid;
@@ -440,6 +457,8 @@ color:#777;
 margin-top:4px;
 }
 
+/* ================= HEADERS ================= */
+
 .section-header{
 display:flex;
 align-items:center;
@@ -458,6 +477,8 @@ color:#777;
 margin-top:4px;
 }
 
+/* ================= BUTTONS ================= */
+
 .primary{
 border:0;
 background:var(--red);
@@ -471,6 +492,8 @@ font-weight:bold;
 .primary:hover{
 background:var(--red2);
 }
+
+/* ================= FORMS ================= */
 
 .toolbar{
 background:var(--card);
@@ -527,6 +550,8 @@ font-size:9px;
 color:#888;
 margin-bottom:6px;
 }
+
+/* ================= TABLE ================= */
 
 .table-wrap{
 overflow-x:auto;
@@ -689,6 +714,8 @@ height:42px;
 padding:3px;
 }
 
+/* ================= RESPONSIVE ================= */
+
 @media(max-width:1000px){
 
 .sidebar{
@@ -768,6 +795,14 @@ flex-direction:column;
 grid-template-columns:1fr;
 }
 
+.action-row{
+display:flex;
+}
+
+.action-row button{
+display:inline-flex!important;
+}
+
 }
 
 </style>
@@ -775,7 +810,7 @@ grid-template-columns:1fr;
 
 <body>
 
-<!-- LOGIN -->
+<!-- ================= LOGIN ================= -->
 
 <div id="loginScreen">
 
@@ -826,7 +861,7 @@ id="loginError"
 </div>
 
 
-<!-- ADMIN -->
+<!-- ================= ADMIN ================= -->
 
 <div id="adminPanel">
 
@@ -837,6 +872,7 @@ id="loginError"
 <img
 src="logo.jpg"
 class="brand-logo"
+alt="لوگو"
 >
 
 <div>
@@ -1002,7 +1038,7 @@ onclick="logoutAdmin()"
 <main class="content">
 
 
-<!-- DASHBOARD -->
+<!-- ================= DASHBOARD ================= -->
 
 <section
 class="section active"
@@ -1240,7 +1276,7 @@ onclick="openSection('homepage')"
 </section>
 
 
-<!-- PRODUCTS -->
+<!-- ================= PRODUCTS ================= -->
 
 <section
 class="section"
@@ -1479,6 +1515,7 @@ style="display:none;"
 
 <img
 id="productPreviewImg"
+alt="پیش‌نمایش"
 >
 
 </div>
@@ -1599,7 +1636,7 @@ id="productsTable"
 </section>
 
 
-<!-- CATEGORIES -->
+<!-- ================= CATEGORIES ================= -->
 
 <section
 class="section"
@@ -1752,7 +1789,7 @@ id="categoriesTable"
 </section>
 
 
-<!-- DISCOUNTS -->
+<!-- ================= DISCOUNTS ================= -->
 
 <section
 class="section"
@@ -1907,7 +1944,7 @@ id="discountsTable"
 </section>
 
 
-<!-- ORDERS -->
+<!-- ================= ORDERS ================= -->
 
 <section
 class="section"
@@ -1956,7 +1993,7 @@ id="ordersTable"
 </section>
 
 
-<!-- HOMEPAGE -->
+<!-- ================= HOMEPAGE ================= -->
 
 <section
 class="section"
@@ -2086,7 +2123,7 @@ onclick="saveHomepage()"
 </section>
 
 
-<!-- MENU -->
+<!-- ================= MENU ================= -->
 
 <section
 class="section"
@@ -2223,7 +2260,7 @@ id="menuTable"
 </section>
 
 
-<!-- PAGES -->
+<!-- ================= PAGES ================= -->
 
 <section
 class="section"
@@ -2359,7 +2396,7 @@ id="pagesTable"
 </section>
 
 
-<!-- APPEARANCE -->
+<!-- ================= APPEARANCE ================= -->
 
 <section
 class="section"
@@ -2479,7 +2516,7 @@ onclick="saveAppearance()"
 </section>
 
 
-<!-- USERS -->
+<!-- ================= USERS ================= -->
 
 <section
 class="section"
@@ -2528,7 +2565,7 @@ id="usersTable"
 </section>
 
 
-<!-- SETTINGS -->
+<!-- ================= SETTINGS ================= -->
 
 <section
 class="section"
@@ -2667,7 +2704,7 @@ onclick="saveSettings()"
 </div>
 
 
-<!-- MODAL -->
+<!-- ================= MODAL ================= -->
 
 <div
 class="modal"
@@ -2698,6 +2735,8 @@ onclick="closeModal()"
 </div>
 
 
+<!-- ================= FIREBASE ================= -->
+
 <script type="module">
 
 import {
@@ -2715,9 +2754,7 @@ updateDoc,
 deleteDoc,
 doc,
 setDoc,
-getDoc,
-query,
-orderBy
+getDoc
 }
 from
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
@@ -2744,10 +2781,15 @@ const app=initializeApp(firebaseConfig);
 
 const db=getFirestore(app);
 
+
 window.adminProducts=[];
 
+window.adminPages=[];
+
 let editingProductId=null;
+
 let editingCategoryId=null;
+
 let editingPageId=null;
 
 
@@ -2771,8 +2813,14 @@ window.esc=esc;
 
 window.loginAdmin=function(){
 
+const input=
+document.getElementById("loginPassword");
+
+const error=
+document.getElementById("loginError");
+
 const password=
-document.getElementById("loginPassword").value.trim();
+input.value.trim();
 
 if(password==="Ronika"){
 
@@ -2780,6 +2828,8 @@ sessionStorage.setItem(
 "mahanAdminLogin",
 "true"
 );
+
+error.style.display="none";
 
 document.getElementById(
 "loginScreen"
@@ -2793,13 +2843,11 @@ loadProducts();
 
 }else{
 
-document.getElementById(
-"loginError"
-).style.display="block";
+error.style.display="block";
 
-document.getElementById(
-"loginPassword"
-).value="";
+input.value="";
+
+input.focus();
 
 }
 
@@ -2818,10 +2866,14 @@ document
 .getElementById("loginPassword")
 .addEventListener(
 "keydown",
-e=>{
+function(e){
 
 if(e.key==="Enter"){
+
+e.preventDefault();
+
 window.loginAdmin();
+
 }
 
 }
@@ -2839,6 +2891,8 @@ location.reload();
 };
 
 
+function checkLogin(){
+
 if(
 sessionStorage.getItem(
 "mahanAdminLogin"
@@ -2853,6 +2907,10 @@ document.getElementById(
 "adminPanel"
 ).style.display="block";
 
+loadProducts();
+
+}
+
 }
 
 
@@ -2860,27 +2918,60 @@ document.getElementById(
 
 const titles={
 
-dashboard:["داشبورد","مدیریت ماهان سنتر ایران"],
+dashboard:[
+"داشبورد",
+"مدیریت ماهان سنتر ایران"
+],
 
-products:["محصولات","مدیریت محصولات فروشگاه"],
+products:[
+"محصولات",
+"مدیریت محصولات فروشگاه"
+],
 
-categories:["دسته‌بندی‌ها","مدیریت دسته‌بندی‌ها"],
+categories:[
+"دسته‌بندی‌ها",
+"مدیریت دسته‌بندی‌ها"
+],
 
-discounts:["تخفیف‌ها","مدیریت تخفیف‌ها"],
+discounts:[
+"تخفیف‌ها",
+"مدیریت تخفیف‌ها"
+],
 
-orders:["سفارش‌ها","مدیریت سفارش‌ها"],
+orders:[
+"سفارش‌ها",
+"مدیریت سفارش‌ها"
+],
 
-homepage:["صفحه اصلی","مدیریت صفحه اصلی"],
+homepage:[
+"صفحه اصلی",
+"مدیریت صفحه اصلی"
+],
 
-menu:["منوی سایت","مدیریت منوی سایت"],
+menu:[
+"منوی سایت",
+"مدیریت منوی سایت"
+],
 
-pages:["صفحات","مدیریت صفحات"],
+pages:[
+"صفحات",
+"مدیریت صفحات"
+],
 
-appearance:["ظاهر سایت","تنظیمات ظاهری"],
+appearance:[
+"ظاهر سایت",
+"تنظیمات ظاهری"
+],
 
-users:["کاربران","مدیریت کاربران"],
+users:[
+"کاربران",
+"مدیریت کاربران"
+],
 
-settings:["تنظیمات","تنظیمات فروشگاه"]
+settings:[
+"تنظیمات",
+"تنظیمات فروشگاه"
+]
 
 };
 
@@ -2889,7 +2980,11 @@ window.openSection=function(section){
 
 document
 .querySelectorAll(".section")
-.forEach(x=>x.classList.remove("active"));
+.forEach(
+function(x){
+x.classList.remove("active");
+}
+);
 
 const target=
 document.getElementById(
@@ -2897,12 +2992,18 @@ document.getElementById(
 );
 
 if(target){
+
 target.classList.add("active");
+
 }
 
 document
 .querySelectorAll(".menu-btn")
-.forEach(x=>x.classList.remove("active"));
+.forEach(
+function(x){
+x.classList.remove("active");
+}
+);
 
 const btn=
 document.querySelector(
@@ -2910,15 +3011,21 @@ document.querySelector(
 );
 
 if(btn){
+
 btn.classList.add("active");
+
 }
 
 if(titles[section]){
 
-document.getElementById("topTitle").textContent=
+document.getElementById(
+"topTitle"
+).textContent=
 titles[section][0];
 
-document.getElementById("topSubtitle").textContent=
+document.getElementById(
+"topSubtitle"
+).textContent=
 titles[section][1];
 
 }
@@ -2928,30 +3035,67 @@ document
 .classList.remove("open");
 
 
-if(section==="products")loadProducts();
-if(section==="categories")loadCategories();
-if(section==="discounts")loadDiscounts();
-if(section==="orders")loadOrders();
-if(section==="menu")loadMenu();
-if(section==="pages")loadPages();
-if(section==="users")loadUsers();
-if(section==="homepage")loadHomepage();
-if(section==="appearance")loadAppearance();
-if(section==="settings")loadSettings();
+if(section==="products"){
+loadProducts();
+}
+
+if(section==="categories"){
+loadCategories();
+}
+
+if(section==="discounts"){
+loadDiscounts();
+}
+
+if(section==="orders"){
+loadOrders();
+}
+
+if(section==="menu"){
+loadMenu();
+}
+
+if(section==="pages"){
+loadPages();
+}
+
+if(section==="users"){
+loadUsers();
+}
+
+if(section==="homepage"){
+loadHomepage();
+}
+
+if(section==="appearance"){
+loadAppearance();
+}
+
+if(section==="settings"){
+loadSettings();
+}
 
 };
 
 
 document
 .querySelectorAll(".menu-btn")
-.forEach(btn=>{
+.forEach(
+function(btn){
 
 btn.addEventListener(
 "click",
-()=>openSection(btn.dataset.section)
+function(){
+
+openSection(
+btn.dataset.section
 );
 
-});
+}
+);
+
+}
+);
 
 
 window.toggleSidebar=function(){
@@ -2983,7 +3127,8 @@ collection(db,"products")
 
 const list=[];
 
-snap.forEach(d=>{
+snap.forEach(
+function(d){
 
 const x=d.data();
 
@@ -2991,49 +3136,91 @@ list.push({
 
 firebaseId:d.id,
 
-id:Number(x.code ?? d.id),
+id:Number(
+x.code ?? d.id
+),
 
-name:x.name||"محصول بدون نام",
+name:
+x.name ||
+"محصول بدون نام",
 
-category:x.category||"digital",
+category:
+x.category ||
+"digital",
 
-brand:x.brand||"",
+brand:
+x.brand ||
+"",
 
-goldCat:x.goldCat||"",
+goldCat:
+x.goldCat ||
+"",
 
-search:x.search||x.name||"",
+search:
+x.search ||
+x.name ||
+"",
 
-description:x.description||"",
+description:
+x.description ||
+"",
 
-specs:x.specs||"",
+specs:
+x.specs ||
+"",
 
-price:Number(x.price||0),
+price:
+Number(x.price||0),
 
-stock:Number(x.stock??0),
+stock:
+Number(x.stock??0),
 
-discount:Number(x.discount||0),
+discount:
+Number(x.discount||0),
 
-image:x.image||"",
+image:
+x.image ||
+"",
 
-active:x.active!==false
+active:
+x.active!==false
 
 });
 
-});
+}
+);
 
-list.sort((a,b)=>b.id-a.id);
+list.sort(
+function(a,b){
+return b.id-a.id;
+}
+);
 
 window.adminProducts=list;
 
 
-document.getElementById("statProducts").textContent=
+document.getElementById(
+"statProducts"
+).textContent=
 list.length.toLocaleString("fa-IR");
 
-document.getElementById("statDiscounts").textContent=
-list.filter(x=>x.discount>0)
-.length.toLocaleString("fa-IR");
 
-document.getElementById("statFirebase").textContent=
+document.getElementById(
+"statDiscounts"
+).textContent=
+list
+.filter(
+function(x){
+return x.discount>0;
+}
+)
+.length
+.toLocaleString("fa-IR");
+
+
+document.getElementById(
+"statFirebase"
+).textContent=
 "متصل";
 
 
@@ -3046,9 +3233,14 @@ catch(e){
 
 console.error(e);
 
-document.getElementById("statFirebase").textContent="خطا";
+document.getElementById(
+"statFirebase"
+).textContent=
+"خطا";
 
-document.getElementById("productsTable").innerHTML=
+document.getElementById(
+"productsTable"
+).innerHTML=
 `<div class="empty">❌ ${esc(e.message)}</div>`;
 
 }
@@ -3058,14 +3250,20 @@ document.getElementById("productsTable").innerHTML=
 
 function renderRecent(){
 
-const list=window.adminProducts.slice(0,7);
+const list=
+window.adminProducts.slice(0,7);
 
-const box=document.getElementById("recentProducts");
+const box=
+document.getElementById(
+"recentProducts"
+);
 
 if(!list.length){
 
 box.innerHTML=
-`<div class="empty">هنوز محصولی وجود ندارد.</div>`;
+`<div class="empty">
+هنوز محصولی وجود ندارد.
+</div>`;
 
 return;
 
@@ -3090,7 +3288,10 @@ box.innerHTML=`
 
 <tbody>
 
-${list.map(p=>`
+${list.map(
+function(p){
+
+return `
 
 <tr>
 
@@ -3105,6 +3306,7 @@ p.image
 src="${esc(p.image)}"
 class="product-mini-img"
 onerror="this.style.display='none'"
+alt=""
 >`
 :
 `<div class="product-mini-img">📦</div>`
@@ -3138,7 +3340,10 @@ p.active
 
 </tr>
 
-`).join("")}
+`;
+
+}
+).join("")}
 
 </tbody>
 
@@ -3154,35 +3359,60 @@ p.active
 function renderProducts(){
 
 const box=
-document.getElementById("productsTable");
+document.getElementById(
+"productsTable"
+);
 
 const query=
 document
-.getElementById("productSearchFilter")
+.getElementById(
+"productSearchFilter"
+)
 .value
 .trim()
 .toLowerCase();
 
 const list=
-window.adminProducts.filter(p=>{
+window.adminProducts.filter(
+function(p){
 
-if(!query)return true;
+if(!query){
+return true;
+}
 
 return(
-String(p.id).includes(query)||
-p.name.toLowerCase().includes(query)||
-p.category.toLowerCase().includes(query)||
-p.brand.toLowerCase().includes(query)||
-p.search.toLowerCase().includes(query)
+
+String(p.id)
+.includes(query)||
+
+p.name
+.toLowerCase()
+.includes(query)||
+
+p.category
+.toLowerCase()
+.includes(query)||
+
+p.brand
+.toLowerCase()
+.includes(query)||
+
+p.search
+.toLowerCase()
+.includes(query)
+
 );
 
-});
+}
+);
 
 
 if(!list.length){
 
 box.innerHTML=
-`<div class="empty">📦 محصولی پیدا نشد.</div>`;
+`<div class="empty">
+📦 محصولی پیدا نشد.
+</div>`;
 
 return;
 
@@ -3212,7 +3442,10 @@ box.innerHTML=`
 
 <tbody>
 
-${list.map(p=>`
+${list.map(
+function(p){
+
+return `
 
 <tr>
 
@@ -3227,6 +3460,7 @@ p.image
 src="${esc(p.image)}"
 class="product-mini-img"
 onerror="this.style.display='none'"
+alt=""
 >`
 :
 `<div class="product-mini-img">📦</div>`
@@ -3238,15 +3472,25 @@ onerror="this.style.display='none'"
 
 </td>
 
-<td>${p.id}</td>
+<td>
+${esc(p.id)}
+</td>
 
-<td>${esc(p.category)}</td>
+<td>
+${esc(p.category)}
+</td>
 
-<td>${p.price.toLocaleString("fa-IR")}</td>
+<td>
+${p.price.toLocaleString("fa-IR")}
+</td>
 
-<td>${p.discount}٪</td>
+<td>
+${esc(p.discount)}٪
+</td>
 
-<td>${p.stock.toLocaleString("fa-IR")}</td>
+<td>
+${p.stock.toLocaleString("fa-IR")}
+</td>
 
 <td>
 
@@ -3284,7 +3528,10 @@ onclick="deleteProduct('${esc(p.firebaseId)}')"
 
 </tr>
 
-`).join("")}
+`;
+
+}
+).join("")}
 
 </tbody>
 
@@ -3296,7 +3543,9 @@ onclick="deleteProduct('${esc(p.firebaseId)}')"
 
 
 document
-.getElementById("productSearchFilter")
+.getElementById(
+"productSearchFilter"
+)
 .addEventListener(
 "input",
 renderProducts
@@ -3312,9 +3561,14 @@ product.firebaseId
 :
 null;
 
-document.getElementById("productForm").style.display="block";
+document.getElementById(
+"productForm"
+).style.display=
+"block";
 
-document.getElementById("productFormTitle").textContent=
+document.getElementById(
+"productFormTitle"
+).textContent=
 product
 ?
 "✏️ ویرایش محصول"
@@ -3322,54 +3576,94 @@ product
 "➕ افزودن محصول";
 
 
-document.getElementById("productName").value=
+document.getElementById(
+"productName"
+).value=
 product?.name||"";
 
-document.getElementById("productCode").value=
+
+document.getElementById(
+"productCode"
+).value=
 product?.id||"";
 
-document.getElementById("productPrice").value=
+
+document.getElementById(
+"productPrice"
+).value=
 product?.price||"";
 
-document.getElementById("productDiscount").value=
+
+document.getElementById(
+"productDiscount"
+).value=
 product?.discount||0;
 
-document.getElementById("productStock").value=
+
+document.getElementById(
+"productStock"
+).value=
 product?.stock||0;
 
-document.getElementById("productCategory").value=
+
+document.getElementById(
+"productCategory"
+).value=
 product?.category||"digital";
 
-document.getElementById("productBrand").value=
+
+document.getElementById(
+"productBrand"
+).value=
 product?.brand||"";
 
-document.getElementById("productGoldCat").value=
+
+document.getElementById(
+"productGoldCat"
+).value=
 product?.goldCat||"";
 
-document.getElementById("productImage").value=
+
+document.getElementById(
+"productImage"
+).value=
 product?.image||"";
 
-document.getElementById("productSearch").value=
+
+document.getElementById(
+"productSearch"
+).value=
 product?.search||"";
 
-document.getElementById("productDescription").value=
+
+document.getElementById(
+"productDescription"
+).value=
 product?.description||"";
 
-document.getElementById("productSpecs").value=
+
+document.getElementById(
+"productSpecs"
+).value=
 product?.specs||"";
 
-document.getElementById("productActive").checked=
+
+document.getElementById(
+"productActive"
+).checked=
 product
 ?
 product.active
 :
 true;
 
+
 previewImage();
 
-document
-.getElementById("productForm")
-.scrollIntoView({
+
+document.getElementById(
+"productForm"
+).scrollIntoView({
 behavior:"smooth"
 });
 
@@ -3378,7 +3672,10 @@ behavior:"smooth"
 
 window.closeProductForm=function(){
 
-document.getElementById("productForm").style.display="none";
+document.getElementById(
+"productForm"
+).style.display=
+"none";
 
 editingProductId=null;
 
@@ -3388,28 +3685,42 @@ editingProductId=null;
 function previewImage(){
 
 const path=
-document.getElementById("productImage").value.trim();
+document.getElementById(
+"productImage"
+).value
+.trim();
 
 const box=
-document.getElementById("productPreview");
+document.getElementById(
+"productPreview"
+);
 
 const img=
-document.getElementById("productPreviewImg");
+document.getElementById(
+"productPreviewImg"
+);
 
 if(!path){
 
-box.style.display="none";
+box.style.display=
+"none";
 
 return;
 
 }
 
-img.onload=()=>{
-box.style.display="block";
+img.onload=function(){
+
+box.style.display=
+"block";
+
 };
 
-img.onerror=()=>{
-box.style.display="none";
+img.onerror=function(){
+
+box.style.display=
+"none";
+
 };
 
 img.src=path;
@@ -3418,7 +3729,9 @@ img.src=path;
 
 
 document
-.getElementById("productImage")
+.getElementById(
+"productImage"
+)
 .addEventListener(
 "input",
 previewImage
@@ -3428,17 +3741,30 @@ previewImage
 window.saveProduct=async function(){
 
 const name=
-document.getElementById("productName").value.trim();
+document.getElementById(
+"productName"
+).value
+.trim();
 
 const code=
-Number(document.getElementById("productCode").value);
+Number(
+document.getElementById(
+"productCode"
+).value
+);
 
 const price=
-Number(document.getElementById("productPrice").value);
+Number(
+document.getElementById(
+"productPrice"
+).value
+);
 
 if(!name){
 
-alert("نام محصول را وارد کنید.");
+alert(
+"نام محصول را وارد کنید."
+);
 
 return;
 
@@ -3446,7 +3772,9 @@ return;
 
 if(!code){
 
-alert("کد محصول را وارد کنید.");
+alert(
+"کد محصول را وارد کنید."
+);
 
 return;
 
@@ -3454,7 +3782,9 @@ return;
 
 if(!price){
 
-alert("قیمت محصول را وارد کنید.");
+alert(
+"قیمت محصول را وارد کنید."
+);
 
 return;
 
@@ -3470,34 +3800,69 @@ name,
 price,
 
 category:
-document.getElementById("productCategory").value,
+document.getElementById(
+"productCategory"
+).value,
 
 brand:
-document.getElementById("productBrand").value.trim(),
+document.getElementById(
+"productBrand"
+).value
+.trim(),
 
 goldCat:
-document.getElementById("productGoldCat").value,
+document.getElementById(
+"productGoldCat"
+).value,
 
 image:
-document.getElementById("productImage").value.trim(),
+document.getElementById(
+"productImage"
+).value
+.trim(),
 
 search:
-document.getElementById("productSearch").value.trim()||name,
+document.getElementById(
+"productSearch"
+).value
+.trim()
+||
+name,
 
 description:
-document.getElementById("productDescription").value.trim(),
+document.getElementById(
+"productDescription"
+).value
+.trim(),
 
 specs:
-document.getElementById("productSpecs").value.trim(),
+document.getElementById(
+"productSpecs"
+).value
+.trim(),
 
 stock:
-Number(document.getElementById("productStock").value||0),
+Number(
+document.getElementById(
+"productStock"
+).value
+||
+0
+),
 
 discount:
-Number(document.getElementById("productDiscount").value||0),
+Number(
+document.getElementById(
+"productDiscount"
+).value
+||
+0
+),
 
 active:
-document.getElementById("productActive").checked,
+document.getElementById(
+"productActive"
+).checked,
 
 icon:"🛍️"
 
@@ -3509,11 +3874,17 @@ try{
 if(editingProductId){
 
 await updateDoc(
-doc(db,"products",editingProductId),
+doc(
+db,
+"products",
+editingProductId
+),
 data
 );
 
-alert("✅ محصول ویرایش شد.");
+alert(
+"✅ محصول ویرایش شد."
+);
 
 }else{
 
@@ -3522,7 +3893,9 @@ collection(db,"products"),
 data
 );
 
-alert("✅ محصول اضافه شد.");
+alert(
+"✅ محصول اضافه شد."
+);
 
 }
 
@@ -3533,7 +3906,9 @@ await loadProducts();
 }
 catch(e){
 
-alert("❌ خطا:\n"+e.message);
+alert(
+"❌ خطا:\n"+e.message
+);
 
 }
 
@@ -3544,7 +3919,9 @@ window.editProduct=function(id){
 
 const p=
 window.adminProducts.find(
-x=>x.firebaseId===id
+function(x){
+return x.firebaseId===id;
+}
 );
 
 if(p){
@@ -3560,31 +3937,45 @@ window.deleteProduct=async function(id){
 
 const p=
 window.adminProducts.find(
-x=>x.firebaseId===id
+function(x){
+return x.firebaseId===id;
+}
 );
 
-if(!p)return;
+if(!p){
+return;
+}
 
 if(
 !confirm(
 `محصول «${p.name}» حذف شود؟`
 )
-)return;
+){
+return;
+}
 
 try{
 
 await deleteDoc(
-doc(db,"products",id)
+doc(
+db,
+"products",
+id
+)
 );
 
-alert("✅ محصول حذف شد.");
+alert(
+"✅ محصول حذف شد."
+);
 
 await loadProducts();
 
 }
 catch(e){
 
-alert("❌ خطا:\n"+e.message);
+alert(
+"❌ خطا:\n"+e.message
+);
 
 }
 
@@ -3597,19 +3988,36 @@ window.openCategoryForm=function(){
 
 editingCategoryId=null;
 
-document.getElementById("categoryForm").style.display="block";
+document.getElementById(
+"categoryForm"
+).style.display=
+"block";
 
-document.getElementById("categoryName").value="";
-document.getElementById("categorySlug").value="";
-document.getElementById("categoryIcon").value="";
-document.getElementById("categoryOrder").value="1";
+document.getElementById(
+"categoryName"
+).value="";
+
+document.getElementById(
+"categorySlug"
+).value="";
+
+document.getElementById(
+"categoryIcon"
+).value="";
+
+document.getElementById(
+"categoryOrder"
+).value="1";
 
 };
 
 
 window.closeCategoryForm=function(){
 
-document.getElementById("categoryForm").style.display="none";
+document.getElementById(
+"categoryForm"
+).style.display=
+"none";
 
 editingCategoryId=null;
 
@@ -3621,22 +4029,41 @@ window.saveCategory=async function(){
 const data={
 
 name:
-document.getElementById("categoryName").value.trim(),
+document.getElementById(
+"categoryName"
+).value
+.trim(),
 
 slug:
-document.getElementById("categorySlug").value.trim(),
+document.getElementById(
+"categorySlug"
+).value
+.trim(),
 
 icon:
-document.getElementById("categoryIcon").value.trim()||"📦",
+document.getElementById(
+"categoryIcon"
+).value
+.trim()
+||
+"📦",
 
 order:
-Number(document.getElementById("categoryOrder").value||1)
+Number(
+document.getElementById(
+"categoryOrder"
+).value
+||
+1
+)
 
 };
 
 if(!data.name||!data.slug){
 
-alert("نام و شناسه دسته را وارد کنید.");
+alert(
+"نام و شناسه دسته را وارد کنید."
+);
 
 return;
 
@@ -3647,7 +4074,11 @@ try{
 if(editingCategoryId){
 
 await updateDoc(
-doc(db,"categories",editingCategoryId),
+doc(
+db,
+"categories",
+editingCategoryId
+),
 data
 );
 
@@ -3660,7 +4091,9 @@ data
 
 }
 
-alert("✅ دسته‌بندی ذخیره شد.");
+alert(
+"✅ دسته‌بندی ذخیره شد."
+);
 
 closeCategoryForm();
 
@@ -3669,7 +4102,9 @@ loadCategories();
 }
 catch(e){
 
-alert("❌ خطا:\n"+e.message);
+alert(
+"❌ خطا:\n"+e.message
+);
 
 }
 
@@ -3687,21 +4122,29 @@ collection(db,"categories")
 
 const list=[];
 
-snap.forEach(d=>{
+snap.forEach(
+function(d){
 
 list.push({
 id:d.id,
 ...d.data()
 });
 
-});
+}
+);
 
-document.getElementById("statCategories").textContent=
-list.length.toLocaleString("fa-IR");
+document.getElementById(
+"statCategories"
+).textContent=
+list.length.toLocaleString(
+"fa-IR"
+);
 
 
 const box=
-document.getElementById("categoriesTable");
+document.getElementById(
+"categoriesTable"
+);
 
 
 if(!list.length){
@@ -3745,30 +4188,41 @@ box.innerHTML=`
 
 <tbody>
 
-${list.map(x=>`
+${list.map(
+function(x){
+
+return `
 
 <tr>
 
-<td>${esc(x.icon)}</td>
+<td>
+${esc(x.icon)}
+</td>
 
-<td>${esc(x.name)}</td>
+<td>
+${esc(x.name)}
+</td>
 
-<td>${esc(x.slug)}</td>
+<td>
+${esc(x.slug)}
+</td>
 
-<td>${x.order||1}</td>
+<td>
+${esc(x.order||1)}
+</td>
 
 <td>
 
 <button
 class="secondary"
-onclick="editCategory('${x.id}')"
+onclick="editCategory('${esc(x.id)}')"
 >
 ✏️
 </button>
 
 <button
 class="secondary danger"
-onclick="deleteCategory('${x.id}')"
+onclick="deleteCategory('${esc(x.id)}')"
 >
 🗑️
 </button>
@@ -3777,7 +4231,10 @@ onclick="deleteCategory('${x.id}')"
 
 </tr>
 
-`).join("")}
+`;
+
+}
+).join("")}
 
 </tbody>
 
@@ -3788,8 +4245,12 @@ onclick="deleteCategory('${x.id}')"
 }
 catch(e){
 
-document.getElementById("categoriesTable").innerHTML=
-`<div class="empty">❌ ${esc(e.message)}</div>`;
+document.getElementById(
+"categoriesTable"
+).innerHTML=
+`<div class="empty">
+❌ ${esc(e.message)}
+</div>`;
 
 }
 
@@ -3798,45 +4259,95 @@ document.getElementById("categoriesTable").innerHTML=
 
 window.editCategory=async function(id){
 
+try{
+
 const snap=
 await getDoc(
-doc(db,"categories",id)
+doc(
+db,
+"categories",
+id
+)
 );
 
-if(!snap.exists())return;
+if(!snap.exists()){
+return;
+}
 
-const x=snap.data();
+const x=
+snap.data();
 
 editingCategoryId=id;
 
-document.getElementById("categoryForm").style.display="block";
+document.getElementById(
+"categoryForm"
+).style.display=
+"block";
 
-document.getElementById("categoryName").value=x.name||"";
-document.getElementById("categorySlug").value=x.slug||"";
-document.getElementById("categoryIcon").value=x.icon||"📦";
-document.getElementById("categoryOrder").value=x.order||1;
+document.getElementById(
+"categoryName"
+).value=
+x.name||"";
+
+document.getElementById(
+"categorySlug"
+).value=
+x.slug||"";
+
+document.getElementById(
+"categoryIcon"
+).value=
+x.icon||"📦";
+
+document.getElementById(
+"categoryOrder"
+).value=
+x.order||1;
+
+}
+catch(e){
+
+alert(
+"❌ خطا:\n"+e.message
+);
+
+}
 
 };
 
 
 window.deleteCategory=async function(id){
 
-if(!confirm("این دسته‌بندی حذف شود؟"))return;
+if(
+!confirm(
+"این دسته‌بندی حذف شود؟"
+)
+){
+return;
+}
 
 try{
 
 await deleteDoc(
-doc(db,"categories",id)
+doc(
+db,
+"categories",
+id
+)
 );
 
-alert("✅ حذف شد.");
+alert(
+"✅ حذف شد."
+);
 
 loadCategories();
 
 }
 catch(e){
 
-alert("❌ "+e.message);
+alert(
+"❌ "+e.message
+);
 
 }
 
@@ -3847,13 +4358,20 @@ alert("❌ "+e.message);
 
 window.openDiscountForm=function(){
 
-document.getElementById("discountForm").style.display="block";
+document.getElementById(
+"discountForm"
+).style.display=
+"block";
 
 };
 
+
 window.closeDiscountForm=function(){
 
-document.getElementById("discountForm").style.display="none";
+document.getElementById(
+"discountForm"
+).style.display=
+"none";
 
 };
 
@@ -3863,16 +4381,31 @@ window.saveDiscount=async function(){
 const data={
 
 title:
-document.getElementById("discountTitle").value.trim(),
+document.getElementById(
+"discountTitle"
+).value
+.trim(),
 
 code:
-document.getElementById("discountCode").value.trim(),
+document.getElementById(
+"discountCode"
+).value
+.trim(),
 
 percent:
-Number(document.getElementById("discountPercent").value||0),
+Number(
+document.getElementById(
+"discountPercent"
+).value
+||
+0
+),
 
 description:
-document.getElementById("discountDescription").value.trim(),
+document.getElementById(
+"discountDescription"
+).value
+.trim(),
 
 active:true,
 
@@ -3883,7 +4416,9 @@ new Date().toISOString()
 
 if(!data.title||!data.code){
 
-alert("عنوان و کد تخفیف را وارد کنید.");
+alert(
+"عنوان و کد تخفیف را وارد کنید."
+);
 
 return;
 
@@ -3896,7 +4431,9 @@ collection(db,"discounts"),
 data
 );
 
-alert("✅ تخفیف ایجاد شد.");
+alert(
+"✅ تخفیف ایجاد شد."
+);
 
 closeDiscountForm();
 
@@ -3905,7 +4442,9 @@ loadDiscounts();
 }
 catch(e){
 
-alert("❌ "+e.message);
+alert(
+"❌ "+e.message
+);
 
 }
 
@@ -3923,28 +4462,44 @@ collection(db,"discounts")
 
 const list=[];
 
-snap.forEach(d=>{
+snap.forEach(
+function(d){
 
 list.push({
 id:d.id,
 ...d.data()
 });
 
-});
+}
+);
 
-document.getElementById("statDiscounts").textContent=
-list.filter(x=>x.active!==false)
-.length.toLocaleString("fa-IR");
+document.getElementById(
+"statDiscounts"
+).textContent=
+list
+.filter(
+function(x){
+return x.active!==false;
+}
+)
+.length
+.toLocaleString(
+"fa-IR"
+);
 
 
 const box=
-document.getElementById("discountsTable");
+document.getElementById(
+"discountsTable"
+);
 
 
 if(!list.length){
 
 box.innerHTML=
-`<div class="empty">🔥 هنوز تخفیفی ساخته نشده.</div>`;
+`<div class="empty">
+🔥 هنوز تخفیفی ساخته نشده.
+</div>`;
 
 return;
 
@@ -3971,21 +4526,31 @@ box.innerHTML=`
 
 <tbody>
 
-${list.map(x=>`
+${list.map(
+function(x){
+
+return `
 
 <tr>
 
-<td>${esc(x.title)}</td>
+<td>
+${esc(x.title)}
+</td>
 
 <td>
+
 <span class="badge">
 ${esc(x.code)}
 </span>
+
 </td>
 
-<td>${x.percent}٪</td>
+<td>
+${esc(x.percent)}٪
+</td>
 
 <td>
+
 ${
 x.active!==false
 ?
@@ -3993,13 +4558,14 @@ x.active!==false
 :
 `<span class="status inactive">● غیرفعال</span>`
 }
+
 </td>
 
 <td>
 
 <button
 class="secondary danger"
-onclick="deleteDiscount('${x.id}')"
+onclick="deleteDiscount('${esc(x.id)}')"
 >
 🗑️ حذف
 </button>
@@ -4008,7 +4574,10 @@ onclick="deleteDiscount('${x.id}')"
 
 </tr>
 
-`).join("")}
+`;
+
+}
+).join("")}
 
 </tbody>
 
@@ -4019,8 +4588,12 @@ onclick="deleteDiscount('${x.id}')"
 }
 catch(e){
 
-document.getElementById("discountsTable").innerHTML=
-`<div class="empty">❌ ${esc(e.message)}</div>`;
+document.getElementById(
+"discountsTable"
+).innerHTML=
+`<div class="empty">
+❌ ${esc(e.message)}
+</div>`;
 
 }
 
@@ -4029,12 +4602,26 @@ document.getElementById("discountsTable").innerHTML=
 
 window.deleteDiscount=async function(id){
 
-if(!confirm("این تخفیف حذف شود؟"))return;
+if(
+!confirm(
+"این تخفیف حذف شود؟"
+)
+){
+return;
+}
 
 try{
 
 await deleteDoc(
-doc(db,"discounts",id)
+doc(
+db,
+"discounts",
+id
+)
+);
+
+alert(
+"✅ تخفیف حذف شد."
 );
 
 loadDiscounts();
@@ -4042,7 +4629,9 @@ loadDiscounts();
 }
 catch(e){
 
-alert("❌ "+e.message);
+alert(
+"❌ "+e.message
+);
 
 }
 
@@ -4056,36 +4645,56 @@ window.saveHomepage=async function(){
 const data={
 
 title:
-document.getElementById("homeTitle").value,
+document.getElementById(
+"homeTitle"
+).value,
 
 subtitle:
-document.getElementById("homeSubtitle").value,
+document.getElementById(
+"homeSubtitle"
+).value,
 
 description:
-document.getElementById("homeDescription").value,
+document.getElementById(
+"homeDescription"
+).value,
 
 banner:
-document.getElementById("homeBanner").value,
+document.getElementById(
+"homeBanner"
+).value,
 
 button:
-document.getElementById("homeButton").value
+document.getElementById(
+"homeButton"
+).value
 
 };
 
 try{
 
 await setDoc(
-doc(db,"siteSettings","homepage"),
+doc(
+db,
+"siteSettings",
+"homepage"
+),
 data,
-{merge:true}
+{
+merge:true
+}
 );
 
-alert("✅ تنظیمات صفحه اصلی ذخیره شد.");
+alert(
+"✅ تنظیمات صفحه اصلی ذخیره شد."
+);
 
 }
 catch(e){
 
-alert("❌ "+e.message);
+alert(
+"❌ "+e.message
+);
 
 }
 
@@ -4098,26 +4707,43 @@ try{
 
 const snap=
 await getDoc(
-doc(db,"siteSettings","homepage")
+doc(
+db,
+"siteSettings",
+"homepage"
+)
 );
 
-if(!snap.exists())return;
+if(!snap.exists()){
+return;
+}
 
-const x=snap.data();
+const x=
+snap.data();
 
-document.getElementById("homeTitle").value=
+document.getElementById(
+"homeTitle"
+).value=
 x.title||"";
 
-document.getElementById("homeSubtitle").value=
+document.getElementById(
+"homeSubtitle"
+).value=
 x.subtitle||"";
 
-document.getElementById("homeDescription").value=
+document.getElementById(
+"homeDescription"
+).value=
 x.description||"";
 
-document.getElementById("homeBanner").value=
+document.getElementById(
+"homeBanner"
+).value=
 x.banner||"";
 
-document.getElementById("homeButton").value=
+document.getElementById(
+"homeButton"
+).value=
 x.button||"";
 
 }
@@ -4134,13 +4760,20 @@ console.log(e);
 
 window.openMenuForm=function(){
 
-document.getElementById("menuForm").style.display="block";
+document.getElementById(
+"menuForm"
+).style.display=
+"block";
 
 };
 
+
 window.closeMenuForm=function(){
 
-document.getElementById("menuForm").style.display="none";
+document.getElementById(
+"menuForm"
+).style.display=
+"none";
 
 };
 
@@ -4150,13 +4783,24 @@ window.saveMenuItem=async function(){
 const data={
 
 name:
-document.getElementById("menuName").value.trim(),
+document.getElementById(
+"menuName"
+).value
+.trim(),
 
 link:
-document.getElementById("menuLink").value.trim(),
+document.getElementById(
+"menuLink"
+).value
+.trim(),
 
 icon:
-document.getElementById("menuIcon").value.trim()||"🔗",
+document.getElementById(
+"menuIcon"
+).value
+.trim()
+||
+"🔗",
 
 active:true
 
@@ -4164,7 +4808,9 @@ active:true
 
 if(!data.name||!data.link){
 
-alert("عنوان و لینک را وارد کنید.");
+alert(
+"عنوان و لینک را وارد کنید."
+);
 
 return;
 
@@ -4177,7 +4823,9 @@ collection(db,"navigation"),
 data
 );
 
-alert("✅ آیتم منو اضافه شد.");
+alert(
+"✅ آیتم منو اضافه شد."
+);
 
 closeMenuForm();
 
@@ -4186,7 +4834,9 @@ loadMenu();
 }
 catch(e){
 
-alert("❌ "+e.message);
+alert(
+"❌ "+e.message
+);
 
 }
 
@@ -4204,23 +4854,29 @@ collection(db,"navigation")
 
 const list=[];
 
-snap.forEach(d=>{
+snap.forEach(
+function(d){
 
 list.push({
 id:d.id,
 ...d.data()
 });
 
-});
+}
+);
 
 const box=
-document.getElementById("menuTable");
+document.getElementById(
+"menuTable"
+);
 
 
 if(!list.length){
 
 box.innerHTML=
-`<div class="empty">🧭 هنوز آیتمی اضافه نشده.</div>`;
+`<div class="empty">
+🧭 هنوز آیتمی اضافه نشده.
+</div>`;
 
 return;
 
@@ -4247,17 +4903,27 @@ box.innerHTML=`
 
 <tbody>
 
-${list.map(x=>`
+${list.map(
+function(x){
+
+return `
 
 <tr>
 
-<td>${esc(x.icon)}</td>
-
-<td>${esc(x.name)}</td>
-
-<td>${esc(x.link)}</td>
+<td>
+${esc(x.icon)}
+</td>
 
 <td>
+${esc(x.name)}
+</td>
+
+<td>
+${esc(x.link)}
+</td>
+
+<td>
+
 ${
 x.active!==false
 ?
@@ -4265,13 +4931,14 @@ x.active!==false
 :
 `<span class="status inactive">● غیرفعال</span>`
 }
+
 </td>
 
 <td>
 
 <button
 class="secondary danger"
-onclick="deleteMenuItem('${x.id}')"
+onclick="deleteMenuItem('${esc(x.id)}')"
 >
 🗑️ حذف
 </button>
@@ -4280,7 +4947,10 @@ onclick="deleteMenuItem('${x.id}')"
 
 </tr>
 
-`).join("")}
+`;
+
+}
+).join("")}
 
 </tbody>
 
@@ -4291,8 +4961,12 @@ onclick="deleteMenuItem('${x.id}')"
 }
 catch(e){
 
-document.getElementById("menuTable").innerHTML=
-`<div class="empty">❌ ${esc(e.message)}</div>`;
+document.getElementById(
+"menuTable"
+).innerHTML=
+`<div class="empty">
+❌ ${esc(e.message)}
+</div>`;
 
 }
 
@@ -4301,13 +4975,38 @@ document.getElementById("menuTable").innerHTML=
 
 window.deleteMenuItem=async function(id){
 
-if(!confirm("این آیتم حذف شود؟"))return;
+if(
+!confirm(
+"این آیتم حذف شود؟"
+)
+){
+return;
+}
+
+try{
 
 await deleteDoc(
-doc(db,"navigation",id)
+doc(
+db,
+"navigation",
+id
+)
+);
+
+alert(
+"✅ آیتم حذف شد."
 );
 
 loadMenu();
+
+}
+catch(e){
+
+alert(
+"❌ "+e.message
+);
+
+}
 
 };
 
@@ -4323,252 +5022,14 @@ page.id
 :
 null;
 
-document.getElementById("pageForm").style.display="block";
+document.getElementById(
+"pageForm"
+).style.display=
+"block";
 
-document.getElementById("pageFormTitle").textContent=
+document.getElementById(
+"pageFormTitle"
+).textContent=
 page
 ?
-"✏️ ویرایش صفحه"
-:
-"📄 صفحه جدید";
-
-document.getElementById("pageTitle").value=
-page?.title||"";
-
-document.getElementById("pageSlug").value=
-page?.slug||"";
-
-document.getElementById("pageContent").value=
-page?.content||"";
-
-};
-
-
-window.closePageForm=function(){
-
-document.getElementById("pageForm").style.display="none";
-
-editingPageId=null;
-
-};
-
-
-window.savePage=async function(){
-
-const data={
-
-title:
-document.getElementById("pageTitle").value.trim(),
-
-slug:
-document.getElementById("pageSlug").value.trim(),
-
-content:
-document.getElementById("pageContent").value
-
-};
-
-if(!data.title||!data.slug){
-
-alert("عنوان و شناسه صفحه را وارد کنید.");
-
-return;
-
-}
-
-try{
-
-if(editingPageId){
-
-await updateDoc(
-doc(db,"pages",editingPageId),
-data
-);
-
-}else{
-
-await addDoc(
-collection(db,"pages"),
-data
-);
-
-}
-
-alert("✅ صفحه ذخیره شد.");
-
-closePageForm();
-
-loadPages();
-
-}
-catch(e){
-
-alert("❌ "+e.message);
-
-}
-
-};
-
-
-window.loadPages=async function(){
-
-try{
-
-const snap=
-await getDocs(
-collection(db,"pages")
-);
-
-const list=[];
-
-snap.forEach(d=>{
-
-list.push({
-id:d.id,
-...d.data()
-});
-
-});
-
-const box=
-document.getElementById("pagesTable");
-
-
-if(!list.length){
-
-box.innerHTML=
-`<div class="empty">📄 هنوز صفحه‌ای ساخته نشده.</div>`;
-
-return;
-
-}
-
-
-box.innerHTML=`
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>عنوان</th>
-<th>شناسه</th>
-<th>عملیات</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-${list.map(x=>`
-
-<tr>
-
-<td>${esc(x.title)}</td>
-
-<td>${esc(x.slug)}</td>
-
-<td>
-
-<button
-class="secondary"
-onclick='editPage(${JSON.stringify(x).replace(/'/g,"&#39;")})'
->
-✏️
-</button>
-
-<button
-class="secondary danger"
-onclick="deletePage('${x.id}')"
->
-🗑️
-</button>
-
-</td>
-
-</tr>
-
-`).join("")}
-
-</tbody>
-
-</table>
-
-`;
-
-}
-catch(e){
-
-document.getElementById("pagesTable").innerHTML=
-`<div class="empty">❌ ${esc(e.message)}</div>`;
-
-}
-
-};
-
-
-window.editPage=function(page){
-
-openPageForm(page);
-
-};
-
-
-window.deletePage=async function(id){
-
-if(!confirm("این صفحه حذف شود؟"))return;
-
-await deleteDoc(
-doc(db,"pages",id)
-);
-
-loadPages();
-
-};
-
-
-/* ================= APPEARANCE ================= */
-
-window.saveAppearance=async function(){
-
-const data={
-
-logo:
-document.getElementById("appearanceLogo").value,
-
-primaryColor:
-document.getElementById("appearanceRed").value,
-
-background:
-document.getElementById("appearanceBg").value,
-
-storeName:
-document.getElementById("appearanceName").value
-
-};
-
-try{
-
-await setDoc(
-doc(db,"siteSettings","appearance"),
-data,
-{merge:true}
-);
-
-alert(
-"✅ تنظیمات ظاهر ذخیره شد."
-);
-
-}
-catch(e){
-
-alert("❌ "+e.message);
-
-}
-
-};
-
-
-win
+"✏️ 
