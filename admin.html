@@ -4,7 +4,11 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1.0"
+>
 
 <title>پنل مدیریت | ماهان سنتر ایران</title>
 
@@ -31,676 +35,1448 @@
   --blue:#3699ff;
 }
 
+html,
+body{
+  min-height:100%;
+}
+
 body{
   font-family:Tahoma,Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
-  min-height:100vh;
 }
 
-/* =========================
-   LAYOUT
-========================= */
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+#loginScreen{
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:99999;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:20px;
+
+  background:
+
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(229,9,20,.18),
+      transparent 35%
+    ),
+
+    #050505;
+
+}
+
+
+.login-box{
+
+  width:100%;
+
+  max-width:390px;
+
+  background:#101010;
+
+  border:1px solid #292929;
+
+  border-radius:22px;
+
+  padding:30px 24px;
+
+  box-shadow:
+    0 25px 80px rgba(0,0,0,.6);
+
+  text-align:center;
+
+}
+
+
+.login-logo{
+
+  width:75px;
+
+  height:75px;
+
+  border-radius:50%;
+
+  object-fit:cover;
+
+  border:2px solid var(--red);
+
+  margin-bottom:15px;
+
+}
+
+
+.login-title{
+
+  font-size:21px;
+
+  font-weight:bold;
+
+}
+
+
+.login-subtitle{
+
+  color:#777;
+
+  font-size:11px;
+
+  margin-top:6px;
+
+  margin-bottom:25px;
+
+}
+
+
+.login-input{
+
+  width:100%;
+
+  height:48px;
+
+  background:#080808;
+
+  border:1px solid #333;
+
+  color:#fff;
+
+  border-radius:11px;
+
+  outline:none;
+
+  padding:0 15px;
+
+  font-family:inherit;
+
+  text-align:center;
+
+  font-size:13px;
+
+}
+
+
+.login-input:focus{
+
+  border-color:var(--red);
+
+}
+
+
+.login-button{
+
+  width:100%;
+
+  height:48px;
+
+  margin-top:12px;
+
+  border:0;
+
+  border-radius:11px;
+
+  background:var(--red);
+
+  color:#fff;
+
+  font-family:inherit;
+
+  font-size:12px;
+
+  font-weight:bold;
+
+  cursor:pointer;
+
+}
+
+
+.login-button:hover{
+
+  background:var(--red2);
+
+}
+
+
+.login-error{
+
+  display:none;
+
+  color:#ff5555;
+
+  font-size:10px;
+
+  margin-top:12px;
+
+}
+
+
+.login-footer{
+
+  color:#444;
+
+  font-size:9px;
+
+  margin-top:20px;
+
+}
+
+
+/* =====================================================
+   ADMIN
+===================================================== */
+
+#adminPanel{
+
+  display:none;
+
+}
+
 
 .admin-layout{
+
   min-height:100vh;
+
   display:flex;
+
 }
 
-/* =========================
+
+/* =====================================================
    SIDEBAR
-========================= */
+===================================================== */
 
 .sidebar{
+
   width:270px;
+
   background:var(--sidebar);
+
   border-left:1px solid var(--border);
+
   position:fixed;
+
   right:0;
+
   top:0;
+
   bottom:0;
+
   z-index:1000;
+
   overflow-y:auto;
+
   transition:.3s;
+
 }
+
 
 .sidebar::-webkit-scrollbar{
+
   width:4px;
+
 }
+
 
 .sidebar::-webkit-scrollbar-thumb{
+
   background:#333;
+
 }
+
 
 .brand{
+
   padding:25px 20px;
+
   border-bottom:1px solid var(--border);
+
   display:flex;
+
   align-items:center;
+
   gap:12px;
+
 }
+
 
 .brand-logo{
+
   width:50px;
+
   height:50px;
+
   border-radius:50%;
+
   object-fit:cover;
+
   border:2px solid var(--red);
+
 }
+
 
 .brand-title{
+
   font-size:16px;
+
   font-weight:bold;
+
 }
+
 
 .brand-subtitle{
+
   color:#777;
+
   font-size:10px;
+
   margin-top:3px;
+
 }
+
 
 .menu{
+
   padding:15px 12px;
+
 }
+
 
 .menu-title{
+
   color:#555;
+
   font-size:10px;
+
   padding:12px 10px 7px;
+
 }
+
 
 .menu-btn{
+
   width:100%;
+
   min-height:46px;
+
   display:flex;
+
   align-items:center;
+
   gap:11px;
+
   border:0;
+
   background:transparent;
+
   color:#aaa;
+
   border-radius:11px;
+
   padding:0 13px;
+
   margin-bottom:5px;
+
   text-align:right;
+
   font-family:inherit;
+
   font-size:12px;
+
   cursor:pointer;
+
 }
+
 
 .menu-btn:hover{
+
   background:#181818;
+
   color:#fff;
+
 }
+
 
 .menu-btn.active{
+
   background:var(--red);
+
   color:#fff;
+
 }
+
 
 .menu-icon{
+
   width:24px;
+
   text-align:center;
+
   font-size:17px;
+
 }
+
 
 .menu-text{
+
   flex:1;
+
 }
+
 
 .menu-arrow{
+
   color:#666;
+
 }
+
 
 .menu-btn.active .menu-arrow{
+
   color:#fff;
+
 }
 
-/* =========================
+
+/* =====================================================
    MAIN
-========================= */
+===================================================== */
 
 .main{
+
   flex:1;
+
   margin-right:270px;
+
   min-width:0;
+
 }
 
-/* =========================
+
+/* =====================================================
    TOPBAR
-========================= */
+===================================================== */
 
 .topbar{
+
   height:75px;
+
   position:sticky;
+
   top:0;
+
   z-index:900;
+
   background:rgba(7,7,7,.93);
+
   backdrop-filter:blur(15px);
+
   border-bottom:1px solid var(--border);
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   padding:0 25px;
+
   gap:15px;
+
 }
+
 
 .topbar-right{
+
   display:flex;
+
   align-items:center;
+
   gap:12px;
+
 }
+
 
 .menu-mobile{
+
   display:none;
+
   width:42px;
+
   height:42px;
+
   border:1px solid var(--border);
+
   background:#151515;
+
   color:#fff;
+
   border-radius:10px;
+
   cursor:pointer;
+
 }
+
 
 .page-title{
+
   font-size:17px;
+
   font-weight:bold;
+
 }
+
 
 .page-subtitle{
+
   color:#777;
+
   font-size:10px;
+
   margin-top:2px;
+
 }
+
 
 .visit-btn{
+
   border:1px solid #333;
+
   background:#151515;
+
   color:#fff;
+
   border-radius:10px;
+
   padding:9px 13px;
+
   cursor:pointer;
+
   font-family:inherit;
+
   font-size:11px;
+
 }
+
 
 .visit-btn:hover{
+
   border-color:var(--red);
+
 }
 
-/* =========================
+
+/* =====================================================
    CONTENT
-========================= */
+===================================================== */
 
 .content{
+
   padding:25px;
+
   max-width:1500px;
+
   margin:auto;
+
 }
+
 
 .section{
+
   display:none;
+
   animation:fade .2s ease;
+
 }
+
 
 .section.active{
+
   display:block;
+
 }
+
 
 @keyframes fade{
+
   from{
+
     opacity:0;
+
     transform:translateY(5px);
+
   }
+
   to{
+
     opacity:1;
+
     transform:none;
+
   }
+
 }
 
-/* =========================
+
+/* =====================================================
    DASHBOARD
-========================= */
+===================================================== */
 
 .welcome{
+
   background:
+
     radial-gradient(
       circle at 10% 50%,
       rgba(229,9,20,.25),
       transparent 35%
     ),
-    linear-gradient(135deg,#171717,#0b0b0b);
+
+    linear-gradient(
+      135deg,
+      #171717,
+      #0b0b0b
+    );
+
   border:1px solid var(--border);
+
   border-radius:20px;
+
   padding:28px;
+
   margin-bottom:20px;
+
 }
+
 
 .welcome h1{
+
   font-size:25px;
+
   margin-bottom:7px;
+
 }
+
 
 .welcome p{
+
   color:#888;
+
   font-size:12px;
+
 }
+
 
 .stats{
+
   display:grid;
+
   grid-template-columns:repeat(4,1fr);
+
   gap:15px;
+
   margin-bottom:20px;
+
 }
+
 
 .stat{
+
   background:var(--card);
+
   border:1px solid var(--border);
+
   border-radius:16px;
+
   padding:20px;
+
   position:relative;
+
   overflow:hidden;
+
 }
+
 
 .stat::after{
+
   content:"";
+
   position:absolute;
+
   width:80px;
+
   height:80px;
+
   background:rgba(229,9,20,.08);
+
   border-radius:50%;
+
   left:-25px;
+
   bottom:-30px;
+
 }
+
 
 .stat-top{
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
 }
+
 
 .stat-icon{
+
   width:45px;
+
   height:45px;
+
   border-radius:12px;
+
   background:#1d1d1d;
+
   display:flex;
+
   align-items:center;
+
   justify-content:center;
+
   font-size:21px;
+
 }
+
 
 .stat-label{
+
   color:#888;
+
   font-size:11px;
+
   margin-top:13px;
+
 }
+
 
 .stat-value{
+
   font-size:25px;
+
   font-weight:bold;
+
   margin-top:3px;
+
 }
+
 
 .stat-change{
+
   color:var(--green);
+
   font-size:10px;
+
   margin-top:6px;
+
 }
 
-/* =========================
+
+/* =====================================================
    GRID
-========================= */
+===================================================== */
 
 .two-columns{
+
   display:grid;
+
   grid-template-columns:1.4fr .8fr;
+
   gap:18px;
+
 }
+
 
 .panel{
+
   background:var(--card);
+
   border:1px solid var(--border);
+
   border-radius:16px;
+
   overflow:hidden;
+
 }
+
 
 .panel-head{
+
   padding:17px 18px;
+
   border-bottom:1px solid var(--border);
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   gap:10px;
+
 }
+
 
 .panel-head h2{
+
   font-size:14px;
+
 }
+
 
 .panel-head span{
+
   color:#777;
+
   font-size:10px;
+
 }
+
 
 .panel-body{
+
   padding:18px;
+
 }
 
-/* =========================
-   QUICK ACTIONS
-========================= */
+
+/* =====================================================
+   QUICK
+===================================================== */
 
 .quick-grid{
+
   display:grid;
+
   grid-template-columns:repeat(2,1fr);
+
   gap:10px;
+
 }
+
 
 .quick{
+
   background:#181818;
+
   border:1px solid #292929;
+
   border-radius:12px;
+
   padding:16px;
+
   cursor:pointer;
+
   color:#fff;
+
   text-align:right;
+
   transition:.2s;
+
 }
+
 
 .quick:hover{
+
   border-color:var(--red);
+
   transform:translateY(-2px);
+
 }
+
 
 .quick-icon{
+
   font-size:25px;
+
   margin-bottom:8px;
+
 }
+
 
 .quick-title{
+
   font-size:12px;
+
   font-weight:bold;
+
 }
+
 
 .quick-text{
+
   color:#777;
+
   font-size:9px;
+
   margin-top:4px;
+
 }
 
-/* =========================
-   PRODUCT TABLE
-========================= */
+
+/* =====================================================
+   TABLE
+===================================================== */
 
 .table-wrap{
+
   overflow-x:auto;
+
 }
+
 
 table{
+
   width:100%;
+
   border-collapse:collapse;
+
 }
+
 
 th{
+
   color:#777;
+
   font-size:10px;
+
   font-weight:normal;
+
   text-align:right;
+
   padding:12px;
+
   border-bottom:1px solid var(--border);
+
   white-space:nowrap;
+
 }
+
 
 td{
+
   padding:12px;
+
   border-bottom:1px solid #202020;
+
   font-size:11px;
+
   white-space:nowrap;
+
 }
+
 
 tr:last-child td{
+
   border-bottom:0;
+
 }
+
 
 .product-mini{
+
   display:flex;
+
   align-items:center;
+
   gap:9px;
+
 }
+
 
 .product-mini-img{
+
   width:38px;
+
   height:38px;
+
   border-radius:8px;
+
   background:#202020;
+
   object-fit:contain;
+
 }
+
 
 .status{
+
   display:inline-flex;
+
   align-items:center;
+
   gap:5px;
+
   padding:4px 8px;
+
   border-radius:20px;
+
   font-size:9px;
+
 }
+
 
 .status.active{
+
   background:rgba(40,209,124,.1);
+
   color:var(--green);
+
 }
+
 
 .status.inactive{
+
   background:rgba(255,60,60,.1);
+
   color:#ff5555;
+
 }
 
-/* =========================
-   SECTION HEADER
-========================= */
+
+/* =====================================================
+   SECTION
+===================================================== */
 
 .section-header{
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   gap:15px;
+
   margin-bottom:20px;
+
 }
+
 
 .section-header h1{
+
   font-size:21px;
+
 }
+
 
 .section-header p{
+
   color:#777;
+
   font-size:10px;
+
   margin-top:4px;
+
 }
+
 
 .primary{
+
   border:0;
+
   background:var(--red);
+
   color:#fff;
+
   border-radius:10px;
+
   padding:10px 16px;
+
   cursor:pointer;
+
   font-family:inherit;
+
   font-weight:bold;
+
   font-size:11px;
+
 }
+
 
 .primary:hover{
+
   background:var(--red2);
+
 }
 
-/* =========================
+
+/* =====================================================
    TOOLBAR
-========================= */
+===================================================== */
 
 .toolbar{
+
   background:var(--card);
+
   border:1px solid var(--border);
+
   border-radius:15px;
+
   padding:14px;
+
   display:flex;
+
   gap:10px;
+
   flex-wrap:wrap;
+
   margin-bottom:15px;
+
 }
+
 
 .input{
+
   height:42px;
+
   background:#0d0d0d;
+
   border:1px solid #303030;
+
   color:#fff;
+
   border-radius:9px;
+
   outline:none;
+
   padding:0 12px;
+
   font-family:inherit;
+
   font-size:11px;
+
 }
+
+
+textarea.input{
+
+  height:auto;
+
+  padding-top:12px;
+
+}
+
 
 .input:focus{
+
   border-color:var(--red);
+
 }
+
 
 .search-input{
+
   flex:1;
+
   min-width:200px;
+
 }
 
-/* =========================
+
+/* =====================================================
    EMPTY
-========================= */
+===================================================== */
 
 .empty{
+
   text-align:center;
+
   padding:70px 20px;
+
   color:#666;
+
 }
+
 
 .empty-icon{
+
   font-size:45px;
+
   margin-bottom:10px;
+
 }
 
-/* =========================
+
+/* =====================================================
    PLACEHOLDER
-========================= */
+===================================================== */
 
 .placeholder{
+
   background:var(--card);
+
   border:1px solid var(--border);
+
   border-radius:18px;
+
   padding:70px 20px;
+
   text-align:center;
+
 }
+
 
 .placeholder-icon{
+
   font-size:55px;
+
   margin-bottom:15px;
+
 }
+
 
 .placeholder h2{
+
   font-size:18px;
+
   margin-bottom:7px;
+
 }
+
 
 .placeholder p{
+
   color:#777;
+
   font-size:11px;
+
 }
 
-/* =========================
+
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:1000px){
 
   .sidebar{
+
     transform:translateX(100%);
+
   }
+
 
   .sidebar.open{
+
     transform:translateX(0);
+
   }
+
 
   .main{
+
     margin-right:0;
+
   }
+
 
   .menu-mobile{
+
     display:block;
+
   }
+
 
   .stats{
+
     grid-template-columns:repeat(2,1fr);
+
   }
 
+
   .two-columns{
+
     grid-template-columns:1fr;
+
   }
 
 }
+
 
 @media(max-width:600px){
 
   .content{
+
     padding:15px;
+
   }
+
 
   .topbar{
+
     padding:0 15px;
+
   }
+
 
   .stats{
+
     grid-template-columns:1fr 1fr;
+
     gap:9px;
+
   }
+
 
   .stat{
+
     padding:14px;
+
   }
+
 
   .stat-value{
+
     font-size:20px;
+
   }
+
 
   .welcome{
+
     padding:22px 17px;
+
   }
+
 
   .welcome h1{
+
     font-size:20px;
+
   }
+
 
   .section-header{
+
     align-items:flex-start;
+
     flex-direction:column;
+
   }
+
 
   .quick-grid{
+
     grid-template-columns:1fr;
+
   }
 
+
   .visit-btn{
+
     display:none;
+
   }
 
 }
+
 
 </style>
 
 </head>
 
+
 <body>
+
+
+<!-- =====================================================
+     LOGIN
+===================================================== -->
+
+<div id="loginScreen">
+
+  <div class="login-box">
+
+    <img
+      src="logo.jpg"
+      class="login-logo"
+      alt="ماهان سنتر ایران"
+    >
+
+    <div class="login-title">
+      ماهان سنتر ایران
+    </div>
+
+    <div class="login-subtitle">
+      ورود به پنل مدیریت فروشگاه
+    </div>
+
+
+    <input
+      type="password"
+      id="loginPassword"
+      class="login-input"
+      placeholder="رمز ورود"
+      autocomplete="off"
+      onkeydown="
+        if(event.key==='Enter')
+        loginAdmin()
+      "
+    >
+
+
+    <button
+      class="login-button"
+      onclick="loginAdmin()"
+    >
+      🔐 ورود به پنل
+    </button>
+
+
+    <div
+      class="login-error"
+      id="loginError"
+    >
+      ❌ رمز ورود اشتباه است.
+    </div>
+
+
+    <div class="login-footer">
+      مدیریت ماهان سنتر ایران
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =====================================================
+     ADMIN PANEL
+===================================================== -->
+
+<div
+  id="adminPanel"
+>
 
 <div class="admin-layout">
 
 
-<!-- =========================
+<!-- =====================================================
      SIDEBAR
-========================= -->
+===================================================== -->
 
 <aside
   class="sidebar"
@@ -744,7 +1520,9 @@ tr:last-child td{
       onclick="openSection('dashboard')"
     >
 
-      <span class="menu-icon">📊</span>
+      <span class="menu-icon">
+        📊
+      </span>
 
       <span class="menu-text">
         داشبورد
@@ -768,7 +1546,9 @@ tr:last-child td{
       onclick="openSection('products')"
     >
 
-      <span class="menu-icon">📦</span>
+      <span class="menu-icon">
+        📦
+      </span>
 
       <span class="menu-text">
         محصولات
@@ -787,7 +1567,9 @@ tr:last-child td{
       onclick="openSection('categories')"
     >
 
-      <span class="menu-icon">🗂️</span>
+      <span class="menu-icon">
+        🗂️
+      </span>
 
       <span class="menu-text">
         دسته‌بندی‌ها
@@ -806,7 +1588,9 @@ tr:last-child td{
       onclick="openSection('discounts')"
     >
 
-      <span class="menu-icon">🔥</span>
+      <span class="menu-icon">
+        🔥
+      </span>
 
       <span class="menu-text">
         تخفیف‌ها
@@ -825,7 +1609,9 @@ tr:last-child td{
       onclick="openSection('orders')"
     >
 
-      <span class="menu-icon">🛒</span>
+      <span class="menu-icon">
+        🛒
+      </span>
 
       <span class="menu-text">
         سفارش‌ها
@@ -849,7 +1635,9 @@ tr:last-child td{
       onclick="openSection('homepage')"
     >
 
-      <span class="menu-icon">🏠</span>
+      <span class="menu-icon">
+        🏠
+      </span>
 
       <span class="menu-text">
         صفحه اصلی
@@ -868,7 +1656,9 @@ tr:last-child td{
       onclick="openSection('menu')"
     >
 
-      <span class="menu-icon">🧭</span>
+      <span class="menu-icon">
+        🧭
+      </span>
 
       <span class="menu-text">
         منوی سایت
@@ -887,7 +1677,9 @@ tr:last-child td{
       onclick="openSection('pages')"
     >
 
-      <span class="menu-icon">📄</span>
+      <span class="menu-icon">
+        📄
+      </span>
 
       <span class="menu-text">
         صفحات
@@ -906,7 +1698,9 @@ tr:last-child td{
       onclick="openSection('appearance')"
     >
 
-      <span class="menu-icon">🎨</span>
+      <span class="menu-icon">
+        🎨
+      </span>
 
       <span class="menu-text">
         ظاهر سایت
@@ -930,7 +1724,9 @@ tr:last-child td{
       onclick="openSection('users')"
     >
 
-      <span class="menu-icon">👥</span>
+      <span class="menu-icon">
+        👥
+      </span>
 
       <span class="menu-text">
         کاربران
@@ -949,7 +1745,9 @@ tr:last-child td{
       onclick="openSection('settings')"
     >
 
-      <span class="menu-icon">⚙️</span>
+      <span class="menu-icon">
+        ⚙️
+      </span>
 
       <span class="menu-text">
         تنظیمات
@@ -961,49 +1759,63 @@ tr:last-child td{
 
     </button>
 
+
   </div>
 
 </aside>
 
 
-<!-- =========================
+<!-- =====================================================
      MAIN
-========================= -->
+===================================================== -->
 
 <div class="main">
 
 
-  <header class="topbar">
+<header class="topbar">
 
-    <div class="topbar-right">
 
-      <button
-        class="menu-mobile"
-        onclick="toggleSidebar()"
+  <div class="topbar-right">
+
+
+    <button
+      class="menu-mobile"
+      onclick="toggleSidebar()"
+    >
+      ☰
+    </button>
+
+
+    <div>
+
+      <div
+        class="page-title"
+        id="topTitle"
       >
-        ☰
-      </button>
+        داشبورد
+      </div>
 
-      <div>
 
-        <div
-          class="page-title"
-          id="topTitle"
-        >
-          داشبورد
-        </div>
-
-        <div
-          class="page-subtitle"
-          id="topSubtitle"
-        >
-          مدیریت ماهان سنتر ایران
-        </div>
-
+      <div
+        class="page-subtitle"
+        id="topSubtitle"
+      >
+        مدیریت ماهان سنتر ایران
       </div>
 
     </div>
 
+
+  </div>
+
+
+  <div
+    style="
+      display:flex;
+      gap:7px;
+      align-items:center;
+    "
+  >
 
     <button
       class="visit-btn"
@@ -1012,798 +1824,1339 @@ tr:last-child td{
       🌐 مشاهده سایت
     </button>
 
-  </header>
 
-
-  <main class="content">
-
-
-    <!-- =========================
-         DASHBOARD
-    ========================= -->
-
-    <section
-      class="section active"
-      id="section-dashboard"
+    <button
+      class="visit-btn"
+      onclick="logoutAdmin()"
     >
+      🔒 خروج
+    </button>
 
-      <div class="welcome">
+  </div>
 
-        <h1>
-          👋 خوش آمدید، مدیر ماهان سنتر ایران
-        </h1>
 
-        <p>
-          از اینجا می‌توانید تمام بخش‌های فروشگاه را مدیریت کنید.
-        </p>
+</header>
 
-      </div>
 
+<main class="content">
 
-      <div class="stats">
 
+<!-- =====================================================
+     DASHBOARD
+===================================================== -->
 
-        <div class="stat">
+<section
+  class="section active"
+  id="section-dashboard"
+>
 
-          <div class="stat-top">
 
-            <div class="stat-icon">
-              📦
-            </div>
+  <div class="welcome">
 
-          </div>
+    <h1>
+      👋 خوش آمدید، مدیر ماهان سنتر ایران
+    </h1>
 
-          <div class="stat-label">
-            تعداد محصولات
-          </div>
+    <p>
+      از اینجا می‌توانید بخش‌های مختلف فروشگاه را مدیریت کنید.
+    </p>
 
-          <div
-            class="stat-value"
-            id="statProducts"
-          >
-            ۰
-          </div>
+  </div>
 
-          <div class="stat-change">
-            محصولات فعال فروشگاه
-          </div>
 
-        </div>
+  <div class="stats">
 
 
-        <div class="stat">
+    <div class="stat">
 
-          <div class="stat-top">
+      <div class="stat-top">
 
-            <div class="stat-icon">
-              🗂️
-            </div>
-
-          </div>
-
-          <div class="stat-label">
-            دسته‌بندی‌ها
-          </div>
-
-          <div
-            class="stat-value"
-            id="statCategories"
-          >
-            ۷
-          </div>
-
-          <div class="stat-change">
-            دسته‌بندی فعلی
-          </div>
-
-        </div>
-
-
-        <div class="stat">
-
-          <div class="stat-top">
-
-            <div class="stat-icon">
-              🔥
-            </div>
-
-          </div>
-
-          <div class="stat-label">
-            محصولات تخفیف‌دار
-          </div>
-
-          <div
-            class="stat-value"
-            id="statDiscounts"
-          >
-            ۰
-          </div>
-
-          <div class="stat-change">
-            در حال حاضر
-          </div>
-
-        </div>
-
-
-        <div class="stat">
-
-          <div class="stat-top">
-
-            <div class="stat-icon">
-              🟢
-            </div>
-
-          </div>
-
-          <div class="stat-label">
-            وضعیت Firebase
-          </div>
-
-          <div
-            class="stat-value"
-            id="statFirebase"
-          >
-            ...
-          </div>
-
-          <div class="stat-change">
-            اتصال پایگاه داده
-          </div>
-
-        </div>
-
-
-      </div>
-
-
-      <div class="two-columns">
-
-
-        <div class="panel">
-
-          <div class="panel-head">
-
-            <h2>
-              🕘 آخرین محصولات
-            </h2>
-
-            <span>
-              از Firebase
-            </span>
-
-          </div>
-
-          <div class="panel-body">
-
-            <div
-              class="table-wrap"
-              id="recentProducts"
-            >
-
-              <div class="empty">
-                در حال دریافت...
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="panel">
-
-          <div class="panel-head">
-
-            <h2>
-              ⚡ دسترسی سریع
-            </h2>
-
-          </div>
-
-          <div class="panel-body">
-
-            <div class="quick-grid">
-
-
-              <button
-                class="quick"
-                onclick="openSection('products')"
-              >
-
-                <div class="quick-icon">
-                  ➕
-                </div>
-
-                <div class="quick-title">
-                  افزودن محصول
-                </div>
-
-                <div class="quick-text">
-                  محصول جدید ایجاد کنید
-                </div>
-
-              </button>
-
-
-              <button
-                class="quick"
-                onclick="openSection('homepage')"
-              >
-
-                <div class="quick-icon">
-                  🏠
-                </div>
-
-                <div class="quick-title">
-                  صفحه اصلی
-                </div>
-
-                <div class="quick-text">
-                  مدیریت محتوای خانه
-                </div>
-
-              </button>
-
-
-              <button
-                class="quick"
-                onclick="openSection('categories')"
-              >
-
-                <div class="quick-icon">
-                  🗂️
-                </div>
-
-                <div class="quick-title">
-                  دسته‌بندی
-                </div>
-
-                <div class="quick-text">
-                  مدیریت دسته‌ها
-                </div>
-
-              </button>
-
-
-              <button
-                class="quick"
-                onclick="openSection('appearance')"
-              >
-
-                <div class="quick-icon">
-                  🎨
-                </div>
-
-                <div class="quick-title">
-                  ظاهر سایت
-                </div>
-
-                <div class="quick-text">
-                  شخصی‌سازی ظاهر
-                </div>
-
-              </button>
-
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         PRODUCTS
-    ========================= -->
-
-    <section
-      class="section"
-      id="section-products"
-    >
-
-      <div class="section-header">
-
-        <div>
-
-          <h1>
-            📦 مدیریت محصولات
-          </h1>
-
-          <p>
-            افزودن، ویرایش و مدیریت محصولات فروشگاه
-          </p>
-
-        </div>
-
-        <button
-          class="primary"
-          onclick="alert('فرم افزودن محصول را در مرحله بعد می‌سازیم.')"
-        >
-          ➕ افزودن محصول
-        </button>
-
-      </div>
-
-
-      <div class="toolbar">
-
-        <input
-          class="input search-input"
-          id="productSearch"
-          placeholder="جستجوی محصول..."
-          oninput="filterAdminProducts()"
-        >
-
-        <button
-          class="visit-btn"
-          onclick="loadAdminProducts()"
-        >
-          🔄 بروزرسانی
-        </button>
-
-      </div>
-
-
-      <div class="panel">
-
-        <div
-          class="table-wrap"
-          id="productsTable"
-        >
-
-          <div class="empty">
-            در حال دریافت محصولات...
-          </div>
-
+        <div class="stat-icon">
+          📦
         </div>
 
       </div>
 
-    </section>
-
-
-    <!-- =========================
-         CATEGORIES
-    ========================= -->
-
-    <section
-      class="section"
-      id="section-categories"
-    >
-
-      <div class="section-header">
-
-        <div>
-
-          <h1>
-            🗂️ مدیریت دسته‌بندی‌ها
-          </h1>
-
-          <p>
-            مدیریت دسته‌بندی‌های فروشگاه
-          </p>
-
-        </div>
-
+      <div class="stat-label">
+        تعداد محصولات
       </div>
 
+      <div
+        class="stat-value"
+        id="statProducts"
+      >
+        ۰
+      </div>
 
-      <div class="placeholder">
+      <div class="stat-change">
+        محصولات فروشگاه
+      </div>
 
-        <div class="placeholder-icon">
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-top">
+
+        <div class="stat-icon">
           🗂️
         </div>
 
-        <h2>
-          مدیریت دسته‌بندی‌ها
-        </h2>
-
-        <p>
-          این بخش را در مرحله بعد به Firebase متصل می‌کنیم.
-        </p>
-
       </div>
 
-    </section>
-
-
-    <!-- =========================
-         DISCOUNTS
-    ========================= -->
-
-    <section
-      class="section"
-      id="section-discounts"
-    >
-
-      <div class="section-header">
-
-        <div>
-
-          <h1>
-            🔥 مدیریت تخفیف‌ها
-          </h1>
-
-          <p>
-            مدیریت تخفیف محصولات فروشگاه
-          </p>
-
-        </div>
-
+      <div class="stat-label">
+        دسته‌بندی‌ها
       </div>
 
+      <div
+        class="stat-value"
+        id="statCategories"
+      >
+        ۷
+      </div>
 
-      <div class="placeholder">
+      <div class="stat-change">
+        دسته‌بندی فعلی
+      </div>
 
-        <div class="placeholder-icon">
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-top">
+
+        <div class="stat-icon">
           🔥
         </div>
 
-        <h2>
-          مدیریت تخفیف‌ها
-        </h2>
+      </div>
 
-        <p>
-          امکانات پیشرفته تخفیف در مرحله بعد اضافه می‌شود.
-        </p>
+      <div class="stat-label">
+        محصولات تخفیف‌دار
+      </div>
+
+      <div
+        class="stat-value"
+        id="statDiscounts"
+      >
+        ۰
+      </div>
+
+      <div class="stat-change">
+        در حال حاضر
+      </div>
+
+    </div>
+
+
+    <div class="stat">
+
+      <div class="stat-top">
+
+        <div class="stat-icon">
+          🟢
+        </div>
 
       </div>
 
-    </section>
+      <div class="stat-label">
+        وضعیت Firebase
+      </div>
+
+      <div
+        class="stat-value"
+        id="statFirebase"
+      >
+        ...
+      </div>
+
+      <div class="stat-change">
+        اتصال پایگاه داده
+      </div>
+
+    </div>
 
 
-    <!-- =========================
-         ORDERS
-    ========================= -->
+  </div>
 
-    <section
-      class="section"
-      id="section-orders"
+
+  <div class="two-columns">
+
+
+    <div class="panel">
+
+      <div class="panel-head">
+
+        <h2>
+          🕘 آخرین محصولات
+        </h2>
+
+        <span>
+          Firebase
+        </span>
+
+      </div>
+
+
+      <div class="panel-body">
+
+        <div
+          class="table-wrap"
+          id="recentProducts"
+        >
+
+          <div class="empty">
+            در حال دریافت...
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="panel">
+
+      <div class="panel-head">
+
+        <h2>
+          ⚡ دسترسی سریع
+        </h2>
+
+      </div>
+
+
+      <div class="panel-body">
+
+        <div class="quick-grid">
+
+
+          <button
+            class="quick"
+            onclick="openSection('products')"
+          >
+
+            <div class="quick-icon">
+              ➕
+            </div>
+
+            <div class="quick-title">
+              افزودن محصول
+            </div>
+
+            <div class="quick-text">
+              محصول جدید ایجاد کنید
+            </div>
+
+          </button>
+
+
+          <button
+            class="quick"
+            onclick="openSection('homepage')"
+          >
+
+            <div class="quick-icon">
+              🏠
+            </div>
+
+            <div class="quick-title">
+              صفحه اصلی
+            </div>
+
+            <div class="quick-text">
+              مدیریت صفحه اصلی
+            </div>
+
+          </button>
+
+
+          <button
+            class="quick"
+            onclick="openSection('categories')"
+          >
+
+            <div class="quick-icon">
+              🗂️
+            </div>
+
+            <div class="quick-title">
+              دسته‌بندی
+            </div>
+
+            <div class="quick-text">
+              مدیریت دسته‌ها
+            </div>
+
+          </button>
+
+
+          <button
+            class="quick"
+            onclick="openSection('appearance')"
+          >
+
+            <div class="quick-icon">
+              🎨
+            </div>
+
+            <div class="quick-title">
+              ظاهر سایت
+            </div>
+
+            <div class="quick-text">
+              شخصی‌سازی ظاهر
+            </div>
+
+          </button>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =====================================================
+     PRODUCTS
+===================================================== -->
+
+<section
+  class="section"
+  id="section-products"
+>
+
+
+  <div class="section-header">
+
+    <div>
+
+      <h1>
+        📦 مدیریت محصولات
+      </h1>
+
+      <p>
+        افزودن، ویرایش و مدیریت محصولات فروشگاه
+      </p>
+
+    </div>
+
+
+    <button
+      class="primary"
+      onclick="openProductForm()"
     >
+      ➕ افزودن محصول
+    </button>
 
-      <div class="section-header">
+  </div>
+
+
+  <!-- PRODUCT FORM -->
+
+  <div
+    class="panel"
+    id="productForm"
+    style="
+      display:none;
+      margin-bottom:20px;
+    "
+  >
+
+
+    <div class="panel-head">
+
+      <h2 id="formTitle">
+        ➕ افزودن محصول
+      </h2>
+
+      <button
+        class="visit-btn"
+        onclick="closeProductForm()"
+      >
+        ✕ بستن
+      </button>
+
+    </div>
+
+
+    <div class="panel-body">
+
+
+      <div
+        style="
+          display:grid;
+          grid-template-columns:repeat(2,1fr);
+          gap:14px;
+        "
+      >
+
+
+        <!-- NAME -->
 
         <div>
 
-          <h1>
-            🛒 سفارش‌ها
-          </h1>
+          <label
+            style="
+              display:block;
+              color:#888;
+              font-size:10px;
+              margin-bottom:6px;
+            "
+          >
+            نام محصول
+          </label>
 
-          <p>
-            مدیریت سفارش‌های مشتریان
-          </p>
+          <input
+            class="input"
+            id="productName"
+            style="width:100%;"
+            placeholder="نام محصول"
+          >
 
         </div>
 
-      </div>
 
-
-      <div class="placeholder">
-
-        <div class="placeholder-icon">
-          🛒
-        </div>
-
-        <h2>
-          مدیریت سفارش‌ها
-        </h2>
-
-        <p>
-          سیستم سفارش‌ها را بعد از طراحی ساختار سفارش فعال می‌کنیم.
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         HOMEPAGE
-    ========================= -->
-
-    <section
-      class="section"
-      id="section-homepage"
-    >
-
-      <div class="section-header">
+        <!-- CODE -->
 
         <div>
 
-          <h1>
-            🏠 مدیریت صفحه اصلی
-          </h1>
+          <label
+            style="
+              display:block;
+              color:#888;
+              font-size:10px;
+              margin-bottom:6px;
+            "
+          >
+            کد محصول
+          </label>
 
-          <p>
-            کنترل محتوای صفحه اصلی فروشگاه
-          </p>
+          <input
+            class="input"
+            id="productCode"
+            type="number"
+            style="width:100%;"
+            placeholder="مثلاً 112"
+          >
 
         </div>
 
-      </div>
 
-
-      <div class="placeholder">
-
-        <div class="placeholder-icon">
-          🏠
-        </div>
-
-        <h2>
-          صفحه‌ساز ماهان سنتر
-        </h2>
-
-        <p>
-          این بخش در مرحله بعد تبدیل به صفحه‌ساز حرفه‌ای می‌شود.
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         MENU
-    ========================= -->
-
-    <section
-      class="section"
-      id="section-menu"
-    >
-
-      <div class="section-header">
+        <!-- PRICE -->
 
         <div>
 
-          <h1>
-            🧭 مدیریت منوی سایت
-          </h1>
+          <label
+            style="
+              display:block;
+              color:#888;
+              font-size:10px;
+              margin-bottom:6px;
+            "
+          >
+            قیمت تومان
+          </label>
 
-          <p>
-            مدیریت لینک‌ها و منوی اصلی سایت
-          </p>
+          <input
+            class="input"
+            id="productPrice"
+            type="number"
+            style="width:100%;"
+            placeholder="مثلاً 25000000"
+          >
 
         </div>
 
-      </div>
 
-
-      <div class="placeholder">
-
-        <div class="placeholder-icon">
-          🧭
-        </div>
-
-        <h2>
-          مدیریت منو
-        </h2>
-
-        <p>
-          امکان ساخت و ویرایش منوی سایت در مرحله بعد اضافه می‌شود.
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         PAGES
-    ========================= -->
-
-    <section
-      class="section"
-      id="section-pages"
-    >
-
-      <div class="section-header">
+        <!-- DISCOUNT -->
 
         <div>
 
-          <h1>
-            📄 مدیریت صفحات
-          </h1>
+          <label
+            style="
+              display:block;
+              color:#888;
+              font-size:10px;
+              margin-bottom:6px;
+            "
+          >
+            تخفیف درصدی
+          </label>
 
-          <p>
-            ساخت و مدیریت صفحات سایت
-          </p>
+          <input
+            class="input"
+            id="productDiscount"
+            type="number"
+            min="0"
+            max="100"
+            value="0"
+            style="width:100%;"
+            placeholder="مثلاً 10"
+          >
 
         </div>
+
+
+        <!-- STOCK -->
+
+        <div>
+
+          <label
+            style="
+              display:block;
+              color:#888;
+              font-size:10px;
+              margin-bottom:6px;
+            "
+          >
+            موجودی
+          </label>
+
+          <input
+            class="input"
+            id="productStock"
+            type="number"
+            value="0"
+            style="width:100%;"
+          >
+
+        </div>
+
+
+        <!-- CATEGORY -->
+
+        <div>
+
+          <label
+            style="
+              display:block;
+              color:#888;
+              font-size:10px;
+              margin-bottom:6px;
+            "
+          >
+            دسته‌بندی
+          </label>
+
+          <select
+            class="input"
+            id="productCategory"
+            style="width:100%;"
+          >
+
+            <option value="mobile">
+              📱 گوشی
+            </option>
+
+            <option value="gold">
+              💎 طلا و جواهرات
+            </option>
+
+            <option value="clothes">
+              👕 پوشاک
+            </option>
+
+            <option value="accessories">
+              🎧 لوازم جانبی
+            </option>
+
+            <option value="digital">
+              💻 دیجیتال
+            </option>
+
+            <option value="shoes">
+              👟 کفش
+            </option>
+
+            <option value="watches">
+              ⌚ ساعت
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- BRAND -->
+
+        <div>
+
+          <label
+            style="
+              display:block;
+              color:#888;
+              font-size:10px;
+              margin-bottom:6px;
+            "
+          >
+            برند
+          </label>
+
+          <input
+            class="input"
+            id="productBrand"
+            style="width:100%;"
+            placeholder="مثلاً Apple"
+          >
+
+        </div>
+
+
+        <!-- GOLD CATEGORY -->
+
+        <div>
+
+          <label
+            style="
+              display:block;
+              color:#888;
+              font-size:10px;
+              margin-bottom:6px;
+            "
+          >
+            نوع طلا
+          </label>
+
+          <select
+            class="input"
+            id="productGoldCat"
+            style="width:100%;"
+          >
+
+            <option value="">
+              بدون دسته طلا
+            </option>
+
+            <option value="necklace">
+              📿 گردنبند
+            </option>
+
+            <option value="ring">
+              💍 انگشتر
+            </option>
+
+            <option value="bangle">
+              🔗 النگو
+            </option>
+
+            <option value="earring">
+              💎 گوشواره
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- IMAGE -->
+
+        <div>
+
+          <label
+            style="
+              display:block;
+              color:#888;
+              font-size:10px;
+              margin-bottom:6px;
+            "
+          >
+            🖼️ مسیر عکس
+          </label>
+
+          <input
+            class="input"
+            id="productImage"
+            style="width:100%;"
+            placeholder="images/gold/heart-small.jpg"
+            oninput="previewProductImage()"
+          >
+
+          <div
+            style="
+              color:#555;
+              font-size:9px;
+              margin-top:6px;
+            "
+          >
+            عکس را داخل پوشه پروژه قرار دهید.
+          </div>
+
+        </div>
+
+
+        <!-- IMAGE PREVIEW -->
+
+        <div
+          id="imagePreviewContainer"
+          style="
+            grid-column:1/-1;
+            display:none;
+            background:#0d0d0d;
+            border:1px solid #292929;
+            border-radius:12px;
+            padding:15px;
+            text-align:center;
+          "
+        >
+
+          <div
+            style="
+              color:#777;
+              font-size:10px;
+              margin-bottom:10px;
+            "
+          >
+            پیش‌نمایش تصویر
+          </div>
+
+          <img
+            id="productImagePreview"
+            style="
+              width:160px;
+              height:160px;
+              object-fit:contain;
+              border-radius:12px;
+              background:#181818;
+            "
+          >
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div>
+
+          <label
+            style="
+              display:block;
+              color:#888;
+              font-size:10px;
+              margin-bottom:6px;
+            "
+          >
+            کلمات جستجو
+          </label>
+
+          <input
+            class="input"
+            id="productSearch"
+            style="width:100%;"
+            placeholder="مثلاً آیفون اپل گوشی"
+          >
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+
+        <div
+          style="
+            grid-column:1/-1;
+          "
+        >
+
+          <label
+            style="
+              display:block;
+              color:#888;
+              font-size:10px;
+              margin-bottom:6px;
+            "
+          >
+            توضیحات
+          </label>
+
+          <textarea
+            class="input"
+            id="productDescription"
+            style="
+              width:100%;
+              min-height:90px;
+              padding-top:12px;
+            "
+            placeholder="توضیحات محصول..."
+          ></textarea>
+
+        </div>
+
+
+        <!-- SPECS -->
+
+        <div
+          style="
+            grid-column:1/-1;
+          "
+        >
+
+          <label
+            style="
+              display:block;
+              color:#888;
+              font-size:10px;
+              margin-bottom:6px;
+            "
+          >
+            مشخصات فنی
+          </label>
+
+          <textarea
+            class="input"
+            id="productSpecs"
+            style="
+              width:100%;
+              min-height:90px;
+              padding-top:12px;
+            "
+            placeholder="مثلاً حافظه: 256GB | رم: 8GB"
+          ></textarea>
+
+        </div>
+
+
+        <!-- ACTIVE -->
+
+        <div
+          style="
+            grid-column:1/-1;
+            display:flex;
+            align-items:center;
+            gap:10px;
+            background:#0d0d0d;
+            border:1px solid #292929;
+            padding:13px;
+            border-radius:10px;
+          "
+        >
+
+          <input
+            type="checkbox"
+            id="productActive"
+            checked
+            style="
+              width:18px;
+              height:18px;
+              accent-color:#e50914;
+            "
+          >
+
+          <label
+            for="productActive"
+            style="font-size:11px;"
+          >
+            محصول در سایت نمایش داده شود
+          </label>
+
+        </div>
+
+
+      </div>
+
+
+      <div
+        style="
+          display:flex;
+          gap:10px;
+          margin-top:20px;
+        "
+      >
 
         <button
           class="primary"
-          onclick="alert('صفحه‌ساز در مرحله بعد ساخته می‌شود.')"
+          id="saveProductButton"
+          onclick="saveProduct()"
         >
-          ➕ صفحه جدید
+          💾 ذخیره محصول
+        </button>
+
+        <button
+          class="visit-btn"
+          onclick="closeProductForm()"
+        >
+          انصراف
         </button>
 
       </div>
 
 
-      <div class="placeholder">
+    </div>
 
-        <div class="placeholder-icon">
-          📄
-        </div>
-
-        <h2>
-          صفحات سایت
-        </h2>
-
-        <p>
-          درباره ما، قوانین، تماس با ما و سایر صفحات از اینجا مدیریت خواهند شد.
-        </p>
-
-      </div>
-
-    </section>
+  </div>
 
 
-    <!-- =========================
-         APPEARANCE
-    ========================= -->
+  <!-- SEARCH -->
 
-    <section
-      class="section"
-      id="section-appearance"
+  <div class="toolbar">
+
+    <input
+      class="input search-input"
+      id="productSearchFilter"
+      placeholder="جستجوی محصول..."
+      oninput="filterAdminProducts()"
     >
 
-      <div class="section-header">
+    <button
+      class="visit-btn"
+      onclick="loadAdminProducts()"
+    >
+      🔄 بروزرسانی
+    </button>
 
-        <div>
-
-          <h1>
-            🎨 ظاهر سایت
-          </h1>
-
-          <p>
-            شخصی‌سازی ظاهر ماهان سنتر ایران
-          </p>
-
-        </div>
-
-      </div>
+  </div>
 
 
-      <div class="placeholder">
+  <!-- TABLE -->
 
-        <div class="placeholder-icon">
-          🎨
-        </div>
+  <div class="panel">
 
-        <h2>
-          تنظیمات ظاهری
-        </h2>
-
-        <p>
-          لوگو، رنگ‌ها، عنوان‌ها و ظاهر سایت در این قسمت قابل کنترل خواهند بود.
-        </p>
-
-      </div>
-
-    </section>
-
-
-    <!-- =========================
-         USERS
-    ========================= -->
-
-    <section
-      class="section"
-      id="section-users"
+    <div
+      class="table-wrap"
+      id="productsTable"
     >
 
-      <div class="section-header">
-
-        <div>
-
-          <h1>
-            👥 کاربران
-          </h1>
-
-          <p>
-            مدیریت کاربران فروشگاه
-          </p>
-
-        </div>
-
+      <div class="empty">
+        در حال دریافت محصولات...
       </div>
 
+    </div>
 
-      <div class="placeholder">
-
-        <div class="placeholder-icon">
-          👥
-        </div>
-
-        <h2>
-          مدیریت کاربران
-        </h2>
-
-        <p>
-          سیستم کاربران و احراز هویت در مرحله امنیتی پروژه اضافه می‌شود.
-        </p>
-
-      </div>
-
-    </section>
+  </div>
 
 
-    <!-- =========================
-         SETTINGS
-    ========================= -->
-
-    <section
-      class="section"
-      id="section-settings"
-    >
-
-      <div class="section-header">
-
-        <div>
-
-          <h1>
-            ⚙️ تنظیمات
-          </h1>
-
-          <p>
-            تنظیمات اصلی پنل و فروشگاه
-          </p>
-
-        </div>
-
-      </div>
+</section>
 
 
-      <div class="placeholder">
-
-        <div class="placeholder-icon">
-          ⚙️
-        </div>
-
-        <h2>
-          تنظیمات سیستم
-        </h2>
-
-        <p>
-          تنظیمات عمومی، Firebase و امنیت پنل در این قسمت قرار می‌گیرد.
-        </p>
-
-      </div>
-
-    </section>
+<!-- =====================================================
+     OTHER SECTIONS
+===================================================== -->
 
 
-  </main>
+<section
+  class="section"
+  id="section-categories"
+>
+
+  <div class="section-header">
+
+    <div>
+
+      <h1>
+        🗂️ مدیریت دسته‌بندی‌ها
+      </h1>
+
+      <p>
+        مدیریت دسته‌بندی‌های فروشگاه
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="placeholder">
+
+    <div class="placeholder-icon">
+      🗂️
+    </div>
+
+    <h2>
+      مدیریت دسته‌بندی‌ها
+    </h2>
+
+    <p>
+      این بخش در مرحله بعد به Firebase متصل می‌شود.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section
+  class="section"
+  id="section-discounts"
+>
+
+  <div class="section-header">
+
+    <div>
+
+      <h1>
+        🔥 مدیریت تخفیف‌ها
+      </h1>
+
+      <p>
+        مدیریت تخفیف محصولات فروشگاه
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="placeholder">
+
+    <div class="placeholder-icon">
+      🔥
+    </div>
+
+    <h2>
+      مدیریت تخفیف‌ها
+    </h2>
+
+    <p>
+      امکانات پیشرفته تخفیف در مرحله بعد اضافه می‌شود.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section
+  class="section"
+  id="section-orders"
+>
+
+  <div class="section-header">
+
+    <div>
+
+      <h1>
+        🛒 سفارش‌ها
+      </h1>
+
+      <p>
+        مدیریت سفارش‌های مشتریان
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="placeholder">
+
+    <div class="placeholder-icon">
+      🛒
+    </div>
+
+    <h2>
+      مدیریت سفارش‌ها
+    </h2>
+
+    <p>
+      سیستم سفارش‌ها در مرحله بعد ساخته می‌شود.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section
+  class="section"
+  id="section-homepage"
+>
+
+  <div class="section-header">
+
+    <div>
+
+      <h1>
+        🏠 مدیریت صفحه اصلی
+      </h1>
+
+      <p>
+        کنترل محتوای صفحه اصلی فروشگاه
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="placeholder">
+
+    <div class="placeholder-icon">
+      🏠
+    </div>
+
+    <h2>
+      صفحه‌ساز ماهان سنتر
+    </h2>
+
+    <p>
+      صفحه‌ساز حرفه‌ای در مرحله بعد ساخته می‌شود.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section
+  class="section"
+  id="section-menu"
+>
+
+  <div class="section-header">
+
+    <div>
+
+      <h1>
+        🧭 مدیریت منوی سایت
+      </h1>
+
+      <p>
+        مدیریت لینک‌ها و منوی اصلی سایت
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="placeholder">
+
+    <div class="placeholder-icon">
+      🧭
+    </div>
+
+    <h2>
+      مدیریت منو
+    </h2>
+
+    <p>
+      امکان ساخت و ویرایش منوی سایت در مرحله بعد اضافه می‌شود.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section
+  class="section"
+  id="section-pages"
+>
+
+  <div class="section-header">
+
+    <div>
+
+      <h1>
+        📄 مدیریت صفحات
+      </h1>
+
+      <p>
+        ساخت و مدیریت صفحات سایت
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="placeholder">
+
+    <div class="placeholder-icon">
+      📄
+    </div>
+
+    <h2>
+      صفحات سایت
+    </h2>
+
+    <p>
+      درباره ما، قوانین و تماس با ما در این قسمت قرار می‌گیرند.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section
+  class="section"
+  id="section-appearance"
+>
+
+  <div class="section-header">
+
+    <div>
+
+      <h1>
+        🎨 ظاهر سایت
+      </h1>
+
+      <p>
+        شخصی‌سازی ظاهر ماهان سنتر ایران
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="placeholder">
+
+    <div class="placeholder-icon">
+      🎨
+    </div>
+
+    <h2>
+      تنظیمات ظاهری
+    </h2>
+
+    <p>
+      لوگو، رنگ‌ها و ظاهر سایت در این قسمت کنترل خواهند شد.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section
+  class="section"
+  id="section-users"
+>
+
+  <div class="section-header">
+
+    <div>
+
+      <h1>
+        👥 کاربران
+      </h1>
+
+      <p>
+        مدیریت کاربران فروشگاه
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="placeholder">
+
+    <div class="placeholder-icon">
+      👥
+    </div>
+
+    <h2>
+      مدیریت کاربران
+    </h2>
+
+    <p>
+      سیستم کاربران و احراز هویت در مرحله امنیتی اضافه می‌شود.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section
+  class="section"
+  id="section-settings"
+>
+
+  <div class="section-header">
+
+    <div>
+
+      <h1>
+        ⚙️ تنظیمات
+      </h1>
+
+      <p>
+        تنظیمات اصلی پنل و فروشگاه
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <div class="placeholder">
+
+    <div class="placeholder-icon">
+      ⚙️
+    </div>
+
+    <h2>
+      تنظیمات سیستم
+    </h2>
+
+    <p>
+      تنظیمات عمومی، Firebase و امنیت پنل در این قسمت قرار می‌گیرد.
+    </p>
+
+  </div>
+
+</section>
+
+
+</main>
 
 </div>
 
 </div>
 
+</div>
+
+
+<!-- =====================================================
+     FIREBASE
+===================================================== -->
 
 <script type="module">
 
+
 import {
+
   initializeApp
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
 
 
 import {
+
   getFirestore,
+
   collection,
-  getDocs
+
+  getDocs,
+
+  addDoc,
+
+  updateDoc,
+
+  deleteDoc,
+
+  doc
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
@@ -1831,18 +3184,25 @@ const firebaseConfig={
 
 
 const app=
-initializeApp(firebaseConfig);
+initializeApp(
+  firebaseConfig
+);
+
 
 const db=
-getFirestore(app);
+getFirestore(
+  app
+);
 
 
 window.adminProducts=[];
 
+let editingProductId=null;
 
-/* =========================
+
+/* =====================================================
    LOAD PRODUCTS
-========================= */
+===================================================== */
 
 window.loadAdminProducts=
 async function(){
@@ -1861,57 +3221,84 @@ async function(){
     const list=[];
 
 
-    snapshot.forEach(docSnap=>{
+    snapshot.forEach(
+      docSnap=>{
 
-      const data=
-        docSnap.data();
+        const data=
+          docSnap.data();
 
 
-      list.push({
+        list.push({
 
-        firebaseId:docSnap.id,
+          firebaseId:
+            docSnap.id,
 
-        id:Number(
-          data.code ??
-          docSnap.id
-        ),
+          id:
+            Number(
+              data.code ??
+              docSnap.id
+            ),
 
-        name:
-          data.name ||
-          "محصول بدون نام",
+          name:
+            data.name ||
+            "محصول بدون نام",
 
-        category:
-          data.category ||
-          "digital",
+          category:
+            data.category ||
+            "digital",
 
-        price:
-          Number(
-            data.price || 0
-          ),
+          brand:
+            data.brand ||
+            "",
 
-        stock:
-          Number(
-            data.stock ?? 0
-          ),
+          goldCat:
+            data.goldCat ||
+            "",
 
-        discount:
-          Number(
-            data.discount || 0
-          ),
+          search:
+            data.search ||
+            data.name ||
+            "",
 
-        image:
-          data.image || "",
+          description:
+            data.description ||
+            "",
 
-        active:
-          data.active !== false
+          specs:
+            data.specs ||
+            "",
 
-      });
+          price:
+            Number(
+              data.price || 0
+            ),
 
-    });
+          stock:
+            Number(
+              data.stock ?? 0
+            ),
+
+          discount:
+            Number(
+              data.discount || 0
+            ),
+
+          image:
+            data.image ||
+            "",
+
+          active:
+            data.active !== false
+
+        });
+
+      }
+    );
 
 
     list.sort(
-      (a,b)=>b.id-a.id
+      (a,b)=>
+        b.id-a.id
     );
 
 
@@ -1923,17 +3310,22 @@ async function(){
       "statProducts"
     ).textContent=
       list.length
-      .toLocaleString("fa-IR");
+      .toLocaleString(
+        "fa-IR"
+      );
 
 
     document.getElementById(
       "statDiscounts"
     ).textContent=
-      list.filter(
+      list
+      .filter(
         p=>p.discount>0
       )
       .length
-      .toLocaleString("fa-IR");
+      .toLocaleString(
+        "fa-IR"
+      );
 
 
     document.getElementById(
@@ -1977,15 +3369,18 @@ async function(){
 };
 
 
-/* =========================
+/* =====================================================
    RECENT PRODUCTS
-========================= */
+===================================================== */
 
 function renderRecentProducts(){
 
   const list=
     window.adminProducts
-    .slice(0,7);
+    .slice(
+      0,
+      7
+    );
 
 
   if(!list.length){
@@ -2037,10 +3432,12 @@ function renderRecentProducts(){
 
       </thead>
 
+
       <tbody>
 
         ${
-          list.map(
+          list
+          .map(
             p=>`
 
               <tr>
@@ -2084,16 +3481,12 @@ function renderRecentProducts(){
 
 
                 <td>
-
                   ${p.price.toLocaleString("fa-IR")}
-
                 </td>
 
 
                 <td>
-
                   ${p.stock.toLocaleString("fa-IR")}
-
                 </td>
 
 
@@ -2120,7 +3513,8 @@ function renderRecentProducts(){
               </tr>
 
             `
-          ).join("")
+          )
+          .join("")
         }
 
       </tbody>
@@ -2132,9 +3526,9 @@ function renderRecentProducts(){
 }
 
 
-/* =========================
+/* =====================================================
    PRODUCTS TABLE
-========================= */
+===================================================== */
 
 window.renderProductsTable=
 function(){
@@ -2214,10 +3608,12 @@ function(){
 
       </thead>
 
+
       <tbody>
 
         ${
-          list.map(
+          list
+          .map(
             p=>`
 
               <tr>
@@ -2308,19 +3704,49 @@ function(){
 
                 <td>
 
-                  <button
-                    class="visit-btn"
-                    onclick="editProduct('${p.firebaseId}')"
+                  <div
+                    style="
+                      display:flex;
+                      gap:6px;
+                    "
                   >
-                    ویرایش
-                  </button>
+
+                    <button
+                      class="visit-btn"
+                      onclick="
+                        editProduct(
+                          '${p.firebaseId}'
+                        )
+                      "
+                    >
+                      ✏️ ویرایش
+                    </button>
+
+
+                    <button
+                      class="visit-btn"
+                      style="
+                        color:#ff5555;
+                        border-color:#3a2020;
+                      "
+                      onclick="
+                        deleteProduct(
+                          '${p.firebaseId}'
+                        )
+                      "
+                    >
+                      🗑️ حذف
+                    </button>
+
+                  </div>
 
                 </td>
 
               </tr>
 
             `
-          ).join("")
+          )
+          .join("")
         }
 
       </tbody>
@@ -2332,317 +3758,203 @@ function(){
 };
 
 
-/* =========================
-   SEARCH
-========================= */
+/* =====================================================
+   OPEN PRODUCT FORM
+===================================================== */
 
-window.filterAdminProducts=
-function(){
+window.openProductForm=
+function(product=null){
 
-  const q=
-    document.getElementById(
-      "productSearch"
-    )
-    .value
-    .trim()
-    .toLowerCase();
+  editingProductId=
+    product
+    ? product.firebaseId
+    : null;
 
 
-  const original=
-    window.adminProducts;
+  document.getElementById(
+    "productForm"
+  ).style.display=
+    "block";
 
 
-  if(!q){
+  document.getElementById(
+    "formTitle"
+  ).textContent=
+    product
+    ? "✏️ ویرایش محصول"
+    : "➕ افزودن محصول";
 
-    renderProductsTable();
 
-    return;
+  document.getElementById(
+    "productName"
+  ).value=
+    product?.name || "";
 
-  }
 
+  document.getElementById(
+    "productCode"
+  ).value=
+    product?.id || "";
 
-  window.adminProducts=
-    original.filter(
-      p=>
-        String(p.name)
-        .toLowerCase()
-        .includes(q)
-        ||
-        String(p.id)
-        .includes(q)
-        ||
-        String(p.category)
-        .toLowerCase()
-        .includes(q)
-    );
 
+  document.getElementById(
+    "productPrice"
+  ).value=
+    product?.price || "";
 
-  renderProductsTable();
 
+  document.getElementById(
+    "productDiscount"
+  ).value=
+    product?.discount || 0;
 
-  window.adminProducts=
-    original;
 
-};
+  document.getElementById(
+    "productStock"
+  ).value=
+    product?.stock || 0;
 
 
-/* =========================
-   EDIT PLACEHOLDER
-========================= */
+  document.getElementById(
+    "productCategory"
+  ).value=
+    product?.category ||
+    "digital";
 
-window.editProduct=
-function(id){
 
-  const product=
-    window.adminProducts.find(
-      p=>p.firebaseId===id
-    );
+  document.getElementById(
+    "productBrand"
+  ).value=
+    product?.brand || "";
 
 
-  if(!product)
-    return;
+  document.getElementById(
+    "productGoldCat"
+  ).value=
+    product?.goldCat || "";
 
 
-  alert(
-    "ویرایش محصول «"+
-    product.name+
-    "» را در مرحله بعد به‌صورت کامل می‌سازیم."
-  );
+  document.getElementById(
+    "productImage"
+  ).value=
+    product?.image || "";
 
-};
 
+  document.getElementById(
+    "productSearch"
+  ).value=
+    product?.search || "";
 
-/* =========================
-   HTML ESCAPE
-========================= */
 
-function escapeHTML(text){
+  document.getElementById(
+    "productDescription"
+  ).value=
+    product?.description || "";
 
-  return String(
-    text ?? ""
-  )
 
-  .replace(
-    /&/g,
-    "&amp;"
-  )
+  document.getElementById(
+    "productSpecs"
+  ).value=
+    product?.specs || "";
 
-  .replace(
-    /</g,
-    "&lt;"
-  )
 
-  .replace(
-    />/g,
-    "&gt;"
-  )
+  document.getElementById(
+    "productActive"
+  ).checked=
+    product
+    ? product.active
+    : true;
 
-  .replace(
-    /"/g,
-    "&quot;"
-  )
 
-  .replace(
-    /'/g,
-    "&#039;"
-  );
+  previewProductImage();
 
-}
 
-
-/* =========================
-   START
-========================= */
-
-loadAdminProducts();
-
-</script>
-
-
-<script>
-
-/* =========================
-   SECTION NAVIGATION
-========================= */
-
-const sectionTitles={
-
-  dashboard:[
-    "داشبورد",
-    "مدیریت ماهان سنتر ایران"
-  ],
-
-  products:[
-    "مدیریت محصولات",
-    "افزودن، ویرایش و مدیریت محصولات"
-  ],
-
-  categories:[
-    "مدیریت دسته‌بندی‌ها",
-    "مدیریت دسته‌بندی‌های فروشگاه"
-  ],
-
-  discounts:[
-    "مدیریت تخفیف‌ها",
-    "مدیریت تخفیف محصولات"
-  ],
-
-  orders:[
-    "سفارش‌ها",
-    "مدیریت سفارش‌های مشتریان"
-  ],
-
-  homepage:[
-    "مدیریت صفحه اصلی",
-    "کنترل محتوای صفحه اصلی"
-  ],
-
-  menu:[
-    "مدیریت منوی سایت",
-    "مدیریت منوی اصلی"
-  ],
-
-  pages:[
-    "مدیریت صفحات",
-    "ساخت و مدیریت صفحات سایت"
-  ],
-
-  appearance:[
-    "ظاهر سایت",
-    "شخصی‌سازی ظاهر فروشگاه"
-  ],
-
-  users:[
-    "کاربران",
-    "مدیریت کاربران فروشگاه"
-  ],
-
-  settings:[
-    "تنظیمات",
-    "تنظیمات اصلی پنل"
-  ]
-
-};
-
-
-window.openSection=
-function(name){
-
-  document
-    .querySelectorAll(
-      ".section"
-    )
-    .forEach(
-      section=>
-        section.classList.remove(
-          "active"
-        )
-    );
-
-
-  const section=
-    document.getElementById(
-      "section-"+name
-    );
-
-
-  if(section)
-    section.classList.add(
-      "active"
-    );
-
-
-  document
-    .querySelectorAll(
-      ".menu-btn"
-    )
-    .forEach(
-      btn=>
-        btn.classList.remove(
-          "active"
-        )
-    );
-
-
-  const menu=
-    document.querySelector(
-      `.menu-btn[data-section="${name}"]`
-    );
-
-
-  if(menu)
-    menu.classList.add(
-      "active"
-    );
-
-
-  if(sectionTitles[name]){
-
-    document.getElementById(
-      "topTitle"
-    ).textContent=
-      sectionTitles[name][0];
-
-
-    document.getElementById(
-      "topSubtitle"
-    ).textContent=
-      sectionTitles[name][1];
-
-  }
-
-
-  document
-    .getElementById(
-      "sidebar"
-    )
-    .classList.remove(
-      "open"
-    );
-
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
+  document.getElementById(
+    "productForm"
+  ).scrollIntoView({
+    behavior:"smooth",
+    block:"start"
   });
 
 };
 
 
-/* =========================
-   MOBILE SIDEBAR
-========================= */
+/* =====================================================
+   CLOSE FORM
+===================================================== */
 
-window.toggleSidebar=
+window.closeProductForm=
 function(){
 
-  document
-    .getElementById(
-      "sidebar"
+  document.getElementById(
+    "productForm"
+  ).style.display=
+    "none";
+
+
+  editingProductId=null;
+
+};
+
+
+/* =====================================================
+   IMAGE PREVIEW
+===================================================== */
+
+window.previewProductImage=
+function(){
+
+  const path=
+    document.getElementById(
+      "productImage"
     )
-    .classList.toggle(
-      "open"
+    .value
+    .trim();
+
+
+  const box=
+    document.getElementById(
+      "imagePreviewContainer"
     );
 
+
+  const image=
+    document.getElementById(
+      "productImagePreview"
+    );
+
+
+  if(!path){
+
+    box.style.display=
+      "none";
+
+    image.src="";
+
+    return;
+
+  }
+
+
+  image.src=
+    path;
+
+
+  box.style.display=
+    "block";
+
+
+  image.onerror=
+  function(){
+
+    box.style.display=
+      "none";
+
+  };
+
 };
 
 
-/* =========================
-   VISIT SITE
-========================= */
-
-window.visitSite=
-function(){
-
-  window.open(
-    "./",
-    "_blank"
-  );
-
-};
-
-</script>
-
-</body>
-
-  </html>
+/* =====================================================
+   SAVE PRODUCT
+=============================================
