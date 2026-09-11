@@ -1022,24 +1022,25 @@ title="سبد خرید"
   </div>
 </footer>
 
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+ <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDlrv12gAydgbx1qPJXAIm0kzcSeJF5pNs",
-  authDomain: "mahan-center.firebaseapp.com",
-  projectId: "mahan-center",
-  storageBucket: "mahan-center.firebasestorage.app",
-  messagingSenderId: "720478821753",
-  appId: "1:720478821753:web:7a431c1a3f9e3abd7923a8"
-};
+  const firebaseConfig = {
+    apiKey: "AIzaSyDlrv12gAydgbx1qPJXAIm0kzcSeJF5pNs",
+    authDomain: "mahan-center.firebaseapp.com",
+    projectId: "mahan-center",
+    storageBucket: "mahan-center.firebasestorage.app",
+    messagingSenderId: "720478821753",
+    appId: "1:720478821753:web:7a431c1a3f9e3abd7923a8"
+  };
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-const testSnap = await getDocs(collection(db, "products"));
-console.log("تعداد محصولات Firebase:", testSnap.size);
-
+  const testSnap = await getDocs(collection(db, "products"));
+  console.log("تعداد محصولات Firebase:", testSnap.size);
+ </script>
   
 <script>
 
