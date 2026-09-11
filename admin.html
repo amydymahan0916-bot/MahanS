@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>پنل مدیریت | ماهان سنتر ایران</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Tahoma,Arial,sans-serif;
+}
+
+body{
+  background:#0b0b0b;
+  color:#fff;
+  min-height:100vh;
+}
+
+header{
+  background:linear-gradient(135deg,#170000,#b40000,#450000);
+  padding:22px 15px;
+  text-align:center;
+  border-bottom:2px solid #e00000;
+}
+
+header h1{
+  font-size:24px;
+  margin-bottom:8px;
+}
+
+header p{
+  color:#ddd;
+  font-size:13px;
+}
+
+.container{
+  max-width:850px;
+  margin:25px auto;
+  padding:15px;
+}
+
+.card{
+  background:#151515;
+  border:1px solid #292929;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+
+.card h2{
+  color:#ff3333;
+  font-size:19px;
+  margin-bottom:18px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+
+.field{
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.field.full{
+  grid-column:1/-1;
+}
+
+label{
+  font-size:13px;
+  color:#ccc;
+}
+
+input,
+select,
+textarea{
+  width:100%;
+  background:#0d0d0d;
+  color:#fff;
+  border:1px solid #333;
+  border-radius:10px;
+  padding:12px;
+  outline:none;
+  font-size:14px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+  border-color:#e00000;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+button{
+  border:0;
+  border-radius:10px;
+  padding:13px 18px;
+  cursor:pointer;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.add-btn{
+  width:100%;
+  margin-top:18px;
+  background:linear-gradient(135deg,#ff0000,#9d0000);
+  color:white;
+}
+
+.add-btn:hover{
+  opacity:.9;
+}
+
+.message{
+  display:none;
+  padding:13px;
+  border-radius:10px;
+  margin-top:15px;
+  text-align:center;
+  font-size:14px;
+}
+
+.success{
+  background:#063b1b;
+  border:1px solid #00a83b;
+  color:#7cffae;
+}
+
+.error{
+  background:#3b0606;
+  border:1px solid #b40000;
+  color:#ff8a8a;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.product{
+  background:#0d0d0d;
+  border:1px solid #292929;
+  border-radius:12px;
+  padding:14px;
+}
+
+.product h3{
+  font-size:14px;
+  margin-bottom:8px;
+}
+
+.product p{
+  color:#aaa;
+  font-size:12px;
+  margin:4px 0;
+}
+
+@media(max-width:650px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  .products{
+    grid-template-columns:1fr;
+  }
+
+  header h1{
+    font-size:20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🛍️ پنل مدیریت ماهان سنتر ایران</h1>
+  <p>مدیریت محصولات فروشگاه</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+
+    <h2>➕ افزودن محصول جدید</h2>
+
+    <div class="grid">
+
+      <div class="field">
+        <label>کد محصول</label>
+        <input id="code" type="number" placeholder="مثلاً 112">
+      </div>
+
+      <div class="field">
+        <label>نام محصول</label>
+        <input id="name" type="text" placeholder="نام محصول">
+      </div>
+
+      <div class="field">
+        <label>دسته‌بندی</label>
+        <select id="category">
+          <option value="mobile">📱 موبایل</option>
+          <option value="gold">💎 طلا</option>
+          <option value="clothes">👕 پوشاک</option>
+          <option value="accessories">👜 اکسسوری</option>
+          <option value="digital">💻 کالای دیجیتال</option>
+          <option value="shoes">👟 کفش</option>
+          <option value="watches">⌚ ساعت</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>برند</label>
+        <input id="brand" type="text" placeholder="مثلاً Samsung">
+      </div>
+
+      <div class="field">
+        <label>قیمت (تومان)</label>
+        <input id="price" type="number" placeholder="مثلاً 5000000">
+      </div>
+
+      <div class="field">
+        <label>تخفیف (%)</label>
+        <input id="discount" type="number" min="0" max="100" value="0">
+      </div>
+
+      <div class="field">
+        <label>موجودی</label>
+        <input id="stock" type="number" value="1">
+      </div>
+
+      <div class="field">
+        <label>آیکون</label>
+        <input id="icon" type="text" placeholder="📱">
+      </div>
+
+      <div class="field full">
+        <label>آدرس عکس محصول</label>
+        <input
+          id="image"
+          type="text"
+          placeholder="مثلاً images/gold/product.jpg"
+        >
+      </div>
+
+      <div class="field full">
+        <label>عبارت جستجو</label>
+        <input
+          id="search"
+          type="text"
+          placeholder="نام محصول، مدل، برند و..."
+        >
+      </div>
+
+      <div class="field full">
+        <label>توضیحات محصول</label>
+        <textarea
+          id="description"
+          placeholder="توضیحات محصول..."
+        ></textarea>
+      </div>
+
+      <div class="field full">
+        <label>مشخصات محصول</label>
+        <textarea
+          id="specs"
+          placeholder="مثلاً حافظه: 256GB | رم: 8GB | رنگ: مشکی"
+        ></textarea>
+      </div>
+
+    </div>
+
+    <button class="add-btn" onclick="addProduct()">
+      ➕ افزودن محصول به فروشگاه
+    </button>
+
+    <div id="message" class="message"></div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h2>📦 محصولات موجود</h2>
+
+    <div id="productsList" class="products">
+      در حال دریافت محصولات...
+    </div>
+
+  </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+  initializeApp
+} from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs
+} from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyDlrv12gAydgbx1qPJXAIM0kzcSeJF5pNs",
+
+  authDomain:
+  "mahan-center.firebaseapp.com",
+
+  projectId:
+  "mahan-center",
+
+  storageBucket:
+  "mahan-center.firebasestorage.app",
+
+  messagingSenderId:
+  "720478821753",
+
+  appId:
+  "1:720478821753:web:7a431c1a3f9e3abd7923a8"
+
+};
+
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
+
+/* افزودن محصول */
+
+window.addProduct = async function(){
+
+  const code =
+    Number(document.getElementById("code").value);
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const category =
+    document.getElementById("category").value;
+
+  const brand =
+    document.getElementById("brand").value.trim();
+
+  const price =
+    Number(document.getElementById("price").value);
+
+  const discount =
+    Number(document.getElementById("discount").value || 0);
+
+  const stock =
+    Number(document.getElementById("stock").value || 0);
+
+  const icon =
+    document.getElementById("icon").value.trim() || "🛍️";
+
+  const image =
+    document.getElementById("image").value.trim();
+
+  const search =
+    document.getElementById("search").value.trim() || name;
+
+  const description =
+    document.getElementById("description").value.trim();
+
+  const specs =
+    document.getElementById("specs").value.trim();
+
+
+  if(!code || !name || !price){
+
+    showMessage(
+      "لطفاً کد، نام و قیمت محصول را وارد کنید.",
+      false
+    );
+
+    return;
+  }
+
+
+  try{
+
+    await addDoc(
+      collection(db,"products"),
+      {
+
+        code: code,
+
+        name: name,
+
+        category: category,
+
+        brand: brand,
+
+        goldCat: "",
+
+        price: price,
+
+        discount: discount,
+
+        stock: stock,
+
+        image: image,
+
+        icon: icon,
+
+        search: search,
+
+        description: description,
+
+        specs: specs,
+
+        active: true,
+
+        createdAt: new Date()
+
+      }
+    );
+
+
+    showMessage(
+      "✅ محصول با موفقیت اضافه شد.",
+      true
+    );
+
+
+    document.getElementById("code").value = "";
+
+    document.getElementById("name").value = "";
+
+    document.getElementById("brand").value = "";
+
+    document.getElementById("price").value = "";
+
+    document.getElementById("discount").value = "0";
+
+    document.getElementById("stock").value = "1";
+
+    document.getElementById("icon").value = "";
+
+    document.getElementById("image").value = "";
+
+    document.getElementById("search").value = "";
+
+    document.getElementById("description").value = "";
+
+    document.getElementById("specs").value = "";
+
+
+    loadProducts();
+
+  }catch(error){
+
+    console.error(error);
+
+    showMessage(
+      "❌ خطا: " + error.message,
+      false
+    );
+
+  }
+
+};
+
+
+/* پیام */
+
+function showMessage(text,success){
+
+  const box =
+    document.getElementById("message");
+
+  box.textContent = text;
+
+  box.className =
+    "message " +
+    (success ? "success" : "error");
+
+  box.style.display = "block";
+
+}
+
+
+/* نمایش محصولات */
+
+async function loadProducts(){
+
+  const list =
+    document.getElementById("productsList");
+
+  try{
+
+    const snapshot =
+      await getDocs(collection(db,"products"));
+
+    if(snapshot.empty){
+
+      list.innerHTML =
+        "<p>هنوز محصولی وجود ندارد.</p>";
+
+      return;
+
+    }
+
+
+    let html = "";
+
+    snapshot.forEach(docSnap => {
+
+      const p = docSnap.data();
+
+      html += `
+
+        <div class="product">
+
+          <h3>
+            ${p.icon || "🛍️"}
+            ${p.name || "بدون نام"}
+          </h3>
+
+          <p>
+            🆔 کد: ${p.code || "-"}
+          </p>
+
+          <p>
+            💰 ${Number(p.price || 0).toLocaleString("fa-IR")} تومان
+          </p>
+
+          <p>
+            📦 موجودی: ${p.stock ?? 0}
+          </p>
+
+          <p>
+            🏷️ ${p.category || "-"}
+          </p>
+
+        </div>
+
+      `;
+
+    });
+
+
+    list.innerHTML = html;
+
+  }catch(error){
+
+    list.innerHTML =
+      "❌ خطا در دریافت محصولات: " +
+      error.message;
+
+  }
+
+}
+
+
+loadProducts();
+
+</script>
+
+</body>
+</html>
