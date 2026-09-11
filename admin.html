@@ -1,798 +1,1790 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>پنل مدیریت | ماهان سنتر ایران</title>
 
 <style>
+
 *{
-  box-sizing:border-box;
   margin:0;
   padding:0;
-  font-family:Tahoma,Arial,sans-serif;
+  box-sizing:border-box;
+}
+
+:root{
+  --red:#e50914;
+  --red2:#ff1d2d;
+  --bg:#070707;
+  --sidebar:#0d0d0d;
+  --card:#121212;
+  --card2:#181818;
+  --border:#292929;
+  --text:#fff;
+  --muted:#888;
+  --green:#28d17c;
+  --orange:#ff9f1c;
+  --blue:#3699ff;
 }
 
 body{
-  background:#080808;
-  color:#fff;
+  font-family:Tahoma,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
   min-height:100vh;
 }
 
-header{
-  background:linear-gradient(135deg,#160000,#a90000,#350000);
-  padding:22px 15px;
-  text-align:center;
-  border-bottom:2px solid #e00000;
-}
+/* =========================
+   LAYOUT
+========================= */
 
-header h1{
-  font-size:24px;
-  margin-bottom:8px;
-}
-
-header p{
-  color:#ddd;
-  font-size:13px;
-}
-
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px 15px 50px;
-}
-
-.card{
-  background:#141414;
-  border:1px solid #292929;
-  border-radius:16px;
-  padding:20px;
-  margin-bottom:20px;
-}
-
-.card h2{
-  color:#ff3333;
-  font-size:19px;
-  margin-bottom:18px;
-}
-
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:14px;
-}
-
-.full{
-  grid-column:1/-1;
-}
-
-.field{
+.admin-layout{
+  min-height:100vh;
   display:flex;
-  flex-direction:column;
-  gap:7px;
 }
 
-label{
-  color:#ccc;
-  font-size:13px;
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+  width:270px;
+  background:var(--sidebar);
+  border-left:1px solid var(--border);
+  position:fixed;
+  right:0;
+  top:0;
+  bottom:0;
+  z-index:1000;
+  overflow-y:auto;
+  transition:.3s;
 }
 
-input,
-select,
-textarea{
-  width:100%;
-  background:#0b0b0b;
-  color:#fff;
-  border:1px solid #333;
-  border-radius:10px;
-  padding:12px;
-  outline:none;
-  font-size:14px;
+.sidebar::-webkit-scrollbar{
+  width:4px;
 }
 
-input:focus,
-select:focus,
-textarea:focus{
-  border-color:#e00000;
+.sidebar::-webkit-scrollbar-thumb{
+  background:#333;
 }
 
-textarea{
-  min-height:100px;
-  resize:vertical;
-}
-
-.buttons{
+.brand{
+  padding:25px 20px;
+  border-bottom:1px solid var(--border);
   display:flex;
-  gap:10px;
-  margin-top:18px;
+  align-items:center;
+  gap:12px;
 }
 
-button{
-  border:0;
-  border-radius:10px;
-  padding:12px 18px;
-  cursor:pointer;
-  font-size:14px;
+.brand-logo{
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  object-fit:cover;
+  border:2px solid var(--red);
+}
+
+.brand-title{
+  font-size:16px;
   font-weight:bold;
 }
 
-.primary{
-  background:linear-gradient(135deg,#ff0000,#950000);
-  color:white;
+.brand-subtitle{
+  color:#777;
+  font-size:10px;
+  margin-top:3px;
+}
+
+.menu{
+  padding:15px 12px;
+}
+
+.menu-title{
+  color:#555;
+  font-size:10px;
+  padding:12px 10px 7px;
+}
+
+.menu-btn{
+  width:100%;
+  min-height:46px;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  border:0;
+  background:transparent;
+  color:#aaa;
+  border-radius:11px;
+  padding:0 13px;
+  margin-bottom:5px;
+  text-align:right;
+  font-family:inherit;
+  font-size:12px;
+  cursor:pointer;
+}
+
+.menu-btn:hover{
+  background:#181818;
+  color:#fff;
+}
+
+.menu-btn.active{
+  background:var(--red);
+  color:#fff;
+}
+
+.menu-icon{
+  width:24px;
+  text-align:center;
+  font-size:17px;
+}
+
+.menu-text{
   flex:1;
 }
 
-.secondary{
-  background:#292929;
-  color:white;
+.menu-arrow{
+  color:#666;
 }
 
-.primary:hover,
-.secondary:hover{
-  opacity:.9;
-}
-
-.message{
-  display:none;
-  margin-top:15px;
-  padding:13px;
-  border-radius:10px;
-  text-align:center;
-  font-size:14px;
-}
-
-.success{
-  display:block;
-  background:#063b1b;
-  border:1px solid #00a83b;
-  color:#7cffae;
-}
-
-.error{
-  display:block;
-  background:#3b0606;
-  border:1px solid #b40000;
-  color:#ff8a8a;
-}
-
-/* آمار */
-
-.stats-preview{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  margin-top:20px;
-}
-
-.stat-box{
-  background:#0b0b0b;
-  border:1px solid #292929;
-  border-radius:14px;
-  padding:18px 10px;
-  text-align:center;
-}
-
-.stat-icon{
-  font-size:28px;
-  margin-bottom:8px;
-}
-
-.stat-title{
-  color:#aaa;
-  font-size:12px;
-  margin-bottom:7px;
-}
-
-.stat-value{
+.menu-btn.active .menu-arrow{
   color:#fff;
-  font-size:20px;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+  flex:1;
+  margin-right:270px;
+  min-width:0;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+  height:75px;
+  position:sticky;
+  top:0;
+  z-index:900;
+  background:rgba(7,7,7,.93);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 25px;
+  gap:15px;
+}
+
+.topbar-right{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.menu-mobile{
+  display:none;
+  width:42px;
+  height:42px;
+  border:1px solid var(--border);
+  background:#151515;
+  color:#fff;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.page-title{
+  font-size:17px;
   font-weight:bold;
 }
 
-.stat-hint{
+.page-subtitle{
   color:#777;
-  font-size:11px;
-  margin-top:5px;
+  font-size:10px;
+  margin-top:2px;
 }
 
-.switch-row{
+.visit-btn{
+  border:1px solid #333;
+  background:#151515;
+  color:#fff;
+  border-radius:10px;
+  padding:9px 13px;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:11px;
+}
+
+.visit-btn:hover{
+  border-color:var(--red);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content{
+  padding:25px;
+  max-width:1500px;
+  margin:auto;
+}
+
+.section{
+  display:none;
+  animation:fade .2s ease;
+}
+
+.section.active{
+  display:block;
+}
+
+@keyframes fade{
+  from{
+    opacity:0;
+    transform:translateY(5px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.welcome{
+  background:
+    radial-gradient(
+      circle at 10% 50%,
+      rgba(229,9,20,.25),
+      transparent 35%
+    ),
+    linear-gradient(135deg,#171717,#0b0b0b);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:28px;
+  margin-bottom:20px;
+}
+
+.welcome h1{
+  font-size:25px;
+  margin-bottom:7px;
+}
+
+.welcome p{
+  color:#888;
+  font-size:12px;
+}
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.stat{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:20px;
+  position:relative;
+  overflow:hidden;
+}
+
+.stat::after{
+  content:"";
+  position:absolute;
+  width:80px;
+  height:80px;
+  background:rgba(229,9,20,.08);
+  border-radius:50%;
+  left:-25px;
+  bottom:-30px;
+}
+
+.stat-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.stat-icon{
+  width:45px;
+  height:45px;
+  border-radius:12px;
+  background:#1d1d1d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:21px;
+}
+
+.stat-label{
+  color:#888;
+  font-size:11px;
+  margin-top:13px;
+}
+
+.stat-value{
+  font-size:25px;
+  font-weight:bold;
+  margin-top:3px;
+}
+
+.stat-change{
+  color:var(--green);
+  font-size:10px;
+  margin-top:6px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.two-columns{
+  display:grid;
+  grid-template-columns:1.4fr .8fr;
+  gap:18px;
+}
+
+.panel{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+}
+
+.panel-head{
+  padding:17px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.panel-head h2{
+  font-size:14px;
+}
+
+.panel-head span{
+  color:#777;
+  font-size:10px;
+}
+
+.panel-body{
+  padding:18px;
+}
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+}
+
+.quick{
+  background:#181818;
+  border:1px solid #292929;
+  border-radius:12px;
+  padding:16px;
+  cursor:pointer;
+  color:#fff;
+  text-align:right;
+  transition:.2s;
+}
+
+.quick:hover{
+  border-color:var(--red);
+  transform:translateY(-2px);
+}
+
+.quick-icon{
+  font-size:25px;
+  margin-bottom:8px;
+}
+
+.quick-title{
+  font-size:12px;
+  font-weight:bold;
+}
+
+.quick-text{
+  color:#777;
+  font-size:9px;
+  margin-top:4px;
+}
+
+/* =========================
+   PRODUCT TABLE
+========================= */
+
+.table-wrap{
+  overflow-x:auto;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  color:#777;
+  font-size:10px;
+  font-weight:normal;
+  text-align:right;
+  padding:12px;
+  border-bottom:1px solid var(--border);
+  white-space:nowrap;
+}
+
+td{
+  padding:12px;
+  border-bottom:1px solid #202020;
+  font-size:11px;
+  white-space:nowrap;
+}
+
+tr:last-child td{
+  border-bottom:0;
+}
+
+.product-mini{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.product-mini-img{
+  width:38px;
+  height:38px;
+  border-radius:8px;
+  background:#202020;
+  object-fit:contain;
+}
+
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:4px 8px;
+  border-radius:20px;
+  font-size:9px;
+}
+
+.status.active{
+  background:rgba(40,209,124,.1);
+  color:var(--green);
+}
+
+.status.inactive{
+  background:rgba(255,60,60,.1);
+  color:#ff5555;
+}
+
+/* =========================
+   SECTION HEADER
+========================= */
+
+.section-header{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:15px;
-  background:#0b0b0b;
-  border:1px solid #292929;
-  border-radius:12px;
-  padding:14px;
-  margin-bottom:18px;
+  margin-bottom:20px;
 }
 
-.switch-text{
-  display:flex;
-  flex-direction:column;
-  gap:5px;
+.section-header h1{
+  font-size:21px;
 }
 
-.switch-text strong{
-  font-size:14px;
+.section-header p{
+  color:#777;
+  font-size:10px;
+  margin-top:4px;
 }
 
-.switch-text span{
-  color:#888;
+.primary{
+  border:0;
+  background:var(--red);
+  color:#fff;
+  border-radius:10px;
+  padding:10px 16px;
+  cursor:pointer;
+  font-family:inherit;
+  font-weight:bold;
   font-size:11px;
 }
 
-.switch{
-  position:relative;
-  width:52px;
-  height:28px;
-  flex-shrink:0;
+.primary:hover{
+  background:var(--red2);
 }
 
-.switch input{
-  opacity:0;
-  width:0;
-  height:0;
-}
+/* =========================
+   TOOLBAR
+========================= */
 
-.slider{
-  position:absolute;
-  cursor:pointer;
-  inset:0;
-  background:#333;
-  border-radius:30px;
-  transition:.3s;
-}
-
-.slider:before{
-  content:"";
-  position:absolute;
-  width:22px;
-  height:22px;
-  right:3px;
-  top:3px;
-  background:white;
-  border-radius:50%;
-  transition:.3s;
-}
-
-.switch input:checked + .slider{
-  background:#e00000;
-}
-
-.switch input:checked + .slider:before{
-  transform:translateX(-24px);
-}
-
-.stats-status{
-  margin-top:12px;
-  color:#888;
-  font-size:12px;
-  text-align:center;
-}
-
-/* محصولات */
-
-.search-box{
-  margin-bottom:18px;
-}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-}
-
-.product{
-  background:#0d0d0d;
-  border:1px solid #292929;
-  border-radius:14px;
+.toolbar{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:15px;
   padding:14px;
-}
-
-.product-image{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  border-radius:10px;
-  background:#171717;
-  margin-bottom:12px;
-}
-
-.product h3{
-  font-size:15px;
-  margin-bottom:10px;
-  line-height:1.7;
-}
-
-.product-info{
-  color:#aaa;
-  font-size:12px;
-  line-height:2;
-}
-
-.product-price{
-  color:#55ff88;
-  font-weight:bold;
-  font-size:14px;
-  margin-top:5px;
-}
-
-.product-actions{
   display:flex;
-  gap:8px;
-  margin-top:12px;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:15px;
 }
 
-.edit-btn{
-  background:#17456b;
-  color:white;
-  flex:1;
+.input{
+  height:42px;
+  background:#0d0d0d;
+  border:1px solid #303030;
+  color:#fff;
+  border-radius:9px;
+  outline:none;
+  padding:0 12px;
+  font-family:inherit;
+  font-size:11px;
 }
 
-.delete-btn{
-  background:#750000;
-  color:white;
-  flex:1;
+.input:focus{
+  border-color:var(--red);
 }
+
+.search-input{
+  flex:1;
+  min-width:200px;
+}
+
+/* =========================
+   EMPTY
+========================= */
 
 .empty{
   text-align:center;
-  color:#888;
-  padding:30px;
-  grid-column:1/-1;
+  padding:70px 20px;
+  color:#666;
 }
 
-.status{
+.empty-icon{
+  font-size:45px;
+  margin-bottom:10px;
+}
+
+/* =========================
+   PLACEHOLDER
+========================= */
+
+.placeholder{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:70px 20px;
   text-align:center;
-  padding:10px;
-  border-radius:10px;
-  margin-bottom:15px;
-  background:#101010;
-  color:#aaa;
-  font-size:13px;
 }
 
-@media(max-width:800px){
-  .products{
+.placeholder-icon{
+  font-size:55px;
+  margin-bottom:15px;
+}
+
+.placeholder h2{
+  font-size:18px;
+  margin-bottom:7px;
+}
+
+.placeholder p{
+  color:#777;
+  font-size:11px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1000px){
+
+  .sidebar{
+    transform:translateX(100%);
+  }
+
+  .sidebar.open{
+    transform:translateX(0);
+  }
+
+  .main{
+    margin-right:0;
+  }
+
+  .menu-mobile{
+    display:block;
+  }
+
+  .stats{
     grid-template-columns:repeat(2,1fr);
   }
 
-  .stats-preview{
-    grid-template-columns:repeat(2,1fr);
+  .two-columns{
+    grid-template-columns:1fr;
   }
+
 }
 
 @media(max-width:600px){
 
-  .grid{
-    grid-template-columns:1fr;
+  .content{
+    padding:15px;
   }
 
-  .full{
-    grid-column:auto;
+  .topbar{
+    padding:0 15px;
   }
 
-  .products{
-    grid-template-columns:1fr;
+  .stats{
+    grid-template-columns:1fr 1fr;
+    gap:9px;
   }
 
-  .stats-preview{
-    grid-template-columns:repeat(2,1fr);
+  .stat{
+    padding:14px;
   }
 
-  .buttons{
-    flex-direction:column;
-  }
-
-  header h1{
+  .stat-value{
     font-size:20px;
   }
 
-  .switch-row{
-    align-items:flex-start;
+  .welcome{
+    padding:22px 17px;
   }
+
+  .welcome h1{
+    font-size:20px;
+  }
+
+  .section-header{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .quick-grid{
+    grid-template-columns:1fr;
+  }
+
+  .visit-btn{
+    display:none;
+  }
+
 }
+
 </style>
+
 </head>
 
 <body>
 
-<header>
-  <h1>🛍️ پنل مدیریت ماهان سنتر ایران</h1>
-  <p>مدیریت محصولات و آمار صفحه اصلی</p>
-</header>
+<div class="admin-layout">
 
-<div class="container">
 
-  <!-- ========================= -->
-  <!-- مدیریت آمار -->
-  <!-- ========================= -->
+<!-- =========================
+     SIDEBAR
+========================= -->
 
-  <div class="card">
+<aside
+  class="sidebar"
+  id="sidebar"
+>
 
-    <h2>📊 مدیریت آمار صفحه اصلی</h2>
+  <div class="brand">
 
-    <div class="switch-row">
-
-      <div class="switch-text">
-        <strong>نمایش بخش آمار در صفحه اصلی</strong>
-        <span>
-          با خاموش کردن این گزینه، بخش آمار در سایت نمایش داده نمی‌شود.
-        </span>
-      </div>
-
-      <label class="switch">
-        <input
-          type="checkbox"
-          id="statsActive"
-          checked
-        >
-        <span class="slider"></span>
-      </label>
-
-    </div>
-
-    <div class="grid">
-
-      <div class="field">
-        <label>متن دکمه آمار</label>
-
-        <input
-          id="statsButtonText"
-          type="text"
-          value="📊 مشاهده آمار ما"
-          placeholder="مثلاً مشاهده آمار ما"
-        >
-      </div>
-
-      <div class="field">
-        <label>عنوان بخش آمار</label>
-
-        <input
-          id="statsTitle"
-          type="text"
-          value="آمار ماهان سنتر ایران"
-          placeholder="عنوان آمار"
-        >
-      </div>
-
-      <div class="field">
-        <label>👤 تعداد کاربران سایت</label>
-
-        <input
-          id="usersCount"
-          type="number"
-          min="0"
-          value="0"
-          placeholder="مثلاً 12540"
-        >
-      </div>
-
-      <div class="field">
-        <label>🛒 تعداد خریدهای موفق</label>
-
-        <input
-          id="ordersCount"
-          type="number"
-          min="0"
-          value="0"
-          placeholder="مثلاً 3284"
-        >
-      </div>
-
-      <div class="field">
-        <label>⭐ میزان رضایت مشتریان (%)</label>
-
-        <input
-          id="satisfaction"
-          type="number"
-          min="0"
-          max="100"
-          value="0"
-          placeholder="مثلاً 98"
-        >
-      </div>
-
-      <div class="field">
-        <label>📦 تعداد محصولات</label>
-
-        <input
-          id="productsCount"
-          type="number"
-          min="0"
-          value="0"
-          placeholder="مثلاً 156"
-        >
-      </div>
-
-    </div>
-
-    <div class="buttons">
-
-      <button
-        class="primary"
-        onclick="saveStats()"
-      >
-        💾 ذخیره آمار
-      </button>
-
-      <button
-        class="secondary"
-        onclick="loadStats()"
-      >
-        🔄 دریافت اطلاعات
-      </button>
-
-    </div>
-
-    <div id="statsMessage" class="message"></div>
-
-    <div class="stats-preview">
-
-      <div class="stat-box">
-        <div class="stat-icon">👤</div>
-        <div class="stat-title">کاربران</div>
-        <div class="stat-value" id="previewUsers">0</div>
-        <div class="stat-hint">کاربر سایت</div>
-      </div>
-
-      <div class="stat-box">
-        <div class="stat-icon">🛒</div>
-        <div class="stat-title">خرید موفق</div>
-        <div class="stat-value" id="previewOrders">0</div>
-        <div class="stat-hint">سفارش موفق</div>
-      </div>
-
-      <div class="stat-box">
-        <div class="stat-icon">⭐</div>
-        <div class="stat-title">رضایت</div>
-        <div class="stat-value" id="previewSatisfaction">0%</div>
-        <div class="stat-hint">رضایت مشتریان</div>
-      </div>
-
-      <div class="stat-box">
-        <div class="stat-icon">📦</div>
-        <div class="stat-title">محصولات</div>
-        <div class="stat-value" id="previewProducts">0</div>
-        <div class="stat-hint">محصول فعال</div>
-      </div>
-
-    </div>
-
-    <div
-      id="statsStatus"
-      class="stats-status"
+    <img
+      src="logo.jpg"
+      class="brand-logo"
+      alt="ماهان سنتر ایران"
     >
-      اطلاعات آمار هنوز دریافت نشده است.
+
+    <div>
+
+      <div class="brand-title">
+        ماهان سنتر ایران
+      </div>
+
+      <div class="brand-subtitle">
+        پنل مدیریت فروشگاه
+      </div>
+
     </div>
 
   </div>
 
 
-  <!-- ========================= -->
-  <!-- فرم محصول -->
-  <!-- ========================= -->
+  <div class="menu">
 
-  <div class="card">
 
-    <h2 id="formTitle">➕ افزودن محصول جدید</h2>
+    <div class="menu-title">
+      اصلی
+    </div>
 
-    <input
-      type="hidden"
-      id="documentId"
+
+    <button
+      class="menu-btn active"
+      data-section="dashboard"
+      onclick="openSection('dashboard')"
     >
 
-    <div class="grid">
+      <span class="menu-icon">📊</span>
 
-      <div class="field">
-        <label>کد محصول</label>
-        <input
-          id="code"
-          type="number"
-          placeholder="مثلاً 112"
-        >
-      </div>
+      <span class="menu-text">
+        داشبورد
+      </span>
 
-      <div class="field">
-        <label>نام محصول</label>
-        <input
-          id="name"
-          type="text"
-          placeholder="نام محصول"
-        >
-      </div>
+      <span class="menu-arrow">
+        ›
+      </span>
 
-      <div class="field">
-        <label>دسته‌بندی</label>
+    </button>
 
-        <select id="category">
 
-          <option value="mobile">📱 موبایل</option>
-          <option value="gold">💎 طلا</option>
-          <option value="clothes">👕 پوشاک</option>
-          <option value="accessories">👜 اکسسوری</option>
-          <option value="digital">💻 کالای دیجیتال</option>
-          <option value="shoes">👟 کفش</option>
-          <option value="watches">⌚ ساعت</option>
-
-        </select>
-      </div>
-
-      <div class="field">
-        <label>دسته طلایی</label>
-
-        <select id="goldCat">
-
-          <option value="">بدون دسته طلا</option>
-          <option value="necklace">📿 گردنبند</option>
-          <option value="ring">💍 انگشتر</option>
-          <option value="bangle">⭕ النگو</option>
-          <option value="bracelet">📿 دستبند</option>
-          <option value="earring">💎 گوشواره</option>
-
-        </select>
-      </div>
-
-      <div class="field">
-        <label>برند</label>
-
-        <input
-          id="brand"
-          type="text"
-          placeholder="مثلاً Samsung"
-        >
-      </div>
-
-      <div class="field">
-        <label>قیمت (تومان)</label>
-
-        <input
-          id="price"
-          type="number"
-          placeholder="مثلاً 5000000"
-        >
-      </div>
-
-      <div class="field">
-        <label>تخفیف (%)</label>
-
-        <input
-          id="discount"
-          type="number"
-          min="0"
-          max="100"
-          value="0"
-        >
-      </div>
-
-      <div class="field">
-        <label>موجودی</label>
-
-        <input
-          id="stock"
-          type="number"
-          min="0"
-          value="1"
-        >
-      </div>
-
-      <div class="field full">
-
-        <label>مسیر عکس محصول</label>
-
-        <input
-          id="image"
-          type="text"
-          placeholder="مثلاً images/gold/heart-small.jpg"
-          oninput="previewImage()"
-        >
-
-        <img
-          id="imagePreview"
-          class="image-preview"
-        >
-
-      </div>
-
-      <div class="field full">
-
-        <label>عبارت جستجو</label>
-
-        <input
-          id="search"
-          type="text"
-          placeholder="نام محصول، مدل، برند و..."
-        >
-
-      </div>
-
-      <div class="field full">
-
-        <label>توضیحات محصول</label>
-
-        <textarea
-          id="description"
-          placeholder="توضیحات محصول..."
-        ></textarea>
-
-      </div>
-
-      <div class="field full">
-
-        <label>مشخصات محصول</label>
-
-        <textarea
-          id="specs"
-          placeholder="مثلاً حافظه: 256GB | رم: 8GB | رنگ: مشکی"
-        ></textarea>
-
-      </div>
-
+    <div class="menu-title">
+      فروشگاه
     </div>
 
-    <div class="buttons">
 
-      <button
-        class="primary"
-        onclick="saveProduct()"
-        id="saveButton"
-      >
-        ➕ افزودن محصول
-      </button>
+    <button
+      class="menu-btn"
+      data-section="products"
+      onclick="openSection('products')"
+    >
 
-      <button
-        class="secondary"
-        onclick="cancelEdit()"
-        id="cancelButton"
-        style="display:none"
-      >
-        ❌ لغو ویرایش
-      </button>
+      <span class="menu-icon">📦</span>
 
+      <span class="menu-text">
+        محصولات
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+
+    </button>
+
+
+    <button
+      class="menu-btn"
+      data-section="categories"
+      onclick="openSection('categories')"
+    >
+
+      <span class="menu-icon">🗂️</span>
+
+      <span class="menu-text">
+        دسته‌بندی‌ها
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+
+    </button>
+
+
+    <button
+      class="menu-btn"
+      data-section="discounts"
+      onclick="openSection('discounts')"
+    >
+
+      <span class="menu-icon">🔥</span>
+
+      <span class="menu-text">
+        تخفیف‌ها
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+
+    </button>
+
+
+    <button
+      class="menu-btn"
+      data-section="orders"
+      onclick="openSection('orders')"
+    >
+
+      <span class="menu-icon">🛒</span>
+
+      <span class="menu-text">
+        سفارش‌ها
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+
+    </button>
+
+
+    <div class="menu-title">
+      مدیریت سایت
     </div>
 
-    <div
-      id="message"
-      class="message"
-    ></div>
+
+    <button
+      class="menu-btn"
+      data-section="homepage"
+      onclick="openSection('homepage')"
+    >
+
+      <span class="menu-icon">🏠</span>
+
+      <span class="menu-text">
+        صفحه اصلی
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+
+    </button>
+
+
+    <button
+      class="menu-btn"
+      data-section="menu"
+      onclick="openSection('menu')"
+    >
+
+      <span class="menu-icon">🧭</span>
+
+      <span class="menu-text">
+        منوی سایت
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+
+    </button>
+
+
+    <button
+      class="menu-btn"
+      data-section="pages"
+      onclick="openSection('pages')"
+    >
+
+      <span class="menu-icon">📄</span>
+
+      <span class="menu-text">
+        صفحات
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+
+    </button>
+
+
+    <button
+      class="menu-btn"
+      data-section="appearance"
+      onclick="openSection('appearance')"
+    >
+
+      <span class="menu-icon">🎨</span>
+
+      <span class="menu-text">
+        ظاهر سایت
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+
+    </button>
+
+
+    <div class="menu-title">
+      سیستم
+    </div>
+
+
+    <button
+      class="menu-btn"
+      data-section="users"
+      onclick="openSection('users')"
+    >
+
+      <span class="menu-icon">👥</span>
+
+      <span class="menu-text">
+        کاربران
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+
+    </button>
+
+
+    <button
+      class="menu-btn"
+      data-section="settings"
+      onclick="openSection('settings')"
+    >
+
+      <span class="menu-icon">⚙️</span>
+
+      <span class="menu-text">
+        تنظیمات
+      </span>
+
+      <span class="menu-arrow">
+        ›
+      </span>
+
+    </button>
 
   </div>
 
+</aside>
 
-  <!-- ========================= -->
-  <!-- لیست محصولات -->
-  <!-- ========================= -->
 
-  <div class="card">
+<!-- =========================
+     MAIN
+========================= -->
 
-    <h2>📦 مدیریت محصولات</h2>
+<div class="main">
 
-    <div class="search-box">
 
-      <input
-        id="adminSearch"
-        type="text"
-        placeholder="🔍 جستجوی نام، کد یا برند..."
-        oninput="filterProducts()"
+  <header class="topbar">
+
+    <div class="topbar-right">
+
+      <button
+        class="menu-mobile"
+        onclick="toggleSidebar()"
       >
+        ☰
+      </button>
+
+      <div>
+
+        <div
+          class="page-title"
+          id="topTitle"
+        >
+          داشبورد
+        </div>
+
+        <div
+          class="page-subtitle"
+          id="topSubtitle"
+        >
+          مدیریت ماهان سنتر ایران
+        </div>
+
+      </div>
 
     </div>
 
-    <div
-      id="status"
-      class="status"
+
+    <button
+      class="visit-btn"
+      onclick="visitSite()"
     >
-      در حال دریافت محصولات...
-    </div>
+      🌐 مشاهده سایت
+    </button>
 
-    <div
-      id="productsList"
-      class="products"
-    ></div>
+  </header>
 
-  </div>
+
+  <main class="content">
+
+
+    <!-- =========================
+         DASHBOARD
+    ========================= -->
+
+    <section
+      class="section active"
+      id="section-dashboard"
+    >
+
+      <div class="welcome">
+
+        <h1>
+          👋 خوش آمدید، مدیر ماهان سنتر ایران
+        </h1>
+
+        <p>
+          از اینجا می‌توانید تمام بخش‌های فروشگاه را مدیریت کنید.
+        </p>
+
+      </div>
+
+
+      <div class="stats">
+
+
+        <div class="stat">
+
+          <div class="stat-top">
+
+            <div class="stat-icon">
+              📦
+            </div>
+
+          </div>
+
+          <div class="stat-label">
+            تعداد محصولات
+          </div>
+
+          <div
+            class="stat-value"
+            id="statProducts"
+          >
+            ۰
+          </div>
+
+          <div class="stat-change">
+            محصولات فعال فروشگاه
+          </div>
+
+        </div>
+
+
+        <div class="stat">
+
+          <div class="stat-top">
+
+            <div class="stat-icon">
+              🗂️
+            </div>
+
+          </div>
+
+          <div class="stat-label">
+            دسته‌بندی‌ها
+          </div>
+
+          <div
+            class="stat-value"
+            id="statCategories"
+          >
+            ۷
+          </div>
+
+          <div class="stat-change">
+            دسته‌بندی فعلی
+          </div>
+
+        </div>
+
+
+        <div class="stat">
+
+          <div class="stat-top">
+
+            <div class="stat-icon">
+              🔥
+            </div>
+
+          </div>
+
+          <div class="stat-label">
+            محصولات تخفیف‌دار
+          </div>
+
+          <div
+            class="stat-value"
+            id="statDiscounts"
+          >
+            ۰
+          </div>
+
+          <div class="stat-change">
+            در حال حاضر
+          </div>
+
+        </div>
+
+
+        <div class="stat">
+
+          <div class="stat-top">
+
+            <div class="stat-icon">
+              🟢
+            </div>
+
+          </div>
+
+          <div class="stat-label">
+            وضعیت Firebase
+          </div>
+
+          <div
+            class="stat-value"
+            id="statFirebase"
+          >
+            ...
+          </div>
+
+          <div class="stat-change">
+            اتصال پایگاه داده
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div class="two-columns">
+
+
+        <div class="panel">
+
+          <div class="panel-head">
+
+            <h2>
+              🕘 آخرین محصولات
+            </h2>
+
+            <span>
+              از Firebase
+            </span>
+
+          </div>
+
+          <div class="panel-body">
+
+            <div
+              class="table-wrap"
+              id="recentProducts"
+            >
+
+              <div class="empty">
+                در حال دریافت...
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="panel-head">
+
+            <h2>
+              ⚡ دسترسی سریع
+            </h2>
+
+          </div>
+
+          <div class="panel-body">
+
+            <div class="quick-grid">
+
+
+              <button
+                class="quick"
+                onclick="openSection('products')"
+              >
+
+                <div class="quick-icon">
+                  ➕
+                </div>
+
+                <div class="quick-title">
+                  افزودن محصول
+                </div>
+
+                <div class="quick-text">
+                  محصول جدید ایجاد کنید
+                </div>
+
+              </button>
+
+
+              <button
+                class="quick"
+                onclick="openSection('homepage')"
+              >
+
+                <div class="quick-icon">
+                  🏠
+                </div>
+
+                <div class="quick-title">
+                  صفحه اصلی
+                </div>
+
+                <div class="quick-text">
+                  مدیریت محتوای خانه
+                </div>
+
+              </button>
+
+
+              <button
+                class="quick"
+                onclick="openSection('categories')"
+              >
+
+                <div class="quick-icon">
+                  🗂️
+                </div>
+
+                <div class="quick-title">
+                  دسته‌بندی
+                </div>
+
+                <div class="quick-text">
+                  مدیریت دسته‌ها
+                </div>
+
+              </button>
+
+
+              <button
+                class="quick"
+                onclick="openSection('appearance')"
+              >
+
+                <div class="quick-icon">
+                  🎨
+                </div>
+
+                <div class="quick-title">
+                  ظاهر سایت
+                </div>
+
+                <div class="quick-text">
+                  شخصی‌سازی ظاهر
+                </div>
+
+              </button>
+
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRODUCTS
+    ========================= -->
+
+    <section
+      class="section"
+      id="section-products"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h1>
+            📦 مدیریت محصولات
+          </h1>
+
+          <p>
+            افزودن، ویرایش و مدیریت محصولات فروشگاه
+          </p>
+
+        </div>
+
+        <button
+          class="primary"
+          onclick="alert('فرم افزودن محصول را در مرحله بعد می‌سازیم.')"
+        >
+          ➕ افزودن محصول
+        </button>
+
+      </div>
+
+
+      <div class="toolbar">
+
+        <input
+          class="input search-input"
+          id="productSearch"
+          placeholder="جستجوی محصول..."
+          oninput="filterAdminProducts()"
+        >
+
+        <button
+          class="visit-btn"
+          onclick="loadAdminProducts()"
+        >
+          🔄 بروزرسانی
+        </button>
+
+      </div>
+
+
+      <div class="panel">
+
+        <div
+          class="table-wrap"
+          id="productsTable"
+        >
+
+          <div class="empty">
+            در حال دریافت محصولات...
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================= -->
+
+    <section
+      class="section"
+      id="section-categories"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h1>
+            🗂️ مدیریت دسته‌بندی‌ها
+          </h1>
+
+          <p>
+            مدیریت دسته‌بندی‌های فروشگاه
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="placeholder">
+
+        <div class="placeholder-icon">
+          🗂️
+        </div>
+
+        <h2>
+          مدیریت دسته‌بندی‌ها
+        </h2>
+
+        <p>
+          این بخش را در مرحله بعد به Firebase متصل می‌کنیم.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         DISCOUNTS
+    ========================= -->
+
+    <section
+      class="section"
+      id="section-discounts"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h1>
+            🔥 مدیریت تخفیف‌ها
+          </h1>
+
+          <p>
+            مدیریت تخفیف محصولات فروشگاه
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="placeholder">
+
+        <div class="placeholder-icon">
+          🔥
+        </div>
+
+        <h2>
+          مدیریت تخفیف‌ها
+        </h2>
+
+        <p>
+          امکانات پیشرفته تخفیف در مرحله بعد اضافه می‌شود.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         ORDERS
+    ========================= -->
+
+    <section
+      class="section"
+      id="section-orders"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h1>
+            🛒 سفارش‌ها
+          </h1>
+
+          <p>
+            مدیریت سفارش‌های مشتریان
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="placeholder">
+
+        <div class="placeholder-icon">
+          🛒
+        </div>
+
+        <h2>
+          مدیریت سفارش‌ها
+        </h2>
+
+        <p>
+          سیستم سفارش‌ها را بعد از طراحی ساختار سفارش فعال می‌کنیم.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         HOMEPAGE
+    ========================= -->
+
+    <section
+      class="section"
+      id="section-homepage"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h1>
+            🏠 مدیریت صفحه اصلی
+          </h1>
+
+          <p>
+            کنترل محتوای صفحه اصلی فروشگاه
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="placeholder">
+
+        <div class="placeholder-icon">
+          🏠
+        </div>
+
+        <h2>
+          صفحه‌ساز ماهان سنتر
+        </h2>
+
+        <p>
+          این بخش در مرحله بعد تبدیل به صفحه‌ساز حرفه‌ای می‌شود.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         MENU
+    ========================= -->
+
+    <section
+      class="section"
+      id="section-menu"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h1>
+            🧭 مدیریت منوی سایت
+          </h1>
+
+          <p>
+            مدیریت لینک‌ها و منوی اصلی سایت
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="placeholder">
+
+        <div class="placeholder-icon">
+          🧭
+        </div>
+
+        <h2>
+          مدیریت منو
+        </h2>
+
+        <p>
+          امکان ساخت و ویرایش منوی سایت در مرحله بعد اضافه می‌شود.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PAGES
+    ========================= -->
+
+    <section
+      class="section"
+      id="section-pages"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h1>
+            📄 مدیریت صفحات
+          </h1>
+
+          <p>
+            ساخت و مدیریت صفحات سایت
+          </p>
+
+        </div>
+
+        <button
+          class="primary"
+          onclick="alert('صفحه‌ساز در مرحله بعد ساخته می‌شود.')"
+        >
+          ➕ صفحه جدید
+        </button>
+
+      </div>
+
+
+      <div class="placeholder">
+
+        <div class="placeholder-icon">
+          📄
+        </div>
+
+        <h2>
+          صفحات سایت
+        </h2>
+
+        <p>
+          درباره ما، قوانین، تماس با ما و سایر صفحات از اینجا مدیریت خواهند شد.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         APPEARANCE
+    ========================= -->
+
+    <section
+      class="section"
+      id="section-appearance"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h1>
+            🎨 ظاهر سایت
+          </h1>
+
+          <p>
+            شخصی‌سازی ظاهر ماهان سنتر ایران
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="placeholder">
+
+        <div class="placeholder-icon">
+          🎨
+        </div>
+
+        <h2>
+          تنظیمات ظاهری
+        </h2>
+
+        <p>
+          لوگو، رنگ‌ها، عنوان‌ها و ظاهر سایت در این قسمت قابل کنترل خواهند بود.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         USERS
+    ========================= -->
+
+    <section
+      class="section"
+      id="section-users"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h1>
+            👥 کاربران
+          </h1>
+
+          <p>
+            مدیریت کاربران فروشگاه
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="placeholder">
+
+        <div class="placeholder-icon">
+          👥
+        </div>
+
+        <h2>
+          مدیریت کاربران
+        </h2>
+
+        <p>
+          سیستم کاربران و احراز هویت در مرحله امنیتی پروژه اضافه می‌شود.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SETTINGS
+    ========================= -->
+
+    <section
+      class="section"
+      id="section-settings"
+    >
+
+      <div class="section-header">
+
+        <div>
+
+          <h1>
+            ⚙️ تنظیمات
+          </h1>
+
+          <p>
+            تنظیمات اصلی پنل و فروشگاه
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="placeholder">
+
+        <div class="placeholder-icon">
+          ⚙️
+        </div>
+
+        <h2>
+          تنظیمات سیستم
+        </h2>
+
+        <p>
+          تنظیمات عمومی، Firebase و امنیت پنل در این قسمت قرار می‌گیرد.
+        </p>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+</div>
 
 </div>
 
@@ -801,28 +1793,21 @@ button{
 
 import {
   initializeApp
-} from
+}
+from
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
 
 import {
   getFirestore,
   collection,
-  addDoc,
-  getDocs,
-  doc,
-  updateDoc,
-  deleteDoc,
-  setDoc,
-  getDoc
-} from
+  getDocs
+}
+from
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-/* =========================
-   Firebase
-========================= */
-
-const firebaseConfig = {
+const firebaseConfig={
 
   apiKey:
   "AIzaSyDlrv12gAydgbx1qPJXAIM0kzcSeJF5pNs",
@@ -845,1051 +1830,819 @@ const firebaseConfig = {
 };
 
 
-const app =
-  initializeApp(firebaseConfig);
+const app=
+initializeApp(firebaseConfig);
 
-const db =
-  getFirestore(app);
+const db=
+getFirestore(app);
+
+
+window.adminProducts=[];
 
 
 /* =========================
-   آمار صفحه اصلی
+   LOAD PRODUCTS
 ========================= */
 
-const statsRef =
-  doc(db,"siteSettings","homepage");
-
-
-async function loadStats(){
+window.loadAdminProducts=
+async function(){
 
   try{
 
-    const snapshot =
-      await getDoc(statsRef);
-
-
-    if(snapshot.exists()){
-
-      const data =
-        snapshot.data();
-
-
-      document.getElementById("statsActive").checked =
-        data.statsActive !== false;
-
-
-      document.getElementById("statsButtonText").value =
-        data.statsButtonText ||
-        "📊 مشاهده آمار ما";
-
-
-      document.getElementById("statsTitle").value =
-        data.statsTitle ||
-        "آمار ماهان سنتر ایران";
-
-
-      document.getElementById("usersCount").value =
-        Number(data.usersCount || 0);
-
-
-      document.getElementById("ordersCount").value =
-        Number(data.ordersCount || 0);
-
-
-      document.getElementById("satisfaction").value =
-        Number(data.satisfaction || 0);
-
-
-      document.getElementById("productsCount").value =
-        Number(data.productsCount || 0);
-
-
-      updateStatsPreview();
-
-
-      document.getElementById("statsStatus").textContent =
-        "✅ آخرین اطلاعات آمار از Firebase دریافت شد.";
-
-    }else{
-
-      document.getElementById("statsStatus").textContent =
-        "ℹ️ هنوز اطلاعاتی برای آمار ثبت نشده است.";
-
-      updateStatsPreview();
-
-    }
-
-  }catch(error){
-
-    console.error(error);
-
-    document.getElementById("statsStatus").textContent =
-      "❌ خطا در دریافت آمار.";
-
-  }
-
-}
-
-
-window.saveStats = async function(){
-
-  const statsActive =
-    document.getElementById("statsActive").checked;
-
-
-  const statsButtonText =
-    document.getElementById("statsButtonText")
-    .value
-    .trim() ||
-    "📊 مشاهده آمار ما";
-
-
-  const statsTitle =
-    document.getElementById("statsTitle")
-    .value
-    .trim() ||
-    "آمار ماهان سنتر ایران";
-
-
-  const usersCount =
-    Math.max(
-      0,
-      Number(
-        document.getElementById("usersCount").value || 0
-      )
-    );
-
-
-  const ordersCount =
-    Math.max(
-      0,
-      Number(
-        document.getElementById("ordersCount").value || 0
-      )
-    );
-
-
-  let satisfaction =
-    Number(
-      document.getElementById("satisfaction").value || 0
-    );
-
-
-  if(satisfaction < 0)
-    satisfaction = 0;
-
-  if(satisfaction > 100)
-    satisfaction = 100;
-
-
-  const productsCount =
-    Math.max(
-      0,
-      Number(
-        document.getElementById("productsCount").value || 0
-      )
-    );
-
-
-  try{
-
-    await setDoc(
-      statsRef,
-      {
-
-        statsActive,
-
-        statsButtonText,
-
-        statsTitle,
-
-        usersCount,
-
-        ordersCount,
-
-        satisfaction,
-
-        productsCount,
-
-        updatedAt:new Date()
-
-      },
-      {
-        merge:true
-      }
-    );
-
-
-    updateStatsPreview();
-
-
-    showStatsMessage(
-      "✅ آمار با موفقیت ذخیره شد.",
-      true
-    );
-
-
-    document.getElementById("statsStatus").textContent =
-      "✅ اطلاعات آمار در Firebase ذخیره شد.";
-
-  }catch(error){
-
-    console.error(error);
-
-    showStatsMessage(
-      "❌ خطا در ذخیره آمار: " +
-      error.message,
-      false
-    );
-
-  }
-
-};
-
-
-function updateStatsPreview(){
-
-  const users =
-    Number(
-      document.getElementById("usersCount").value || 0
-    );
-
-
-  const orders =
-    Number(
-      document.getElementById("ordersCount").value || 0
-    );
-
-
-  const satisfaction =
-    Number(
-      document.getElementById("satisfaction").value || 0
-    );
-
-
-  const products =
-    Number(
-      document.getElementById("productsCount").value || 0
-    );
-
-
-  document.getElementById("previewUsers").textContent =
-    users.toLocaleString("fa-IR");
-
-
-  document.getElementById("previewOrders").textContent =
-    orders.toLocaleString("fa-IR");
-
-
-  document.getElementById("previewSatisfaction").textContent =
-    satisfaction.toLocaleString("fa-IR") + "%";
-
-
-  document.getElementById("previewProducts").textContent =
-    products.toLocaleString("fa-IR");
-
-}
-
-
-function showStatsMessage(text,success){
-
-  const box =
-    document.getElementById("statsMessage");
-
-
-  box.textContent = text;
-
-
-  box.className =
-    "message " +
-    (success ? "success" : "error");
-
-
-  setTimeout(() => {
-
-    box.style.display = "none";
-
-  },5000);
-
-}
-
-
-/* بروزرسانی لحظه‌ای پیش‌نمایش */
-
-[
-  "usersCount",
-  "ordersCount",
-  "satisfaction",
-  "productsCount"
-].forEach(id => {
-
-  document.getElementById(id)
-  .addEventListener(
-    "input",
-    updateStatsPreview
-  );
-
-});
-
-
-/* =========================
-   محصولات
-========================= */
-
-let allProducts = [];
-
-
-async function loadProducts(){
-
-  const list =
-    document.getElementById("productsList");
-
-  const status =
-    document.getElementById("status");
-
-
-  status.textContent =
-    "در حال دریافت محصولات...";
-
-
-  try{
-
-    const snapshot =
+    const snapshot=
       await getDocs(
-        collection(db,"products")
+        collection(
+          db,
+          "products"
+        )
       );
 
 
-    allProducts = [];
+    const list=[];
 
 
-    snapshot.forEach(item => {
+    snapshot.forEach(docSnap=>{
 
-      allProducts.push({
+      const data=
+        docSnap.data();
 
-        id:item.id,
 
-        ...item.data()
+      list.push({
+
+        firebaseId:docSnap.id,
+
+        id:Number(
+          data.code ??
+          docSnap.id
+        ),
+
+        name:
+          data.name ||
+          "محصول بدون نام",
+
+        category:
+          data.category ||
+          "digital",
+
+        price:
+          Number(
+            data.price || 0
+          ),
+
+        stock:
+          Number(
+            data.stock ?? 0
+          ),
+
+        discount:
+          Number(
+            data.discount || 0
+          ),
+
+        image:
+          data.image || "",
+
+        active:
+          data.active !== false
 
       });
 
     });
 
 
-    allProducts.sort((a,b)=>
-      Number(a.code || 0) -
-      Number(b.code || 0)
+    list.sort(
+      (a,b)=>b.id-a.id
     );
 
 
-    status.textContent =
-      `تعداد محصولات: ${allProducts.length}`;
+    window.adminProducts=
+      list;
 
 
-    renderProducts(allProducts);
+    document.getElementById(
+      "statProducts"
+    ).textContent=
+      list.length
+      .toLocaleString("fa-IR");
+
+
+    document.getElementById(
+      "statDiscounts"
+    ).textContent=
+      list.filter(
+        p=>p.discount>0
+      )
+      .length
+      .toLocaleString("fa-IR");
+
+
+    document.getElementById(
+      "statFirebase"
+    ).textContent=
+      "متصل";
+
+
+    renderRecentProducts();
+
+    renderProductsTable();
+
 
   }catch(error){
 
-    status.textContent =
-      "❌ خطا در دریافت محصولات";
+    console.error(
+      error
+    );
 
 
-    list.innerHTML =
-      `<div class="empty">
-        ${escapeHtml(error.message)}
-      </div>`;
-
-  }
-
-}
+    document.getElementById(
+      "statFirebase"
+    ).textContent=
+      "خطا";
 
 
-/* نمایش محصولات */
+    document.getElementById(
+      "recentProducts"
+    ).innerHTML=`
 
-function renderProducts(products){
+      <div class="empty">
 
-  const list =
-    document.getElementById("productsList");
-
-
-  if(!products.length){
-
-    list.innerHTML =
-      `<div class="empty">
-        محصولی پیدا نشد.
-      </div>`;
-
-    return;
-
-  }
-
-
-  let html = "";
-
-
-  products.forEach(p => {
-
-    const image =
-      p.image || "";
-
-
-    html += `
-
-      <div class="product">
-
-        ${
-          image
-          ?
-          `<img
-             src="${escapeHtml(image)}"
-             class="product-image"
-             onerror="this.style.display='none'"
-           >`
-          :
-          `<div class="product-image"></div>`
-        }
-
-        <h3>
-          ${p.icon || "🛍️"}
-          ${escapeHtml(p.name || "بدون نام")}
-        </h3>
-
-        <div class="product-info">
-
-          🆔 کد:
-          ${escapeHtml(p.code ?? "-")}
-
-          <br>
-
-          🏷️ دسته:
-          ${escapeHtml(p.category || "-")}
-
-          <br>
-
-          📦 موجودی:
-          ${escapeHtml(p.stock ?? 0)}
-
-          <br>
-
-          💸 تخفیف:
-          ${escapeHtml(p.discount ?? 0)}%
-
-        </div>
-
-        <div class="product-price">
-
-          💰
-          ${Number(p.price || 0).toLocaleString("fa-IR")}
-          تومان
-
-        </div>
-
-        <div class="product-actions">
-
-          <button
-            class="edit-btn"
-            onclick="editProduct('${p.id}')"
-          >
-            ✏️ ویرایش
-          </button>
-
-          <button
-            class="delete-btn"
-            onclick="deleteProduct('${p.id}')"
-          >
-            🗑️ حذف
-          </button>
-
-        </div>
+        ❌ دریافت محصولات ناموفق بود.
 
       </div>
 
     `;
 
-  });
+  }
 
-
-  list.innerHTML = html;
-
-}
+};
 
 
 /* =========================
-   ذخیره محصول
+   RECENT PRODUCTS
 ========================= */
 
-window.saveProduct = async function(){
+function renderRecentProducts(){
 
-  const documentId =
-    document.getElementById("documentId").value;
-
-
-  const code =
-    Number(
-      document.getElementById("code").value
-    );
+  const list=
+    window.adminProducts
+    .slice(0,7);
 
 
-  const name =
-    document.getElementById("name").value.trim();
+  if(!list.length){
 
+    document.getElementById(
+      "recentProducts"
+    ).innerHTML=`
 
-  const category =
-    document.getElementById("category").value;
+      <div class="empty">
 
+        هنوز محصولی وجود ندارد.
 
-  const goldCat =
-    document.getElementById("goldCat").value;
+      </div>
 
-
-  const brand =
-    document.getElementById("brand").value.trim();
-
-
-  const price =
-    Number(
-      document.getElementById("price").value
-    );
-
-
-  const discount =
-    Number(
-      document.getElementById("discount").value || 0
-    );
-
-
-  const stock =
-    Number(
-      document.getElementById("stock").value || 0
-    );
-
-
-  const image =
-    document.getElementById("image").value.trim();
-
-
-  const search =
-    document.getElementById("search").value.trim()
-    || name;
-
-
-  const description =
-    document.getElementById("description")
-    .value
-    .trim();
-
-
-  const specs =
-    document.getElementById("specs")
-    .value
-    .trim();
-
-
-  if(!code || !name || !price){
-
-    showMessage(
-      "کد، نام و قیمت محصول الزامی است.",
-      false
-    );
+    `;
 
     return;
 
   }
 
 
-  const productData = {
+  document.getElementById(
+    "recentProducts"
+  ).innerHTML=`
 
-    code,
+    <table>
 
-    name,
+      <thead>
 
-    category,
+        <tr>
 
-    goldCat,
+          <th>
+            محصول
+          </th>
 
-    brand,
+          <th>
+            قیمت
+          </th>
 
-    price,
+          <th>
+            موجودی
+          </th>
 
-    discount,
+          <th>
+            وضعیت
+          </th>
 
-    stock,
+        </tr>
 
-    image,
+      </thead>
 
-    icon:"🛍️",
+      <tbody>
 
-    search,
+        ${
+          list.map(
+            p=>`
 
-    description,
+              <tr>
 
-    specs,
+                <td>
 
-    active:true
+                  <div class="product-mini">
 
-  };
+                    ${
+                      p.image
+
+                      ?
+
+                      `<img
+                        src="${escapeHTML(p.image)}"
+                        class="product-mini-img"
+                        onerror="this.style.display='none'"
+                      >`
+
+                      :
+
+                      `<div
+                        class="product-mini-img"
+                        style="
+                          display:flex;
+                          align-items:center;
+                          justify-content:center;
+                        "
+                      >
+                        📦
+                      </div>`
+                    }
+
+                    <span>
+                      ${escapeHTML(p.name)}
+                    </span>
+
+                  </div>
+
+                </td>
 
 
-  try{
+                <td>
 
-    if(documentId){
+                  ${p.price.toLocaleString("fa-IR")}
 
-      await updateDoc(
-        doc(
-          db,
-          "products",
-          documentId
-        ),
-        productData
-      );
+                </td>
 
 
-      showMessage(
-        "✅ محصول با موفقیت ویرایش شد.",
-        true
-      );
+                <td>
 
-    }else{
+                  ${p.stock.toLocaleString("fa-IR")}
 
-      await addDoc(
-        collection(
-          db,
-          "products"
-        ),
-        {
+                </td>
 
-          ...productData,
 
-          createdAt:new Date()
+                <td>
 
+                  ${
+                    p.active
+
+                    ?
+
+                    `<span class="status active">
+                      ● فعال
+                    </span>`
+
+                    :
+
+                    `<span class="status inactive">
+                      ● غیرفعال
+                    </span>`
+                  }
+
+                </td>
+
+              </tr>
+
+            `
+          ).join("")
         }
-      );
 
+      </tbody>
 
-      showMessage(
-        "✅ محصول با موفقیت اضافه شد.",
-        true
-      );
+    </table>
 
-    }
-
-
-    clearForm();
-
-
-    await loadProducts();
-
-  }catch(error){
-
-    console.error(error);
-
-
-    showMessage(
-      "❌ خطا: " +
-      error.message,
-      false
-    );
-
-  }
-
-};
-
-
-/* =========================
-   ویرایش
-========================= */
-
-window.editProduct = function(id){
-
-  const product =
-    allProducts.find(
-      p => p.id === id
-    );
-
-
-  if(!product) return;
-
-
-  document.getElementById("documentId").value =
-    product.id;
-
-
-  document.getElementById("code").value =
-    product.code ?? "";
-
-
-  document.getElementById("name").value =
-    product.name ?? "";
-
-
-  document.getElementById("category").value =
-    product.category ?? "digital";
-
-
-  document.getElementById("goldCat").value =
-    product.goldCat ?? "";
-
-
-  document.getElementById("brand").value =
-    product.brand ?? "";
-
-
-  document.getElementById("price").value =
-    product.price ?? "";
-
-
-  document.getElementById("discount").value =
-    product.discount ?? 0;
-
-
-  document.getElementById("stock").value =
-    product.stock ?? 0;
-
-
-  document.getElementById("image").value =
-    product.image ?? "";
-
-
-  document.getElementById("search").value =
-    product.search ?? "";
-
-
-  document.getElementById("description").value =
-    product.description ?? "";
-
-
-  document.getElementById("specs").value =
-    product.specs ?? "";
-
-
-  document.getElementById("formTitle").textContent =
-    "✏️ ویرایش محصول";
-
-
-  document.getElementById("saveButton").textContent =
-    "💾 ذخیره تغییرات";
-
-
-  document.getElementById("cancelButton").style.display =
-    "block";
-
-
-  previewImage();
-
-
-  window.scrollTo({
-
-    top:0,
-
-    behavior:"smooth"
-
-  });
-
-};
-
-
-/* =========================
-   حذف
-========================= */
-
-window.deleteProduct = async function(id){
-
-  const product =
-    allProducts.find(
-      p => p.id === id
-    );
-
-
-  if(!product) return;
-
-
-  const ok =
-    confirm(
-      `آیا مطمئنی محصول «${product.name}» حذف شود؟`
-    );
-
-
-  if(!ok) return;
-
-
-  try{
-
-    await deleteDoc(
-      doc(
-        db,
-        "products",
-        id
-      )
-    );
-
-
-    showMessage(
-      "🗑️ محصول با موفقیت حذف شد.",
-      true
-    );
-
-
-    await loadProducts();
-
-  }catch(error){
-
-    showMessage(
-      "❌ خطا در حذف: " +
-      error.message,
-      false
-    );
-
-  }
-
-};
-
-
-/* =========================
-   لغو ویرایش
-========================= */
-
-window.cancelEdit = function(){
-
-  clearForm();
-
-};
-
-
-/* =========================
-   پاک کردن فرم
-========================= */
-
-function clearForm(){
-
-  document.getElementById("documentId").value =
-    "";
-
-  document.getElementById("code").value =
-    "";
-
-  document.getElementById("name").value =
-    "";
-
-  document.getElementById("category").value =
-    "mobile";
-
-  document.getElementById("goldCat").value =
-    "";
-
-  document.getElementById("brand").value =
-    "";
-
-  document.getElementById("price").value =
-    "";
-
-  document.getElementById("discount").value =
-    "0";
-
-  document.getElementById("stock").value =
-    "1";
-
-  document.getElementById("image").value =
-    "";
-
-  document.getElementById("search").value =
-    "";
-
-  document.getElementById("description").value =
-    "";
-
-  document.getElementById("specs").value =
-    "";
-
-
-  document.getElementById("formTitle").textContent =
-    "➕ افزودن محصول جدید";
-
-
-  document.getElementById("saveButton").textContent =
-    "➕ افزودن محصول";
-
-
-  document.getElementById("cancelButton").style.display =
-    "none";
-
-
-  document.getElementById("imagePreview").style.display =
-    "none";
+  `;
 
 }
 
 
 /* =========================
-   جستجو
+   PRODUCTS TABLE
 ========================= */
 
-window.filterProducts = function(){
+window.renderProductsTable=
+function(){
 
-  const text =
-    document.getElementById("adminSearch")
+  const box=
+    document.getElementById(
+      "productsTable"
+    );
+
+
+  const list=
+    window.adminProducts;
+
+
+  if(!list.length){
+
+    box.innerHTML=`
+
+      <div class="empty">
+
+        <div class="empty-icon">
+          📦
+        </div>
+
+        محصولی پیدا نشد.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML=`
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>
+            محصول
+          </th>
+
+          <th>
+            کد
+          </th>
+
+          <th>
+            دسته
+          </th>
+
+          <th>
+            قیمت
+          </th>
+
+          <th>
+            تخفیف
+          </th>
+
+          <th>
+            موجودی
+          </th>
+
+          <th>
+            وضعیت
+          </th>
+
+          <th>
+            عملیات
+          </th>
+
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        ${
+          list.map(
+            p=>`
+
+              <tr>
+
+                <td>
+
+                  <div class="product-mini">
+
+                    ${
+                      p.image
+
+                      ?
+
+                      `<img
+                        src="${escapeHTML(p.image)}"
+                        class="product-mini-img"
+                        onerror="this.style.display='none'"
+                      >`
+
+                      :
+
+                      `<div
+                        class="product-mini-img"
+                        style="
+                          display:flex;
+                          align-items:center;
+                          justify-content:center;
+                        "
+                      >
+                        📦
+                      </div>`
+                    }
+
+                    <span>
+                      ${escapeHTML(p.name)}
+                    </span>
+
+                  </div>
+
+                </td>
+
+
+                <td>
+                  ${p.id}
+                </td>
+
+
+                <td>
+                  ${escapeHTML(p.category)}
+                </td>
+
+
+                <td>
+                  ${p.price.toLocaleString("fa-IR")}
+                </td>
+
+
+                <td>
+                  ${p.discount}٪
+                </td>
+
+
+                <td>
+                  ${p.stock.toLocaleString("fa-IR")}
+                </td>
+
+
+                <td>
+
+                  ${
+                    p.active
+
+                    ?
+
+                    `<span class="status active">
+                      ● فعال
+                    </span>`
+
+                    :
+
+                    `<span class="status inactive">
+                      ● غیرفعال
+                    </span>`
+                  }
+
+                </td>
+
+
+                <td>
+
+                  <button
+                    class="visit-btn"
+                    onclick="editProduct('${p.firebaseId}')"
+                  >
+                    ویرایش
+                  </button>
+
+                </td>
+
+              </tr>
+
+            `
+          ).join("")
+        }
+
+      </tbody>
+
+    </table>
+
+  `;
+
+};
+
+
+/* =========================
+   SEARCH
+========================= */
+
+window.filterAdminProducts=
+function(){
+
+  const q=
+    document.getElementById(
+      "productSearch"
+    )
     .value
     .trim()
     .toLowerCase();
 
 
-  if(!text){
-
-    renderProducts(allProducts);
-
-    return;
-
-  }
+  const original=
+    window.adminProducts;
 
 
-  const filtered =
-    allProducts.filter(p => {
+  if(!q){
 
-      const content = [
-
-        p.name,
-
-        p.brand,
-
-        p.search,
-
-        p.code,
-
-        p.category
-
-      ]
-      .join(" ")
-      .toLowerCase();
-
-
-      return content.includes(text);
-
-    });
-
-
-  renderProducts(filtered);
-
-};
-
-
-/* =========================
-   پیش نمایش عکس
-========================= */
-
-window.previewImage = function(){
-
-  const url =
-    document.getElementById("image")
-    .value
-    .trim();
-
-
-  const img =
-    document.getElementById("imagePreview");
-
-
-  if(!url){
-
-    img.style.display =
-      "none";
+    renderProductsTable();
 
     return;
 
   }
 
 
-  img.src =
-    url;
+  window.adminProducts=
+    original.filter(
+      p=>
+        String(p.name)
+        .toLowerCase()
+        .includes(q)
+        ||
+        String(p.id)
+        .includes(q)
+        ||
+        String(p.category)
+        .toLowerCase()
+        .includes(q)
+    );
 
 
-  img.style.display =
-    "block";
+  renderProductsTable();
+
+
+  window.adminProducts=
+    original;
 
 };
 
 
 /* =========================
-   پیام محصول
+   EDIT PLACEHOLDER
 ========================= */
 
-function showMessage(
-  text,
-  success
-){
+window.editProduct=
+function(id){
 
-  const box =
-    document.getElementById("message");
-
-
-  box.textContent =
-    text;
-
-
-  box.className =
-    "message " +
-    (
-      success
-      ?
-      "success"
-      :
-      "error"
+  const product=
+    window.adminProducts.find(
+      p=>p.firebaseId===id
     );
 
 
-  setTimeout(() => {
+  if(!product)
+    return;
 
-    box.style.display =
-      "none";
 
-  },5000);
+  alert(
+    "ویرایش محصول «"+
+    product.name+
+    "» را در مرحله بعد به‌صورت کامل می‌سازیم."
+  );
+
+};
+
+
+/* =========================
+   HTML ESCAPE
+========================= */
+
+function escapeHTML(text){
+
+  return String(
+    text ?? ""
+  )
+
+  .replace(
+    /&/g,
+    "&amp;"
+  )
+
+  .replace(
+    /</g,
+    "&lt;"
+  )
+
+  .replace(
+    />/g,
+    "&gt;"
+  )
+
+  .replace(
+    /"/g,
+    "&quot;"
+  )
+
+  .replace(
+    /'/g,
+    "&#039;"
+  );
 
 }
 
 
 /* =========================
-   جلوگیری از HTML
+   START
 ========================= */
 
-function escapeHtml(value){
+loadAdminProducts();
 
-  return String(value)
+</script>
 
-    .replaceAll(
-      "&",
-      "&amp;"
+
+<script>
+
+/* =========================
+   SECTION NAVIGATION
+========================= */
+
+const sectionTitles={
+
+  dashboard:[
+    "داشبورد",
+    "مدیریت ماهان سنتر ایران"
+  ],
+
+  products:[
+    "مدیریت محصولات",
+    "افزودن، ویرایش و مدیریت محصولات"
+  ],
+
+  categories:[
+    "مدیریت دسته‌بندی‌ها",
+    "مدیریت دسته‌بندی‌های فروشگاه"
+  ],
+
+  discounts:[
+    "مدیریت تخفیف‌ها",
+    "مدیریت تخفیف محصولات"
+  ],
+
+  orders:[
+    "سفارش‌ها",
+    "مدیریت سفارش‌های مشتریان"
+  ],
+
+  homepage:[
+    "مدیریت صفحه اصلی",
+    "کنترل محتوای صفحه اصلی"
+  ],
+
+  menu:[
+    "مدیریت منوی سایت",
+    "مدیریت منوی اصلی"
+  ],
+
+  pages:[
+    "مدیریت صفحات",
+    "ساخت و مدیریت صفحات سایت"
+  ],
+
+  appearance:[
+    "ظاهر سایت",
+    "شخصی‌سازی ظاهر فروشگاه"
+  ],
+
+  users:[
+    "کاربران",
+    "مدیریت کاربران فروشگاه"
+  ],
+
+  settings:[
+    "تنظیمات",
+    "تنظیمات اصلی پنل"
+  ]
+
+};
+
+
+window.openSection=
+function(name){
+
+  document
+    .querySelectorAll(
+      ".section"
     )
-
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-
-    .replaceAll(
-      "'",
-      "&#039;"
+    .forEach(
+      section=>
+        section.classList.remove(
+          "active"
+        )
     );
 
-}
+
+  const section=
+    document.getElementById(
+      "section-"+name
+    );
+
+
+  if(section)
+    section.classList.add(
+      "active"
+    );
+
+
+  document
+    .querySelectorAll(
+      ".menu-btn"
+    )
+    .forEach(
+      btn=>
+        btn.classList.remove(
+          "active"
+        )
+    );
+
+
+  const menu=
+    document.querySelector(
+      `.menu-btn[data-section="${name}"]`
+    );
+
+
+  if(menu)
+    menu.classList.add(
+      "active"
+    );
+
+
+  if(sectionTitles[name]){
+
+    document.getElementById(
+      "topTitle"
+    ).textContent=
+      sectionTitles[name][0];
+
+
+    document.getElementById(
+      "topSubtitle"
+    ).textContent=
+      sectionTitles[name][1];
+
+  }
+
+
+  document
+    .getElementById(
+      "sidebar"
+    )
+    .classList.remove(
+      "open"
+    );
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+};
 
 
 /* =========================
-   شروع
+   MOBILE SIDEBAR
 ========================= */
 
-loadStats();
+window.toggleSidebar=
+function(){
 
-loadProducts();
+  document
+    .getElementById(
+      "sidebar"
+    )
+    .classList.toggle(
+      "open"
+    );
+
+};
+
+
+/* =========================
+   VISIT SITE
+========================= */
+
+window.visitSite=
+function(){
+
+  window.open(
+    "./",
+    "_blank"
+  );
+
+};
 
 </script>
 
 </body>
-          </html>
+
+  </html>
