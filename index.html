@@ -1373,6 +1373,7 @@ updateActiveNav();
 /* =====================================================
    HOME
 ===================================================== */
+
 function renderHome(){
 
 document.getElementById("app").innerHTML=`
@@ -1388,21 +1389,75 @@ MAHAN CENTER IRAN
 </span>
 
 <h1>
-ماهان سنتر <span>ایران</span>
+خرید آسان،
+<span>انتخاب مطمئن</span>
 </h1>
 
 <p>
-ماهان سنتر ایران یک فروشگاه اینترنتی برای ارائه
-محصولات متنوع و باکیفیت در زمینه موبایل، طلا،
-پوشاک، لوازم جانبی و کالاهای دیجیتال است.
+به ماهان سنتر ایران خوش آمدید.
+محصولات مورد نیازت را در دسته‌بندی‌های مختلف پیدا کن
+و یک تجربه خرید حرفه‌ای داشته باش.
 </p>
 
+<a
+class="primary-btn"
+href="#/categories"
+onclick="go('/categories')"
+>
+شروع خرید
+</a>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="section-head">
+
+<h2>
+دسته‌بندی‌های محبوب
+</h2>
+
+<span>
+انتخاب کنید
+</span>
+
+</div>
+
+
+<div class="categories">
+
+${Object.keys(categories).map(
+key=>categoryCard(key)
+).join("")}
+
+</div>
+
+</section>
+
+
+<section class="offer">
+
+<div>
+
+<h2>
+🔥 پیشنهادهای ویژه
+</h2>
+
 <p>
-هدف ما فراهم کردن یک تجربه خرید ساده، سریع و
-حرفه‌ای برای مشتریان است.
+محصولات منتخب و پیشنهادهای ویژه ماهان سنتر ایران.
 </p>
 
 </div>
+
+<button
+class="primary-btn"
+onclick="go('/discount')"
+>
+مشاهده تخفیف‌ها
+</button>
 
 </section>
 
@@ -1411,7 +1466,40 @@ MAHAN CENTER IRAN
 `;
 
 }
- =====================================================
+
+
+/* =====================================================
+   CATEGORY CARD
+===================================================== */
+
+function categoryCard(key){
+
+let c=categories[key];
+
+return `
+
+<a
+class="category"
+href="#/category/${key}"
+onclick="go('/category/${key}')"
+>
+
+<span class="category-icon">
+${c.icon}
+</span>
+
+<span class="category-name">
+${c.name}
+</span>
+
+</a>
+
+`;
+
+}
+
+
+/* =====================================================
    CATEGORIES PAGE
 ===================================================== */
 
@@ -2415,4 +2503,4 @@ getRoute()
 </script>
 
 </body>
-</html>
+  </html>
