@@ -102,16 +102,6 @@ textarea{
   resize:vertical;
 }
 
-.image-preview{
-  margin-top:10px;
-  width:140px;
-  height:140px;
-  border-radius:12px;
-  border:1px solid #333;
-  object-fit:cover;
-  display:none;
-}
-
 .buttons{
   display:flex;
   gap:10px;
@@ -165,6 +155,124 @@ button{
   border:1px solid #b40000;
   color:#ff8a8a;
 }
+
+/* آمار */
+
+.stats-preview{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+.stat-box{
+  background:#0b0b0b;
+  border:1px solid #292929;
+  border-radius:14px;
+  padding:18px 10px;
+  text-align:center;
+}
+
+.stat-icon{
+  font-size:28px;
+  margin-bottom:8px;
+}
+
+.stat-title{
+  color:#aaa;
+  font-size:12px;
+  margin-bottom:7px;
+}
+
+.stat-value{
+  color:#fff;
+  font-size:20px;
+  font-weight:bold;
+}
+
+.stat-hint{
+  color:#777;
+  font-size:11px;
+  margin-top:5px;
+}
+
+.switch-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  background:#0b0b0b;
+  border:1px solid #292929;
+  border-radius:12px;
+  padding:14px;
+  margin-bottom:18px;
+}
+
+.switch-text{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.switch-text strong{
+  font-size:14px;
+}
+
+.switch-text span{
+  color:#888;
+  font-size:11px;
+}
+
+.switch{
+  position:relative;
+  width:52px;
+  height:28px;
+  flex-shrink:0;
+}
+
+.switch input{
+  opacity:0;
+  width:0;
+  height:0;
+}
+
+.slider{
+  position:absolute;
+  cursor:pointer;
+  inset:0;
+  background:#333;
+  border-radius:30px;
+  transition:.3s;
+}
+
+.slider:before{
+  content:"";
+  position:absolute;
+  width:22px;
+  height:22px;
+  right:3px;
+  top:3px;
+  background:white;
+  border-radius:50%;
+  transition:.3s;
+}
+
+.switch input:checked + .slider{
+  background:#e00000;
+}
+
+.switch input:checked + .slider:before{
+  transform:translateX(-24px);
+}
+
+.stats-status{
+  margin-top:12px;
+  color:#888;
+  font-size:12px;
+  text-align:center;
+}
+
+/* محصولات */
 
 .search-box{
   margin-bottom:18px;
@@ -250,9 +358,14 @@ button{
   .products{
     grid-template-columns:repeat(2,1fr);
   }
+
+  .stats-preview{
+    grid-template-columns:repeat(2,1fr);
+  }
 }
 
 @media(max-width:600px){
+
   .grid{
     grid-template-columns:1fr;
   }
@@ -265,12 +378,20 @@ button{
     grid-template-columns:1fr;
   }
 
+  .stats-preview{
+    grid-template-columns:repeat(2,1fr);
+  }
+
   .buttons{
     flex-direction:column;
   }
 
   header h1{
     font-size:20px;
+  }
+
+  .switch-row{
+    align-items:flex-start;
   }
 }
 </style>
@@ -280,29 +401,207 @@ button{
 
 <header>
   <h1>🛍️ پنل مدیریت ماهان سنتر ایران</h1>
-  <p>افزودن، ویرایش و حذف محصولات</p>
+  <p>مدیریت محصولات و آمار صفحه اصلی</p>
 </header>
 
 <div class="container">
 
+  <!-- ========================= -->
+  <!-- مدیریت آمار -->
+  <!-- ========================= -->
+
+  <div class="card">
+
+    <h2>📊 مدیریت آمار صفحه اصلی</h2>
+
+    <div class="switch-row">
+
+      <div class="switch-text">
+        <strong>نمایش بخش آمار در صفحه اصلی</strong>
+        <span>
+          با خاموش کردن این گزینه، بخش آمار در سایت نمایش داده نمی‌شود.
+        </span>
+      </div>
+
+      <label class="switch">
+        <input
+          type="checkbox"
+          id="statsActive"
+          checked
+        >
+        <span class="slider"></span>
+      </label>
+
+    </div>
+
+    <div class="grid">
+
+      <div class="field">
+        <label>متن دکمه آمار</label>
+
+        <input
+          id="statsButtonText"
+          type="text"
+          value="📊 مشاهده آمار ما"
+          placeholder="مثلاً مشاهده آمار ما"
+        >
+      </div>
+
+      <div class="field">
+        <label>عنوان بخش آمار</label>
+
+        <input
+          id="statsTitle"
+          type="text"
+          value="آمار ماهان سنتر ایران"
+          placeholder="عنوان آمار"
+        >
+      </div>
+
+      <div class="field">
+        <label>👤 تعداد کاربران سایت</label>
+
+        <input
+          id="usersCount"
+          type="number"
+          min="0"
+          value="0"
+          placeholder="مثلاً 12540"
+        >
+      </div>
+
+      <div class="field">
+        <label>🛒 تعداد خریدهای موفق</label>
+
+        <input
+          id="ordersCount"
+          type="number"
+          min="0"
+          value="0"
+          placeholder="مثلاً 3284"
+        >
+      </div>
+
+      <div class="field">
+        <label>⭐ میزان رضایت مشتریان (%)</label>
+
+        <input
+          id="satisfaction"
+          type="number"
+          min="0"
+          max="100"
+          value="0"
+          placeholder="مثلاً 98"
+        >
+      </div>
+
+      <div class="field">
+        <label>📦 تعداد محصولات</label>
+
+        <input
+          id="productsCount"
+          type="number"
+          min="0"
+          value="0"
+          placeholder="مثلاً 156"
+        >
+      </div>
+
+    </div>
+
+    <div class="buttons">
+
+      <button
+        class="primary"
+        onclick="saveStats()"
+      >
+        💾 ذخیره آمار
+      </button>
+
+      <button
+        class="secondary"
+        onclick="loadStats()"
+      >
+        🔄 دریافت اطلاعات
+      </button>
+
+    </div>
+
+    <div id="statsMessage" class="message"></div>
+
+    <div class="stats-preview">
+
+      <div class="stat-box">
+        <div class="stat-icon">👤</div>
+        <div class="stat-title">کاربران</div>
+        <div class="stat-value" id="previewUsers">0</div>
+        <div class="stat-hint">کاربر سایت</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon">🛒</div>
+        <div class="stat-title">خرید موفق</div>
+        <div class="stat-value" id="previewOrders">0</div>
+        <div class="stat-hint">سفارش موفق</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-title">رضایت</div>
+        <div class="stat-value" id="previewSatisfaction">0%</div>
+        <div class="stat-hint">رضایت مشتریان</div>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon">📦</div>
+        <div class="stat-title">محصولات</div>
+        <div class="stat-value" id="previewProducts">0</div>
+        <div class="stat-hint">محصول فعال</div>
+      </div>
+
+    </div>
+
+    <div
+      id="statsStatus"
+      class="stats-status"
+    >
+      اطلاعات آمار هنوز دریافت نشده است.
+    </div>
+
+  </div>
+
+
+  <!-- ========================= -->
   <!-- فرم محصول -->
+  <!-- ========================= -->
 
   <div class="card">
 
     <h2 id="formTitle">➕ افزودن محصول جدید</h2>
 
-    <input type="hidden" id="documentId">
+    <input
+      type="hidden"
+      id="documentId"
+    >
 
     <div class="grid">
 
       <div class="field">
         <label>کد محصول</label>
-        <input id="code" type="number" placeholder="مثلاً 112">
+        <input
+          id="code"
+          type="number"
+          placeholder="مثلاً 112"
+        >
       </div>
 
       <div class="field">
         <label>نام محصول</label>
-        <input id="name" type="text" placeholder="نام محصول">
+        <input
+          id="name"
+          type="text"
+          placeholder="نام محصول"
+        >
       </div>
 
       <div class="field">
@@ -338,25 +637,49 @@ button{
 
       <div class="field">
         <label>برند</label>
-        <input id="brand" type="text" placeholder="مثلاً Samsung">
+
+        <input
+          id="brand"
+          type="text"
+          placeholder="مثلاً Samsung"
+        >
       </div>
 
       <div class="field">
         <label>قیمت (تومان)</label>
-        <input id="price" type="number" placeholder="مثلاً 5000000">
+
+        <input
+          id="price"
+          type="number"
+          placeholder="مثلاً 5000000"
+        >
       </div>
 
       <div class="field">
         <label>تخفیف (%)</label>
-        <input id="discount" type="number" min="0" max="100" value="0">
+
+        <input
+          id="discount"
+          type="number"
+          min="0"
+          max="100"
+          value="0"
+        >
       </div>
 
       <div class="field">
         <label>موجودی</label>
-        <input id="stock" type="number" min="0" value="1">
+
+        <input
+          id="stock"
+          type="number"
+          min="0"
+          value="1"
+        >
       </div>
 
       <div class="field full">
+
         <label>مسیر عکس محصول</label>
 
         <input
@@ -366,11 +689,15 @@ button{
           oninput="previewImage()"
         >
 
-        <img id="imagePreview" class="image-preview">
+        <img
+          id="imagePreview"
+          class="image-preview"
+        >
 
       </div>
 
       <div class="field full">
+
         <label>عبارت جستجو</label>
 
         <input
@@ -426,12 +753,17 @@ button{
 
     </div>
 
-    <div id="message" class="message"></div>
+    <div
+      id="message"
+      class="message"
+    ></div>
 
   </div>
 
 
+  <!-- ========================= -->
   <!-- لیست محصولات -->
+  <!-- ========================= -->
 
   <div class="card">
 
@@ -448,11 +780,17 @@ button{
 
     </div>
 
-    <div id="status" class="status">
+    <div
+      id="status"
+      class="status"
+    >
       در حال دریافت محصولات...
     </div>
 
-    <div id="productsList" class="products"></div>
+    <div
+      id="productsList"
+      class="products"
+    ></div>
 
   </div>
 
@@ -473,12 +811,16 @@ import {
   getDocs,
   doc,
   updateDoc,
-  deleteDoc
+  deleteDoc,
+  setDoc,
+  getDoc
 } from
 "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
 
 
-/* Firebase */
+/* =========================
+   Firebase
+========================= */
 
 const firebaseConfig = {
 
@@ -503,17 +845,299 @@ const firebaseConfig = {
 };
 
 
-const app = initializeApp(firebaseConfig);
+const app =
+  initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
+const db =
+  getFirestore(app);
 
 
-/* محصولات */
+/* =========================
+   آمار صفحه اصلی
+========================= */
+
+const statsRef =
+  doc(db,"siteSettings","homepage");
+
+
+async function loadStats(){
+
+  try{
+
+    const snapshot =
+      await getDoc(statsRef);
+
+
+    if(snapshot.exists()){
+
+      const data =
+        snapshot.data();
+
+
+      document.getElementById("statsActive").checked =
+        data.statsActive !== false;
+
+
+      document.getElementById("statsButtonText").value =
+        data.statsButtonText ||
+        "📊 مشاهده آمار ما";
+
+
+      document.getElementById("statsTitle").value =
+        data.statsTitle ||
+        "آمار ماهان سنتر ایران";
+
+
+      document.getElementById("usersCount").value =
+        Number(data.usersCount || 0);
+
+
+      document.getElementById("ordersCount").value =
+        Number(data.ordersCount || 0);
+
+
+      document.getElementById("satisfaction").value =
+        Number(data.satisfaction || 0);
+
+
+      document.getElementById("productsCount").value =
+        Number(data.productsCount || 0);
+
+
+      updateStatsPreview();
+
+
+      document.getElementById("statsStatus").textContent =
+        "✅ آخرین اطلاعات آمار از Firebase دریافت شد.";
+
+    }else{
+
+      document.getElementById("statsStatus").textContent =
+        "ℹ️ هنوز اطلاعاتی برای آمار ثبت نشده است.";
+
+      updateStatsPreview();
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    document.getElementById("statsStatus").textContent =
+      "❌ خطا در دریافت آمار.";
+
+  }
+
+}
+
+
+window.saveStats = async function(){
+
+  const statsActive =
+    document.getElementById("statsActive").checked;
+
+
+  const statsButtonText =
+    document.getElementById("statsButtonText")
+    .value
+    .trim() ||
+    "📊 مشاهده آمار ما";
+
+
+  const statsTitle =
+    document.getElementById("statsTitle")
+    .value
+    .trim() ||
+    "آمار ماهان سنتر ایران";
+
+
+  const usersCount =
+    Math.max(
+      0,
+      Number(
+        document.getElementById("usersCount").value || 0
+      )
+    );
+
+
+  const ordersCount =
+    Math.max(
+      0,
+      Number(
+        document.getElementById("ordersCount").value || 0
+      )
+    );
+
+
+  let satisfaction =
+    Number(
+      document.getElementById("satisfaction").value || 0
+    );
+
+
+  if(satisfaction < 0)
+    satisfaction = 0;
+
+  if(satisfaction > 100)
+    satisfaction = 100;
+
+
+  const productsCount =
+    Math.max(
+      0,
+      Number(
+        document.getElementById("productsCount").value || 0
+      )
+    );
+
+
+  try{
+
+    await setDoc(
+      statsRef,
+      {
+
+        statsActive,
+
+        statsButtonText,
+
+        statsTitle,
+
+        usersCount,
+
+        ordersCount,
+
+        satisfaction,
+
+        productsCount,
+
+        updatedAt:new Date()
+
+      },
+      {
+        merge:true
+      }
+    );
+
+
+    updateStatsPreview();
+
+
+    showStatsMessage(
+      "✅ آمار با موفقیت ذخیره شد.",
+      true
+    );
+
+
+    document.getElementById("statsStatus").textContent =
+      "✅ اطلاعات آمار در Firebase ذخیره شد.";
+
+  }catch(error){
+
+    console.error(error);
+
+    showStatsMessage(
+      "❌ خطا در ذخیره آمار: " +
+      error.message,
+      false
+    );
+
+  }
+
+};
+
+
+function updateStatsPreview(){
+
+  const users =
+    Number(
+      document.getElementById("usersCount").value || 0
+    );
+
+
+  const orders =
+    Number(
+      document.getElementById("ordersCount").value || 0
+    );
+
+
+  const satisfaction =
+    Number(
+      document.getElementById("satisfaction").value || 0
+    );
+
+
+  const products =
+    Number(
+      document.getElementById("productsCount").value || 0
+    );
+
+
+  document.getElementById("previewUsers").textContent =
+    users.toLocaleString("fa-IR");
+
+
+  document.getElementById("previewOrders").textContent =
+    orders.toLocaleString("fa-IR");
+
+
+  document.getElementById("previewSatisfaction").textContent =
+    satisfaction.toLocaleString("fa-IR") + "%";
+
+
+  document.getElementById("previewProducts").textContent =
+    products.toLocaleString("fa-IR");
+
+}
+
+
+function showStatsMessage(text,success){
+
+  const box =
+    document.getElementById("statsMessage");
+
+
+  box.textContent = text;
+
+
+  box.className =
+    "message " +
+    (success ? "success" : "error");
+
+
+  setTimeout(() => {
+
+    box.style.display = "none";
+
+  },5000);
+
+}
+
+
+/* بروزرسانی لحظه‌ای پیش‌نمایش */
+
+[
+  "usersCount",
+  "ordersCount",
+  "satisfaction",
+  "productsCount"
+].forEach(id => {
+
+  document.getElementById(id)
+  .addEventListener(
+    "input",
+    updateStatsPreview
+  );
+
+});
+
+
+/* =========================
+   محصولات
+========================= */
 
 let allProducts = [];
 
-
-/* گرفتن محصولات */
 
 async function loadProducts(){
 
@@ -523,15 +1147,21 @@ async function loadProducts(){
   const status =
     document.getElementById("status");
 
+
   status.textContent =
     "در حال دریافت محصولات...";
+
 
   try{
 
     const snapshot =
-      await getDocs(collection(db,"products"));
+      await getDocs(
+        collection(db,"products")
+      );
+
 
     allProducts = [];
+
 
     snapshot.forEach(item => {
 
@@ -563,9 +1193,10 @@ async function loadProducts(){
     status.textContent =
       "❌ خطا در دریافت محصولات";
 
+
     list.innerHTML =
       `<div class="empty">
-        ${error.message}
+        ${escapeHtml(error.message)}
       </div>`;
 
   }
@@ -610,7 +1241,7 @@ function renderProducts(products){
           image
           ?
           `<img
-             src="${image}"
+             src="${escapeHtml(image)}"
              class="product-image"
              onerror="this.style.display='none'"
            >`
@@ -626,7 +1257,7 @@ function renderProducts(products){
         <div class="product-info">
 
           🆔 کد:
-          ${p.code ?? "-"}
+          ${escapeHtml(p.code ?? "-")}
 
           <br>
 
@@ -636,12 +1267,12 @@ function renderProducts(products){
           <br>
 
           📦 موجودی:
-          ${p.stock ?? 0}
+          ${escapeHtml(p.stock ?? 0)}
 
           <br>
 
           💸 تخفیف:
-          ${p.discount ?? 0}%
+          ${escapeHtml(p.discount ?? 0)}%
 
         </div>
 
@@ -683,7 +1314,9 @@ function renderProducts(products){
 }
 
 
-/* ذخیره محصول */
+/* =========================
+   ذخیره محصول
+========================= */
 
 window.saveProduct = async function(){
 
@@ -692,40 +1325,64 @@ window.saveProduct = async function(){
 
 
   const code =
-    Number(document.getElementById("code").value);
+    Number(
+      document.getElementById("code").value
+    );
+
 
   const name =
     document.getElementById("name").value.trim();
 
+
   const category =
     document.getElementById("category").value;
+
 
   const goldCat =
     document.getElementById("goldCat").value;
 
+
   const brand =
     document.getElementById("brand").value.trim();
 
+
   const price =
-    Number(document.getElementById("price").value);
+    Number(
+      document.getElementById("price").value
+    );
+
 
   const discount =
-    Number(document.getElementById("discount").value || 0);
+    Number(
+      document.getElementById("discount").value || 0
+    );
+
 
   const stock =
-    Number(document.getElementById("stock").value || 0);
+    Number(
+      document.getElementById("stock").value || 0
+    );
+
 
   const image =
     document.getElementById("image").value.trim();
 
+
   const search =
-    document.getElementById("search").value.trim() || name;
+    document.getElementById("search").value.trim()
+    || name;
+
 
   const description =
-    document.getElementById("description").value.trim();
+    document.getElementById("description")
+    .value
+    .trim();
+
 
   const specs =
-    document.getElementById("specs").value.trim();
+    document.getElementById("specs")
+    .value
+    .trim();
 
 
   if(!code || !name || !price){
@@ -742,31 +1399,31 @@ window.saveProduct = async function(){
 
   const productData = {
 
-    code:code,
+    code,
 
-    name:name,
+    name,
 
-    category:category,
+    category,
 
-    goldCat:goldCat,
+    goldCat,
 
-    brand:brand,
+    brand,
 
-    price:price,
+    price,
 
-    discount:discount,
+    discount,
 
-    stock:stock,
+    stock,
 
-    image:image,
+    image,
 
     icon:"🛍️",
 
-    search:search,
+    search,
 
-    description:description,
+    description,
 
-    specs:specs,
+    specs,
 
     active:true
 
@@ -778,9 +1435,14 @@ window.saveProduct = async function(){
     if(documentId){
 
       await updateDoc(
-        doc(db,"products",documentId),
+        doc(
+          db,
+          "products",
+          documentId
+        ),
         productData
       );
+
 
       showMessage(
         "✅ محصول با موفقیت ویرایش شد.",
@@ -790,7 +1452,10 @@ window.saveProduct = async function(){
     }else{
 
       await addDoc(
-        collection(db,"products"),
+        collection(
+          db,
+          "products"
+        ),
         {
 
           ...productData,
@@ -799,6 +1464,7 @@ window.saveProduct = async function(){
 
         }
       );
+
 
       showMessage(
         "✅ محصول با موفقیت اضافه شد.",
@@ -810,14 +1476,17 @@ window.saveProduct = async function(){
 
     clearForm();
 
+
     await loadProducts();
 
   }catch(error){
 
     console.error(error);
 
+
     showMessage(
-      "❌ خطا: " + error.message,
+      "❌ خطا: " +
+      error.message,
       false
     );
 
@@ -826,12 +1495,17 @@ window.saveProduct = async function(){
 };
 
 
-/* ویرایش */
+/* =========================
+   ویرایش
+========================= */
 
 window.editProduct = function(id){
 
   const product =
-    allProducts.find(p => p.id === id);
+    allProducts.find(
+      p => p.id === id
+    );
+
 
   if(!product) return;
 
@@ -839,38 +1513,50 @@ window.editProduct = function(id){
   document.getElementById("documentId").value =
     product.id;
 
+
   document.getElementById("code").value =
     product.code ?? "";
+
 
   document.getElementById("name").value =
     product.name ?? "";
 
+
   document.getElementById("category").value =
     product.category ?? "digital";
+
 
   document.getElementById("goldCat").value =
     product.goldCat ?? "";
 
+
   document.getElementById("brand").value =
     product.brand ?? "";
+
 
   document.getElementById("price").value =
     product.price ?? "";
 
+
   document.getElementById("discount").value =
     product.discount ?? 0;
+
 
   document.getElementById("stock").value =
     product.stock ?? 0;
 
+
   document.getElementById("image").value =
     product.image ?? "";
+
 
   document.getElementById("search").value =
     product.search ?? "";
 
+
   document.getElementById("description").value =
     product.description ?? "";
+
 
   document.getElementById("specs").value =
     product.specs ?? "";
@@ -879,8 +1565,10 @@ window.editProduct = function(id){
   document.getElementById("formTitle").textContent =
     "✏️ ویرایش محصول";
 
+
   document.getElementById("saveButton").textContent =
     "💾 ذخیره تغییرات";
+
 
   document.getElementById("cancelButton").style.display =
     "block";
@@ -890,19 +1578,26 @@ window.editProduct = function(id){
 
 
   window.scrollTo({
+
     top:0,
+
     behavior:"smooth"
+
   });
 
 };
 
 
-/* حذف */
+/* =========================
+   حذف
+========================= */
 
 window.deleteProduct = async function(id){
 
   const product =
-    allProducts.find(p => p.id === id);
+    allProducts.find(
+      p => p.id === id
+    );
 
 
   if(!product) return;
@@ -920,7 +1615,11 @@ window.deleteProduct = async function(id){
   try{
 
     await deleteDoc(
-      doc(db,"products",id)
+      doc(
+        db,
+        "products",
+        id
+      )
     );
 
 
@@ -935,7 +1634,8 @@ window.deleteProduct = async function(id){
   }catch(error){
 
     showMessage(
-      "❌ خطا در حذف: " + error.message,
+      "❌ خطا در حذف: " +
+      error.message,
       false
     );
 
@@ -944,7 +1644,9 @@ window.deleteProduct = async function(id){
 };
 
 
-/* لغو ویرایش */
+/* =========================
+   لغو ویرایش
+========================= */
 
 window.cancelEdit = function(){
 
@@ -953,43 +1655,59 @@ window.cancelEdit = function(){
 };
 
 
-/* پاک کردن فرم */
+/* =========================
+   پاک کردن فرم
+========================= */
 
 function clearForm(){
 
-  document.getElementById("documentId").value = "";
+  document.getElementById("documentId").value =
+    "";
 
-  document.getElementById("code").value = "";
+  document.getElementById("code").value =
+    "";
 
-  document.getElementById("name").value = "";
+  document.getElementById("name").value =
+    "";
 
   document.getElementById("category").value =
     "mobile";
 
-  document.getElementById("goldCat").value = "";
+  document.getElementById("goldCat").value =
+    "";
 
-  document.getElementById("brand").value = "";
+  document.getElementById("brand").value =
+    "";
 
-  document.getElementById("price").value = "";
+  document.getElementById("price").value =
+    "";
 
-  document.getElementById("discount").value = "0";
+  document.getElementById("discount").value =
+    "0";
 
-  document.getElementById("stock").value = "1";
+  document.getElementById("stock").value =
+    "1";
 
-  document.getElementById("image").value = "";
+  document.getElementById("image").value =
+    "";
 
-  document.getElementById("search").value = "";
+  document.getElementById("search").value =
+    "";
 
-  document.getElementById("description").value = "";
+  document.getElementById("description").value =
+    "";
 
-  document.getElementById("specs").value = "";
+  document.getElementById("specs").value =
+    "";
 
 
   document.getElementById("formTitle").textContent =
     "➕ افزودن محصول جدید";
 
+
   document.getElementById("saveButton").textContent =
     "➕ افزودن محصول";
+
 
   document.getElementById("cancelButton").style.display =
     "none";
@@ -1001,7 +1719,9 @@ function clearForm(){
 }
 
 
-/* جستجو */
+/* =========================
+   جستجو
+========================= */
 
 window.filterProducts = function(){
 
@@ -1051,12 +1771,17 @@ window.filterProducts = function(){
 };
 
 
-/* پیش نمایش عکس */
+/* =========================
+   پیش نمایش عکس
+========================= */
 
 window.previewImage = function(){
 
   const url =
-    document.getElementById("image").value.trim();
+    document.getElementById("image")
+    .value
+    .trim();
+
 
   const img =
     document.getElementById("imagePreview");
@@ -1064,61 +1789,107 @@ window.previewImage = function(){
 
   if(!url){
 
-    img.style.display = "none";
+    img.style.display =
+      "none";
 
     return;
 
   }
 
 
-  img.src = url;
+  img.src =
+    url;
 
-  img.style.display = "block";
+
+  img.style.display =
+    "block";
 
 };
 
 
-/* پیام */
+/* =========================
+   پیام محصول
+========================= */
 
-function showMessage(text,success){
+function showMessage(
+  text,
+  success
+){
 
   const box =
     document.getElementById("message");
 
-  box.textContent = text;
+
+  box.textContent =
+    text;
+
 
   box.className =
     "message " +
-    (success ? "success" : "error");
+    (
+      success
+      ?
+      "success"
+      :
+      "error"
+    );
+
 
   setTimeout(() => {
 
-    box.style.display = "none";
+    box.style.display =
+      "none";
 
   },5000);
 
 }
 
 
-/* جلوگیری از HTML */
+/* =========================
+   جلوگیری از HTML
+========================= */
 
 function escapeHtml(value){
 
   return String(value)
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
 
 }
 
 
-/* شروع */
+/* =========================
+   شروع
+========================= */
+
+loadStats();
 
 loadProducts();
 
 </script>
 
 </body>
-  </html>
+          </html>
