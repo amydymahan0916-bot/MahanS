@@ -303,6 +303,109 @@ color:#888;
 font-size:12px;  
 }  
   
+
+/* RULES */
+function renderRules(){
+document.getElementById("app").innerHTML=`
+<main class="page rules-page">
+<div class="container">
+<div class="page-title">
+<div>
+<h1>📜 قوانین و شرایط</h1>
+<p>لطفاً قبل از خرید، شرایط فروشگاه را مطالعه کنید.</p>
+</div>
+</div>
+
+<div class="rules-box">
+
+<h2>معرفی کوتاه</h2>
+<p>ماهان سنتر ایران یک فروشگاه آنلاین برای ارائه موبایل، طلا، پوشاک و کالاهای متنوع است. هدف ما خرید آسان و ارائه اطلاعات شفاف درباره محصولات و شرایط سفارش است.</p>
+
+<h2>شرایط مرجوعی</h2>
+<ul>
+<li>امکان مرجوعی کالا حداکثر تا ۷ روز پس از دریافت، طبق شرایط فروشگاه وجود دارد.</li>
+<li>پس از ثبت درخواست مرجوعی، کد مرجوعی برای مشتری ارسال می‌شود تا کالا از طریق تیپاکس برگشت داده شود.</li>
+<li>وضعیت هر محصول از نظر امکان مرجوعی هنگام سفارش با عبارت «قابل مرجوع» یا «غیر قابل مرجوع» مشخص می‌شود.</li>
+<li>هزینه ارسال مرجوعی طبق شرایط اعلام‌شده فروشگاه و وضعیت کالا محاسبه می‌شود.</li>
+</ul>
+
+<h2>لغو سفارش</h2>
+<p>لغو سفارش قبل از پرداخت امکان‌پذیر است و پس از پرداخت نیز تا ۲۴ ساعت امکان لغو وجود دارد.</p>
+
+<h2>ارسال</h2>
+<p>ارسال سفارش‌ها از طریق تیپاکس انجام می‌شود. هزینه ارسال بر عهده مشتری است و برای خریدهای بالاتر از ۵ میلیون تومان ارسال رایگان خواهد بود.</p>
+
+<h2>زمان تحویل</h2>
+<p>زمان تقریبی تحویل سفارش ۳ تا ۷ روز کاری است.</p>
+
+<div class="rules-back">
+<button class="primary-btn" onclick="go('/')">بازگشت به صفحه اصلی</button>
+</div>
+
+</div>
+</div>
+</main>
+`;
+}
+
+/* SUPPORT */
+function renderSupport(){
+document.getElementById("app").innerHTML=`
+<main class="page support-page">
+<div class="container">
+<div class="page-title">
+<div>
+<h1>🧑‍💼 پشتیبانی ماهان سنتر</h1>
+<p>برای ارتباط با پشتیبانی از راه‌های زیر استفاده کنید.</p>
+</div>
+</div>
+
+<div class="contact-grid">
+
+<div class="contact-card">
+<strong>شماره تلفن</strong>
+<p>09332540425</p>
+<button class="secondary-btn copy-contact" onclick="copyContact('09332540425')">کپی شماره</button>
+</div>
+
+<div class="contact-card">
+<strong>شماره تلفن ۲</strong>
+<p>09165564936</p>
+<button class="secondary-btn copy-contact" onclick="copyContact('09165564936')">کپی شماره</button>
+</div>
+
+<div class="contact-card">
+<strong>ایدی روبیکا</strong>
+<p>omidi__xx</p>
+<button class="secondary-btn copy-contact" onclick="copyContact('omidi__xx')">کپی آیدی</button>
+</div>
+
+<div class="contact-card">
+<strong>ایدی اینستاگرام</strong>
+<p>omidi__x</p>
+<button class="secondary-btn copy-contact" onclick="copyContact('omidi__x')">کپی آیدی</button>
+</div>
+
+</div>
+
+<div style="margin-top:20px">
+<button class="primary-btn" onclick="go('/')">بازگشت به صفحه اصلی</button>
+</div>
+
+</div>
+</main>
+`;
+}
+
+function copyContact(text){
+if(navigator.clipboard){
+navigator.clipboard.writeText(text).then(()=>showToast("اطلاعات کپی شد"));
+}else{
+showToast(text);
+}
+}
+
+
 /* CATEGORIES */  
   
 .categories{  
@@ -781,6 +884,61 @@ color:#666;
 font-size:11px;  
 }  
   
+
+/* STEP 1 HOME / SUPPORT / RULES */
+.home-support{
+  display:flex;
+  justify-content:center;
+  margin-top:28px;
+}
+.support-circle{
+  width:128px;height:128px;border-radius:50%;
+  background:linear-gradient(145deg,#181818,#090909);
+  border:2px solid #333;
+  box-shadow:0 12px 35px rgba(0,0,0,.45);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:5px;transition:.2s;
+}
+.support-circle:hover{border-color:var(--red);transform:translateY(-4px)}
+.support-avatar{width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#202020;border:1px solid #444;font-size:34px}
+.support-label{font-size:12px;font-weight:bold;color:#fff}
+
+.rules-page .rules-box{
+  background:#101010;border:1px solid var(--border);border-radius:22px;padding:25px;
+}
+.rules-box h2{font-size:19px;margin:18px 0 8px;color:#fff}
+.rules-box h2:first-child{margin-top:0}
+.rules-box p,.rules-box li{color:#aaa;font-size:13px;line-height:2}
+.rules-box ul{padding-right:20px}
+.rules-back{margin-top:20px}
+
+.welcome-overlay{
+  position:fixed;inset:0;z-index:5000;
+  background:rgba(0,0,0,.78);backdrop-filter:blur(9px);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+}
+.welcome-modal{
+  width:min(520px,100%);background:linear-gradient(145deg,#171717,#0a0a0a);
+  border:1px solid #333;border-radius:25px;padding:28px;
+  box-shadow:0 25px 80px rgba(0,0,0,.75);text-align:center;
+  animation:welcomeIn .25s ease;
+}
+@keyframes welcomeIn{from{opacity:0;transform:translateY(15px) scale(.98)}to{opacity:1;transform:none}}
+.welcome-icon{
+  width:68px;height:68px;border-radius:50%;margin:0 auto 13px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--red);font-size:31px;
+  box-shadow:0 8px 30px rgba(229,9,20,.28);
+}
+.welcome-modal h2{font-size:23px;margin-bottom:9px}
+.welcome-modal p{color:#aaa;font-size:13px;line-height:2;margin-bottom:20px}
+.welcome-actions{display:flex;gap:10px;justify-content:center}
+.welcome-actions button{min-width:125px}
+.welcome-reject{border:1px solid #333;background:#171717;color:#aaa;padding:11px 20px;border-radius:12px}
+.support-page .contact-card strong{display:block;color:#fff;margin-bottom:5px}
+.support-page .contact-card p{color:#aaa;font-size:13px;direction:ltr;text-align:right}
+.copy-contact{margin-top:8px}
+
 /* NEW FEATURES */
 .category-image{width:100%;height:100%;object-fit:cover;border-radius:16px}
 .category.has-image{padding:0;position:relative;overflow:hidden}
@@ -989,6 +1147,13 @@ onclick="go('/favorites')">
 </a>
 
 <a  
+href="#/rules"  
+data-route="/rules"  
+onclick="go('/rules')">
+📜 قوانین
+</a>
+
+<a  
 href="#/cart"  
 data-route="/cart"  
 onclick="go('/cart')">
@@ -1003,6 +1168,31 @@ onclick="go('/cart')">
 <div><h3>تماس با ما</h3><p>راه ارتباطی: قابل تغییر از پنل مدیریت</p><p>اینستاگرام: Omidi__Xx</p><p>روبیکا: قابل تغییر از پنل مدیریت</p></div>
 <div><h3>قوانین</h3><p>مرجوعی تا ۷ روز طبق شرایط فروشگاه.</p><p>لغو قبل از پرداخت و تا ۲۴ ساعت پس از پرداخت.</p><p>ارسال با تیپاکس؛ هزینه ارسال با مشتری.</p></div>
 </div><div class="copy">تمامی اطلاعات محفوظ است.</div></div>
+
+<!-- WELCOME RULES NOTICE -->
+<div id="welcomeRules" class="welcome-overlay">
+<div class="welcome-modal">
+<div class="welcome-icon">📜</div>
+<h2>قبل از شروع، قوانین را بخوانید</h2>
+<p>لطفاً قبل از هر کاری قسمت <strong>قوانین</strong> را بررسی کنید تا با شرایط خرید، مرجوعی و ارسال ماهان سنتر ایران آشنا شوید.</p>
+<div class="welcome-actions">
+<button class="primary-btn" onclick="acceptRules()">تأیید و مشاهده قوانین</button>
+<button class="welcome-reject" onclick="rejectRules()">رد</button>
+</div>
+</div>
+</div>
+
+<script>
+function acceptRules(){
+var box=document.getElementById("welcomeRules");
+if(box) box.remove();
+go("/rules");
+}
+function rejectRules(){
+window.location.replace("about:blank");
+}
+</script>
+
 <!-- FIREBASE -->
 <script>
 
@@ -1423,163 +1613,63 @@ updateActiveNav();
   
 /* HOME */  
   
-function renderHome(){  
-  
-var featured=  
-products.slice(0,8);  
-  
-  
-document.getElementById(  
-"app"  
-).innerHTML=`  
-  
-<main class="page">  
-  
-<div class="container">  
-  
-  
-<section class="hero">  
-  
-<div class="hero-content">  
-  
-<span class="badge">  
-ماهان سنتر ایران  
-</span>  
-  
-  
-<h1>  
-  
-خرید آسان،  
-  
-<span>  
-انتخاب حرفه‌ای  
-</span>  
-  
-</h1>  
-  
-  
-<p>  
-  
-فروشگاه آنلاین ماهان سنتر ایران؛  
-مجموعه‌ای از موبایل، طلا، پوشاک  
-و کالاهای متنوع.  
-  
-</p>  
-  
-  
-<a  
-class="primary-btn"  
-href="#/categories"  
-onclick="go('/categories')">  
-  
-مشاهده دسته‌بندی‌ها  
-  
-</a>  
-  
-</div>  
-  
-</section>  
-  
-  
-<section class="section">  
-  
-<div class="section-head">  
-  
-<h2>  
-دسته‌بندی‌ها  
-</h2>  
-  
-<span>  
-انتخاب سریع  
-</span>  
-  
-</div>  
-  
-  
-<div class="categories">${["mobile","gold","clothes","shoes","accessories","digital"].map(categoryCard).join("")}</div>  
-  
-</section>  
-  
-  
-<section class="section">  
-  
-<div class="section-head">  
-  
-<h2>  
-محصولات  
-</h2>  
-  
-<span>  
-${products.length} محصول از Firebase  
-</span>  
-  
-</div>  
-  
-  
-<div class="products">  
-  
-${featured  
-.map(productCard)  
-.join("")}  
-  
-</div>  
-  
-</section>  
-  
-  
-<section class="section">
-<div class="section-head"><h2>🔥 تخفیف‌های ویژه</h2><a class="secondary-btn" href="#/discount" onclick="go('/discount')">مشاهده همه</a></div>
-<div class="products">${products.filter(p=>Number(p.discount||0)>0).slice(0,4).map(productCard).join("") || emptyResult("🔥","در حال حاضر محصول تخفیف‌دار نداریم")}</div>
-</section>
-<section class="section">
-<div class="section-head"><h2>چرا ماهان سنتر؟</h2></div>
-<div class="info-grid">
-<div class="info-card"><h3>تنوع محصولات</h3><p>انتخاب از دسته‌بندی‌های متنوع</p></div>
-<div class="info-card"><h3>قیمت مناسب</h3><p>قیمت‌گذاری مناسب و تخفیف‌های ویژه</p></div>
-<div class="info-card"><h3>خرید آسان</h3><p>جستجو و مشاهده سریع محصولات</p></div>
-<div class="info-card"><h3>پشتیبانی</h3><p>پاسخگویی و راهنمایی مشتریان</p></div>
-</div></section>
-<section class="section">
-<div class="section-head"><h2>قوانین و شرایط</h2></div>
-<div class="info-card" style="text-align:right"><p>امکان لغو سفارش قبل از پرداخت و تا ۲۴ ساعت پس از پرداخت وجود دارد. مرجوعی کالا طبق شرایط فروشگاه و حداکثر تا ۷ روز پس از دریافت انجام می‌شود. برای مرجوعی، کد مرجوعی دریافت کرده و کالا را از طریق تیپاکس ارسال کنید.</p></div>
+function renderHome(){
+
+document.getElementById("app").innerHTML=`
+
+<main class="page">
+
+<div class="container">
+
+<section class="hero">
+
+<div class="hero-content">
+
+<span class="badge">
+ماهان سنتر ایران
+</span>
+
+<h1>
+خرید آسان،
+<span>
+انتخاب حرفه‌ای
+</span>
+</h1>
+
+<p>
+فروشگاه آنلاین ماهان سنتر ایران؛
+مجموعه‌ای از موبایل، طلا، پوشاک
+و کالاهای متنوع.
+</p>
+
+<a
+class="primary-btn"
+href="#/categories"
+onclick="go('/categories')">
+
+مشاهده دسته‌بندی‌ها
+
+</a>
+
+</div>
+
 </section>
 
-<section class="offer">  
-  
-<div>  
-  
-<h2>  
-محصولات ماهان سنتر  
-</h2>  
-  
-<p>  
-محصولات فروشگاه مستقیماً از Firebase دریافت می‌شوند.  
-</p>  
-  
-</div>  
-  
-  
-<a  
-class="primary-btn"  
-href="#/categories"  
-onclick="go('/categories')">  
-  
-مشاهده همه  
-  
-</a>  
-  
-</section>  
-  
-  
-</div>  
-  
-</main>  
-  
-`;  
-  
-}  
-  
-  
+<div class="home-support">
+<a class="support-circle" href="#/support" onclick="go('/support')" aria-label="پشتیبانی">
+<div class="support-avatar">🧑‍💼</div>
+<div class="support-label">پشتیبانی</div>
+</a>
+</div>
+
+</div>
+
+</main>
+
+`;
+
+}
+
 /* CATEGORIES */  
   
 function categoryCard(key){
@@ -2964,8 +3054,12 @@ a.classList.toggle(
 r===route ||  
   
 (  
-r==="/categories" &&  
-route.startsWith("/category/")  
+(r==="/categories" &&  
+route.startsWith("/category/"))
+||
+(r==="/rules" && route==="/rules")
+||
+(r==="/favorites" && route==="/favorites")
 )  
   
 );  
