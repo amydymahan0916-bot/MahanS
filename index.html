@@ -981,166 +981,152 @@ onclick="go('/cart')">
 
 </div>  </div>  <div id="toast" class="toast"></div>  <footer>  <div class="container copy">  
 تمامی اطلاعات محفوظ است.  
-</div>  </footer>  <!-- FIREBASE -->  <script type="module">  
-  
-import {  
-initializeApp  
-}  
-from  
-"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";  
-  
-  
-import {  
-getFirestore,  
-collection,  
-getDocs  
-}  
-from  
-"https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";  
-  
-  
-const firebaseConfig = {  
-  
-apiKey:  
-"AIzaSyDlrv12gAydgbx1qPJXAIM0kzcSeJF5pNs",  
-  
-authDomain:  
-"mahan-center.firebaseapp.com",  
-  
-projectId:  
-"mahan-center",  
-  
-storageBucket:  
-"mahan-center.firebasestorage.app",  
-  
-messagingSenderId:  
-"720478821753",  
-  
-appId:  
-"1:720478821753:web:7a431c1a3f9e3abd7923a8"  
-  
-};  
-  
-  
-const app = initializeApp(firebaseConfig);  
-  
-const db = getFirestore(app);  
-  
-  
-async function loadProducts(){  
-  
-try{  
-  
-const snapshot =  
-await getDocs(  
-collection(db,"products")  
-);  
-  
-  
-const firebaseProducts=[];  
-  
-  
-snapshot.forEach(docSnap=>{  
-  
-const data=docSnap.data();  
-  
-  
-if(data.active===false)  
-return;  
-  
-  
-firebaseProducts.push({  
-  
-id:Number(  
-data.code ?? docSnap.id  
-),  
-  
-cat:data.category || "digital",  
-  
-brand:data.brand || "",  
-  
-goldCat:data.goldCat || "",  
-  
-name:data.name || "محصول بدون نام",  
-  
-search:  
-data.search ||  
-data.name ||  
-"",  
-  
-price:Number(  
-data.price || 0  
-),  
-  
-image:data.image || "",  
-  
-icon:data.icon || "🛍️",  
-  
-desc:  
-data.description || "",  
-  
-specs:  
-data.specs || "",  
-  
-stock:Number(  
-data.stock ?? 0  
-),  
-  
-discount:Number(  
-data.discount || 0  
-)  
-  
-});  
-  
-});  
-  
-  
-firebaseProducts.sort(  
-(a,b)=>a.id-b.id  
-);  
-  
-  
-window.products=  
-firebaseProducts;  
-  
-  
-console.log(  
-"تعداد محصولات Firebase:",  
-firebaseProducts.length  
-);  
-  
-  
-window.dispatchEvent(  
-new Event("firebaseProductsLoaded")  
-);  
-  
-  
-}catch(error){  
-  
-console.error(  
-"Firebase products error:",  
-error  
-);  
-  
-  
-window.products=[];  
-  
-  
-window.dispatchEvent(  
-new CustomEvent(  
-"firebaseProductsError",  
-{  
-detail:error  
-}  
-)  
-);  
-  
-}  
-  
-}  
-  
-  
-loadProducts();  
+<!-- FIREBASE -->
+<script>
+
+async function loadProducts(){
+
+  try{
+
+    const response = await fetch(
+      "https://curly-cherry-da35.amydypiam064.workers.dev/products",
+      {
+        cache: "no-store"
+      }
+    );
+
+    if(!response.ok){
+      throw new Error("خطای Worker: " + response.status);
+    }
+
+    const result = await response.json();
+
+    const firebaseProducts = (result.documents || [])
+      .map(doc => {
+
+        const f = doc.fields || {};
+
+        const value = (name, fallback = "") => {
+
+          if(!f[name]){
+            return fallback;
+          }
+
+          return (
+            f[name].stringValue ??
+            f[name].integerValue ??
+            f[name].doubleValue ??
+            f[name].booleanValue ??
+            fallback
+          );
+
+        };
+
+        const docId =
+          doc.name?.split("/").pop() || "";
+
+        return {
+
+          id:
+            Number(
+              value("code", docId)
+            ) || 0,
+
+          cat:
+            value("category", "digital"),
+
+          brand:
+            value("brand", ""),
+
+          goldCat:
+            value("goldCat", ""),
+
+          name:
+            value(
+              "name",
+              "محصول بدون نام"
+            ),
+
+          search:
+            value(
+              "search",
+              value("name", "")
+            ),
+
+          price:
+            Number(
+              value("price", 0)
+            ) || 0,
+
+          image:
+            value("image", ""),
+
+          icon:
+            value("icon", "🛍️"),
+
+          desc:
+            value("description", ""),
+
+          specs:
+            value("specs", ""),
+
+          stock:
+            Number(
+              value("stock", 0)
+            ) || 0,
+
+          discount:
+            Number(
+              value("discount", 0)
+            ) || 0
+
+        };
+
+      });
+
+    firebaseProducts.sort(
+      (a,b) => a.id - b.id
+    );
+
+    window.products =
+      firebaseProducts;
+
+    console.log(
+      "تعداد محصولات:",
+      firebaseProducts.length
+    );
+
+    window.dispatchEvent(
+      new Event(
+        "firebaseProductsLoaded"
+      )
+    );
+
+  }catch(error){
+
+    console.error(
+      "Products error:",
+      error
+    );
+
+    window.products = [];
+
+    window.dispatchEvent(
+      new CustomEvent(
+        "firebaseProductsError",
+        {
+          detail: error
+        }
+      )
+    );
+
+  }
+
+}
+
+loadProducts();
+
+                  </script>  
   
 </script>  <!-- MAIN APP -->  <script>  
   
