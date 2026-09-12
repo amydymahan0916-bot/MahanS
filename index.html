@@ -2,52 +2,47 @@
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#050505">
 <title>ماهان سنتر ایران</title>
 
 <style>
 *{
+    box-sizing:border-box;
     margin:0;
     padding:0;
-    box-sizing:border-box;
 }
 
 :root{
+    --bg:#050505;
+    --card:#0c0c0c;
+    --card2:#111;
     --green:#19d66b;
-    --green2:#0fb957;
-    --red:#e50914;
-    --red2:#ff1d2d;
-    --redDark:#b90710;
-    --yellow:#ffc400;
-    --bg:#070707;
-    --card:#111111;
-    --card2:#181818;
-    --border:#292929;
+    --red:#ff3030;
+    --gold:#ffd43b;
     --text:#fff;
-    --muted:#999;
+    --muted:#aaa;
+    --border:rgba(255,255,255,.08);
 }
 
 html{
     scroll-behavior:smooth;
     min-height:100%;
-    overflow-y:auto;
 }
 
 body{
     font-family:Tahoma,Arial,sans-serif;
     background:
         radial-gradient(circle at top right,rgba(25,214,107,.035),transparent 30%),
-        radial-gradient(circle at bottom left,rgba(229,9,20,.025),transparent 28%),
         var(--bg);
     color:var(--text);
     line-height:1.7;
     min-height:100vh;
-    height:auto;
     overflow-x:hidden;
-    overflow-y:auto;
 }
 
-button,input{
+button,
+input{
     font-family:inherit;
 }
 
@@ -61,1697 +56,885 @@ a{
 }
 
 .container{
-    width:92%;
-    max-width:1250px;
+    width:min(1200px,94%);
     margin:auto;
 }
 
-/* =========================
-HEADER
-========================= */
-
+/* HEADER */
 header{
     position:sticky;
     top:0;
     z-index:1000;
-    background:rgba(7,7,7,.96);
-    backdrop-filter:blur(18px);
+    background:rgba(5,5,5,.94);
+    backdrop-filter:blur(15px);
     border-bottom:1px solid var(--border);
 }
 
 .header-main{
-    min-height:100px;
+    min-height:78px;
     display:flex;
     align-items:center;
-    gap:22px;
+    justify-content:space-between;
+    gap:15px;
 }
 
-.logo{
+.brand{
     display:flex;
     align-items:center;
-    gap:14px;
+    gap:10px;
     min-width:max-content;
 }
 
-.logo img{
-    width:72px;
-    height:72px;
-    object-fit:cover;
+.logo{
+    width:52px;
+    height:52px;
     border-radius:50%;
-    border:3px solid var(--green);
-    box-shadow:
-        0 0 0 3px rgba(25,214,107,.08),
-        0 0 20px rgba(25,214,107,.18);
+    object-fit:cover;
+    border:2px solid var(--green);
+    box-shadow:0 0 18px rgba(25,214,107,.25);
 }
 
-.logo-name{
-    font-size:24px;
-    font-weight:bold;
+.brand-name{
+    font-size:20px;
+    font-weight:900;
+    white-space:nowrap;
 }
 
-.logo-name span{
+.brand-green{
+    color:var(--green);
+}
+
+.brand-red{
     color:var(--red);
 }
 
 .search-box{
     flex:1;
-    max-width:600px;
-    height:50px;
-    display:flex;
-    background:#161616;
-    border:1px solid #333;
-    border-radius:15px;
-    overflow:hidden;
-    transition:.25s;
-}
-
-.search-box:focus-within{
-    border-color:var(--red);
-    box-shadow:0 0 0 3px rgba(229,9,20,.08);
+    max-width:500px;
+    position:relative;
 }
 
 .search-box input{
-    flex:1;
-    min-width:0;
-    border:0;
-    outline:0;
-    background:none;
-    color:white;
-    padding:0 17px;
-    font-size:14px;
+    width:100%;
+    height:45px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:#0d0d0d;
+    color:#fff;
+    outline:none;
+    padding:0 45px 0 15px;
+    transition:.25s;
 }
 
-.search-box button{
-    width:60px;
-    border:0;
-    background:var(--red);
-    color:white;
-    font-size:26px;
-    font-weight:bold;
-    transition:.2s;
+.search-box input:focus{
+    border-color:var(--green);
+    box-shadow:0 0 15px rgba(25,214,107,.1);
 }
 
-.search-box button:hover{
-    background:var(--red2);
+.search-icon{
+    position:absolute;
+    right:15px;
+    top:8px;
+    font-size:23px;
+    color:var(--green);
 }
 
 .header-actions{
     display:flex;
-    gap:9px;
+    align-items:center;
+    gap:8px;
 }
 
 .header-btn{
-    height:48px;
-    min-width:50px;
-    padding:0 13px;
-    border-radius:14px;
-    border:1px solid #333;
-    background:#151515;
-    color:white;
     position:relative;
+    width:45px;
+    height:45px;
+    border:1px solid var(--border);
+    background:#101010;
+    color:#fff;
+    border-radius:13px;
     font-size:20px;
-    transition:.2s;
+    transition:.25s;
 }
 
 .header-btn:hover{
-    border-color:var(--red);
-    color:var(--red);
+    border-color:var(--green);
     transform:translateY(-2px);
 }
 
-.cart-count{
+.count{
     position:absolute;
-    top:-7px;
-    left:-6px;
-    width:21px;
-    height:21px;
-    border-radius:50%;
+    top:-6px;
+    left:-5px;
+    min-width:19px;
+    height:19px;
+    padding:0 4px;
+    border-radius:20px;
     background:var(--red);
-    color:white;
-    font-size:11px;
+    color:#fff;
+    font-size:10px;
     display:flex;
     align-items:center;
     justify-content:center;
 }
 
-/* =========================
-NAV
-========================= */
-
-.navbar{
-    border-top:1px solid #171717;
-}
-
-.nav{
-    min-height:60px;
-    display:flex;
-    align-items:center;
-    gap:8px;
+/* NAV */
+nav{
+    border-top:1px solid rgba(255,255,255,.04);
     overflow-x:auto;
-    padding:6px 0;
+    scrollbar-width:none;
 }
 
-.nav::-webkit-scrollbar{
+nav::-webkit-scrollbar{
     display:none;
 }
 
-.nav a{
-    white-space:nowrap;
-    padding:9px 18px;
-    border-radius:15px;
-    color:#bbb;
-    font-size:13px;
-    border:1px solid transparent;
-    transition:.25s;
-    background:linear-gradient(135deg,#151515,#0e0e0e);
-}
-
-.nav a:nth-child(1){
-    border-radius:20px 8px 20px 8px;
-}
-
-.nav a:nth-child(2){
-    border-radius:8px 20px 8px 20px;
-}
-
-.nav a:nth-child(3){
-    border-radius:20px 8px 20px 8px;
-}
-
-.nav a:nth-child(4){
-    border-radius:8px 20px 8px 20px;
-}
-
-.nav a:nth-child(5){
-    border-radius:20px 8px 20px 8px;
-}
-
-.nav a:hover{
-    color:white;
-    background:var(--red);
-    border-color:var(--red);
-    transform:translateY(-2px);
-}
-
-.nav a.active{
-    color:white;
-    background:linear-gradient(135deg,var(--green),var(--green2));
-    border-color:var(--green);
-}
-
-/* =========================
-APP
-========================= */
-
-#app{
-    min-height:70vh;
-}
-
-.page{
-    padding:30px 0 50px;
-    animation:pageIn .22s ease;
-}
-
-@keyframes pageIn{
-    from{
-        opacity:0;
-        transform:translateY(7px);
-    }
-    to{
-        opacity:1;
-        transform:none;
-    }
-}
-
-/* =========================
-HOME
-========================= */
-
-.home-intro{
-    min-height:calc(100vh - 180px);
+.nav-inner{
     display:flex;
+    gap:8px;
+    padding:8px 0;
+    min-width:max-content;
+}
+
+.nav-link{
+    border:1px solid var(--border);
+    background:#0d0d0d;
+    color:#ddd;
+    padding:7px 15px;
+    border-radius:14px 8px 14px 8px;
+    white-space:nowrap;
+    transition:.25s;
+    font-size:13px;
+}
+
+.nav-link:nth-child(even){
+    border-radius:8px 14px 8px 14px;
+}
+
+.nav-link:hover,
+.nav-link.active{
+    background:rgba(25,214,107,.08);
+    border-color:var(--green);
+    color:var(--green);
+}
+
+/* APP */
+#app{
+    min-height:calc(100vh - 140px);
+    padding-top:4px;
+}
+
+/* HOME */
+.home{
+    min-height:calc(100vh - 150px);
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
     align-items:center;
-    justify-content:center;
     text-align:center;
+    padding-top:5px;
 }
 
 .home-box{
-    width:100%;
-    max-width:850px;
-    padding:38px 40px;
-    border:1px solid #252525;
-    border-radius:30px;
-    background:
-        radial-gradient(circle at 50% 0%,rgba(25,214,107,.10),transparent 45%),
-        radial-gradient(circle at 100% 100%,rgba(229,9,20,.07),transparent 35%),
-        linear-gradient(145deg,#151515,#090909);
-    box-shadow:0 25px 80px rgba(0,0,0,.4);
+    width:min(850px,94%);
+    margin-top:0;
+    padding:20px 18px 10px;
 }
 
-.home-logo-small{
-    width:78px;
-    height:78px;
-    border-radius:50%;
-    object-fit:cover;
-    border:3px solid var(--green);
-    margin-bottom:12px;
-    box-shadow:0 0 30px rgba(25,214,107,.18);
-}
-
-.home-box h1{
-    font-size:clamp(26px,5vw,43px);
-    margin-bottom:12px;
-}
-
-.home-box h1 span{
-    color:var(--green);
-}
-
-.home-box h1 span::after{
-    content:"";
-}
-
-.home-description{
-    max-width:720px;
-    margin:auto;
-    color:#aaa;
-    font-size:14px;
-    line-height:2;
-}
-
-.stats{
-    margin:20px auto 0;
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:9px;
-    max-width:650px;
-}
-
-.stat{
-    background:linear-gradient(145deg,#131313,#0b0b0b);
-    border:1px solid #292929;
-    border-radius:15px;
-    padding:10px 8px;
-    position:relative;
-    overflow:hidden;
-}
-
-.stat::before{
-    content:"";
-    position:absolute;
-    top:0;
-    right:0;
-    left:0;
-    height:2px;
-    background:linear-gradient(90deg,var(--green),var(--red));
-}
-
-.stat strong{
-    display:block;
-    font-size:20px;
-    color:var(--green);
+.home-title{
+    font-size:clamp(27px,6vw,52px);
+    font-weight:1000;
     line-height:1.3;
+    margin-bottom:7px;
 }
 
-.stat:nth-child(2) strong{
+.home-subtitle{
+    color:#ddd;
+    font-size:15px;
+    line-height:2;
+    max-width:760px;
+    margin:auto;
+}
+
+.home-subtitle strong{
+    color:var(--green);
+}
+
+.home-subtitle .iran{
     color:var(--red);
 }
 
-.stat:nth-child(3) strong{
-    color:#fff;
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:13px;
 }
 
-.stat span{
-    font-size:10px;
-    color:#888;
+.stat{
+    background:linear-gradient(145deg,#111,#090909);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:12px 8px;
 }
 
-/* =========================
-SECTION
-========================= */
-
-.section{
-    margin-top:35px;
-}
-
-.section-head{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:18px;
-}
-
-.section-head h2{
+.stat-number{
+    color:var(--green);
     font-size:22px;
+    font-weight:900;
 }
 
-.section-head span{
-    color:#888;
+.stat-label{
+    color:#999;
     font-size:12px;
 }
 
-/* =========================
-CATEGORIES
-========================= */
+/* PAGE */
+.page{
+    padding:22px 0 40px;
+}
 
-.categories{
+.page-title{
+    font-size:25px;
+    font-weight:900;
+    margin-bottom:15px;
+}
+
+.page-title span{
+    color:var(--green);
+}
+
+/* CATEGORY */
+.category-grid{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:15px;
+    gap:14px;
 }
 
-.category{
-    min-height:180px;
+.category-card{
     position:relative;
     overflow:hidden;
-    background:#111;
-    border:1px solid #292929;
-    border-radius:24px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:flex-end;
-    padding:20px;
-    transition:.25s;
-}
-
-.category:hover{
-    transform:translateY(-5px);
-    border-color:var(--green);
-    box-shadow:0 15px 35px rgba(0,0,0,.35);
-}
-
-.category-image{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    opacity:.55;
+    min-height:170px;
+    border:1px solid var(--border);
+    border-radius:20px;
+    background:#0d0d0d;
     transition:.3s;
 }
 
-.category:hover .category-image{
-    transform:scale(1.05);
-    opacity:.68;
+.category-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--green);
+}
+
+.category-card img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    opacity:.55;
 }
 
 .category-overlay{
     position:absolute;
     inset:0;
-    background:linear-gradient(to top,rgba(0,0,0,.92),rgba(0,0,0,.15));
-}
-
-.category-content{
-    position:relative;
-    z-index:2;
-    text-align:center;
-}
-
-.category-icon{
-    font-size:38px;
-    margin-bottom:3px;
+    display:flex;
+    align-items:flex-end;
+    padding:18px;
+    background:linear-gradient(transparent,rgba(0,0,0,.9));
 }
 
 .category-name{
-    font-size:16px;
-    font-weight:bold;
+    font-size:20px;
+    font-weight:900;
 }
 
-.category-sub{
-    color:#aaa;
-    font-size:10px;
+/* PRODUCTS */
+.products-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    margin-bottom:15px;
 }
 
-/* =========================
-PRODUCTS - ADVANCED
-========================= */
+.sort-select{
+    background:#101010;
+    color:#fff;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:9px 12px;
+    outline:none;
+}
 
-.products{
+.products-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:18px;
+    gap:14px;
 }
 
 .product-card{
-    position:relative;
+    background:linear-gradient(145deg,#101010,#080808);
+    border:1px solid var(--border);
+    border-radius:18px;
     overflow:hidden;
-    background:
-        linear-gradient(145deg,#151515,#0c0c0c);
-    border:1px solid #292929;
-    border-radius:23px;
     transition:.3s;
-    box-shadow:0 10px 25px rgba(0,0,0,.18);
-}
-
-.product-card::before{
-    content:"";
-    position:absolute;
-    top:0;
-    right:12%;
-    left:12%;
-    height:2px;
-    background:linear-gradient(
-        90deg,
-        transparent,
-        var(--green),
-        var(--red),
-        transparent
-    );
-    opacity:.45;
-    z-index:2;
+    position:relative;
 }
 
 .product-card:hover{
-    transform:translateY(-8px);
-    border-color:#444;
-    box-shadow:
-        0 20px 45px rgba(0,0,0,.45),
-        0 0 25px rgba(25,214,107,.05);
+    transform:translateY(-4px);
+    border-color:rgba(25,214,107,.45);
+}
+
+.product-image-wrap{
+    position:relative;
+    background:#111;
 }
 
 .product-image{
-    height:235px;
-    background:
-        radial-gradient(circle at center,rgba(255,255,255,.04),transparent 55%),
-        #101010;
-    position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
-    border-bottom:1px solid #242424;
-}
-
-.product-image::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        to bottom,
-        transparent 55%,
-        rgba(0,0,0,.22)
-    );
-    pointer-events:none;
-}
-
-.product-image img{
     width:100%;
-    height:100%;
-    object-fit:contain;
-    padding:14px;
-    transition:.35s;
-}
-
-.product-card:hover .product-image img{
-    transform:scale(1.06);
-}
-
-.product-image > span{
-    font-size:75px;
-    opacity:.8;
+    height:235px;
+    object-fit:cover;
+    display:block;
 }
 
 .image-arrow{
     position:absolute;
     top:50%;
     transform:translateY(-50%);
-    width:35px;
-    height:35px;
+    width:31px;
+    height:31px;
+    border:none;
     border-radius:50%;
-    border:1px solid #555;
-    background:rgba(0,0,0,.78);
-    color:white;
-    z-index:8;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:.2s;
-}
-
-.image-arrow:hover{
-    background:var(--red);
-    border-color:var(--red);
-}
-
-.image-arrow.right{
-    right:9px;
+    background:rgba(0,0,0,.7);
+    color:#fff;
+    z-index:3;
 }
 
 .image-arrow.left{
-    left:9px;
+    left:7px;
+}
+
+.image-arrow.right{
+    right:7px;
 }
 
 .image-number{
     position:absolute;
-    bottom:9px;
-    right:50%;
-    transform:translateX(50%);
-    background:rgba(0,0,0,.8);
-    border:1px solid #444;
+    bottom:7px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(0,0,0,.7);
+    padding:2px 8px;
     border-radius:20px;
-    padding:2px 9px;
-    font-size:9px;
-    color:#ddd;
-    z-index:10;
+    font-size:10px;
 }
 
-.favorite{
+.discount-badge{
     position:absolute;
-    top:11px;
-    left:11px;
-    width:40px;
-    height:40px;
+    top:8px;
+    right:8px;
+    background:var(--red);
+    color:#fff;
+    padding:3px 8px;
+    border-radius:10px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.favorite-small{
+    position:absolute;
+    top:8px;
+    left:8px;
+    width:34px;
+    height:34px;
+    border:1px solid rgba(255,255,255,.12);
     border-radius:50%;
-    border:1px solid #444;
-    background:rgba(0,0,0,.8);
-    color:white;
-    font-size:19px;
-    z-index:20;
-    transition:.2s;
+    background:rgba(0,0,0,.7);
+    color:#fff;
+    font-size:17px;
+    z-index:5;
 }
 
-.favorite:hover{
-    border-color:var(--red);
+.favorite-small.active{
     color:var(--red);
-    transform:scale(1.08);
-}
-
-.favorite.active{
-    color:var(--red2);
-    border-color:var(--red);
 }
 
 .product-info{
-    padding:14px 15px 8px;
+    padding:12px;
 }
 
-.product-title{
-    font-size:15px;
-    font-weight:bold;
-    margin-bottom:5px;
-    white-space:nowrap;
-    overflow:hidden;
-    text-overflow:ellipsis;
+.product-name{
+    font-size:14px;
+    font-weight:900;
+    min-height:45px;
 }
 
-.product-desc{
-    color:#777;
-    font-size:10px;
-    min-height:32px;
-    display:-webkit-box;
-    -webkit-line-clamp:2;
-    -webkit-box-orient:vertical;
-    overflow:hidden;
-}
-
-.price-area{
-    margin-top:11px;
-}
-
-.old-price{
-    color:#666;
-    font-size:10px;
-    text-decoration:line-through;
-}
-
-.final-price{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:5px;
-    margin-top:3px;
-}
-
-.final-price strong{
-    font-size:17px;
-    color:#fff;
-}
-
-.final-price small{
+.product-brand{
     color:#888;
-    font-size:9px;
+    font-size:11px;
+    margin-bottom:5px;
 }
 
-.discount-label{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    background:linear-gradient(135deg,var(--red),var(--red2));
-    color:white;
-    border-radius:8px;
-    padding:3px 7px;
-    font-size:9px;
-    font-weight:bold;
-    box-shadow:0 5px 15px rgba(229,9,20,.16);
-}
-
-.stock-badge{
-    display:inline-flex;
-    align-items:center;
-    margin-top:9px;
-    padding:4px 8px;
-    border-radius:8px;
-    font-size:9px;
-    font-weight:bold;
-    background:#151515;
-    border:1px solid #292929;
-}
-
-.stock-badge.green{
-    color:var(--green);
-    border-color:rgba(25,214,107,.22);
-}
-
-.stock-badge.yellow{
-    color:var(--yellow);
-    border-color:rgba(255,196,0,.22);
-}
-
-.stock-badge.red{
-    color:var(--red2);
-    border-color:rgba(229,9,20,.3);
-}
-
-.product-actions{
-    display:grid;
-    grid-template-columns:.8fr 1.5fr;
-    gap:8px;
-    margin-top:8px;
-    padding:0 15px 15px;
-}
-
-.product-actions button{
-    padding:10px 7px;
-    border-radius:11px;
-    border:1px solid #333;
-    background:#1b1b1b;
-    color:white;
-    transition:.2s;
+.price-old{
+    color:#777;
+    text-decoration:line-through;
     font-size:11px;
 }
 
-.product-actions button:first-child:hover{
-    border-color:var(--green);
+.price{
     color:var(--green);
+    font-size:17px;
+    font-weight:900;
 }
 
-.product-actions .buy{
-    background:linear-gradient(
-        135deg,
-        var(--red),
-        var(--red2)
-    );
-    color:white;
-    border-color:var(--red);
-    font-weight:bold;
-    box-shadow:0 7px 18px rgba(229,9,20,.14);
+.stock{
+    margin-top:5px;
+    font-size:11px;
 }
 
-.product-actions .buy:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 22px rgba(229,9,20,.25);
-}
-
-.product-actions .buy:disabled{
-    background:#292929;
-    border-color:#333;
-    color:#777;
-    box-shadow:none;
-    cursor:not-allowed;
-}
-
-/* =========================
-FILTER
-========================= */
-
-.filters{
+.product-bottom{
     display:flex;
-    gap:9px;
-    margin-bottom:20px;
-    overflow-x:auto;
+    gap:7px;
+    margin-top:10px;
 }
 
-.filters::-webkit-scrollbar{
-    display:none;
+.details-btn,
+.add-btn{
+    flex:1;
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:8px 5px;
+    font-size:11px;
 }
 
-.filter{
-    border:1px solid #333;
+.details-btn{
     background:#151515;
-    color:#bbb;
-    border-radius:12px;
-    padding:9px 15px;
-    white-space:nowrap;
-    transition:.2s;
+    color:#fff;
 }
 
-.filter.active,
-.filter:hover{
+.add-btn{
     background:var(--green);
-    border-color:var(--green);
-    color:#06120a;
+    color:#001b0b;
+    font-weight:900;
 }
 
-/* =========================
-PRODUCT DETAIL
-========================= */
+/* PRODUCT DETAIL */
+.detail{
+    max-width:1050px;
+    margin:auto;
+}
 
-.product-detail{
+.detail-box{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:30px;
-    background:#101010;
+    gap:25px;
+    background:#0b0b0b;
     border:1px solid var(--border);
-    border-radius:26px;
-    padding:25px;
+    border-radius:22px;
+    padding:18px;
 }
 
 .detail-gallery{
-    min-height:500px;
     position:relative;
-    border-radius:20px;
-    background:
-        radial-gradient(circle,rgba(255,255,255,.04),transparent 60%),
-        #151515;
+    background:#111;
+    border-radius:17px;
     overflow:hidden;
 }
 
-.detail-gallery-main{
+.detail-gallery img{
     width:100%;
-    height:100%;
-    min-height:500px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.detail-gallery-main img{
-    width:100%;
-    height:100%;
-    max-height:500px;
-    object-fit:contain;
-    padding:20px;
-}
-
-.detail-arrow{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:44px;
-    height:44px;
-    border-radius:50%;
-    background:rgba(0,0,0,.78);
-    color:white;
-    border:1px solid #555;
-    z-index:5;
-    font-size:20px;
-}
-
-.detail-arrow:hover{
-    background:var(--red);
-    border-color:var(--red);
-}
-
-.detail-arrow.right{
-    right:12px;
-}
-
-.detail-arrow.left{
-    left:12px;
-}
-
-.detail-dots{
-    position:absolute;
-    bottom:14px;
-    right:50%;
-    transform:translateX(50%);
-    display:flex;
-    gap:5px;
-}
-
-.detail-dot{
-    width:8px;
-    height:8px;
-    border-radius:50%;
-    background:#555;
-}
-
-.detail-dot.active{
-    background:var(--red);
-}
-
-.detail-info{
-    padding:20px 5px;
+    height:450px;
+    object-fit:cover;
 }
 
 .detail-info h1{
-    font-size:32px;
-    margin-bottom:10px;
-}
-
-.detail-desc{
-    color:#999;
-    margin-bottom:25px;
-}
-
-.detail-price{
-    font-size:26px;
-    font-weight:bold;
+    font-size:28px;
     margin-bottom:8px;
 }
 
-.detail-discount{
-    color:var(--red2);
+.detail-brand{
+    color:#999;
+    margin-bottom:15px;
+}
+
+.detail-desc{
+    color:#ccc;
+    margin:15px 0;
+    white-space:pre-line;
+}
+
+.detail-price{
+    font-size:25px;
+    color:var(--green);
+    font-weight:900;
+}
+
+.detail-old{
+    color:#777;
+    text-decoration:line-through;
+}
+
+.specs{
+    margin-top:15px;
+    background:#111;
+    border-radius:14px;
+    padding:13px;
+    color:#bbb;
+    white-space:pre-line;
     font-size:13px;
-    margin-bottom:20px;
-}
-
-.detail-stock{
-    padding:12px 15px;
-    border-radius:13px;
-    background:#151515;
-    border:1px solid #292929;
-    margin-bottom:20px;
-    font-size:13px;
-    font-weight:bold;
-}
-
-.product-specs{
-    margin:20px 0;
-    border:1px solid var(--border);
-    border-radius:15px;
-    overflow:hidden;
-}
-
-.product-specs-title{
-    padding:13px 15px;
-    background:#171717;
-    font-weight:bold;
-    border-right:3px solid var(--green);
-}
-
-.product-specs-text{
-    padding:15px;
-    color:#aaa;
-    font-size:13px;
-    line-height:2;
 }
 
 .quantity{
     display:flex;
     align-items:center;
-    gap:15px;
-    margin-bottom:20px;
+    gap:12px;
+    margin:18px 0;
 }
 
 .quantity button{
-    width:40px;
-    height:40px;
-    border:1px solid #333;
-    background:#191919;
-    color:white;
-    border-radius:9px;
-    font-size:18px;
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:10px;
+    background:#181818;
+    color:#fff;
+    font-size:20px;
 }
 
-.quantity button:hover{
-    border-color:var(--red);
-    color:var(--red);
-}
-
-.quantity strong{
-    min-width:25px;
+.quantity span{
+    min-width:30px;
     text-align:center;
 }
 
-/* =========================
-BUTTONS
-========================= */
-
-.primary-btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    border:0;
-    background:linear-gradient(135deg,var(--red),var(--red2));
-    color:white;
-    padding:12px 24px;
+.detail-add{
+    width:100%;
+    border:none;
     border-radius:13px;
-    font-weight:bold;
-    transition:.2s;
-    box-shadow:0 8px 22px rgba(229,9,20,.15);
+    padding:13px;
+    background:var(--green);
+    color:#001b0b;
+    font-weight:900;
 }
 
-.primary-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 12px 27px rgba(229,9,20,.25);
+/* SUPPORT */
+.support-box{
+    max-width:650px;
+    margin:20px auto;
+    background:#0c0c0c;
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:22px;
 }
 
-.primary-btn:disabled{
-    background:#292929;
-    color:#777;
-    box-shadow:none;
-    cursor:not-allowed;
-}
-
-.secondary-btn{
-    display:inline-flex;
+.contact-item{
+    display:flex;
+    justify-content:space-between;
     align-items:center;
-    justify-content:center;
-    border:1px solid #333;
-    background:#171717;
-    color:white;
-    padding:11px 20px;
-    border-radius:12px;
+    gap:10px;
+    background:#111;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:12px;
+    margin-top:10px;
 }
 
-.secondary-btn:hover{
-    border-color:var(--green);
+.contact-value{
+    direction:ltr;
     color:var(--green);
+    font-weight:bold;
 }
 
-/* =========================
-OFFER
-========================= */
-
-.offer{
-    margin-top:35px;
-    padding:28px;
-    border:1px solid #194d31;
-    border-radius:20px;
-    background:
-        linear-gradient(100deg,#071b10,#151515);
+.contact-buttons{
     display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:20px;
+    gap:5px;
 }
 
-.offer h2{
-    margin-bottom:5px;
+.contact-btn{
+    border:1px solid var(--border);
+    background:#181818;
+    color:#fff;
+    border-radius:9px;
+    padding:7px 10px;
+    font-size:11px;
 }
 
-.offer p{
-    color:#999;
-    font-size:13px;
-}
-
-/* =========================
-PAGE TITLE
-========================= */
-
-.page-title{
+/* CART */
+.cart-list{
     display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-bottom:25px;
-}
-
-.page-title h1{
-    font-size:29px;
-}
-
-.page-title p{
-    color:#888;
-    font-size:12px;
-}
-
-/* =========================
-CART
-========================= */
-
-.cart-page{
-    max-width:900px;
-    margin:auto;
+    flex-direction:column;
+    gap:10px;
 }
 
 .cart-item{
     display:flex;
     align-items:center;
-    gap:15px;
-    padding:15px;
-    margin-bottom:10px;
+    gap:12px;
+    padding:12px;
+    background:#0d0d0d;
     border:1px solid var(--border);
-    background:var(--card);
     border-radius:15px;
 }
 
-.cart-icon{
-    width:75px;
-    height:75px;
-    border-radius:12px;
-    background:#202020;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:35px;
-    overflow:hidden;
-}
-
-.cart-icon img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    padding:8px;
+.cart-item img{
+    width:70px;
+    height:70px;
+    object-fit:cover;
+    border-radius:10px;
 }
 
 .cart-item-info{
     flex:1;
 }
 
-.cart-item-info h3{
-    font-size:14px;
+.remove-btn{
+    background:#190707;
+    border:1px solid #441111;
+    color:#ff5555;
+    border-radius:9px;
+    padding:7px 10px;
 }
 
-.cart-item-info p{
-    color:var(--green);
-    font-size:11px;
-}
-
-.qty{
-    display:flex;
-    align-items:center;
-    gap:7px;
-}
-
-.qty button{
-    width:31px;
-    height:31px;
-    border-radius:8px;
-    border:1px solid #333;
-    background:#1c1c1c;
-    color:white;
-}
-
-.qty button:hover{
-    border-color:var(--red);
-    color:var(--red);
-}
-
-.remove{
-    border:0;
-    background:none;
-    color:#888;
-    font-size:18px;
-}
-
-.remove:hover{
-    color:var(--red);
-}
-
-.cart-summary{
-    margin-top:20px;
-    padding:22px;
-    background:#121212;
+.cart-total{
+    margin-top:18px;
+    padding:15px;
     border:1px solid var(--border);
-    border-radius:17px;
-}
-
-.summary-row{
-    display:flex;
-    justify-content:space-between;
-    margin-bottom:10px;
-}
-
-.summary-row.total{
-    padding-top:13px;
-    border-top:1px solid #292929;
-    font-size:19px;
-    font-weight:bold;
-}
-
-/* =========================
-SUPPORT
-========================= */
-
-.support-page{
-    max-width:800px;
-    margin:auto;
-}
-
-.support-header{
-    text-align:center;
-    padding:35px 20px;
-    margin-bottom:20px;
-    border:1px solid #252525;
-    border-radius:28px;
-    background:
-        radial-gradient(circle at top,rgba(25,214,107,.12),transparent 55%),
-        #101010;
-}
-
-.support-avatar{
-    width:80px;
-    height:80px;
-    margin:auto auto 15px;
-    border-radius:50%;
-    background:var(--yellow);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
-}
-
-.support-header h1{
-    font-size:29px;
-}
-
-.support-header p{
-    color:#888;
-    font-size:12px;
-}
-
-.contact-card{
-    display:flex;
-    align-items:center;
-    gap:15px;
-    padding:18px;
-    margin-bottom:13px;
-    background:#111;
-    border:1px solid #292929;
-    border-radius:20px;
-}
-
-.contact-icon{
-    width:52px;
-    height:52px;
     border-radius:15px;
-    background:#191919;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:24px;
-}
-
-.contact-info{
-    flex:1;
-}
-
-.contact-info small{
-    color:#777;
-    display:block;
-    font-size:10px;
-}
-
-.contact-info strong{
-    font-size:15px;
-}
-
-.contact-actions{
-    display:flex;
-    gap:7px;
-}
-
-.contact-actions button{
-    border:1px solid #333;
-    background:#191919;
-    color:white;
-    border-radius:11px;
-    padding:9px 12px;
-}
-
-.contact-actions .contact-main{
-    background:var(--red);
-    border-color:var(--red);
-    color:white;
-}
-
-/* =========================
-LAWS
-========================= */
-
-.laws-box{
-    min-height:450px;
-    background:#101010;
-    border:1px solid #292929;
-    border-radius:25px;
-    padding:30px;
-}
-
-.laws-empty{
-    min-height:390px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    background:#0d0d0d;
     text-align:center;
-    color:#555;
-    font-size:13px;
 }
 
-/* =========================
-WELCOME LAW MODAL
-========================= */
+.empty{
+    text-align:center;
+    color:#777;
+    padding:60px 15px;
+}
 
-.modal-backdrop{
+/* SUPPORT FLOAT */
+.support-float{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    border:2px solid #8e7900;
+    background:#ffd92f;
+    color:#111;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:27px;
+    z-index:900;
+    box-shadow:0 5px 25px rgba(255,217,47,.2);
+    transition:.25s;
+}
+
+.support-float:hover{
+    transform:scale(1.08);
+}
+
+/* MODAL */
+.modal{
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.78);
-    backdrop-filter:blur(8px);
-    z-index:5000;
+    z-index:3000;
+    background:rgba(0,0,0,.8);
+    backdrop-filter:blur(7px);
     display:flex;
     align-items:center;
     justify-content:center;
     padding:20px;
 }
 
-.law-modal{
-    width:100%;
-    max-width:500px;
-    background:#111;
-    border:1px solid #333;
-    border-radius:27px;
-    padding:30px;
-    box-shadow:0 30px 100px #000;
-    animation:modalIn .25s ease;
+.modal.hidden{
+    display:none;
+}
+
+.modal-box{
+    width:min(450px,100%);
+    background:#101010;
+    border:1px solid rgba(25,214,107,.25);
+    border-radius:22px;
+    padding:25px;
     text-align:center;
+    box-shadow:0 20px 70px rgba(0,0,0,.5);
 }
 
-@keyframes modalIn{
-    from{
-        opacity:0;
-        transform:scale(.92);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
+.modal-box h2{
+    color:var(--green);
+    margin-bottom:12px;
 }
 
-.law-modal-icon{
-    width:65px;
-    height:65px;
-    border-radius:50%;
-    background:var(--green);
-    color:#06120a;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin:0 auto 15px;
-    font-size:30px;
-}
-
-.law-modal h2{
-    margin-bottom:8px;
-}
-
-.law-modal p{
-    color:#999;
-    font-size:13px;
-    margin-bottom:22px;
+.modal-box p{
+    color:#ccc;
+    margin-bottom:20px;
 }
 
 .modal-actions{
-    display:grid;
-    grid-template-columns:1fr 1fr;
+    display:flex;
     gap:10px;
 }
 
-.accept-btn{
-    border:0;
-    background:var(--green);
-    color:#06120a;
-    border-radius:13px;
-    padding:12px;
+.modal-actions button{
+    flex:1;
+    border:none;
+    border-radius:12px;
+    padding:11px;
     font-weight:bold;
 }
 
-.reject-btn{
-    border:0;
-    background:var(--red);
-    color:white;
-    border-radius:13px;
-    padding:12px;
+.accept{
+    background:var(--green);
+    color:#001b0b;
 }
 
-/* =========================
-FLOATING
-========================= */
-
-.floating-support{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    z-index:2500;
-    width:62px;
-    height:62px;
-    border-radius:50%;
-    border:3px solid #111;
-    background:var(--yellow);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:30px;
-    box-shadow:0 10px 30px rgba(0,0,0,.5);
-    transition:.25s;
+.reject{
+    background:#301010;
+    color:#ff5555;
 }
 
-.floating-support:hover{
-    transform:scale(1.08) rotate(-3deg);
-}
-
-.floating-shop-actions{
-    position:fixed;
-    left:18px;
-    bottom:20px;
-    z-index:2500;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-}
-
-.floating-action{
-    width:52px;
-    height:52px;
-    border-radius:17px;
-    border:1px solid #333;
-    background:#151515;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:21px;
-    box-shadow:0 10px 25px rgba(0,0,0,.35);
-    position:relative;
-}
-
-.floating-action:hover{
-    border-color:var(--red);
-    color:var(--red);
-    transform:translateY(-2px);
-}
-
-.floating-action .floating-count{
-    position:absolute;
-    top:-6px;
-    right:-5px;
-    min-width:19px;
-    height:19px;
-    border-radius:50%;
-    background:var(--red);
-    font-size:9px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-/* =========================
-NO RESULT / LOADING
-========================= */
-
-.no-result{
-    text-align:center;
-    padding:80px 10px;
-    color:#888;
-}
-
-.no-result div{
-    font-size:55px;
-    margin-bottom:10px;
-}
-
-.loading{
-    text-align:center;
-    padding:90px 10px;
-    color:#aaa;
-}
-
-.loading div{
-    font-size:50px;
-    margin-bottom:10px;
-}
-
-/* =========================
-TOAST
-========================= */
-
+/* TOAST */
 .toast{
     position:fixed;
-    bottom:25px;
-    right:25px;
-    z-index:6000;
+    bottom:20px;
+    left:50%;
+    transform:translate(-50%,120px);
     background:#171717;
-    border:1px solid #333;
-    border-right:4px solid var(--green);
-    border-radius:13px;
-    padding:13px 17px;
-    box-shadow:0 15px 40px #000;
-    transform:translateY(100px);
+    border:1px solid var(--green);
+    color:#fff;
+    padding:10px 18px;
+    border-radius:12px;
+    z-index:5000;
     opacity:0;
     transition:.3s;
-    pointer-events:none;
 }
 
 .toast.show{
-    transform:translateY(0);
+    transform:translate(-50%,0);
     opacity:1;
 }
 
-/* =========================
-FOOTER
-========================= */
-
+/* FOOTER */
 footer{
-    margin-top:50px;
-    padding:30px 0;
-    background:#060606;
     border-top:1px solid var(--border);
-}
-
-.copy{
+    margin-top:30px;
+    padding:18px 0;
+    color:#777;
     text-align:center;
-    color:#666;
     font-size:11px;
 }
 
-/* =========================
-MOBILE
-========================= */
-
-@media(max-width:950px){
-
-    .categories{
+/* RESPONSIVE */
+@media(max-width:900px){
+    .products-grid{
         grid-template-columns:repeat(3,1fr);
     }
 
-    .products{
-        grid-template-columns:repeat(2,1fr);
+    .detail-box{
+        grid-template-columns:1fr;
     }
 
+    .detail-gallery img{
+        height:400px;
+    }
+}
+
+@media(max-width:650px){
     .header-main{
         flex-wrap:wrap;
-        padding:10px 0;
+        padding:8px 0;
+    }
+
+    .brand{
+        flex:1;
+    }
+
+    .brand-name{
+        font-size:16px;
+    }
+
+    .logo{
+        width:43px;
+        height:43px;
     }
 
     .search-box{
         order:3;
-        flex-basis:100%;
         max-width:none;
-    }
-
-    .product-detail{
-        grid-template-columns:1fr;
-    }
-}
-
-@media(max-width:600px){
-
-    .container{
-        width:94%;
-    }
-
-    .logo img{
-        width:58px;
-        height:58px;
-    }
-
-    .logo-name{
-        font-size:18px;
+        flex-basis:100%;
     }
 
     .header-actions{
-        margin-right:auto;
+        gap:5px;
     }
 
     .header-btn{
-        min-width:43px;
-        padding:0 8px;
+        width:40px;
+        height:40px;
     }
 
-    .home-intro{
-        min-height:calc(100vh - 190px);
+    .products-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:9px;
+    }
+
+    .product-image{
+        height:190px;
+    }
+
+    .category-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .category-card{
+        min-height:135px;
+    }
+
+    .category-card img{
+        height:135px;
     }
 
     .home-box{
-        padding:30px 17px;
-        border-radius:25px;
+        padding-top:4px;
     }
 
-    .home-logo-small{
-        width:65px;
-        height:65px;
+    .home-title{
+        font-size:27px;
     }
 
-    .home-box h1{
-        font-size:25px;
-        margin-bottom:8px;
-    }
-
-    .home-description{
-        font-size:11px;
+    .home-subtitle{
+        font-size:13px;
         line-height:1.9;
     }
 
     .stats{
-        margin-top:15px;
         gap:6px;
     }
 
-    .stat{
-        padding:9px 3px;
-        border-radius:12px;
+    .stat-number{
+        font-size:18px;
     }
 
-    .stat strong{
-        font-size:16px;
+    .detail-gallery img{
+        height:320px;
     }
+}
 
-    .stat span{
-        font-size:8px;
-    }
-
-    .categories{
-        grid-template-columns:repeat(3,1fr);
-        gap:8px;
-    }
-
-    .category{
-        min-height:125px;
-        border-radius:17px;
-        padding:10px;
-    }
-
-    .category-icon{
-        font-size:28px;
-    }
-
-    .category-name{
-        font-size:11px;
-    }
-
-    .products{
-        gap:9px;
-    }
-
-    .product-card{
-        border-radius:17px;
+@media(max-width:400px){
+    .products-grid{
+        grid-template-columns:1fr 1fr;
     }
 
     .product-image{
-        height:155px;
+        height:165px;
     }
 
-    .product-info{
-        padding:9px;
-    }
-
-    .product-title{
+    .product-name{
         font-size:12px;
     }
 
-    .product-desc{
-        font-size:8px;
-        min-height:28px;
-    }
-
-    .final-price strong{
-        font-size:13px;
-    }
-
-    .final-price small{
-        font-size:8px;
-    }
-
-    .discount-label{
-        font-size:7px;
-        padding:3px 5px;
-    }
-
-    .stock-badge{
-        font-size:7px;
-        padding:3px 5px;
-    }
-
-    .product-actions{
-        grid-template-columns:1fr;
-        gap:5px;
-        padding:0 9px 9px;
-    }
-
-    .product-actions button{
-        padding:8px 5px;
-        font-size:9px;
-    }
-
-    .favorite{
-        width:34px;
-        height:34px;
-        font-size:16px;
-    }
-
-    .offer{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .detail-gallery,
-    .detail-gallery-main{
-        min-height:280px;
-    }
-
-    .detail-info h1{
-        font-size:24px;
-    }
-
-    .cart-item{
-        flex-wrap:wrap;
-    }
-
-    .cart-item-info{
-        min-width:calc(100% - 95px);
-    }
-
-    .contact-card{
-        flex-wrap:wrap;
-    }
-
-    .contact-info{
-        min-width:calc(100% - 70px);
-    }
-
-    .contact-actions{
-        width:100%;
-    }
-
-    .contact-actions button{
-        flex:1;
-    }
-
-    .floating-support{
-        width:56px;
-        height:56px;
-        right:14px;
-        bottom:14px;
-    }
-
-    .floating-shop-actions{
-        left:12px;
-        bottom:14px;
-    }
-
-    .floating-action{
-        width:48px;
-        height:48px;
+    .price{
+        font-size:14px;
     }
 }
 </style>
@@ -1760,2673 +943,1707 @@ MOBILE
 <body>
 
 <header>
+    <div class="container header-main">
 
-<div class="container header-main">
+        <a href="#/" class="brand" onclick="go('/')">
+            <img src="logo.jpg" class="logo" alt="ماهان سنتر ایران">
+            <div class="brand-name">
+                <span class="brand-green">ماهان سنتر</span>
+                <span class="brand-red"> ایران</span>
+            </div>
+        </a>
 
-<a href="#/" class="logo" onclick="go('/')">
+        <div class="search-box">
+            <span class="search-icon">⌕</span>
+            <input
+                id="searchInput"
+                type="text"
+                placeholder="جستجوی محصول..."
+                autocomplete="off"
+            >
+        </div>
 
-<img src="logo.jpg" alt="ماهان سنتر ایران">
+        <div class="header-actions">
 
-<div class="logo-name">
-ماهان سنتر <span>ایران</span>
-</div>
+            <button class="header-btn" onclick="go('/favorites')" title="علاقه‌مندی‌ها">
+                ❤
+                <span id="favoriteCount" class="count">0</span>
+            </button>
 
-</a>
+            <button class="header-btn" onclick="go('/cart')" title="سبد خرید">
+                🛒
+                <span id="cartCount" class="count">0</span>
+            </button>
 
-<div class="search-box">
+        </div>
+    </div>
 
-<input
-id="globalSearch"
-type="search"
-placeholder="جستجوی محصول؛ مثلاً A17..."
-onkeydown="if(event.key==='Enter')globalSearch()"
->
+    <nav>
+        <div class="container nav-inner">
 
-<button onclick="globalSearch()">⌕</button>
+            <a class="nav-link" href="#/" onclick="go('/')">
+                🏠 خانه
+            </a>
 
-</div>
+            <a class="nav-link" href="#/categories" onclick="go('/categories')">
+                📦 دسته‌بندی‌ها
+            </a>
 
-<div class="header-actions">
+            <a class="nav-link" href="#/discount" onclick="go('/discount')">
+                🔥 تخفیف‌ها
+            </a>
 
-<button
-class="header-btn"
-onclick="go('/favorites')"
-title="علاقه‌مندی‌ها"
->
-♡
-</button>
+            <a class="nav-link" href="#/laws" onclick="go('/laws')">
+                📜 قوانین
+            </a>
 
-<button
-class="header-btn"
-onclick="go('/cart')"
-title="سبد خرید"
->
-🛒
-<span class="cart-count" id="cartCount">0</span>
-</button>
+            <a class="nav-link" href="#/support" onclick="go('/support')">
+                💬 پشتیبانی
+            </a>
 
-</div>
-
-</div>
-
-<div class="navbar">
-
-<div class="container nav">
-
-<a href="#/" data-route="/" onclick="go('/')">
-خانه
-</a>
-
-<a href="#/categories" data-route="/categories" onclick="go('/categories')">
-دسته‌بندی‌ها
-</a>
-
-<a href="#/discount" data-route="/discount" onclick="go('/discount')">
-🔥 تخفیف‌ها
-</a>
-
-<a href="#/laws" data-route="/laws" onclick="go('/laws')">
-📜 قوانین
-</a>
-
-<a href="#/support" data-route="/support" onclick="go('/support')">
-پشتیبانی
-</a>
-
-</div>
-
-</div>
-
+        </div>
+    </nav>
 </header>
 
-<div id="app">
+<main id="app">
+    <div class="empty">در حال بارگذاری...</div>
+</main>
 
-<div class="loading">
-<div>⏳</div>
-در حال دریافت محصولات از Firebase...
-</div>
-
-</div>
-
-<div class="floating-shop-actions">
-
-<button
-class="floating-action"
-onclick="go('/favorites')"
-title="علاقه‌مندی‌ها"
->
-♡
-</button>
-
-<button
-class="floating-action"
-onclick="go('/cart')"
-title="سبد خرید"
->
-🛒
-<span class="floating-count" id="floatingCartCount">0</span>
-</button>
-
-</div>
-
-<button
-class="floating-support"
-onclick="go('/support')"
-title="پشتیبانی"
->
-👨🏻‍💻
+<!-- فقط پشتیبانی شناور -->
+<button class="support-float" onclick="go('/support')" title="پشتیبانی">
+    👨🏻‍💻
 </button>
 
 <div id="toast" class="toast"></div>
 
-<footer>
-<div class="container copy">
-تمامی اطلاعات محفوظ است.
+<!-- قانون اولین ورود -->
+<div id="lawModal" class="modal hidden">
+    <div class="modal-box">
+
+        <h2>دوست عزیز</h2>
+
+        <p>
+            قبل از خرید قوانین سایت را کامل مطالعه بفرمایید.
+        </p>
+
+        <div class="modal-actions">
+
+            <button class="accept" onclick="acceptLaw()">
+                پذیرش و خواندن قوانین
+            </button>
+
+            <button class="reject" onclick="rejectLaw()">
+                رد کردن
+            </button>
+
+        </div>
+
+    </div>
 </div>
+
+<footer>
+    <div class="container">
+        تمامی اطلاعات محفوظ است.
+    </div>
 </footer>
 
 <script>
+/* =========================
+   DATA
+========================= */
+
+const categories={
+    mobile:{
+        name:"گوشی",
+        icon:"📱",
+        image:""
+    },
+
+    gold:{
+        name:"طلا",
+        icon:"💎",
+        image:""
+    },
+
+    clothes:{
+        name:"پوشاک",
+        icon:"👕",
+        image:""
+    },
+
+    accessories:{
+        name:"لوازم جانبی",
+        icon:"🎧",
+        image:""
+    },
+
+    shoes:{
+        name:"کفش",
+        icon:"👟",
+        image:""
+    },
+
+    watches:{
+        name:"ساعت",
+        icon:"⌚",
+        image:""
+    }
+};
+
+const fallbackImages={
+    mobile:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80",
+
+    gold:"https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=80",
+
+    clothes:"https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=900&q=80",
+
+    accessories:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80",
+
+    shoes:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80",
+
+    watches:"https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=80"
+};
+
+let products=[];
+let currentSort="newest";
+
+let cart=JSON.parse(localStorage.getItem("mahanCart")||"[]");
+let favorites=JSON.parse(localStorage.getItem("mahanFavorites")||"[]");
+
 
 /* =========================
-FIREBASE
+   HELPERS
+========================= */
+
+function escapeHTML(value){
+    return String(value??"")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
+
+function money(value){
+    return Number(value||0).toLocaleString("fa-IR")+" تومان";
+}
+
+function getFinalPrice(product){
+    const price=Number(product.price||0);
+    const discount=Number(product.discount||0);
+
+    if(discount<=0) return price;
+
+    return Math.round(price-(price*discount/100));
+}
+
+function getImages(product){
+    return [
+        product.image,
+        product.image2,
+        product.image3
+    ].filter(Boolean);
+}
+
+function getStockText(stock){
+    stock=Number(stock||0);
+
+    if(stock>10){
+        return `<span style="color:#19d66b">🟢${stock} عدد در انبار موجود میباشد</span>`;
+    }
+
+    if(stock>0){
+        return `<span style="color:#ffd43b">🟡${stock} عدد در انبار موجود میباشد</span>`;
+    }
+
+    return `<span style="color:#ff3030">🔴 در انبار موجود نداریم</span>`;
+}
+
+function showToast(text){
+    const toast=document.getElementById("toast");
+
+    toast.textContent=text;
+    toast.classList.add("show");
+
+    clearTimeout(window.toastTimer);
+
+    window.toastTimer=setTimeout(()=>{
+        toast.classList.remove("show");
+    },2500);
+}
+
+function saveCart(){
+    localStorage.setItem("mahanCart",JSON.stringify(cart));
+    updateCounts();
+}
+
+function saveFavorites(){
+    localStorage.setItem("mahanFavorites",JSON.stringify(favorites));
+    updateCounts();
+}
+
+function updateCounts(){
+    document.getElementById("favoriteCount").textContent=favorites.length;
+
+    document.getElementById("cartCount").textContent=
+        cart.reduce((sum,item)=>sum+Number(item.qty||0),0);
+}
+
+function isFavorite(id){
+    return favorites.some(x=>String(x)===String(id));
+}
+
+function toggleFavorite(id){
+    id=String(id);
+
+    if(isFavorite(id)){
+        favorites=favorites.filter(x=>String(x)!==id);
+        showToast("از علاقه‌مندی‌ها حذف شد");
+    }else{
+        favorites.push(id);
+        showToast("به علاقه‌مندی‌ها اضافه شد");
+    }
+
+    saveFavorites();
+
+    render(getRoute());
+}
+
+
+/* =========================
+   LOAD PRODUCTS
 ========================= */
 
 async function loadProducts(){
 
-try{
+    try{
 
-const response=await fetch(
-"https://curly-cherry-da35.amydypiam064.workers.dev/products",
-{
-cache:"no-store"
-}
-);
+        const response=await fetch(
+            "https://curly-cherry-da35.amydypiam064.workers.dev/products",
+            {
+                cache:"no-store"
+            }
+        );
 
-if(!response.ok){
-throw new Error("خطای Worker: "+response.status);
-}
+        if(!response.ok){
+            throw new Error("خطا در دریافت محصولات");
+        }
 
-const result=await response.json();
+        const data=await response.json();
 
-const firebaseProducts=(result.documents||[]).map(doc=>{
+        const docs=Array.isArray(data)
+            ? data
+            : (data.documents||[]);
 
-const f=doc.fields||{};
+        products=docs.map(doc=>{
 
-const value=(name,fallback="")=>{
+            const f=doc.fields||doc;
 
-if(!f[name]) return fallback;
+            function value(key){
 
-return(
-f[name].stringValue ??
-f[name].integerValue ??
-f[name].doubleValue ??
-f[name].booleanValue ??
-fallback
-);
+                const v=f[key];
 
-};
+                if(v===undefined || v===null){
+                    return "";
+                }
 
-const docId=doc.name?.split("/").pop()||"";
+                if(typeof v==="object"){
 
-return{
+                    if("stringValue" in v) return v.stringValue;
 
-id:Number(value("code",docId))||0,
+                    if("integerValue" in v) return Number(v.integerValue);
 
-cat:value("category","digital"),
+                    if("doubleValue" in v) return Number(v.doubleValue);
 
-brand:value("brand",""),
+                    if("booleanValue" in v) return v.booleanValue;
 
-goldCat:value("goldCat",""),
+                    if("timestampValue" in v) return v.timestampValue;
+                }
 
-name:value("name","محصول بدون نام"),
+                return v;
+            }
 
-search:value("search",value("name","")),
+            return {
+                id:String(value("code")||value("id")||""),
+                cat:value("category"),
+                brand:value("brand"),
+                goldCat:value("goldCat"),
+                name:value("name"),
+                search:value("search"),
+                price:Number(value("price")||0),
+                image:value("image"),
+                image2:value("image2"),
+                image3:value("image3"),
+                icon:value("icon"),
+                desc:value("description")||value("desc"),
+                specs:value("specs"),
+                stock:Number(value("stock")||0),
+                discount:Number(value("discount")||0),
+                createdAt:value("createdAt")
+            };
+        });
 
-price:Number(value("price",0))||0,
+        products.sort((a,b)=>Number(a.id||0)-Number(b.id||0));
 
-image:value("image",""),
+        render(getRoute());
 
-image2:value("image2",""),
+        showFirstVisitLaw();
 
-image3:value("image3",""),
+    }catch(error){
 
-icon:value("icon","🛍️"),
+        console.error(error);
 
-desc:value("description",""),
+        products=[];
 
-specs:value("specs",""),
-
-stock:Number(value("stock",0))||0,
-
-discount:Number(value("discount",0))||0,
-
-createdAt:value("createdAt","")
-
-};
-
-});
-
-firebaseProducts.sort((a,b)=>a.id-b.id);
-
-window.products=firebaseProducts;
-
-console.log(
-"تعداد محصولات:",
-firebaseProducts.length
-);
-
-window.dispatchEvent(
-new Event("firebaseProductsLoaded")
-);
-
-}catch(error){
-
-console.error("Products error:",error);
-
-window.products=[];
-
-window.dispatchEvent(
-new CustomEvent(
-"firebaseProductsError",
-{detail:error}
-)
-);
-
-}
-
-}
-
-loadProducts();
-
-</script>
-
-<script>
-
-var products=[];
-
-const categories={
-
-mobile:{
-name:"گوشی",
-icon:"📱",
-image:""
-},
-
-gold:{
-name:"طلا",
-icon:"💎",
-image:""
-},
-
-clothes:{
-name:"پوشاک",
-icon:"👕",
-image:""
-},
-
-accessories:{
-name:"لوازم جانبی",
-icon:"🎧",
-image:""
-},
-
-shoes:{
-name:"کفش",
-icon:"👟",
-image:""
-},
-
-watches:{
-name:"ساعت",
-icon:"⌚",
-image:""
+        document.getElementById("app").innerHTML=`
+            <div class="container">
+                <div class="empty">
+                    دریافت محصولات با مشکل مواجه شد.
+                    <br><br>
+                    <button
+                        onclick="loadProducts()"
+                        style="
+                            background:#19d66b;
+                            border:0;
+                            padding:10px 18px;
+                            border-radius:10px;
+                            font-weight:bold;
+                        "
+                    >
+                        تلاش مجدد
+                    </button>
+                </div>
+            </div>
+        `;
+    }
 }
 
-};
-
-const categoryFallbackImages={
-
-mobile:
-"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80",
-
-gold:
-"https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=80",
-
-clothes:
-"https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=900&q=80",
-
-accessories:
-"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80",
-
-shoes:
-"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80",
-
-watches:
-"https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=80"
-
-};
-
-var cart=JSON.parse(
-localStorage.getItem("mahanCart")||"[]"
-);
-
-var favorites=JSON.parse(
-localStorage.getItem("mahanFavorites")||"[]"
-);
-
-var tempQty=1;
-var currentPhoneBrand="all";
-var currentSort="newest";
-
-window.addEventListener(
-"firebaseProductsLoaded",
-function(){
-
-products=window.products||[];
-
-updateCartCount();
-
-render(getRoute());
-
-setTimeout(showFirstVisitLaw,700);
-
-}
-);
-
-window.addEventListener(
-"firebaseProductsError",
-function(e){
-
-document.getElementById("app").innerHTML=`
-
-<div class="page">
-<div class="container">
-
-<div class="no-result">
-
-<div>⚠️</div>
-
-خطا در دریافت محصولات از Firebase.
-
-<br>
-
-<small>
-${escapeHTML(
-e.detail?.message||"خطای نامشخص"
-)}
-</small>
-
-</div>
-
-</div>
-</div>
-
-`;
-
-products=[];
-
-render(getRoute());
-
-}
-);
-
-function saveData(){
-
-localStorage.setItem(
-"mahanCart",
-JSON.stringify(cart)
-);
-
-localStorage.setItem(
-"mahanFavorites",
-JSON.stringify(favorites)
-);
-
-updateCartCount();
-
-}
-
-function go(path){
-
-if(location.hash==="#"+path){
-
-render(path);
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-return;
-
-}
-
-history.pushState(
-{},
-"",
-"#"+path
-);
-
-render(path);
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-window.addEventListener(
-"popstate",
-function(){
-render(getRoute());
-}
-);
-
-window.addEventListener(
-"hashchange",
-function(){
-render(getRoute());
-}
-);
-
-function getRoute(){
-
-var hash=location.hash.substring(1);
-
-if(!hash)
-return "/";
-
-return hash;
-
-}
-
-function render(route){
-
-if(route==="/"){
-renderHome();
-}
-
-else if(route==="/categories"){
-renderCategories();
-}
-
-else if(route==="/discount"){
-renderDiscount();
-}
-
-else if(route==="/favorites"){
-renderFavorites();
-}
-
-else if(route==="/cart"){
-renderCart();
-}
-
-else if(route==="/laws"){
-renderLaws();
-}
-
-else if(route==="/support"){
-renderSupport();
-}
-
-else if(route.startsWith("/category/")){
-renderCategory(route.split("/")[2]);
-}
-
-else if(route.startsWith("/product/")){
-renderProduct(
-Number(route.split("/")[2])
-);
-}
-
-else if(route.startsWith("/search/")){
-renderSearch(
-decodeURIComponent(
-route.split("/")[2]||""
-)
-);
-}
-
-else{
-renderHome();
-}
-
-updateActiveNav();
-
-}
 
 /* =========================
-HOME
-========================= */
-
-function renderHome(){
-
-document.getElementById("app").innerHTML=`
-
-<main class="page">
-
-<div class="container">
-
-<section class="home-intro">
-
-<div class="home-box">
-
-<img
-class="home-logo-small"
-src="logo.jpg"
-alt="ماهان سنتر ایران"
->
-
-<h1>
-خوش آمدید به
-<span>ماهان سنتر ایران</span>
-</h1>
-
-<p class="home-description">
-
-ماهان سنتر ایران یک فروشگاه آنلاین
-برای ارائه محصولات متنوع و باکیفیت است.
-هدف ما فراهم کردن تجربه‌ای ساده،
-سریع و حرفه‌ای برای انتخاب و خرید شماست.
-محصولات در دسته‌بندی‌های مختلف ارائه می‌شوند
-تا بتوانید راحت‌تر محصول موردنظر خود را پیدا کنید.
-ما تلاش می‌کنیم اطلاعات محصولات را شفاف
-و کامل در اختیار شما قرار دهیم.
-
-</p>
-
-<div class="stats">
-
-<div class="stat">
-
-<strong id="usersStat">
-0
-</strong>
-
-<span>
-کاربران سایت
-</span>
-
-</div>
-
-<div class="stat">
-
-<strong id="salesStat">
-0
-</strong>
-
-<span>
-خرید موفق
-</span>
-
-</div>
-
-<div class="stat">
-
-<strong id="satisfactionStat">
-0%
-</strong>
-
-<span>
-رضایت
-</span>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-</div>
-
-</main>
-
-`;
-
-}
-
-/* =========================
-CATEGORIES
-========================= */
-
-function categoryCard(key){
-
-var c=categories[key];
-
-var image=
-c.image||
-categoryFallbackImages[key]||
-"";
-
-return `
-
-<a
-class="category"
-href="#/category/${key}"
-onclick="go('/category/${key}')"
->
-
-${
-image
-?
-`
-<img
-class="category-image"
-src="${escapeHTML(image)}"
-alt="${escapeHTML(c.name)}"
-onerror="this.style.display='none'"
->
-`
-:
-""
-}
-
-<div class="category-overlay"></div>
-
-<div class="category-content">
-
-<div class="category-icon">
-${c.icon}
-</div>
-
-<div class="category-name">
-${escapeHTML(c.name)}
-</div>
-
-<div class="category-sub">
-مشاهده محصولات
-</div>
-
-</div>
-
-</a>
-
-`;
-
-}
-
-function renderCategories(){
-
-document.getElementById("app").innerHTML=`
-
-<main class="page">
-
-<div class="container">
-
-<div class="page-title">
-
-<div>
-
-<h1>
-دسته‌بندی‌ها
-</h1>
-
-<p>
-انتخاب دسته‌بندی محصولات
-</p>
-
-</div>
-
-</div>
-
-<div class="categories">
-
-${Object.keys(categories)
-.map(categoryCard)
-.join("")}
-
-</div>
-
-</div>
-
-</main>
-
-`;
-
-}
-
-/* =========================
-SORT
+   SORT
 ========================= */
 
 function sortProducts(list){
 
-var arr=[...list];
+    const arr=[...list];
 
-if(currentSort==="newest"){
-arr.sort((a,b)=>b.id-a.id);
+    if(currentSort==="newest"){
+
+        arr.sort((a,b)=>{
+            const ad=Date.parse(a.createdAt)||Number(a.id)||0;
+            const bd=Date.parse(b.createdAt)||Number(b.id)||0;
+
+            return bd-ad;
+        });
+
+    }
+
+    if(currentSort==="cheap"){
+
+        arr.sort((a,b)=>{
+            return getFinalPrice(a)-getFinalPrice(b);
+        });
+
+    }
+
+    if(currentSort==="expensive"){
+
+        arr.sort((a,b)=>{
+            return getFinalPrice(b)-getFinalPrice(a);
+        });
+
+    }
+
+    if(currentSort==="discount"){
+
+        arr.sort((a,b)=>{
+            return Number(b.discount||0)-Number(a.discount||0);
+        });
+
+    }
+
+    return arr;
 }
 
-else if(currentSort==="oldest"){
-arr.sort((a,b)=>a.id-b.id);
-}
-
-else if(currentSort==="cheap"){
-arr.sort(
-(a,b)=>getFinalPrice(a)-getFinalPrice(b)
-);
-}
-
-else if(currentSort==="expensive"){
-arr.sort(
-(a,b)=>getFinalPrice(b)-getFinalPrice(a)
-);
-}
-
-else if(currentSort==="discount"){
-arr.sort(
-(a,b)=>Number(b.discount||0)-Number(a.discount||0)
-);
-}
-
-return arr;
-
-}
-
-function getFinalPrice(p){
-
-var price=Number(p.price||0);
-var discount=Number(p.discount||0);
-
-return discount>0
-?
-Math.round(
-price-(price*discount/100)
-)
-:
-price;
-
-}
-
-function sortFilters(){
-
-var items=[
-["newest","جدیدترین"],
-["cheap","ارزان‌ترین"],
-["expensive","گران‌ترین"],
-["discount","بیشترین تخفیف"]
-];
-
-return `
-
-<div class="filters">
-
-${items.map(
-([key,name])=>`
-
-<button
-class="filter ${
-currentSort===key?"active":""
-}"
-onclick="changeSort('${key}')"
->
-${name}
-</button>
-
-`
-).join("")}
-
-</div>
-
-`;
-
-}
-
-function changeSort(sort){
-
-currentSort=sort;
-
-render(getRoute());
-
-}
 
 /* =========================
-CATEGORY
+   ROUTER
 ========================= */
 
-function renderCategory(cat){
+function getRoute(){
 
-if(cat==="mobile"){
-renderPhones();
-return;
+    let path=location.hash.replace(/^#/,"");
+
+    if(!path){
+        path="/";
+    }
+
+    return decodeURI(path);
 }
 
-var categoryProducts=
-products.filter(
-p=>p.cat===cat
-);
+function go(path){
 
-var categoryName=
-categories[cat]
-?
-categories[cat].name
-:
-"محصولات";
+    if(location.hash==="#"+path){
+        render(path);
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+        return;
+    }
 
-categoryProducts=
-sortProducts(categoryProducts);
+    location.hash=path;
 
-document.getElementById("app").innerHTML=`
+    render(path);
 
-<main class="page">
-
-<div class="container">
-
-<div class="page-title">
-
-<div>
-
-<h1>
-${escapeHTML(categoryName)}
-</h1>
-
-<p>
-${categoryProducts.length}
-محصول
-</p>
-
-</div>
-
-</div>
-
-${sortFilters()}
-
-${
-categoryProducts.length
-?
-`
-<div class="products">
-${categoryProducts
-.map(productCard)
-.join("")}
-</div>
-`
-:
-emptyResult(
-"📦",
-"محصولی در این دسته وجود ندارد"
-)
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 }
 
-</div>
-
-</main>
-
-`;
-
-}
-
-/* =========================
-PHONES
-========================= */
-
-function renderPhones(){
-
-var filtered=
-currentPhoneBrand==="all"
-?
-products.filter(p=>p.cat==="mobile")
-:
-products.filter(
-p=>
-p.cat==="mobile"&&
-p.brand===currentPhoneBrand
-);
-
-var brands=[
-["all","همه"],
-["iphone","آیفون"],
-["samsung","سامسونگ"],
-["xiaomi","شیائومی"],
-["nokia","نوکیا"]
-];
-
-filtered=sortProducts(filtered);
-
-document.getElementById("app").innerHTML=`
-
-<main class="page">
-
-<div class="container">
-
-<div class="page-title">
-
-<div>
-
-<h1>
-گوشی موبایل
-</h1>
-
-<p>
-${filtered.length} محصول
-</p>
-
-</div>
-
-</div>
-
-<div class="filters">
-
-${brands.map(
-([key,name])=>`
-
-<button
-class="filter ${
-currentPhoneBrand===key?"active":""
-}"
-onclick="filterPhones('${key}')"
->
-${name}
-</button>
-
-`
-).join("")}
-
-</div>
-
-${sortFilters()}
-
-<div class="products">
-
-${
-filtered.length
-?
-filtered.map(productCard).join("")
-:
-emptyResult("📱","محصولی پیدا نشد")
-}
-
-</div>
-
-</div>
-
-</main>
-
-`;
-
-}
-
-function filterPhones(brand){
-
-currentPhoneBrand=brand;
-
-renderPhones();
-
-}
-
-/* =========================
-PRODUCT IMAGES
-========================= */
-
-function getProductImages(p){
-
-var images=[
-p.image,
-p.image2,
-p.image3
-].filter(Boolean);
-
-if(!images.length)
-return [""];
-
-return images.slice(0,3);
-
-}
-
-function productImageHTML(p){
-
-var images=getProductImages(p);
-var first=images[0];
-
-if(!first){
-
-return `
-
-<div class="product-image">
-
-<span>
-${escapeHTML(p.icon||"🛍️")}
-</span>
-
-</div>
-
-`;
-
-}
-
-var arrows=
-images.length>1
-?
-`
-
-<button
-class="image-arrow right"
-onclick="event.preventDefault();event.stopPropagation();changeCardImage(${p.id},1)"
->
-›
-</button>
-
-<button
-class="image-arrow left"
-onclick="event.preventDefault();event.stopPropagation();changeCardImage(${p.id},-1)"
->
-‹
-</button>
-
-<div
-class="image-number"
-id="cardImageNumber-${p.id}"
->
-1 / ${images.length}
-</div>
-
-`
-:
-"";
-
-return `
-
-<div
-class="product-image"
-id="productImage-${p.id}"
->
-
-<img
-id="cardImg-${p.id}"
-src="${escapeHTML(first)}"
-alt="${escapeHTML(p.name)}"
-onerror="
-this.style.display='none';
-this.parentElement.innerHTML='<span>${escapeHTML(
-p.icon||"🛍️"
-)}</span>'
-"
->
-
-${arrows}
-
-</div>
-
-`;
-
-}
-
-var cardImageIndexes={};
-
-function changeCardImage(id,amount){
-
-var p=products.find(x=>x.id===id);
-
-if(!p)
-return;
-
-var images=getProductImages(p);
-
-if(images.length<=1)
-return;
-
-if(cardImageIndexes[id]===undefined)
-cardImageIndexes[id]=0;
-
-cardImageIndexes[id]+=amount;
-
-if(cardImageIndexes[id]<0)
-cardImageIndexes[id]=images.length-1;
-
-if(cardImageIndexes[id]>=images.length)
-cardImageIndexes[id]=0;
-
-var img=document.getElementById(
-"cardImg-"+id
-);
-
-var number=document.getElementById(
-"cardImageNumber-"+id
-);
-
-if(img){
-img.src=
-images[cardImageIndexes[id]];
-}
-
-if(number){
-
-number.textContent=
-(cardImageIndexes[id]+1)+
-" / "+
-images.length;
-
-}
-
-}
-
-/* =========================
-PRODUCT CARD
-========================= */
-
-function productCard(p){
-
-var isFav=favorites.includes(p.id);
-
-var price=Number(p.price||0);
-var discount=Number(p.discount||0);
-var finalPrice=getFinalPrice(p);
-var stock=Number(p.stock||0);
-
-var stockClass=
-stock>10
-?
-"green"
-:
-stock>0
-?
-"yellow"
-:
-"red";
-
-var stockText=
-stock>10
-?
-"🟢 موجود"
-:
-stock>0
-?
-"🟡 محدود"
-:
-"🔴 ناموجود";
-
-return `
-
-<article class="product-card">
-
-<button
-class="favorite ${isFav?"active":""}"
-onclick="toggleFavorite(${p.id})"
-title="علاقه‌مندی"
->
-${isFav?"♥":"♡"}
-</button>
-
-<a
-href="#/product/${p.id}"
-onclick="go('/product/${p.id}')"
->
-
-${productImageHTML(p)}
-
-<div class="product-info">
-
-<div class="product-title">
-${escapeHTML(p.name)}
-</div>
-
-<div class="product-desc">
-${escapeHTML(p.desc||"توضیحات محصول ثبت نشده است.")}
-</div>
-
-<div class="price-area">
-
-${
-discount>0
-?
-`
-<div style="display:flex;align-items:center;justify-content:space-between;gap:5px">
-
-<div>
-
-<div class="old-price">
-${price.toLocaleString("en-US")} تومان
-</div>
-
-<div class="final-price">
-<strong>
-${finalPrice.toLocaleString("en-US")}
-</strong>
-
-<small>
-تومان
-</small>
-</div>
-
-</div>
-
-<span class="discount-label">
-${discount}% تخفیف
-</span>
-
-</div>
-`
-:
-`
-<div class="final-price">
-<strong>
-${finalPrice.toLocaleString("en-US")}
-</strong>
-
-<small>
-تومان
-</small>
-</div>
-`
-}
-
-</div>
-
-<div class="stock-badge ${stockClass}">
-${stockText}
-${
-stock>0
-?
-` · ${stock} عدد`
-:
-""
-}
-</div>
-
-</div>
-
-</a>
-
-<div class="product-actions">
-
-<button
-onclick="go('/product/${p.id}')"
->
-جزئیات
-</button>
-
-<button
-class="buy"
-onclick="addToCart(${p.id},1)"
-${stock<=0?"disabled":""}
->
-
-${
-stock<=0
-?
-"ناموجود"
-:
-"🛒 افزودن به سبد"
-}
-
-</button>
-
-</div>
-
-</article>
-
-`;
-
-}
-
-/* =========================
-STOCK
-========================= */
-
-function getStockHTML(stock){
-
-stock=Number(stock||0);
-
-if(stock>10){
-
-return `
-🟢${stock}
-عدد در انبار موجود میباشد
-`;
-
-}
-
-if(stock>0){
-
-return `
-🟡${stock}
-عدد در انبار موجود میباشد
-`;
-
-}
-
-return `
-🔴 در انبار موجود نداریم
-`;
-
-}
-
-/* =========================
-PRODUCT DETAIL
-========================= */
-
-var detailImageIndexes={};
-
-function renderProduct(id){
-
-var p=products.find(
-x=>x.id===id
-);
-
-if(!p){
-
-document.getElementById("app").innerHTML=`
-
-<div class="page">
-
-<div class="container">
-
-${emptyResult(
-"❌",
-"محصول پیدا نشد"
-)}
-
-</div>
-
-</div>
-
-`;
-
-return;
-
-}
-
-tempQty=1;
-
-var images=getProductImages(p);
-
-detailImageIndexes[id]=0;
-
-var price=Number(p.price||0);
-var discount=Number(p.discount||0);
-var finalPrice=getFinalPrice(p);
-var stock=Number(p.stock||0);
-
-document.getElementById("app").innerHTML=`
-
-<main class="page">
-
-<div class="container">
-
-<div class="product-detail">
-
-<div class="detail-gallery">
-
-<div class="detail-gallery-main">
-
-${
-images[0]
-?
-`
-
-<img
-id="detailMainImage"
-src="${escapeHTML(images[0])}"
-alt="${escapeHTML(p.name)}"
-onerror="this.style.display='none';"
->
-
-`
-:
-`
-<span style="font-size:120px">
-${escapeHTML(p.icon||"🛍️")}
-</span>
-`
-}
-
-</div>
-
-${
-images.length>1
-?
-`
-
-<button
-class="detail-arrow right"
-onclick="changeDetailImage(${p.id},1)"
->
-›
-</button>
-
-<button
-class="detail-arrow left"
-onclick="changeDetailImage(${p.id},-1)"
->
-‹
-</button>
-
-<div
-class="detail-dots"
-id="detailDots"
->
-
-${images.map(
-(x,i)=>`
-
-<span
-class="detail-dot ${
-i===0?"active":""
-}"
-></span>
-
-`
-).join("")}
-
-</div>
-
-`
-:
-""
-}
-
-</div>
-
-<div class="detail-info">
-
-<h1>
-${escapeHTML(p.name)}
-</h1>
-
-<div class="detail-desc">
-${escapeHTML(
-p.desc||
-"توضیحات محصول ثبت نشده است."
-)}
-</div>
-
-<div class="detail-price">
-
-${
-discount>0
-?
-`
-
-<del
-style="
-color:#777;
-font-size:14px
-"
->
-${price.toLocaleString("en-US")}
-تومان
-</del>
-
-<br>
-
-${finalPrice.toLocaleString("en-US")}
-تومان
-
-`
-:
-`
-${finalPrice.toLocaleString("en-US")}
-<small>
-تومان
-</small>
-`
-}
-
-</div>
-
-${
-discount>0
-?
-`
-
-<div class="detail-discount">
-
-🏷️
-${discount}%
-تخفیف
--
-قیمت بعد تخفیف:
-
-${finalPrice.toLocaleString("en-US")}
-تومان
-
-</div>
-
-`
-:
-""
-}
-
-<div
-class="detail-stock ${
-stock>10
-?
-"stock green"
-:
-stock>0
-?
-"stock yellow"
-:
-"stock red"
-}"
->
-
-${getStockHTML(stock)}
-
-</div>
-
-<div class="product-specs">
-
-<div class="product-specs-title">
-مشخصات محصول
-</div>
-
-<div class="product-specs-text">
-
-${escapeHTML(
-p.specs||
-"مشخصات محصول ثبت نشده است."
-)}
-
-</div>
-
-</div>
-
-<div class="quantity">
-
-<button onclick="changeTempQty(-1)">
-−
-</button>
-
-<strong id="tempQty">
-1
-</strong>
-
-<button onclick="changeTempQty(1)">
-+
-</button>
-
-</div>
-
-<button
-class="primary-btn"
-onclick="addToCart(${p.id},tempQty)"
-${stock<=0?"disabled":""}
->
-
-${
-stock<=0
-?
-"ناموجود"
-:
-"🛒 افزودن به سبد خرید"
-}
-
-</button>
-
-<button
-class="secondary-btn"
-style="margin-right:8px"
-onclick="toggleFavorite(${p.id})"
->
-
-${
-favorites.includes(p.id)
-?
-"♥ حذف از علاقه‌مندی"
-:
-"♡ علاقه‌مندی"
-}
-
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</main>
-
-`;
-
-}
-
-function changeDetailImage(id,amount){
-
-var p=products.find(x=>x.id===id);
-
-if(!p)
-return;
-
-var images=getProductImages(p);
-
-if(images.length<=1)
-return;
-
-if(detailImageIndexes[id]===undefined)
-detailImageIndexes[id]=0;
-
-detailImageIndexes[id]+=amount;
-
-if(detailImageIndexes[id]<0)
-detailImageIndexes[id]=images.length-1;
-
-if(detailImageIndexes[id]>=images.length)
-detailImageIndexes[id]=0;
-
-var img=document.getElementById(
-"detailMainImage"
-);
-
-if(img){
-img.src=
-images[detailImageIndexes[id]];
-}
-
-document
-.querySelectorAll(".detail-dot")
-.forEach(
-(dot,index)=>{
-dot.classList.toggle(
-"active",
-index===detailImageIndexes[id]
-);
-}
-);
-
-}
-
-function changeTempQty(amount){
-
-tempQty+=amount;
-
-if(tempQty<1)
-tempQty=1;
-
-if(tempQty>99)
-tempQty=99;
-
-var el=document.getElementById(
-"tempQty"
-);
-
-if(el)
-el.textContent=tempQty;
-
-}
-
-/* =========================
-CART
-========================= */
-
-function addToCart(id,qty){
-
-qty=Number(qty||1);
-
-var p=products.find(x=>x.id===id);
-
-if(!p)
-return;
-
-if(Number(p.stock||0)<=0){
-
-showToast(
-"این محصول موجود نیست"
-);
-
-return;
-
-}
-
-var item=cart.find(x=>x.id===id);
-
-var currentQty=
-item
-?
-Number(item.qty||0)
-:
-0;
-
-if(
-currentQty+qty>
-Number(p.stock||0)
-){
-
-showToast(
-"تعداد انتخابی بیشتر از موجودی است"
-);
-
-return;
-
-}
-
-if(item){
-
-item.qty+=qty;
-
-}else{
-
-cart.push({
-id:id,
-qty:qty
+window.addEventListener("hashchange",()=>{
+    render(getRoute());
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 });
 
+
+/* =========================
+   HOME
+========================= */
+
+function renderHome(){
+
+    return `
+        <section class="home">
+
+            <div class="home-box">
+
+                <h1 class="home-title">
+                    <span class="brand-green">ماهان سنتر</span>
+                    <span class="brand-red"> ایران</span>
+                </h1>
+
+                <div class="home-subtitle">
+
+                    به <strong>ماهان سنتر</strong>
+                    <span class="iran">ایران</span> خوش آمدید.
+
+                    <br>
+
+                    <strong>ماهان سنتر</strong>
+                    <span class="iran">ایران</span>
+                    یک فروشگاه اینترنتی برای ارائه محصولات متنوع
+                    و باکیفیت در زمینه موبایل، طلا، پوشاک،
+                    کفش، ساعت، لوازم جانبی و کالاهای دیجیتال است.
+
+                    <br>
+
+                    هدف ما فراهم کردن تجربه‌ای ساده،
+                    سریع و حرفه‌ای برای خرید اینترنتی شماست.
+
+                </div>
+
+                <div class="stats">
+
+                    <div class="stat">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">کاربران سایت</div>
+                    </div>
+
+                    <div class="stat">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">خرید موفق</div>
+                    </div>
+
+                    <div class="stat">
+                        <div class="stat-number">0%</div>
+                        <div class="stat-label">رضایت مشتریان</div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+    `;
 }
 
-saveData();
 
-showToast(
-"محصول به سبد خرید اضافه شد"
-);
+/* =========================
+   CATEGORIES
+========================= */
 
+function renderCategories(){
+
+    return `
+        <div class="container page">
+
+            <h1 class="page-title">
+                دسته‌بندی <span>محصولات</span>
+            </h1>
+
+            <div class="category-grid">
+
+                ${Object.entries(categories).map(([id,cat])=>{
+
+                    const image=cat.image||fallbackImages[id];
+
+                    return `
+                        <a
+                            class="category-card"
+                            href="#/category/${id}"
+                            onclick="go('/category/${id}')"
+                        >
+
+                            <img
+                                src="${image}"
+                                alt="${escapeHTML(cat.name)}"
+                            >
+
+                            <div class="category-overlay">
+                                <div class="category-name">
+                                    ${cat.icon}
+                                    ${escapeHTML(cat.name)}
+                                </div>
+                            </div>
+
+                        </a>
+                    `;
+
+                }).join("")}
+
+            </div>
+
+        </div>
+    `;
 }
 
-function updateCartCount(){
 
-var count=cart.reduce(
-(sum,item)=>
-sum+Number(item.qty||0),
-0
-);
+/* =========================
+   PRODUCT CARD
+========================= */
 
-var el=document.getElementById(
-"cartCount"
-);
+function productCard(product){
 
-if(el)
-el.textContent=count;
+    const images=getImages(product);
 
-var floating=document.getElementById(
-"floatingCartCount"
-);
+    const firstImage=images[0]||fallbackImages[product.cat]||"";
 
-if(floating)
-floating.textContent=count;
+    const finalPrice=getFinalPrice(product);
 
+    const hasDiscount=
+        Number(product.discount||0)>0 &&
+        finalPrice<Number(product.price||0);
+
+    return `
+        <article class="product-card">
+
+            <div class="product-image-wrap">
+
+                <img
+                    id="img-${escapeHTML(product.id)}"
+                    class="product-image"
+                    src="${firstImage}"
+                    alt="${escapeHTML(product.name)}"
+                >
+
+                ${
+                    images.length>1
+                    ? `
+                        <button
+                            class="image-arrow left"
+                            onclick="changeCardImage('${escapeHTML(product.id)}',-1)"
+                        >
+                            ‹
+                        </button>
+
+                        <button
+                            class="image-arrow right"
+                            onclick="changeCardImage('${escapeHTML(product.id)}',1)"
+                        >
+                            ›
+                        </button>
+
+                        <div
+                            id="num-${escapeHTML(product.id)}"
+                            class="image-number"
+                        >
+                            1 / ${images.length}
+                        </div>
+                    `
+                    :""
+                }
+
+                ${
+                    hasDiscount
+                    ? `
+                        <div class="discount-badge">
+                            ${product.discount}٪ تخفیف
+                        </div>
+                    `
+                    :""
+                }
+
+                <button
+                    class="favorite-small ${isFavorite(product.id)?"active":""}"
+                    onclick="toggleFavorite('${escapeHTML(product.id)}')"
+                >
+                    ❤
+                </button>
+
+            </div>
+
+            <div class="product-info">
+
+                <div class="product-brand">
+                    ${escapeHTML(product.brand||"")}
+                </div>
+
+                <div class="product-name">
+                    ${escapeHTML(product.name||"بدون نام")}
+                </div>
+
+                ${
+                    hasDiscount
+                    ? `
+                        <div class="price-old">
+                            ${money(product.price)}
+                        </div>
+                    `
+                    :""
+                }
+
+                <div class="price">
+                    ${money(finalPrice)}
+                </div>
+
+                <div class="stock">
+                    ${getStockText(product.stock)}
+                </div>
+
+                <div class="product-bottom">
+
+                    <button
+                        class="details-btn"
+                        onclick="go('/product/${encodeURIComponent(product.id)}')"
+                    >
+                        جزئیات
+                    </button>
+
+                    <button
+                        class="add-btn"
+                        onclick="addToCart('${escapeHTML(product.id)}')"
+                        ${Number(product.stock||0)<=0?"disabled":""}
+                    >
+                        افزودن
+                    </button>
+
+                </div>
+
+            </div>
+
+        </article>
+    `;
 }
 
-function cartQty(id,amount){
 
-var item=cart.find(
-x=>x.id===id
-);
+const cardImageIndex={};
 
-if(!item)
-return;
+function changeCardImage(id,direction){
 
-var p=products.find(
-x=>x.id===id
-);
+    const product=products.find(
+        p=>String(p.id)===String(id)
+    );
 
-item.qty+=amount;
+    if(!product) return;
 
-if(p){
+    const images=getImages(product);
 
-if(
-item.qty>
-Number(p.stock||0)
-){
+    if(images.length<=1) return;
 
-item.qty=
-Number(p.stock||0);
+    if(cardImageIndex[id]===undefined){
+        cardImageIndex[id]=0;
+    }
 
+    cardImageIndex[id]+=direction;
+
+    if(cardImageIndex[id]<0){
+        cardImageIndex[id]=images.length-1;
+    }
+
+    if(cardImageIndex[id]>=images.length){
+        cardImageIndex[id]=0;
+    }
+
+    const img=document.getElementById("img-"+id);
+    const num=document.getElementById("num-"+id);
+
+    if(img){
+        img.src=images[cardImageIndex[id]];
+    }
+
+    if(num){
+        num.textContent=
+            `${cardImageIndex[id]+1} / ${images.length}`;
+    }
 }
 
+
+/* =========================
+   PRODUCT LIST
+========================= */
+
+function renderProducts(list,title){
+
+    const sorted=sortProducts(list);
+
+    return `
+        <div class="container page">
+
+            <div class="products-head">
+
+                <h1 class="page-title" style="margin:0">
+                    ${escapeHTML(title)}
+                </h1>
+
+                <select
+                    class="sort-select"
+                    onchange="
+                        currentSort=this.value;
+                        render(getRoute())
+                    "
+                >
+
+                    <option value="newest" ${currentSort==="newest"?"selected":""}>
+                        جدیدترین
+                    </option>
+
+                    <option value="cheap" ${currentSort==="cheap"?"selected":""}>
+                        ارزان‌ترین
+                    </option>
+
+                    <option value="expensive" ${currentSort==="expensive"?"selected":""}>
+                        گران‌ترین
+                    </option>
+
+                    <option value="discount" ${currentSort==="discount"?"selected":""}>
+                        بیشترین تخفیف
+                    </option>
+
+                </select>
+
+            </div>
+
+            ${
+                sorted.length
+                ? `
+                    <div class="products-grid">
+                        ${sorted.map(productCard).join("")}
+                    </div>
+                `
+                : `
+                    <div class="empty">
+                        محصولی در این بخش وجود ندارد.
+                    </div>
+                `
+            }
+
+        </div>
+    `;
 }
 
-if(item.qty<1){
 
-cart=cart.filter(
-x=>x.id!==id
-);
+/* =========================
+   PRODUCT DETAIL
+========================= */
 
+let detailImageIndex=0;
+
+function renderProductDetail(id){
+
+    const product=products.find(
+        p=>String(p.id)===String(id)
+    );
+
+    if(!product){
+
+        return `
+            <div class="container page">
+                <div class="empty">
+                    محصول پیدا نشد.
+                </div>
+            </div>
+        `;
+    }
+
+    const images=getImages(product);
+
+    if(detailImageIndex>=images.length){
+        detailImageIndex=0;
+    }
+
+    const image=
+        images[detailImageIndex]||
+        fallbackImages[product.cat]||
+        "";
+
+    const finalPrice=getFinalPrice(product);
+
+    const hasDiscount=
+        Number(product.discount||0)>0 &&
+        finalPrice<Number(product.price||0);
+
+    return `
+        <div class="container page">
+
+            <div class="detail">
+
+                <div class="detail-box">
+
+                    <div class="detail-gallery">
+
+                        <img
+                            src="${image}"
+                            alt="${escapeHTML(product.name)}"
+                        >
+
+                        ${
+                            images.length>1
+                            ? `
+                                <button
+                                    class="image-arrow left"
+                                    onclick="
+                                        detailImageIndex--;
+                                        if(detailImageIndex<0)
+                                            detailImageIndex=${images.length-1};
+                                        render(getRoute());
+                                    "
+                                >
+                                    ‹
+                                </button>
+
+                                <button
+                                    class="image-arrow right"
+                                    onclick="
+                                        detailImageIndex++;
+                                        if(detailImageIndex>=${images.length})
+                                            detailImageIndex=0;
+                                        render(getRoute());
+                                    "
+                                >
+                                    ›
+                                </button>
+
+                                <div class="image-number">
+                                    ${detailImageIndex+1} / ${images.length}
+                                </div>
+                            `
+                            :""
+                        }
+
+                    </div>
+
+                    <div class="detail-info">
+
+                        <h1>
+                            ${escapeHTML(product.name||"بدون نام")}
+                        </h1>
+
+                        <div class="detail-brand">
+                            ${escapeHTML(product.brand||"")}
+                        </div>
+
+                        ${
+                            hasDiscount
+                            ? `
+                                <div class="detail-old">
+                                    ${money(product.price)}
+                                </div>
+
+                                <div style="color:#ff3030;margin:5px 0">
+                                    ${product.discount}٪ تخفیف
+                                </div>
+                            `
+                            :""
+                        }
+
+                        <div class="detail-price">
+                            ${money(finalPrice)}
+                        </div>
+
+                        <div style="margin-top:8px">
+                            ${getStockText(product.stock)}
+                        </div>
+
+                        ${
+                            product.desc
+                            ? `
+                                <div class="detail-desc">
+                                    ${escapeHTML(product.desc)}
+                                </div>
+                            `
+                            :""
+                        }
+
+                        ${
+                            product.specs
+                            ? `
+                                <div class="specs">
+                                    <strong>مشخصات محصول</strong>
+                                    <br><br>
+                                    ${escapeHTML(product.specs)}
+                                </div>
+                            `
+                            :""
+                        }
+
+                        <div class="quantity">
+
+                            <button onclick="changeQuantity(-1)">
+                                −
+                            </button>
+
+                            <span id="detailQty">1</span>
+
+                            <button onclick="changeQuantity(1)">
+                                +
+                            </button>
+
+                        </div>
+
+                        <button
+                            class="detail-add"
+                            onclick="addDetailToCart('${escapeHTML(product.id)}')"
+                            ${Number(product.stock||0)<=0?"disabled":""}
+                        >
+                            🛒 افزودن به سبد خرید
+                        </button>
+
+                        <button
+                            style="
+                                width:100%;
+                                margin-top:8px;
+                                padding:11px;
+                                border-radius:13px;
+                                background:#151515;
+                                border:1px solid ${isFavorite(product.id)?"#ff3030":"#333"};
+                                color:${isFavorite(product.id)?"#ff3030":"#fff"};
+                            "
+                            onclick="toggleFavorite('${escapeHTML(product.id)}')"
+                        >
+                            ❤
+                            ${
+                                isFavorite(product.id)
+                                ? "حذف از علاقه‌مندی‌ها"
+                                : "افزودن به علاقه‌مندی‌ها"
+                            }
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
 }
 
-saveData();
+let detailQuantity=1;
 
-renderCart();
+function changeQuantity(change){
 
+    const route=getRoute();
+
+    const id=route.split("/")[2];
+
+    const product=products.find(
+        p=>String(p.id)===String(id)
+    );
+
+    if(!product) return;
+
+    detailQuantity+=change;
+
+    if(detailQuantity<1){
+        detailQuantity=1;
+    }
+
+    if(detailQuantity>Number(product.stock||0)){
+        detailQuantity=Number(product.stock||0);
+    }
+
+    if(detailQuantity<1){
+        detailQuantity=1;
+    }
+
+    const el=document.getElementById("detailQty");
+
+    if(el){
+        el.textContent=detailQuantity;
+    }
+}
+
+function addDetailToCart(id){
+
+    const product=products.find(
+        p=>String(p.id)===String(id)
+    );
+
+    if(!product) return;
+
+    const stock=Number(product.stock||0);
+
+    if(stock<=0){
+        showToast("این محصول موجود نیست");
+        return;
+    }
+
+    addToCart(id,detailQuantity);
+}
+
+
+/* =========================
+   CART
+========================= */
+
+function addToCart(id,qty=1){
+
+    const product=products.find(
+        p=>String(p.id)===String(id)
+    );
+
+    if(!product) return;
+
+    const stock=Number(product.stock||0);
+
+    if(stock<=0){
+        showToast("این محصول موجود نیست");
+        return;
+    }
+
+    const existing=cart.find(
+        item=>String(item.id)===String(id)
+    );
+
+    const currentQty=existing
+        ? Number(existing.qty||0)
+        : 0;
+
+    if(currentQty+Number(qty)>stock){
+        showToast("تعداد انتخابی بیشتر از موجودی است");
+        return;
+    }
+
+    if(existing){
+        existing.qty=currentQty+Number(qty);
+    }else{
+        cart.push({
+            id:String(id),
+            qty:Number(qty)
+        });
+    }
+
+    saveCart();
+
+    showToast("محصول به سبد خرید اضافه شد");
 }
 
 function removeFromCart(id){
 
-cart=cart.filter(
-x=>x.id!==id
-);
+    cart=cart.filter(
+        item=>String(item.id)!==String(id)
+    );
 
-saveData();
+    saveCart();
 
-renderCart();
+    render("/cart");
+}
 
-showToast(
-"محصول از سبد حذف شد"
-);
+function changeCartQty(id,change){
 
+    const item=cart.find(
+        x=>String(x.id)===String(id)
+    );
+
+    const product=products.find(
+        x=>String(x.id)===String(id)
+    );
+
+    if(!item || !product) return;
+
+    item.qty+=change;
+
+    if(item.qty<1){
+        item.qty=1;
+    }
+
+    if(item.qty>Number(product.stock||0)){
+        item.qty=Number(product.stock||0);
+    }
+
+    saveCart();
+
+    render("/cart");
 }
 
 function renderCart(){
 
-var items=
-cart.map(item=>{
+    const validCart=cart.filter(item=>
+        products.some(p=>String(p.id)===String(item.id))
+    );
 
-var p=products.find(
-x=>x.id===item.id
-);
+    cart=validCart;
 
-return p
-?
-{...p,qty:item.qty}
-:
-null;
+    if(!cart.length){
 
-}).filter(Boolean);
+        return `
+            <div class="container page">
 
-if(!items.length){
+                <h1 class="page-title">
+                    🛒 سبد <span>خرید</span>
+                </h1>
 
-document.getElementById("app").innerHTML=`
+                <div class="empty">
+                    سبد خرید شما خالی است.
+                </div>
 
-<main class="page">
+            </div>
+        `;
+    }
 
-<div class="container cart-page">
+    let total=0;
 
-${emptyResult(
-"🛒",
-"سبد خرید شما خالی است"
-)}
+    const items=cart.map(item=>{
 
-</div>
+        const product=products.find(
+            p=>String(p.id)===String(item.id)
+        );
 
-</main>
+        if(!product) return "";
 
-`;
+        const qty=Number(item.qty||1);
 
-return;
+        const price=getFinalPrice(product);
 
+        total+=price*qty;
+
+        const image=
+            getImages(product)[0]||
+            fallbackImages[product.cat]||
+            "";
+
+        return `
+            <div class="cart-item">
+
+                <img src="${image}" alt="">
+
+                <div class="cart-item-info">
+
+                    <strong>
+                        ${escapeHTML(product.name)}
+                    </strong>
+
+                    <div style="color:#19d66b">
+                        ${money(price)}
+                    </div>
+
+                    <div class="quantity" style="margin:5px 0">
+
+                        <button
+                            onclick="changeCartQty('${escapeHTML(product.id)}',-1)"
+                        >
+                            −
+                        </button>
+
+                        <span>${qty}</span>
+
+                        <button
+                            onclick="changeCartQty('${escapeHTML(product.id)}',1)"
+                        >
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <button
+                    class="remove-btn"
+                    onclick="removeFromCart('${escapeHTML(product.id)}')"
+                >
+                    حذف
+                </button>
+
+            </div>
+        `;
+    }).join("");
+
+    saveCart();
+
+    return `
+        <div class="container page">
+
+            <h1 class="page-title">
+                🛒 سبد <span>خرید</span>
+            </h1>
+
+            <div class="cart-list">
+                ${items}
+            </div>
+
+            <div class="cart-total">
+
+                <div style="color:#aaa">
+                    مبلغ کل
+                </div>
+
+                <div style="
+                    color:#19d66b;
+                    font-size:24px;
+                    font-weight:900;
+                ">
+                    ${money(total)}
+                </div>
+
+                <button
+                    onclick="go('/support')"
+                    style="
+                        margin-top:12px;
+                        width:100%;
+                        padding:12px;
+                        border:0;
+                        border-radius:12px;
+                        background:#19d66b;
+                        color:#001b0b;
+                        font-weight:900;
+                    "
+                >
+                    ادامه و ارتباط با پشتیبانی
+                </button>
+
+            </div>
+
+        </div>
+    `;
 }
 
-var total=items.reduce(
-(sum,item)=>
-sum+
-getFinalPrice(item)*item.qty,
-0
-);
-
-document.getElementById("app").innerHTML=`
-
-<main class="page">
-
-<div class="container cart-page">
-
-<div class="page-title">
-
-<div>
-
-<h1>
-سبد خرید
-</h1>
-
-<p>
-${items.length} محصول
-</p>
-
-</div>
-
-</div>
-
-${items.map(item=>{
-
-var finalPrice=getFinalPrice(item);
-
-return `
-
-<div class="cart-item">
-
-<div class="cart-icon">
-
-${
-item.image
-?
-`
-<img
-src="${escapeHTML(item.image)}"
-alt="${escapeHTML(item.name)}"
->
-`
-:
-escapeHTML(item.icon||"🛍️")
-}
-
-</div>
-
-<div class="cart-item-info">
-
-<h3>
-${escapeHTML(item.name)}
-</h3>
-
-<p>
-${finalPrice.toLocaleString("en-US")}
-تومان
-</p>
-
-</div>
-
-<div class="qty">
-
-<button
-onclick="cartQty(${item.id},-1)"
->
-−
-</button>
-
-<strong>
-${item.qty}
-</strong>
-
-<button
-onclick="cartQty(${item.id},1)"
->
-+
-</button>
-
-</div>
-
-<button
-class="remove"
-onclick="removeFromCart(${item.id})"
->
-×
-</button>
-
-</div>
-
-`;
-
-}).join("")}
-
-<div class="cart-summary">
-
-<div class="summary-row">
-
-<span>
-جمع کل
-</span>
-
-<strong>
-${total.toLocaleString("en-US")}
-تومان
-</strong>
-
-</div>
-
-<div class="summary-row total">
-
-<span>
-مبلغ نهایی
-</span>
-
-<strong>
-${total.toLocaleString("en-US")}
-تومان
-</strong>
-
-</div>
-
-<button
-class="primary-btn"
-style="width:100%;margin-top:10px"
-onclick="checkout()"
->
-ثبت سفارش
-</button>
-
-</div>
-
-</div>
-
-</main>
-
-`;
-
-}
-
-function checkout(){
-
-showToast(
-"بخش ثبت سفارش به‌زودی فعال می‌شود"
-);
-
-}
 
 /* =========================
-FAVORITES
+   FAVORITES
 ========================= */
-
-function toggleFavorite(id){
-
-if(favorites.includes(id)){
-
-favorites=favorites.filter(
-x=>x!==id
-);
-
-showToast(
-"از علاقه‌مندی‌ها حذف شد"
-);
-
-}else{
-
-favorites.push(id);
-
-showToast(
-"به علاقه‌مندی‌ها اضافه شد"
-);
-
-}
-
-saveData();
-
-render(getRoute());
-
-}
 
 function renderFavorites(){
 
-var list=products.filter(
-p=>favorites.includes(p.id)
-);
+    const list=products.filter(
+        p=>isFavorite(p.id)
+    );
 
-list=sortProducts(list);
+    return `
+        <div class="container page">
 
-document.getElementById("app").innerHTML=`
+            <h1 class="page-title">
+                ❤ <span>علاقه‌مندی‌ها</span>
+            </h1>
 
-<main class="page">
+            ${
+                list.length
+                ? `
+                    <div class="products-grid">
+                        ${sortProducts(list).map(productCard).join("")}
+                    </div>
+                `
+                : `
+                    <div class="empty">
+                        هنوز محصولی به علاقه‌مندی‌ها اضافه نکرده‌اید.
+                    </div>
+                `
+            }
 
-<div class="container">
-
-<div class="page-title">
-
-<div>
-
-<h1>
-علاقه‌مندی‌ها
-</h1>
-
-<p>
-${list.length} محصول
-</p>
-
-</div>
-
-</div>
-
-${
-list.length
-?
-`
-<div class="products">
-${list.map(productCard).join("")}
-</div>
-`
-:
-emptyResult(
-"♡",
-"هنوز محصولی به علاقه‌مندی‌ها اضافه نشده"
-)
+        </div>
+    `;
 }
 
-</div>
-
-</main>
-
-`;
-
-}
 
 /* =========================
-SEARCH
-========================= */
-
-function globalSearch(){
-
-var input=document.getElementById(
-"globalSearch"
-);
-
-var q=input
-?
-input.value.trim()
-:
-"";
-
-if(!q)
-return;
-
-go(
-"/search/"+
-encodeURIComponent(q)
-);
-
-}
-
-function renderSearch(q){
-
-var query=q.toLowerCase();
-
-var results=products.filter(p=>{
-
-var text=[
-p.name,
-p.search,
-p.brand,
-p.cat,
-p.goldCat
-]
-.join(" ")
-.toLowerCase();
-
-return text.includes(query);
-
-});
-
-results=sortProducts(results);
-
-document.getElementById("app").innerHTML=`
-
-<main class="page">
-
-<div class="container">
-
-<div class="page-title">
-
-<div>
-
-<h1>
-نتایج جستجو
-</h1>
-
-<p>
-برای «${escapeHTML(q)}»
-${results.length}
-نتیجه
-</p>
-
-</div>
-
-</div>
-
-${sortFilters()}
-
-<div class="search-results">
-
-${
-results.length
-?
-`
-<div class="products">
-${results.map(productCard).join("")}
-</div>
-`
-:
-emptyResult(
-"🔎",
-"محصولی با این عبارت پیدا نشد"
-)
-}
-
-</div>
-
-</div>
-
-</main>
-
-`;
-
-}
-
-/* =========================
-DISCOUNT
+   DISCOUNT
 ========================= */
 
 function renderDiscount(){
 
-var list=products.filter(
-p=>Number(p.discount||0)>0
-);
+    const list=products.filter(
+        p=>Number(p.discount||0)>0
+    );
 
-list=sortProducts(list);
-
-document.getElementById("app").innerHTML=`
-
-<main class="page">
-
-<div class="container">
-
-<div class="page-title">
-
-<div>
-
-<h1>
-🔥 تخفیف‌ها
-</h1>
-
-<p>
-${list.length}
-محصول دارای تخفیف
-</p>
-
-</div>
-
-</div>
-
-${sortFilters()}
-
-${
-list.length
-?
-`
-<div class="products">
-${list.map(productCard).join("")}
-</div>
-`
-:
-emptyResult(
-"🔥",
-"در حال حاضر محصول تخفیف‌دار نداریم"
-)
+    return renderProducts(
+        list,
+        "🔥 تخفیف‌های ویژه"
+    );
 }
 
-</div>
-
-</main>
-
-`;
-
-}
 
 /* =========================
-LAWS
+   SEARCH
+========================= */
+
+function renderSearch(query){
+
+    const q=query.trim().toLowerCase();
+
+    const list=products.filter(p=>{
+
+        const text=[
+            p.name,
+            p.brand,
+            p.search,
+            p.cat,
+            p.goldCat,
+            p.description,
+            p.desc
+        ]
+        .join(" ")
+        .toLowerCase();
+
+        return text.includes(q);
+    });
+
+    return renderProducts(
+        list,
+        `نتایج جستجو برای «${escapeHTML(query)}»`
+    );
+}
+
+
+/* =========================
+   CATEGORY PAGE
+========================= */
+
+function renderCategory(cat){
+
+    const category=categories[cat];
+
+    if(!category){
+
+        return `
+            <div class="container page">
+                <div class="empty">
+                    دسته‌بندی پیدا نشد.
+                </div>
+            </div>
+        `;
+    }
+
+    const list=products.filter(
+        p=>String(p.cat)===String(cat)
+    );
+
+    return renderProducts(
+        list,
+        `${category.icon} ${category.name}`
+    );
+}
+
+
+/* =========================
+   LAWS
 ========================= */
 
 function renderLaws(){
 
-document.getElementById("app").innerHTML=`
+    return `
+        <div class="container page">
 
-<main class="page">
+            <h1 class="page-title">
+                📜 <span>قوانین سایت</span>
+            </h1>
 
-<div class="container">
+            <div class="support-box">
 
-<div class="page-title">
+                <div style="
+                    text-align:center;
+                    color:#777;
+                    padding:40px 10px;
+                ">
+                    متن قوانین هنوز توسط مدیریت سایت ثبت نشده است.
+                </div>
 
-<div>
+            </div>
 
-<h1>
-📜 قوانین سایت
-</h1>
-
-<p>
-قوانین و شرایط استفاده از فروشگاه
-</p>
-
-</div>
-
-</div>
-
-<div class="laws-box">
-
-<div class="laws-empty">
-
-متن قوانین هنوز توسط مدیریت سایت
-ثبت نشده است.
-
-</div>
-
-</div>
-
-</div>
-
-</main>
-
-`;
-
+        </div>
+    `;
 }
+
 
 /* =========================
-SUPPORT
+   SUPPORT
 ========================= */
-
-function renderSupport(){
-
-document.getElementById("app").innerHTML=`
-
-<main class="page">
-
-<div class="container support-page">
-
-<div class="support-header">
-
-<div class="support-avatar">
-👨🏻‍💻
-</div>
-
-<h1>
-پشتیبانی ماهان سنتر <span style="color:var(--red)">ایران</span>
-</h1>
-
-<p>
-برای ارتباط با ما یکی از روش‌های زیر را انتخاب کنید.
-</p>
-
-</div>
-
-<div class="contact-card">
-
-<div class="contact-icon">
-📞
-</div>
-
-<div class="contact-info">
-
-<small>
-شماره تماس
-</small>
-
-<strong>
-09332540425
-</strong>
-
-</div>
-
-<div class="contact-actions">
-
-<button
-onclick="copyText('09332540425')"
->
-کپی
-</button>
-
-<button
-class="contact-main"
-onclick="callPhone()"
->
-تماس
-</button>
-
-</div>
-
-</div>
-
-<div class="contact-card">
-
-<div class="contact-icon">
-💬
-</div>
-
-<div class="contact-info">
-
-<small>
-آیدی روبیکا
-</small>
-
-<strong>
-@omidi__xx
-</strong>
-
-</div>
-
-<div class="contact-actions">
-
-<button
-onclick="copyText('omidi__xx')"
->
-کپی
-</button>
-
-<button
-class="contact-main"
-onclick="openRubika()"
->
-پیام دادن
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-</main>
-
-`;
-
-}
-
-function callPhone(){
-
-window.location.href=
-"tel:09332540425";
-
-}
-
-function openRubika(){
-
-window.location.href=
-"https://rubika.ir/omidi__xx";
-
-}
 
 function copyText(text){
 
-if(
-navigator.clipboard&&
-navigator.clipboard.writeText
-){
-
-navigator.clipboard.writeText(
-text
-).then(()=>{
-
-showToast(
-"کپی شد ✓"
-);
-
-}).catch(()=>{
-
-fallbackCopy(text);
-
-});
-
-}else{
-
-fallbackCopy(text);
-
+    navigator.clipboard.writeText(text)
+    .then(()=>{
+        showToast("کپی شد");
+    })
+    .catch(()=>{
+        showToast("کپی انجام نشد");
+    });
 }
 
+function renderSupport(){
+
+    return `
+        <div class="container page">
+
+            <h1 class="page-title">
+                💬 <span>پشتیبانی</span>
+            </h1>
+
+            <div class="support-box">
+
+                <p style="
+                    color:#aaa;
+                    text-align:center;
+                    margin-bottom:15px;
+                ">
+                    برای ارتباط با پشتیبانی از راه‌های زیر اقدام کنید.
+                </p>
+
+                <div class="contact-item">
+
+                    <div>
+                        <div style="color:#888;font-size:11px">
+                            شماره تماس
+                        </div>
+
+                        <div class="contact-value">
+                            09332540425
+                        </div>
+                    </div>
+
+                    <div class="contact-buttons">
+
+                        <button
+                            class="contact-btn"
+                            onclick="copyText('09332540425')"
+                        >
+                            کپی
+                        </button>
+
+                        <a
+                            class="contact-btn"
+                            href="tel:09332540425"
+                        >
+                            تماس
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="contact-item">
+
+                    <div>
+                        <div style="color:#888;font-size:11px">
+                            روبیکا
+                        </div>
+
+                        <div class="contact-value">
+                            @omidi__xx
+                        </div>
+                    </div>
+
+                    <div class="contact-buttons">
+
+                        <button
+                            class="contact-btn"
+                            onclick="copyText('@omidi__xx')"
+                        >
+                            کپی
+                        </button>
+
+                        <a
+                            class="contact-btn"
+                            href="https://rubika.ir/omidi__xx"
+                            target="_blank"
+                        >
+                            پیام
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    `;
 }
 
-function fallbackCopy(text){
-
-var area=document.createElement(
-"textarea"
-);
-
-area.value=text;
-
-document.body.appendChild(area);
-
-area.select();
-
-document.execCommand("copy");
-
-area.remove();
-
-showToast(
-"کپی شد ✓"
-);
-
-}
 
 /* =========================
-FIRST VISIT LAW MODAL
+   RENDER
+========================= */
+
+function render(path){
+
+    const app=document.getElementById("app");
+
+    if(path==="/"){
+        app.innerHTML=renderHome();
+        updateCounts();
+        return;
+    }
+
+    if(path==="/categories"){
+        app.innerHTML=renderCategories();
+        updateCounts();
+        return;
+    }
+
+    if(path==="/discount"){
+        app.innerHTML=renderDiscount();
+        updateCounts();
+        return;
+    }
+
+    if(path==="/favorites"){
+        app.innerHTML=renderFavorites();
+        updateCounts();
+        return;
+    }
+
+    if(path==="/cart"){
+        app.innerHTML=renderCart();
+        updateCounts();
+        return;
+    }
+
+    if(path==="/laws"){
+        app.innerHTML=renderLaws();
+        updateCounts();
+        return;
+    }
+
+    if(path==="/support"){
+        app.innerHTML=renderSupport();
+        updateCounts();
+        return;
+    }
+
+    if(path.startsWith("/category/")){
+
+        const cat=path.split("/")[2];
+
+        app.innerHTML=renderCategory(cat);
+        updateCounts();
+        return;
+    }
+
+    if(path.startsWith("/product/")){
+
+        const id=path.split("/")[2];
+
+        detailQuantity=1;
+
+        app.innerHTML=renderProductDetail(id);
+        updateCounts();
+        return;
+    }
+
+    if(path.startsWith("/search/")){
+
+        const query=decodeURIComponent(
+            path.substring("/search/".length)
+        );
+
+        app.innerHTML=renderSearch(query);
+        updateCounts();
+        return;
+    }
+
+    app.innerHTML=renderHome();
+    updateCounts();
+}
+
+
+/* =========================
+   FIRST VISIT LAW
 ========================= */
 
 function showFirstVisitLaw(){
 
-if(
-localStorage.getItem(
-"mahanLawSeen"
-)
-){
+    const seen=localStorage.getItem("mahanLawSeen");
 
-return;
+    if(!seen){
 
+        setTimeout(()=>{
+
+            document
+                .getElementById("lawModal")
+                .classList.remove("hidden");
+
+        },700);
+    }
 }
 
-var modal=document.createElement(
-"div"
-);
+function acceptLaw(){
 
-modal.className=
-"modal-backdrop";
+    localStorage.setItem("mahanLawSeen","1");
 
-modal.id=
-"lawWelcomeModal";
+    document
+        .getElementById("lawModal")
+        .classList.add("hidden");
 
-modal.innerHTML=`
-
-<div class="law-modal">
-
-<div class="law-modal-icon">
-📜
-</div>
-
-<h2>
-دوست عزیز
-</h2>
-
-<p>
-قبل از خرید قوانین سایت را
-کامل مطالعه بفرمایید.
-</p>
-
-<div class="modal-actions">
-
-<button
-class="accept-btn"
-onclick="acceptLawAndOpen()"
->
-پذیرش و خواندن قوانین
-</button>
-
-<button
-class="reject-btn"
-onclick="rejectLawModal()"
->
-رد کردن
-</button>
-
-</div>
-
-</div>
-
-`;
-
-document.body.appendChild(modal);
-
+    go("/laws");
 }
 
-function acceptLawAndOpen(){
+function rejectLaw(){
 
-localStorage.setItem(
-"mahanLawSeen",
-"1"
-);
+    localStorage.setItem("mahanLawSeen","1");
 
-var modal=document.getElementById(
-"lawWelcomeModal"
-);
-
-if(modal)
-modal.remove();
-
-go("/laws");
-
+    document
+        .getElementById("lawModal")
+        .classList.add("hidden");
 }
 
-function rejectLawModal(){
-
-localStorage.setItem(
-"mahanLawSeen",
-"1"
-);
-
-var modal=document.getElementById(
-"lawWelcomeModal"
-);
-
-if(modal)
-modal.remove();
-
-}
 
 /* =========================
-NAV
+   SEARCH EVENTS
 ========================= */
 
-function updateActiveNav(){
+const searchInput=document.getElementById("searchInput");
 
-var route=getRoute();
+searchInput.addEventListener("keydown",function(e){
 
-document
-.querySelectorAll(".nav a")
-.forEach(a=>{
+    if(e.key==="Enter"){
 
-var r=a.dataset.route;
+        const value=this.value.trim();
 
-a.classList.toggle(
-"active",
+        if(!value){
+            go("/");
+            return;
+        }
 
-r===route||
-
-(
-r==="/categories"&&
-route.startsWith("/category/")
-)
-
-);
+        go("/search/"+encodeURIComponent(value));
+    }
 
 });
 
-}
 
 /* =========================
-HELPERS
+   START
 ========================= */
 
-function emptyResult(icon,text){
+updateCounts();
 
-return `
+render(getRoute());
 
-<div class="no-result">
-
-<div>
-${icon}
-</div>
-
-${escapeHTML(text)}
-
-</div>
-
-`;
-
-}
-
-function showToast(message){
-
-var toast=document.getElementById(
-"toast"
-);
-
-if(!toast)
-return;
-
-toast.textContent=message;
-
-toast.classList.add("show");
-
-clearTimeout(
-window.toastTimer
-);
-
-window.toastTimer=setTimeout(
-()=>{
-toast.classList.remove("show");
-},
-2500
-);
-
-}
-
-function escapeHTML(text){
-
-return String(text??"")
-
-.replace(/&/g,"&amp;")
-
-.replace(/</g,"&lt;")
-
-.replace(/>/g,"&gt;")
-
-.replace(/"/g,"&quot;")
-
-.replace(/'/g,"&#039;");
-
-}
-
-/* =========================
-INITIAL
-========================= */
-
-updateCartCount();
-
-render(
-getRoute()
-);
+loadProducts();
 
 </script>
 
