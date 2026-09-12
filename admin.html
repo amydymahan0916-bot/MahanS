@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>پنل مدیریت | ماهان سنتر ایران</title>
 
 <style>
@@ -15,40 +14,127 @@
 }
 
 body{
-    background:#0b0b0d;
+    background:#090909;
     color:#fff;
     min-height:100vh;
 }
 
-/* ===== SIDEBAR ===== */
+/* LOGIN */
+#loginPage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:
+        radial-gradient(circle at top,#211b08 0%,#090909 45%);
+}
+
+.login-box{
+    width:100%;
+    max-width:420px;
+    background:#111;
+    border:1px solid #3a2d0b;
+    border-radius:22px;
+    padding:35px 25px;
+    box-shadow:0 20px 70px rgba(0,0,0,.7);
+}
+
+.logo{
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    color:#d6ad35;
+    margin-bottom:8px;
+}
+
+.login-sub{
+    text-align:center;
+    color:#999;
+    font-size:13px;
+    margin-bottom:30px;
+}
+
+.input-group{
+    margin-bottom:18px;
+}
+
+.input-group label{
+    display:block;
+    color:#bbb;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.input-group input{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #333;
+    background:#080808;
+    color:#fff;
+    outline:none;
+    font-size:14px;
+}
+
+.input-group input:focus{
+    border-color:#c9a52d;
+}
+
+.login-btn{
+    width:100%;
+    padding:14px;
+    border:0;
+    border-radius:12px;
+    background:linear-gradient(135deg,#d8b43c,#9d7620);
+    color:#080808;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+    margin-top:5px;
+}
+
+.login-btn:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+.error{
+    display:none;
+    background:#3b1111;
+    color:#ff8b8b;
+    border:1px solid #712222;
+    padding:11px;
+    border-radius:10px;
+    margin-bottom:15px;
+    font-size:12px;
+    text-align:center;
+}
+
+/* APP */
+#adminApp{
+    display:none;
+}
 
 .sidebar{
     position:fixed;
     right:0;
     top:0;
-    width:260px;
+    width:250px;
     height:100vh;
-    background:linear-gradient(180deg,#151515,#090909);
-    border-left:1px solid #292929;
+    background:#101010;
+    border-left:1px solid #242424;
     padding:25px 15px;
     z-index:1000;
 }
 
-.logo{
+.brand{
     text-align:center;
-    margin-bottom:30px;
-}
-
-.logo h1{
-    color:#d4af37;
-    font-size:23px;
-}
-
-.logo span{
-    display:block;
-    color:#777;
-    font-size:11px;
-    margin-top:6px;
+    color:#d6ad35;
+    font-size:21px;
+    font-weight:bold;
+    padding:10px;
+    margin-bottom:25px;
 }
 
 .menu{
@@ -61,28 +147,34 @@ body{
     border:0;
     background:transparent;
     color:#aaa;
-    padding:14px;
+    padding:13px 15px;
     border-radius:12px;
     text-align:right;
     cursor:pointer;
     font-size:14px;
-    transition:.25s;
 }
 
 .menu button:hover,
 .menu button.active{
-    background:linear-gradient(90deg,#24200f,#18140a);
-    color:#d4af37;
+    background:#211b0c;
+    color:#d6ad35;
 }
 
-.menu button span{
-    margin-left:10px;
+.logout{
+    position:absolute;
+    bottom:25px;
+    right:15px;
+    left:15px;
+    padding:13px;
+    border-radius:12px;
+    border:1px solid #3a1919;
+    background:#1a0d0d;
+    color:#ff7777;
+    cursor:pointer;
 }
-
-/* ===== MAIN ===== */
 
 .main{
-    margin-right:260px;
+    margin-right:250px;
     padding:25px;
 }
 
@@ -90,218 +182,114 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    gap:15px;
     margin-bottom:25px;
 }
 
-.topbar h2{
+.topbar h1{
     font-size:24px;
 }
 
-.topbar p{
-    color:#777;
+.admin-info{
+    color:#999;
     font-size:12px;
-    margin-top:6px;
 }
 
-.admin-box{
-    background:#151515;
-    border:1px solid #292929;
-    border-radius:14px;
-    padding:10px 15px;
-    color:#d4af37;
-}
-
-/* ===== STATS ===== */
-
-.stats{
+.grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:15px;
     margin-bottom:25px;
 }
 
-.stat{
-    background:linear-gradient(145deg,#171717,#0e0e0e);
-    border:1px solid #292929;
-    border-radius:18px;
+.card{
+    background:#111;
+    border:1px solid #222;
+    border-radius:17px;
     padding:20px;
-    position:relative;
-    overflow:hidden;
-}
-
-.stat:before{
-    content:"";
-    position:absolute;
-    width:70px;
-    height:70px;
-    background:#d4af37;
-    opacity:.05;
-    border-radius:50%;
-    left:-20px;
-    top:-20px;
 }
 
 .stat-title{
-    color:#888;
+    color:#999;
     font-size:12px;
     margin-bottom:12px;
 }
 
 .stat-value{
-    font-size:24px;
+    font-size:25px;
     font-weight:bold;
+    color:#d6ad35;
 }
 
-.gold{
-    color:#d4af37;
-}
-
-/* ===== CONTENT GRID ===== */
-
-.grid{
+.content-grid{
     display:grid;
-    grid-template-columns:2fr 1fr;
-    gap:20px;
+    grid-template-columns:1.5fr 1fr;
+    gap:18px;
 }
 
-/* ===== CARDS ===== */
-
-.card{
-    background:#121212;
-    border:1px solid #292929;
-    border-radius:18px;
-    padding:20px;
-}
-
-.card-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.section-title{
+    font-size:17px;
     margin-bottom:20px;
+    color:#eee;
 }
-
-.card-header h3{
-    font-size:16px;
-}
-
-.card-header a{
-    color:#d4af37;
-    font-size:12px;
-    text-decoration:none;
-}
-
-/* ===== CHART ===== */
 
 .chart{
-    height:250px;
+    height:230px;
     display:flex;
     align-items:end;
-    gap:12px;
-    padding:15px 5px;
+    justify-content:space-around;
+    gap:10px;
+    padding-top:20px;
+}
+
+.bar-box{
+    height:100%;
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    justify-content:end;
+    align-items:center;
+    gap:8px;
 }
 
 .bar{
-    flex:1;
-    background:linear-gradient(to top,#8f731f,#d4af37);
-    border-radius:8px 8px 2px 2px;
-    min-height:20px;
-    position:relative;
+    width:65%;
+    max-width:45px;
+    background:linear-gradient(to top,#8c681d,#d8b43c);
+    border-radius:8px 8px 3px 3px;
+    min-height:8px;
 }
 
-.bar span{
-    position:absolute;
-    bottom:-22px;
-    right:50%;
-    transform:translateX(50%);
-    color:#777;
-    font-size:10px;
+.day{
+    color:#888;
+    font-size:11px;
 }
-
-/* ===== ORDERS ===== */
-
-.order{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:13px 0;
-    border-bottom:1px solid #222;
-}
-
-.order:last-child{
-    border-bottom:0;
-}
-
-.order-info strong{
-    display:block;
-    font-size:13px;
-}
-
-.order-info small{
-    color:#777;
-    font-size:10px;
-}
-
-.status{
-    padding:6px 9px;
-    border-radius:8px;
-    font-size:10px;
-}
-
-.success{
-    color:#75d69c;
-    background:#10291b;
-}
-
-.pending{
-    color:#e3c65a;
-    background:#29230d;
-}
-
-.cancel{
-    color:#e57373;
-    background:#2a1111;
-}
-
-/* ===== QUICK ACTIONS ===== */
 
 .actions{
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+    grid-template-columns:1fr 1fr;
     gap:10px;
 }
 
 .action{
-    background:#191919;
+    padding:18px 10px;
     border:1px solid #292929;
-    border-radius:12px;
-    padding:16px;
-    color:#ddd;
+    background:#0d0d0d;
+    border-radius:13px;
+    color:#ccc;
     cursor:pointer;
-    transition:.2s;
+    text-align:center;
 }
 
 .action:hover{
-    border-color:#d4af37;
-    color:#d4af37;
+    border-color:#8e701f;
+    color:#d6ad35;
 }
 
-.action-icon{
-    font-size:23px;
-    margin-bottom:8px;
+.orders{
+    margin-top:18px;
 }
 
-.action-title{
-    font-size:12px;
-}
-
-/* ===== PRODUCTS ===== */
-
-.products{
-    margin-top:20px;
-}
-
-.product{
+.order{
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -309,38 +297,39 @@ body{
     border-bottom:1px solid #222;
 }
 
-.product:last-child{
+.order:last-child{
     border-bottom:0;
 }
 
-.product-name{
+.order-name{
     font-size:13px;
 }
 
-.product-price{
-    color:#d4af37;
+.order-price{
+    color:#d6ad35;
     font-size:12px;
 }
 
-/* ===== MOBILE ===== */
+.status{
+    font-size:10px;
+    padding:5px 8px;
+    border-radius:20px;
+    background:#172915;
+    color:#8fe083;
+}
 
 .mobile-menu{
     display:none;
-    position:fixed;
-    top:15px;
-    right:15px;
-    z-index:2000;
-    width:45px;
-    height:45px;
-    border-radius:12px;
     border:1px solid #333;
-    background:#151515;
-    color:#d4af37;
-    font-size:20px;
+    background:#111;
+    color:#d6ad35;
+    border-radius:10px;
+    padding:9px 12px;
+    cursor:pointer;
 }
 
-@media(max-width:1000px){
-
+/* MOBILE */
+@media(max-width:900px){
     .sidebar{
         transform:translateX(100%);
         transition:.3s;
@@ -350,51 +339,35 @@ body{
         transform:translateX(0);
     }
 
+    .main{
+        margin-right:0;
+        padding:18px;
+    }
+
     .mobile-menu{
         display:block;
     }
 
-    .main{
-        margin-right:0;
-        padding:20px 15px;
-        padding-top:75px;
-    }
-
-    .stats{
+    .grid{
         grid-template-columns:repeat(2,1fr);
     }
 
-    .grid{
+    .content-grid{
         grid-template-columns:1fr;
     }
 }
 
-@media(max-width:550px){
-
-    .topbar{
-        align-items:flex-start;
-        flex-direction:column;
-    }
-
-    .stats{
+@media(max-width:500px){
+    .grid{
         grid-template-columns:1fr 1fr;
-        gap:10px;
-    }
-
-    .stat{
-        padding:15px;
     }
 
     .stat-value{
         font-size:19px;
     }
 
-    .chart{
-        gap:6px;
-    }
-
-    .actions{
-        grid-template-columns:1fr 1fr;
+    .topbar h1{
+        font-size:19px;
     }
 }
 </style>
@@ -402,262 +375,411 @@ body{
 
 <body>
 
-<!-- MOBILE MENU -->
+<!-- LOGIN -->
+<div id="loginPage">
 
-<button class="mobile-menu" onclick="toggleMenu()">☰</button>
+    <div class="login-box">
 
-<!-- SIDEBAR -->
+        <div class="logo">ماهان سنتر ایران</div>
 
-<aside class="sidebar" id="sidebar">
+        <div class="login-sub">
+            ورود به پنل مدیریت فروشگاه
+        </div>
 
-    <div class="logo">
-        <h1>ماهان سنتر</h1>
-        <span>پنل مدیریت فروشگاه</span>
-    </div>
+        <div id="loginError" class="error"></div>
 
-    <div class="menu">
+        <div class="input-group">
+            <label>ایمیل مدیر</label>
+            <input
+                type="email"
+                id="email"
+                placeholder="ایمیل خود را وارد کنید"
+                autocomplete="email"
+            >
+        </div>
 
-        <button class="active">
-            <span>🏠</span>
-            داشبورد
-        </button>
+        <div class="input-group">
+            <label>رمز عبور</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="رمز عبور"
+                autocomplete="current-password"
+            >
+        </div>
 
-        <button>
-            <span>📦</span>
-            محصولات
-        </button>
-
-        <button>
-            <span>🛒</span>
-            سفارش‌ها
-        </button>
-
-        <button>
-            <span>👥</span>
-            مشتریان
-        </button>
-
-        <button>
-            <span>🎟️</span>
-            کدهای تخفیف
-        </button>
-
-        <button>
-            <span>🖼️</span>
-            مدیریت سایت
-        </button>
-
-        <button>
-            <span>📊</span>
-            گزارش‌ها
-        </button>
-
-        <button>
-            <span>⚙️</span>
-            تنظیمات
+        <button id="loginBtn" class="login-btn">
+            ورود به پنل
         </button>
 
     </div>
 
-</aside>
+</div>
 
 
-<!-- MAIN -->
+<!-- ADMIN APP -->
+<div id="adminApp">
 
-<main class="main">
+    <aside class="sidebar" id="sidebar">
 
-    <!-- TOPBAR -->
-
-    <div class="topbar">
-
-        <div>
-            <h2>داشبورد مدیریت</h2>
-            <p>خوش آمدید به پنل مدیریت ماهان سنتر ایران</p>
+        <div class="brand">
+            ماهان سنتر ایران
         </div>
 
-        <div class="admin-box">
-            👤 مدیر فروشگاه
-        </div>
+        <div class="menu">
 
-    </div>
+            <button class="active">
+                📊 داشبورد
+            </button>
 
+            <button>
+                📦 محصولات
+            </button>
 
-    <!-- STATS -->
+            <button>
+                🛒 سفارش‌ها
+            </button>
 
-    <section class="stats">
+            <button>
+                👥 مشتریان
+            </button>
 
-        <div class="stat">
-            <div class="stat-title">فروش امروز</div>
-            <div class="stat-value gold">۰ تومان</div>
-        </div>
+            <button>
+                🎁 کدهای تخفیف
+            </button>
 
-        <div class="stat">
-            <div class="stat-title">سفارش‌ها</div>
-            <div class="stat-value">۰</div>
-        </div>
+            <button>
+                📈 گزارش فروش
+            </button>
 
-        <div class="stat">
-            <div class="stat-title">محصولات</div>
-            <div class="stat-value">۰</div>
-        </div>
-
-        <div class="stat">
-            <div class="stat-title">مشتریان</div>
-            <div class="stat-value">۰</div>
-        </div>
-
-    </section>
-
-
-    <!-- MAIN GRID -->
-
-    <section class="grid">
-
-        <!-- SALES -->
-
-        <div class="card">
-
-            <div class="card-header">
-                <h3>📈 فروش هفتگی</h3>
-                <a href="#">گزارش کامل</a>
-            </div>
-
-            <div class="chart">
-
-                <div class="bar" style="height:35%;">
-                    <span>شنبه</span>
-                </div>
-
-                <div class="bar" style="height:50%;">
-                    <span>یکشنبه</span>
-                </div>
-
-                <div class="bar" style="height:42%;">
-                    <span>دوشنبه</span>
-                </div>
-
-                <div class="bar" style="height:70%;">
-                    <span>سه‌شنبه</span>
-                </div>
-
-                <div class="bar" style="height:55%;">
-                    <span>چهارشنبه</span>
-                </div>
-
-                <div class="bar" style="height:85%;">
-                    <span>پنجشنبه</span>
-                </div>
-
-                <div class="bar" style="height:65%;">
-                    <span>جمعه</span>
-                </div>
-
-            </div>
+            <button>
+                ⚙️ تنظیمات
+            </button>
 
         </div>
 
+        <button class="logout" id="logoutBtn">
+            🚪 خروج از حساب
+        </button>
 
-        <!-- QUICK ACTIONS -->
-
-        <div class="card">
-
-            <div class="card-header">
-                <h3>⚡ دسترسی سریع</h3>
-            </div>
-
-            <div class="actions">
-
-                <div class="action">
-                    <div class="action-icon">➕</div>
-                    <div class="action-title">افزودن محصول</div>
-                </div>
-
-                <div class="action">
-                    <div class="action-icon">🛒</div>
-                    <div class="action-title">سفارش‌ها</div>
-                </div>
-
-                <div class="action">
-                    <div class="action-icon">🎟️</div>
-                    <div class="action-title">کد تخفیف</div>
-                </div>
-
-                <div class="action">
-                    <div class="action-icon">📊</div>
-                    <div class="action-title">گزارش فروش</div>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
+    </aside>
 
 
-    <!-- ORDERS -->
+    <main class="main">
 
-    <section class="card" style="margin-top:20px;">
-
-        <div class="card-header">
-            <h3>🛒 آخرین سفارش‌ها</h3>
-            <a href="#">مشاهده همه</a>
-        </div>
-
-        <div class="order">
-
-            <div class="order-info">
-                <strong>هنوز سفارشی ثبت نشده</strong>
-                <small>اطلاعات سفارش‌ها بعد از اتصال Firebase اینجا نمایش داده می‌شود</small>
-            </div>
-
-            <span class="status pending">
-                منتظر سفارش
-            </span>
-
-        </div>
-
-    </section>
-
-
-    <!-- PRODUCTS -->
-
-    <section class="card products">
-
-        <div class="card-header">
-            <h3>📦 محصولات</h3>
-            <a href="#">مدیریت محصولات</a>
-        </div>
-
-        <div class="product">
+        <div class="topbar">
 
             <div>
-                <div class="product-name">
-                    محصولات فروشگاه
-                </div>
+                <h1>داشبورد مدیریت</h1>
+                <div class="admin-info" id="adminEmail"></div>
             </div>
 
-            <div class="product-price">
-                ۰ محصول
+            <button class="mobile-menu" id="mobileMenu">
+                ☰
+            </button>
+
+        </div>
+
+
+        <!-- STATS -->
+        <div class="grid">
+
+            <div class="card">
+                <div class="stat-title">فروش امروز</div>
+                <div class="stat-value">۰ تومان</div>
+            </div>
+
+            <div class="card">
+                <div class="stat-title">سفارش‌ها</div>
+                <div class="stat-value">۰</div>
+            </div>
+
+            <div class="card">
+                <div class="stat-title">محصولات</div>
+                <div class="stat-value">۰</div>
+            </div>
+
+            <div class="card">
+                <div class="stat-title">مشتریان</div>
+                <div class="stat-value">۰</div>
             </div>
 
         </div>
 
-    </section>
 
-</main>
+        <div class="content-grid">
+
+            <!-- SALES -->
+            <div class="card">
+
+                <div class="section-title">
+                    فروش هفتگی
+                </div>
+
+                <div class="chart">
+
+                    <div class="bar-box">
+                        <div class="bar" style="height:35%"></div>
+                        <div class="day">شنبه</div>
+                    </div>
+
+                    <div class="bar-box">
+                        <div class="bar" style="height:55%"></div>
+                        <div class="day">یکشنبه</div>
+                    </div>
+
+                    <div class="bar-box">
+                        <div class="bar" style="height:45%"></div>
+                        <div class="day">دوشنبه</div>
+                    </div>
+
+                    <div class="bar-box">
+                        <div class="bar" style="height:70%"></div>
+                        <div class="day">سه‌شنبه</div>
+                    </div>
+
+                    <div class="bar-box">
+                        <div class="bar" style="height:50%"></div>
+                        <div class="day">چهارشنبه</div>
+                    </div>
+
+                    <div class="bar-box">
+                        <div class="bar" style="height:85%"></div>
+                        <div class="day">پنجشنبه</div>
+                    </div>
+
+                    <div class="bar-box">
+                        <div class="bar" style="height:65%"></div>
+                        <div class="day">جمعه</div>
+                    </div>
+
+                </div>
+
+            </div>
 
 
-<script>
+            <!-- ACTIONS -->
+            <div class="card">
 
-function toggleMenu(){
+                <div class="section-title">
+                    دسترسی سریع
+                </div>
 
-    const sidebar = document.getElementById("sidebar");
+                <div class="actions">
+
+                    <div class="action">
+                        ➕<br>
+                        افزودن محصول
+                    </div>
+
+                    <div class="action">
+                        🛒<br>
+                        سفارش‌ها
+                    </div>
+
+                    <div class="action">
+                        🎁<br>
+                        کد تخفیف
+                    </div>
+
+                    <div class="action">
+                        📊<br>
+                        گزارش فروش
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ORDERS -->
+        <div class="card orders">
+
+            <div class="section-title">
+                آخرین سفارش‌ها
+            </div>
+
+            <div class="order">
+
+                <div>
+                    <div class="order-name">
+                        هنوز سفارشی ثبت نشده
+                    </div>
+                </div>
+
+                <div class="status">
+                    خالی
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- FIREBASE -->
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+}
+from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+
+
+/* FIREBASE CONFIG */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDlrv12gAydgbx1qPJXAIm0kzcSeJF5pNs",
+    authDomain: "mahan-center.firebaseapp.com",
+    projectId: "mahan-center",
+    storageBucket: "mahan-center.firebasestorage.app",
+    messagingSenderId: "720478821753",
+    appId: "1:720478821753:web:7a431c1a3f9e3abd7923a8"
+};
+
+
+/* INITIALIZE */
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+
+/* ELEMENTS */
+
+const loginPage = document.getElementById("loginPage");
+const adminApp = document.getElementById("adminApp");
+const loginBtn = document.getElementById("loginBtn");
+const logoutBtn = document.getElementById("logoutBtn");
+const emailInput = document.getElementById("email");
+const passwordInput = document.getElementById("password");
+const loginError = document.getElementById("loginError");
+const adminEmail = document.getElementById("adminEmail");
+const mobileMenu = document.getElementById("mobileMenu");
+const sidebar = document.getElementById("sidebar");
+
+
+/* LOGIN */
+
+loginBtn.addEventListener("click", async () => {
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
+
+    loginError.style.display = "none";
+
+    if (!email || !password) {
+
+        loginError.textContent =
+            "ایمیل و رمز عبور را وارد کنید.";
+
+        loginError.style.display = "block";
+
+        return;
+    }
+
+    loginBtn.disabled = true;
+    loginBtn.textContent = "در حال ورود...";
+
+    try {
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        let message =
+            "ورود انجام نشد. ایمیل یا رمز عبور صحیح نیست.";
+
+        if (error.code === "auth/invalid-credential") {
+            message =
+                "ایمیل یا رمز عبور اشتباه است.";
+        }
+
+        if (error.code === "auth/too-many-requests") {
+            message =
+                "تعداد تلاش‌ها زیاد شده. کمی بعد دوباره امتحان کنید.";
+        }
+
+        loginError.textContent = message;
+        loginError.style.display = "block";
+
+    } finally {
+
+        loginBtn.disabled = false;
+        loginBtn.textContent = "ورود به پنل";
+
+    }
+
+});
+
+
+/* ENTER KEY */
+
+passwordInput.addEventListener("keydown", (e) => {
+
+    if (e.key === "Enter") {
+        loginBtn.click();
+    }
+
+});
+
+
+/* AUTH STATE */
+
+onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+
+        loginPage.style.display = "none";
+        adminApp.style.display = "block";
+
+        adminEmail.textContent =
+            "مدیر وارد شده: " + (user.email || "");
+
+    } else {
+
+        loginPage.style.display = "flex";
+        adminApp.style.display = "none";
+
+    }
+
+});
+
+
+/* LOGOUT */
+
+logoutBtn.addEventListener("click", async () => {
+
+    await signOut(auth);
+
+});
+
+
+/* MOBILE SIDEBAR */
+
+mobileMenu.addEventListener("click", () => {
 
     sidebar.classList.toggle("open");
 
-}
+});
 
 </script>
 
 </body>
-                  </html>
+                </html>
