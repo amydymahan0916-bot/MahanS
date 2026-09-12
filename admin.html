@@ -3,1560 +3,1983 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>پنل مدیریت | ماهان سنتر ایران</title>
+<meta name="theme-color" content="#080808">
+<title>ماهان سنتر ایران | پنل مدیریت</title>
 
 <style>
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-font-family:Tahoma,Arial,sans-serif
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 :root{
---bg:#080808;
---card:#111;
---card2:#151515;
---border:#272727;
---gold:#d6ad35;
---gold2:#9d7620;
---text:#fff;
---muted:#999;
---red:#d93636;
---green:#55c96b;
+ --bg:#080808;
+ --bg2:#0d0d0d;
+ --card:#111;
+ --card2:#161616;
+ --line:#272727;
+ --gold:#d4af37;
+ --gold2:#f4d875;
+ --green:#20c77a;
+ --red:#e74c3c;
+ --blue:#3d9be9;
+ --orange:#e58d2a;
+ --text:#eee;
+ --muted:#858585;
 }
 
 body{
-background:var(--bg);
-color:var(--text);
-min-height:100vh
+ font-family:Tahoma,Arial,sans-serif;
+ background:
+ radial-gradient(circle at 50% -20%,#211b08 0,#080808 42%);
+ color:var(--text);
+ min-height:100vh;
 }
 
-button,input,select,textarea{
-font-family:inherit
-}
+button,input,select,textarea{font-family:inherit}
+button{cursor:pointer}
 
-button{
-cursor:pointer
-}
+::-webkit-scrollbar{width:7px}
+::-webkit-scrollbar-track{background:#080808}
+::-webkit-scrollbar-thumb{background:#333;border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:#555}
 
 /* LOGIN */
 
 #loginPage{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-background:
-radial-gradient(circle at top,#29200a 0%,#090909 45%)
+ min-height:100vh;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ padding:20px;
 }
 
-.login-box{
-width:100%;
-max-width:420px;
-background:#111;
-border:1px solid #3a2d0b;
-border-radius:24px;
-padding:35px 25px;
-box-shadow:0 25px 80px rgba(0,0,0,.7)
+.loginBox{
+ width:100%;
+ max-width:430px;
+ background:rgba(15,15,15,.97);
+ border:1px solid #3a3015;
+ border-radius:25px;
+ padding:35px;
+ box-shadow:0 30px 100px #000;
 }
 
 .logo{
-text-align:center;
-font-size:28px;
-font-weight:bold;
-color:var(--gold);
-margin-bottom:8px
+ width:78px;
+ height:78px;
+ border-radius:50%;
+ margin:0 auto 18px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:linear-gradient(135deg,#ffe98b,#98720e);
+ color:#111;
+ font-size:32px;
+ font-weight:bold;
+ box-shadow:0 0 40px #d4af3720;
 }
 
-.login-sub{
-text-align:center;
-color:#999;
-font-size:13px;
-margin-bottom:30px
+.loginBox h1{
+ text-align:center;
+ color:var(--gold2);
+ font-size:22px;
+ margin-bottom:7px;
 }
 
-.input-group{
-margin-bottom:18px
+.loginBox>p{
+ text-align:center;
+ color:#777;
+ font-size:13px;
+ margin-bottom:28px;
 }
 
-.input-group label{
-display:block;
-color:#bbb;
-font-size:13px;
-margin-bottom:8px
+.field{
+ margin-bottom:14px;
 }
 
-.input-group input{
-width:100%;
-padding:14px;
-border-radius:12px;
-border:1px solid #333;
-background:#080808;
-color:#fff;
-outline:none;
-font-size:14px
+.field label{
+ display:block;
+ color:#aaa;
+ font-size:12px;
+ margin-bottom:7px;
 }
 
-.input-group input:focus{
-border-color:var(--gold)
+input,select,textarea{
+ width:100%;
+ border:1px solid #292929;
+ background:#0a0a0a;
+ color:#fff;
+ border-radius:11px;
+ padding:12px;
+ outline:none;
+ transition:.2s;
 }
 
-.login-btn{
-width:100%;
-padding:14px;
-border:0;
-border-radius:12px;
-background:linear-gradient(135deg,#d8b43c,#9d7620);
-color:#080808;
-font-weight:bold;
-font-size:15px
+input:focus,select:focus,textarea:focus{
+ border-color:var(--gold);
+ box-shadow:0 0 0 2px #d4af3718;
 }
 
-.login-btn:disabled{
-opacity:.6
+textarea{
+ min-height:100px;
+ resize:vertical;
 }
 
-.error{
-display:none;
-background:#3b1111;
-color:#ff8b8b;
-border:1px solid #712222;
-padding:11px;
-border-radius:10px;
-margin-bottom:15px;
-font-size:12px;
-text-align:center
+.loginBtn{
+ width:100%;
+ padding:14px;
+ margin-top:5px;
+}
+
+/* BUTTONS */
+
+.btn{
+ border:1px solid #2d2d2d;
+ background:#1a1a1a;
+ color:#ddd;
+ padding:10px 14px;
+ border-radius:10px;
+ transition:.2s;
+}
+
+.btn:hover{
+ transform:translateY(-1px);
+ filter:brightness(1.15);
+}
+
+.btn.gold{
+ background:linear-gradient(135deg,#f1d56b,#a87c12);
+ border:0;
+ color:#111;
+ font-weight:bold;
+}
+
+.btn.green{
+ background:#103c29;
+ color:#73e3aa;
+ border-color:#185d3d;
+}
+
+.btn.red{
+ background:#421717;
+ color:#ff9999;
+ border-color:#632020;
+}
+
+.btn.blue{
+ background:#102d44;
+ color:#7fc7fa;
+ border-color:#19496b;
+}
+
+.btn.orange{
+ background:#42270f;
+ color:#f1b96d;
+ border-color:#684016;
+}
+
+.btn.small{
+ padding:7px 9px;
+ font-size:11px;
 }
 
 /* APP */
 
-#adminApp{
-display:none
-}
+#app{display:none}
 
 .sidebar{
-position:fixed;
-right:0;
-top:0;
-width:250px;
-height:100vh;
-background:#101010;
-border-left:1px solid #242424;
-padding:25px 15px;
-z-index:1000
+ position:fixed;
+ top:0;
+ right:0;
+ bottom:0;
+ width:260px;
+ background:#0c0c0c;
+ border-left:1px solid var(--line);
+ z-index:1000;
+ padding:18px 14px;
 }
 
 .brand{
-text-align:center;
-color:var(--gold);
-font-size:21px;
-font-weight:bold;
-padding:10px;
-margin-bottom:25px
+ display:flex;
+ align-items:center;
+ gap:10px;
+ padding:8px;
+ margin-bottom:22px;
 }
 
-.menu{
-display:flex;
-flex-direction:column;
-gap:7px
+.brandLogo{
+ width:47px;
+ height:47px;
+ border-radius:50%;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ background:linear-gradient(135deg,#f3d66b,#8b6810);
+ color:#111;
+ font-size:20px;
+ font-weight:bold;
 }
 
-.menu button{
-border:0;
-background:transparent;
-color:#aaa;
-padding:13px 15px;
-border-radius:12px;
-text-align:right;
-font-size:13px;
-transition:.2s
+.brand h2{
+ font-size:15px;
+ color:var(--gold2);
 }
 
-.menu button:hover,
-.menu button.active{
-background:#211b0c;
-color:var(--gold)
+.brand small{
+ color:#666;
+ font-size:10px;
 }
 
-.logout{
-position:absolute;
-bottom:20px;
-right:15px;
-left:15px;
-padding:12px;
-border-radius:12px;
-border:1px solid #3a1919;
-background:#1a0d0d;
-color:#ff7777
+.nav{
+ display:flex;
+ flex-direction:column;
+ gap:5px;
 }
 
-/* MAIN */
+.nav button{
+ border:0;
+ background:transparent;
+ color:#999;
+ text-align:right;
+ padding:12px;
+ border-radius:10px;
+ font-size:13px;
+ transition:.2s;
+}
+
+.nav button:hover,
+.nav button.active{
+ background:#211c0c;
+ color:var(--gold2);
+}
+
+.navIcon{
+ display:inline-block;
+ width:25px;
+}
+
+.sideBottom{
+ position:absolute;
+ bottom:17px;
+ right:14px;
+ left:14px;
+}
+
+.userBox{
+ background:#141414;
+ border:1px solid #222;
+ padding:10px;
+ border-radius:10px;
+ margin-bottom:8px;
+ font-size:10px;
+ color:#777;
+ overflow:hidden;
+ text-overflow:ellipsis;
+}
 
 .main{
-margin-right:250px;
-padding:25px
+ margin-right:260px;
+ padding:24px;
+ min-height:100vh;
 }
 
 .topbar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:25px
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:15px;
+ margin-bottom:24px;
 }
 
-.topbar h1{
-font-size:24px;
-margin-bottom:6px
+.topTitle{
+ display:flex;
+ align-items:center;
+ gap:10px;
 }
 
-.admin-info{
-color:#888;
-font-size:11px
+.topTitle h1{
+ font-size:24px;
 }
 
-.top-actions{
-display:flex;
-gap:8px
+.topTitle small{
+ display:block;
+ color:#666;
+ margin-top:5px;
+ font-size:11px;
 }
 
-.icon-btn{
-background:#151515;
-border:1px solid #333;
-color:#ddd;
-border-radius:10px;
-padding:10px 13px
-}
-
-.mobile-menu{
-display:none;
-background:#111;
-border:1px solid #333;
-color:var(--gold);
-border-radius:10px;
-padding:9px 12px
-}
-
-/* STATS */
-
-.grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px;
-margin-bottom:20px
-}
-
-.card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:17px;
-padding:20px
-}
-
-.stat{
-position:relative;
-overflow:hidden
-}
-
-.stat-icon{
-font-size:25px;
-margin-bottom:12px
-}
-
-.stat-title{
-color:#999;
-font-size:12px;
-margin-bottom:10px
-}
-
-.stat-value{
-font-size:23px;
-font-weight:bold;
-color:var(--gold)
-}
-
-.stat-change{
-margin-top:8px;
-font-size:10px;
-color:#777
-}
-
-/* CONTENT */
-
-.content-grid{
-display:grid;
-grid-template-columns:1.5fr 1fr;
-gap:18px
-}
-
-.section-title{
-font-size:17px;
-font-weight:bold;
-margin-bottom:18px
-}
-
-.chart{
-height:230px;
-display:flex;
-align-items:end;
-justify-content:space-around;
-gap:8px
-}
-
-.bar-box{
-height:100%;
-flex:1;
-display:flex;
-flex-direction:column;
-justify-content:end;
-align-items:center;
-gap:8px
-}
-
-.bar{
-width:65%;
-max-width:45px;
-background:linear-gradient(to top,#80601a,#d8b43c);
-border-radius:8px 8px 3px 3px;
-min-height:5px
-}
-
-.day{
-color:#777;
-font-size:10px
-}
-
-/* QUICK */
-
-.actions{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px
-}
-
-.action{
-padding:18px 10px;
-border:1px solid #292929;
-background:#0d0d0d;
-border-radius:13px;
-color:#ccc;
-text-align:center;
-transition:.2s
-}
-
-.action:hover{
-border-color:#8e701f;
-color:var(--gold);
-transform:translateY(-2px)
+.mobileMenu{
+ display:none;
+ border:0;
+ background:#1b1b1b;
+ color:#fff;
+ padding:10px 12px;
+ border-radius:10px;
 }
 
 /* PAGES */
 
-.page{
-display:none
+.page{display:none}
+.page.active{display:block}
+
+/* STATS */
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:13px;
+ margin-bottom:18px;
 }
 
-.page.active{
-display:block
+.stat{
+ position:relative;
+ overflow:hidden;
+ background:linear-gradient(145deg,#151515,#0e0e0e);
+ border:1px solid #252525;
+ border-radius:16px;
+ padding:17px;
 }
 
-.page-header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:15px;
-margin-bottom:20px
+.stat:after{
+ content:"";
+ position:absolute;
+ width:100px;
+ height:100px;
+ left:-40px;
+ bottom:-45px;
+ background:#d4af3712;
+ border-radius:50%;
 }
 
-.page-header h2{
-font-size:22px
+.statIcon{
+ font-size:22px;
+ margin-bottom:10px;
 }
 
-.page-header p{
-font-size:11px;
-color:#777;
-margin-top:5px
+.statTitle{
+ color:#777;
+ font-size:11px;
+ margin-bottom:7px;
 }
 
-.primary{
-background:linear-gradient(135deg,#d8b43c,#9d7620);
-border:0;
-color:#080808;
-padding:11px 17px;
-border-radius:11px;
-font-weight:bold
+.statValue{
+ font-size:20px;
+ font-weight:bold;
+ color:#fff;
 }
 
-.secondary{
-background:#171717;
-border:1px solid #333;
-color:#ddd;
-padding:10px 15px;
-border-radius:10px
+.statSub{
+ margin-top:6px;
+ color:#666;
+ font-size:10px;
 }
 
-.danger{
-background:#361414;
-border:1px solid #672323;
-color:#ff7777;
-padding:9px 13px;
-border-radius:9px
+/* CARDS */
+
+.card{
+ background:#101010;
+ border:1px solid #242424;
+ border-radius:17px;
+ padding:18px;
+ margin-bottom:17px;
+}
+
+.cardHead{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:10px;
+ margin-bottom:17px;
+}
+
+.cardHead h2{
+ font-size:16px;
+}
+
+.cardHead small{
+ color:#666;
+ font-size:10px;
+}
+
+.grid2{
+ display:grid;
+ grid-template-columns:1.45fr 1fr;
+ gap:17px;
+}
+
+.grid3{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+}
+
+/* CHART */
+
+.chart{
+ height:245px;
+ display:flex;
+ align-items:flex-end;
+ gap:10px;
+ padding:20px 5px 5px;
+}
+
+.chartBarWrap{
+ flex:1;
+ height:100%;
+ display:flex;
+ flex-direction:column;
+ justify-content:flex-end;
+ align-items:center;
+ gap:7px;
+}
+
+.chartBar{
+ width:100%;
+ max-width:45px;
+ min-height:4px;
+ border-radius:8px 8px 3px 3px;
+ background:linear-gradient(to top,#85630e,#f1d56b);
+ transition:.3s;
+}
+
+.chartBar:hover{
+ filter:brightness(1.2);
+}
+
+.chartBarWrap small{
+ color:#666;
+ font-size:9px;
+}
+
+/* QUICK */
+
+.quickGrid{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:9px;
+}
+
+.quickBtn{
+ border:1px solid #292929;
+ background:#151515;
+ color:#ddd;
+ border-radius:12px;
+ padding:18px 8px;
+ transition:.2s;
+}
+
+.quickBtn:hover{
+ border-color:#725a18;
+ color:var(--gold2);
+ transform:translateY(-2px);
+}
+
+/* TABLE */
+
+.tableWrap{
+ overflow:auto;
+}
+
+table{
+ width:100%;
+ border-collapse:collapse;
+ min-width:700px;
+}
+
+th,td{
+ padding:11px 9px;
+ border-bottom:1px solid #222;
+ text-align:right;
+}
+
+th{
+ color:#666;
+ font-size:10px;
+ font-weight:normal;
+}
+
+td{
+ font-size:11px;
+ color:#ddd;
+}
+
+.productImage{
+ width:48px;
+ height:48px;
+ object-fit:cover;
+ border-radius:10px;
+ background:#1b1b1b;
+ border:1px solid #292929;
+}
+
+.iconImage{
+ width:48px;
+ height:48px;
+ border-radius:10px;
+ background:#191919;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:20px;
+}
+
+.badge{
+ display:inline-block;
+ padding:5px 8px;
+ border-radius:20px;
+ background:#242424;
+ color:#aaa;
+ font-size:9px;
+}
+
+.badge.green{
+ background:#0d3825;
+ color:#6ce2a4;
+}
+
+.badge.red{
+ background:#421717;
+ color:#ff9696;
+}
+
+.badge.gold{
+ background:#3b3010;
+ color:#f0d56b;
+}
+
+.badge.blue{
+ background:#102e45;
+ color:#7fc6f5;
+}
+
+.badge.orange{
+ background:#40260e;
+ color:#f0b76a;
+}
+
+.actions{
+ display:flex;
+ gap:4px;
+}
+
+.actionBtn{
+ border:0;
+ background:#202020;
+ color:#ccc;
+ border-radius:7px;
+ padding:7px 8px;
 }
 
 /* TOOLBAR */
 
 .toolbar{
-display:flex;
-gap:10px;
-margin-bottom:15px;
-flex-wrap:wrap
+ display:flex;
+ flex-wrap:wrap;
+ gap:9px;
+ margin-bottom:15px;
 }
 
-.search{
-flex:1;
-min-width:220px;
-background:#0d0d0d;
-border:1px solid #333;
-border-radius:11px;
-padding:12px;
-color:white;
-outline:none
-}
-
-.select{
-background:#0d0d0d;
-border:1px solid #333;
-border-radius:11px;
-padding:11px;
-color:#ddd;
-outline:none
+.toolbar input{
+ flex:1;
+ min-width:190px;
 }
 
 /* PRODUCTS */
 
-.product-list{
-display:flex;
-flex-direction:column;
-gap:10px
+.productCards{
+ display:none;
 }
 
-.product-row{
-display:flex;
-align-items:center;
-gap:15px;
-background:#111;
-border:1px solid #242424;
-border-radius:15px;
-padding:12px
+/* REPORT */
+
+.reportBox{
+ background:#151515;
+ border:1px solid #272727;
+ border-radius:14px;
+ padding:17px;
 }
 
-.product-image{
-width:70px;
-height:70px;
-border-radius:12px;
-background:#202020;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden;
-font-size:30px;
-flex-shrink:0
+.reportBox h3{
+ color:#777;
+ font-size:11px;
+ margin-bottom:9px;
 }
 
-.product-image img{
-width:100%;
-height:100%;
-object-fit:contain;
-padding:5px
+.reportBox strong{
+ color:var(--gold2);
+ font-size:20px;
 }
 
-.product-info{
-flex:1;
-min-width:0
+.reportText{
+ color:#aaa;
+ line-height:2.2;
+ font-size:12px;
 }
 
-.product-name{
-font-size:13px;
-font-weight:bold;
-margin-bottom:7px
+/* ALERTS */
+
+.alertList{
+ display:flex;
+ flex-direction:column;
+ gap:8px;
 }
 
-.product-desc{
-font-size:10px;
-color:#777
+.alert{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ background:#151515;
+ border:1px solid #242424;
+ border-radius:11px;
+ padding:11px;
 }
 
-.product-price{
-color:var(--gold);
-font-size:12px;
-margin-top:7px
+.alertIcon{
+ width:35px;
+ height:35px;
+ border-radius:9px;
+ background:#251e0b;
+ display:flex;
+ align-items:center;
+ justify-content:center;
 }
 
-.product-actions{
-display:flex;
-gap:7px
+.alertText{
+ flex:1;
+ font-size:11px;
 }
 
-.product-actions button{
-font-size:11px
+.alertText small{
+ display:block;
+ color:#666;
+ margin-top:4px;
 }
 
-.edit-btn{
-background:#171717;
-border:1px solid #333;
-color:#ddd;
-padding:8px 11px;
-border-radius:8px
+/* MODAL */
+
+.modalBg{
+ position:fixed;
+ inset:0;
+ background:#000d;
+ z-index:3000;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ padding:15px;
 }
 
-/* ORDERS */
+.modalBg.show{display:flex}
 
-.order-table{
-width:100%;
-overflow-x:auto
+.modal{
+ width:100%;
+ max-width:800px;
+ max-height:94vh;
+ overflow:auto;
+ background:#111;
+ border:1px solid #403518;
+ border-radius:20px;
+ padding:20px;
+ box-shadow:0 30px 120px #000;
 }
 
-table{
-width:100%;
-border-collapse:collapse;
-min-width:650px
+.modal.large{
+ max-width:1000px;
 }
 
-th{
-color:#888;
-font-size:11px;
-font-weight:normal;
-text-align:right;
-padding:13px;
-border-bottom:1px solid #292929
+.modalHead{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ margin-bottom:20px;
 }
 
-td{
-padding:13px;
-border-bottom:1px solid #202020;
-font-size:11px
+.modalHead h2{
+ font-size:18px;
+ color:var(--gold2);
 }
 
-.badge{
-display:inline-block;
-padding:5px 9px;
-border-radius:20px;
-font-size:9px
+.closeBtn{
+ border:0;
+ width:35px;
+ height:35px;
+ border-radius:50%;
+ background:#262626;
+ color:#fff;
+ font-size:20px;
 }
 
-.pending{
-background:#32290c;
-color:#e4c85d
+.formGrid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
 }
 
-.success{
-background:#102b15;
-color:#7de38c
+.full{
+ grid-column:1/-1;
 }
 
-.cancel{
-background:#351212;
-color:#ff7777
+.modalFooter{
+ display:flex;
+ justify-content:flex-end;
+ gap:8px;
+ margin-top:18px;
+}
+
+/* IMAGE UPLOAD */
+
+.uploadBox{
+ border:1px dashed #444;
+ border-radius:13px;
+ padding:20px;
+ text-align:center;
+ color:#777;
+ background:#0c0c0c;
+}
+
+.uploadBox:hover{
+ border-color:var(--gold);
+}
+
+.previewGrid{
+ display:grid;
+ grid-template-columns:repeat(5,1fr);
+ gap:8px;
+ margin-top:12px;
+}
+
+.preview{
+ position:relative;
+ aspect-ratio:1;
+}
+
+.preview img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ border-radius:9px;
+ border:1px solid #292929;
+}
+
+.preview button{
+ position:absolute;
+ top:4px;
+ left:4px;
+ width:23px;
+ height:23px;
+ border:0;
+ border-radius:50%;
+ background:#8c1d1d;
+ color:#fff;
 }
 
 /* EMPTY */
 
 .empty{
-text-align:center;
-padding:60px 15px;
-color:#777
-}
-
-.empty-icon{
-font-size:45px;
-margin-bottom:12px
-}
-
-/* MODAL */
-
-.modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.78);
-display:none;
-align-items:center;
-justify-content:center;
-padding:20px;
-z-index:5000;
-backdrop-filter:blur(5px)
-}
-
-.modal.show{
-display:flex
-}
-
-.modal-box{
-width:100%;
-max-width:650px;
-max-height:90vh;
-overflow:auto;
-background:#111;
-border:1px solid #333;
-border-radius:20px;
-padding:22px
-}
-
-.modal-title{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:20px
-}
-
-.modal-title h3{
-font-size:18px
-}
-
-.close{
-background:#1b1b1b;
-border:1px solid #333;
-color:#aaa;
-width:35px;
-height:35px;
-border-radius:9px
-}
-
-.form-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:13px
-}
-
-.field{
-margin-bottom:13px
-}
-
-.field.full{
-grid-column:1/-1
-}
-
-.field label{
-display:block;
-color:#aaa;
-font-size:11px;
-margin-bottom:7px
-}
-
-.field input,
-.field select,
-.field textarea{
-width:100%;
-background:#080808;
-border:1px solid #333;
-border-radius:10px;
-padding:11px;
-color:#fff;
-outline:none;
-font-size:12px
-}
-
-.field textarea{
-min-height:90px;
-resize:vertical
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-border-color:var(--gold)
-}
-
-.modal-footer{
-display:flex;
-justify-content:flex-end;
-gap:9px;
-margin-top:15px;
-padding-top:15px;
-border-top:1px solid #252525
-}
-
-/* TOAST */
-
-.toast{
-position:fixed;
-bottom:25px;
-right:25px;
-background:#151515;
-border:1px solid #333;
-border-right:4px solid var(--gold);
-padding:13px 17px;
-border-radius:12px;
-z-index:9000;
-transform:translateY(100px);
-opacity:0;
-pointer-events:none;
-transition:.3s;
-font-size:12px
-}
-
-.toast.show{
-transform:translateY(0);
-opacity:1
+ text-align:center;
+ padding:35px 10px;
+ color:#666;
+ font-size:12px;
 }
 
 /* LOADING */
 
-.loading{
-padding:40px;
-text-align:center;
-color:#777
+#loading{
+ position:fixed;
+ inset:0;
+ background:#000c;
+ display:none;
+ align-items:center;
+ justify-content:center;
+ z-index:5000;
 }
 
+#loading.show{display:flex}
+
 .spinner{
-width:30px;
-height:30px;
-border:3px solid #333;
-border-top-color:var(--gold);
-border-radius:50%;
-margin:0 auto 12px;
-animation:spin .8s linear infinite
+ width:45px;
+ height:45px;
+ border:4px solid #333;
+ border-top-color:var(--gold);
+ border-radius:50%;
+ animation:spin .8s linear infinite;
 }
 
 @keyframes spin{
-to{transform:rotate(360deg)}
+ to{transform:rotate(360deg)}
 }
 
-/* MOBILE */
+/* TOAST */
+
+#toast{
+ position:fixed;
+ left:20px;
+ bottom:20px;
+ z-index:6000;
+ background:#171717;
+ border:1px solid #333;
+ color:#fff;
+ padding:12px 17px;
+ border-radius:11px;
+ opacity:0;
+ transform:translateY(15px);
+ pointer-events:none;
+ transition:.3s;
+ font-size:12px;
+ max-width:350px;
+}
+
+#toast.show{
+ opacity:1;
+ transform:translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+ .stats{
+  grid-template-columns:repeat(3,1fr);
+ }
+}
 
 @media(max-width:950px){
-
-.sidebar{
-transform:translateX(100%);
-transition:.3s
+ .sidebar{
+  transform:translateX(100%);
+  transition:.3s;
+ }
+ .sidebar.open{
+  transform:translateX(0);
+ }
+ .main{
+  margin-right:0;
+ }
+ .mobileMenu{
+  display:block;
+ }
+ .grid2{
+  grid-template-columns:1fr;
+ }
+ .stats{
+  grid-template-columns:repeat(2,1fr);
+ }
 }
 
-.sidebar.open{
-transform:translateX(0)
+@media(max-width:650px){
+ .main{
+  padding:13px;
+ }
+ .topbar{
+  align-items:flex-start;
+ }
+ .topTitle h1{
+  font-size:18px;
+ }
+ .topActions .btn{
+  font-size:10px;
+  padding:8px;
+ }
+ .stats{
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+ }
+ .stat{
+  padding:13px;
+ }
+ .statValue{
+  font-size:16px;
+ }
+ .formGrid{
+  grid-template-columns:1fr;
+ }
+ .full{
+  grid-column:auto;
+ }
+ .previewGrid{
+  grid-template-columns:repeat(3,1fr);
+ }
+ .grid3{
+  grid-template-columns:1fr;
+ }
 }
 
-.main{
-margin-right:0;
-padding:18px
-}
-
-.mobile-menu{
-display:block
-}
-
-.grid{
-grid-template-columns:repeat(2,1fr)
-}
-
-.content-grid{
-grid-template-columns:1fr
-}
-
-}
-
-@media(max-width:600px){
-
-.topbar h1{
-font-size:19px
-}
-
-.top-actions{
-display:none
-}
-
-.grid{
-grid-template-columns:1fr 1fr;
-gap:9px
-}
-
-.card{
-padding:14px
-}
-
-.stat-value{
-font-size:17px
-}
-
-.product-row{
-align-items:flex-start
-}
-
-.product-actions{
-flex-direction:column
-}
-
-.form-grid{
-grid-template-columns:1fr
-}
-
-.field.full{
-grid-column:auto
-}
-
-.page-header{
-align-items:flex-start;
-flex-direction:column
-}
-
-.primary{
-width:100%
-}
-
+@media(max-width:420px){
+ .stats{
+  grid-template-columns:1fr;
+ }
+ .topActions{
+  display:none;
+ }
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- ================= LOGIN ================= -->
 
-<div id="loginPage">
+<section id="loginPage">
 
-<div class="login-box">
+ <div class="loginBox">
 
-<div class="logo">ماهان سنتر ایران</div>
+  <div class="logo">M</div>
 
-<div class="login-sub">
-ورود امن به پنل مدیریت فروشگاه
-</div>
+  <h1>ماهان سنتر ایران</h1>
+  <p>پنل مدیریت حرفه‌ای فروشگاه</p>
 
-<div id="loginError" class="error"></div>
+  <div class="field">
+   <label>ایمیل مدیر</label>
+   <input id="loginEmail" type="email" placeholder="ایمیل Firebase">
+  </div>
 
-<div class="input-group">
-<label>ایمیل مدیر</label>
-<input id="email" type="email" autocomplete="email" placeholder="ایمیل مدیر">
-</div>
+  <div class="field">
+   <label>رمز عبور</label>
+   <input id="loginPassword" type="password" placeholder="رمز عبور">
+  </div>
 
-<div class="input-group">
-<label>رمز عبور</label>
-<input id="password" type="password" autocomplete="current-password" placeholder="رمز عبور">
-</div>
+  <button class="btn gold loginBtn" onclick="login()">
+   🔐 ورود به پنل
+  </button>
 
-<button class="login-btn" id="loginBtn">
-ورود به پنل
-</button>
+  <div id="loginError"
+       style="color:#ff7777;text-align:center;font-size:11px;margin-top:12px">
+  </div>
 
-</div>
+ </div>
 
-</div>
+</section>
 
 
-<!-- ADMIN -->
+<!-- ================= APP ================= -->
 
-<div id="adminApp">
+<div id="app">
 
 <aside class="sidebar" id="sidebar">
 
-<div class="brand">
-ماهان سنتر ایران
-</div>
+ <div class="brand">
+  <div class="brandLogo">M</div>
+  <div>
+   <h2>ماهان سنتر ایران</h2>
+   <small>MAHAN CENTER ADMIN PRO</small>
+  </div>
+ </div>
 
-<div class="menu">
+ <nav class="nav">
 
-<button class="active" data-page="dashboard">
-📊 داشبورد
-</button>
+  <button class="active" onclick="showPage('dashboard',this)">
+   <span class="navIcon">📊</span> داشبورد
+  </button>
 
-<button data-page="products">
-📦 محصولات
-</button>
+  <button onclick="showPage('products',this)">
+   <span class="navIcon">📦</span> محصولات
+  </button>
 
-<button data-page="orders">
-🛒 سفارش‌ها
-</button>
+  <button onclick="showPage('orders',this)">
+   <span class="navIcon">🛒</span> سفارش‌ها
+  </button>
 
-<button data-page="customers">
-👥 مشتریان
-</button>
+  <button onclick="showPage('customers',this)">
+   <span class="navIcon">👥</span> مشتریان
+  </button>
 
-<button data-page="coupons">
-🎁 کدهای تخفیف
-</button>
+  <button onclick="showPage('coupons',this)">
+   <span class="navIcon">🎟️</span> تخفیف‌ها
+  </button>
 
-<button data-page="reports">
-📈 گزارش فروش
-</button>
+  <button onclick="showPage('inventory',this)">
+   <span class="navIcon">📉</span> موجودی
+  </button>
 
-<button data-page="settings">
-⚙️ تنظیمات
-</button>
+  <button onclick="showPage('reports',this)">
+   <span class="navIcon">📈</span> گزارش‌ها
+  </button>
 
-</div>
+  <button onclick="showPage('activity',this)">
+   <span class="navIcon">📝</span> فعالیت‌ها
+  </button>
 
-<button class="logout" id="logoutBtn">
-🚪 خروج از حساب
-</button>
+  <button onclick="showPage('settings',this)">
+   <span class="navIcon">⚙️</span> تنظیمات
+  </button>
+
+ </nav>
+
+ <div class="sideBottom">
+
+  <div class="userBox" id="adminEmail">
+   مدیر
+  </div>
+
+  <button class="btn red" style="width:100%" onclick="logout()">
+   🚪 خروج
+  </button>
+
+ </div>
 
 </aside>
 
 
 <main class="main">
 
-<div class="topbar">
+<header class="topbar">
 
-<div>
-<button class="mobile-menu" id="mobileMenu">☰</button>
-<h1 id="pageTitle">داشبورد مدیریت</h1>
-<div class="admin-info" id="adminEmail"></div>
-</div>
+ <div class="topTitle">
 
-<div class="top-actions">
-<button class="icon-btn" onclick="refreshAll()">🔄 بروزرسانی</button>
-</div>
+  <button class="mobileMenu" onclick="toggleSidebar()">☰</button>
 
-</div>
+  <div>
+   <h1 id="pageTitle">داشبورد</h1>
+   <small>مدیریت کامل ماهان سنتر ایران</small>
+  </div>
 
+ </div>
 
-<!-- DASHBOARD -->
+ <div class="topActions">
 
-<section class="page active" id="dashboardPage">
+  <button class="btn" onclick="refreshAll()">
+   🔄 بروزرسانی
+  </button>
 
-<div class="grid">
+  <button class="btn gold" onclick="openProductModal()">
+   ＋ محصول
+  </button>
 
-<div class="card stat">
-<div class="stat-icon">💰</div>
-<div class="stat-title">فروش امروز</div>
-<div class="stat-value" id="todaySales">۰ تومان</div>
-<div class="stat-change">اطلاعات زنده فروشگاه</div>
-</div>
+ </div>
 
-<div class="card stat">
-<div class="stat-icon">🛒</div>
-<div class="stat-title">سفارش‌ها</div>
-<div class="stat-value" id="ordersCount">۰</div>
-<div class="stat-change">تمام سفارش‌ها</div>
-</div>
-
-<div class="card stat">
-<div class="stat-icon">📦</div>
-<div class="stat-title">محصولات</div>
-<div class="stat-value" id="productsCount">۰</div>
-<div class="stat-change">محصولات فروشگاه</div>
-</div>
-
-<div class="card stat">
-<div class="stat-icon">👥</div>
-<div class="stat-title">مشتریان</div>
-<div class="stat-value" id="customersCount">۰</div>
-<div class="stat-change">کاربران ثبت‌شده</div>
-</div>
-
-</div>
+</header>
 
 
-<div class="content-grid">
+<!-- ================= DASHBOARD ================= -->
 
-<div class="card">
+<section class="page active" id="dashboard">
 
-<div class="section-title">
-فروش هفتگی
-</div>
+ <div class="stats">
 
-<div class="chart" id="salesChart">
+  <div class="stat">
+   <div class="statIcon">💰</div>
+   <div class="statTitle">فروش کل</div>
+   <div class="statValue" id="statSales">۰</div>
+   <div class="statSub">مجموع سفارش‌ها</div>
+  </div>
 
-<div class="bar-box">
-<div class="bar" style="height:20%"></div>
-<div class="day">شنبه</div>
-</div>
+  <div class="stat">
+   <div class="statIcon">📅</div>
+   <div class="statTitle">فروش امروز</div>
+   <div class="statValue" id="statToday">۰</div>
+   <div class="statSub">امروز</div>
+  </div>
 
-<div class="bar-box">
-<div class="bar" style="height:30%"></div>
-<div class="day">یکشنبه</div>
-</div>
+  <div class="stat">
+   <div class="statIcon">🛒</div>
+   <div class="statTitle">سفارش‌ها</div>
+   <div class="statValue" id="statOrders">۰</div>
+   <div class="statSub">کل سفارش‌ها</div>
+  </div>
 
-<div class="bar-box">
-<div class="bar" style="height:25%"></div>
-<div class="day">دوشنبه</div>
-</div>
+  <div class="stat">
+   <div class="statIcon">📦</div>
+   <div class="statTitle">محصولات</div>
+   <div class="statValue" id="statProducts">۰</div>
+   <div class="statSub">محصولات ثبت‌شده</div>
+  </div>
 
-<div class="bar-box">
-<div class="bar" style="height:40%"></div>
-<div class="day">سه‌شنبه</div>
-</div>
+  <div class="stat">
+   <div class="statIcon">👥</div>
+   <div class="statTitle">مشتریان</div>
+   <div class="statValue" id="statCustomers">۰</div>
+   <div class="statSub">مشتریان ثبت‌شده</div>
+  </div>
 
-<div class="bar-box">
-<div class="bar" style="height:35%"></div>
-<div class="day">چهارشنبه</div>
-</div>
-
-<div class="bar-box">
-<div class="bar" style="height:55%"></div>
-<div class="day">پنجشنبه</div>
-</div>
-
-<div class="bar-box">
-<div class="bar" style="height:45%"></div>
-<div class="day">جمعه</div>
-</div>
-
-</div>
-
-</div>
+ </div>
 
 
-<div class="card">
+ <div class="grid2">
 
-<div class="section-title">
-دسترسی سریع
-</div>
+  <div class="card">
 
-<div class="actions">
+   <div class="cardHead">
+    <h2>📈 فروش ۷ روز اخیر</h2>
+    <small>بر اساس سفارش‌های ثبت‌شده</small>
+   </div>
 
-<button class="action" onclick="openAddProduct()">
-➕<br>افزودن محصول
-</button>
+   <div class="chart" id="salesChart"></div>
 
-<button class="action" onclick="showPage('orders')">
-🛒<br>سفارش‌ها
-</button>
-
-<button class="action" onclick="showPage('coupons')">
-🎁<br>کد تخفیف
-</button>
-
-<button class="action" onclick="showPage('reports')">
-📊<br>گزارش فروش
-</button>
-
-</div>
-
-</div>
-
-</div>
+  </div>
 
 
-<div class="card" style="margin-top:18px">
+  <div class="card">
 
-<div class="section-title">
-آخرین سفارش‌ها
-</div>
+   <div class="cardHead">
+    <h2>⚡ دسترسی سریع</h2>
+   </div>
 
-<div id="latestOrders">
-<div class="loading">
-<div class="spinner"></div>
-در حال دریافت...
-</div>
-</div>
+   <div class="quickGrid">
 
-</div>
+    <button class="quickBtn" onclick="openProductModal()">
+     📦<br>محصول جدید
+    </button>
 
-</section>
+    <button class="quickBtn" onclick="goPage('orders')">
+     🛒<br>سفارش‌ها
+    </button>
+
+    <button class="quickBtn" onclick="openCouponModal()">
+     🎟️<br>کد تخفیف
+    </button>
+
+    <button class="quickBtn" onclick="goPage('inventory')">
+     📉<br>موجودی
+    </button>
+
+   </div>
+
+  </div>
+
+ </div>
 
 
-<!-- PRODUCTS -->
+ <div class="grid2">
 
-<section class="page" id="productsPage">
+  <div class="card">
 
-<div class="page-header">
+   <div class="cardHead">
+    <h2>🛒 آخرین سفارش‌ها</h2>
+    <button class="btn small" onclick="goPage('orders')">
+     مشاهده همه
+    </button>
+   </div>
 
-<div>
-<h2>📦 مدیریت محصولات</h2>
-<p>افزودن، ویرایش و حذف محصولات فروشگاه</p>
-</div>
+   <div class="tableWrap">
 
-<button class="primary" onclick="openAddProduct()">
-➕ افزودن محصول
-</button>
+    <table>
 
-</div>
+     <thead>
+      <tr>
+       <th>شناسه</th>
+       <th>مشتری</th>
+       <th>مبلغ</th>
+       <th>وضعیت</th>
+      </tr>
+     </thead>
 
-<div class="toolbar">
+     <tbody id="latestOrders"></tbody>
 
-<input
-class="search"
-id="productSearch"
-placeholder="🔎 جستجوی نام محصول..."
-oninput="renderProducts()"
->
+    </table>
 
-<select class="select" id="categoryFilter" onchange="renderProducts()">
+   </div>
 
-<option value="all">همه دسته‌ها</option>
-<option value="mobile">گوشی</option>
-<option value="gold">طلا و جواهرات</option>
-<option value="clothes">پوشاک</option>
-<option value="accessories">لوازم جانبی</option>
-<option value="digital">دیجیتال</option>
-<option value="shoes">کفش</option>
-<option value="watches">ساعت</option>
+  </div>
 
-</select>
 
-</div>
+  <div class="card">
 
-<div class="card">
+   <div class="cardHead">
+    <h2>⚠️ هشدارها</h2>
+   </div>
 
-<div id="productsList" class="product-list">
+   <div class="alertList" id="alerts"></div>
 
-<div class="loading">
-<div class="spinner"></div>
-در حال دریافت محصولات...
-</div>
+  </div>
 
-</div>
+ </div>
 
-</div>
+
+ <div class="card">
+
+  <div class="cardHead">
+   <h2>🏆 محصولات برتر</h2>
+   <small>بر اساس تعداد فروش ثبت‌شده</small>
+  </div>
+
+  <div class="tableWrap">
+
+   <table>
+
+    <thead>
+     <tr>
+      <th>محصول</th>
+      <th>قیمت</th>
+      <th>فروش</th>
+      <th>وضعیت</th>
+     </tr>
+    </thead>
+
+    <tbody id="bestProducts"></tbody>
+
+   </table>
+
+  </div>
+
+ </div>
 
 </section>
 
 
-<!-- ORDERS -->
+<!-- ================= PRODUCTS ================= -->
 
-<section class="page" id="ordersPage">
+<section class="page" id="products">
 
-<div class="page-header">
+ <div class="card">
 
-<div>
-<h2>🛒 سفارش‌ها</h2>
-<p>مدیریت سفارش‌های فروشگاه</p>
-</div>
+  <div class="cardHead">
+   <h2>📦 مدیریت محصولات</h2>
 
-<button class="secondary" onclick="loadOrders()">
-🔄 بروزرسانی
-</button>
+   <button class="btn gold" onclick="openProductModal()">
+    ＋ افزودن محصول
+   </button>
+  </div>
 
-</div>
+  <div class="toolbar">
 
-<div class="card">
+   <input id="productSearch"
+          placeholder="🔍 جستجوی نام، برند یا محصول..."
+          oninput="renderProducts()">
 
-<div class="order-table">
+   <select id="productCatFilter"
+           onchange="renderProducts()">
 
-<table>
+    <option value="">همه دسته‌ها</option>
+    <option value="mobile">موبایل</option>
+    <option value="gold">طلا و جواهر</option>
+    <option value="clothes">پوشاک</option>
+    <option value="accessories">لوازم جانبی</option>
+    <option value="digital">کالای دیجیتال</option>
+    <option value="shoes">کفش</option>
+    <option value="watches">ساعت</option>
 
-<thead>
+   </select>
 
-<tr>
-<th>شناسه</th>
-<th>مشتری</th>
-<th>مبلغ</th>
-<th>وضعیت</th>
-<th>تاریخ</th>
-<th>عملیات</th>
-</tr>
+   <select id="productStatusFilter"
+           onchange="renderProducts()">
 
-</thead>
+    <option value="">همه وضعیت‌ها</option>
+    <option value="active">فعال</option>
+    <option value="inactive">غیرفعال</option>
 
-<tbody id="ordersTable">
+   </select>
 
-<tr>
-<td colspan="6">
-<div class="loading">در حال دریافت...</div>
-</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</section>
+  </div>
 
 
-<!-- CUSTOMERS -->
+  <div class="tableWrap">
 
-<section class="page" id="customersPage">
+   <table>
 
-<div class="page-header">
+    <thead>
 
-<div>
-<h2>👥 مشتریان</h2>
-<p>اطلاعات مشتریان فروشگاه</p>
-</div>
+     <tr>
+      <th>تصویر</th>
+      <th>نام</th>
+      <th>برند</th>
+      <th>دسته</th>
+      <th>قیمت</th>
+      <th>موجودی</th>
+      <th>وضعیت</th>
+      <th>عملیات</th>
+     </tr>
 
-<button class="secondary" onclick="loadCustomers()">
-🔄 بروزرسانی
-</button>
+    </thead>
 
-</div>
+    <tbody id="productsTable"></tbody>
 
-<div class="card">
+   </table>
 
-<div class="order-table">
+  </div>
 
-<table>
-
-<thead>
-
-<tr>
-<th>نام</th>
-<th>ایمیل</th>
-<th>شماره</th>
-<th>تعداد سفارش</th>
-<th>مبلغ خرید</th>
-</tr>
-
-</thead>
-
-<tbody id="customersTable">
-
-<tr>
-<td colspan="5">
-<div class="empty">
-<div class="empty-icon">👥</div>
-هنوز مشتری‌ای ثبت نشده است.
-</div>
-</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
+ </div>
 
 </section>
 
 
-<!-- COUPONS -->
+<!-- ================= ORDERS ================= -->
 
-<section class="page" id="couponsPage">
+<section class="page" id="orders">
 
-<div class="page-header">
+ <div class="card">
 
-<div>
-<h2>🎁 کدهای تخفیف</h2>
-<p>ساخت و مدیریت کدهای تخفیف</p>
-</div>
+  <div class="cardHead">
+   <h2>🛒 مدیریت سفارش‌ها</h2>
+  </div>
 
-<button class="primary" onclick="openCouponModal()">
-➕ کد جدید
-</button>
+  <div class="toolbar">
 
-</div>
+   <input id="orderSearch"
+          placeholder="🔍 جستجوی شناسه، مشتری، شماره..."
+          oninput="renderOrders()">
 
-<div class="card">
+   <select id="orderStatus"
+           onchange="renderOrders()">
 
-<div id="couponsList">
+    <option value="">همه وضعیت‌ها</option>
+    <option value="new">جدید</option>
+    <option value="reviewing">در حال بررسی</option>
+    <option value="approved">تأیید شده</option>
+    <option value="ready">آماده ارسال</option>
+    <option value="shipped">ارسال شده</option>
+    <option value="delivered">تحویل شده</option>
+    <option value="cancelled">لغو شده</option>
 
-<div class="loading">
-<div class="spinner"></div>
-در حال دریافت...
-</div>
+   </select>
 
-</div>
-
-</div>
-
-</section>
+  </div>
 
 
-<!-- REPORTS -->
+  <div class="tableWrap">
 
-<section class="page" id="reportsPage">
+   <table>
 
-<div class="page-header">
+    <thead>
 
-<div>
-<h2>📈 گزارش فروش</h2>
-<p>نمای کلی عملکرد فروشگاه</p>
-</div>
+     <tr>
+      <th>شناسه</th>
+      <th>مشتری</th>
+      <th>شماره</th>
+      <th>مبلغ</th>
+      <th>تاریخ</th>
+      <th>وضعیت</th>
+      <th>عملیات</th>
+     </tr>
 
-</div>
+    </thead>
 
-<div class="grid">
+    <tbody id="ordersTable"></tbody>
 
-<div class="card stat">
-<div class="stat-title">کل فروش</div>
-<div class="stat-value" id="totalSales">۰ تومان</div>
-</div>
+   </table>
 
-<div class="card stat">
-<div class="stat-title">تعداد سفارش</div>
-<div class="stat-value" id="reportOrders">۰</div>
-</div>
+  </div>
 
-<div class="card stat">
-<div class="stat-title">میانگین سفارش</div>
-<div class="stat-value" id="averageOrder">۰ تومان</div>
-</div>
-
-<div class="card stat">
-<div class="stat-title">تعداد محصول</div>
-<div class="stat-value" id="reportProducts">۰</div>
-</div>
-
-</div>
-
-<div class="card">
-
-<div class="section-title">
-خلاصه گزارش
-</div>
-
-<div id="reportSummary" style="color:#999;font-size:12px;line-height:2.2">
-برای نمایش گزارش، اطلاعات سفارش‌ها از Firebase خوانده می‌شود.
-</div>
-
-</div>
+ </div>
 
 </section>
 
 
-<!-- SETTINGS -->
+<!-- ================= CUSTOMERS ================= -->
 
-<section class="page" id="settingsPage">
+<section class="page" id="customers">
 
-<div class="page-header">
+ <div class="card">
 
-<div>
-<h2>⚙️ تنظیمات</h2>
-<p>تنظیمات پنل مدیریت</p>
-</div>
+  <div class="cardHead">
+   <h2>👥 مدیریت مشتریان</h2>
+  </div>
 
-</div>
+  <div class="toolbar">
 
-<div class="card">
+   <input id="customerSearch"
+          placeholder="🔍 جستجوی مشتری..."
+          oninput="renderCustomers()">
 
-<div class="field">
-<label>نام فروشگاه</label>
-<input id="storeName" value="ماهان سنتر ایران">
-</div>
+  </div>
 
-<div class="field">
-<label>توضیحات فروشگاه</label>
-<textarea id="storeDescription">فروشگاه آنلاین ماهان سنتر ایران</textarea>
-</div>
+  <div class="tableWrap">
 
-<button class="primary" onclick="saveSettings()">
-💾 ذخیره تنظیمات
-</button>
+   <table>
 
-</div>
+    <thead>
+
+     <tr>
+      <th>نام</th>
+      <th>شماره</th>
+      <th>ایمیل</th>
+      <th>سفارش‌ها</th>
+      <th>خرید کل</th>
+      <th>آخرین خرید</th>
+     </tr>
+
+    </thead>
+
+    <tbody id="customersTable"></tbody>
+
+   </table>
+
+  </div>
+
+ </div>
 
 </section>
+
+
+<!-- ================= COUPONS ================= -->
+
+<section class="page" id="coupons">
+
+ <div class="card">
+
+  <div class="cardHead">
+
+   <h2>🎟️ مدیریت کدهای تخفیف</h2>
+
+   <button class="btn gold" onclick="openCouponModal()">
+    ＋ کد جدید
+   </button>
+
+  </div>
+
+  <div class="tableWrap">
+
+   <table>
+
+    <thead>
+
+     <tr>
+      <th>کد</th>
+      <th>نوع</th>
+      <th>مقدار</th>
+      <th>حداقل خرید</th>
+      <th>استفاده</th>
+      <th>وضعیت</th>
+      <th>عملیات</th>
+     </tr>
+
+    </thead>
+
+    <tbody id="couponsTable"></tbody>
+
+   </table>
+
+  </div>
+
+ </div>
+
+</section>
+
+
+<!-- ================= INVENTORY ================= -->
+
+<section class="page" id="inventory">
+
+ <div class="grid3">
+
+  <div class="reportBox">
+   <h3>کل محصولات</h3>
+   <strong id="inventoryTotal">۰</strong>
+  </div>
+
+  <div class="reportBox">
+   <h3>موجودی کم</h3>
+   <strong id="inventoryLow">۰</strong>
+  </div>
+
+  <div class="reportBox">
+   <h3>ناموجود</h3>
+   <strong id="inventoryOut">۰</strong>
+  </div>
+
+ </div>
+
+ <div class="card" style="margin-top:17px">
+
+  <div class="cardHead">
+   <h2>📉 کنترل موجودی</h2>
+   <small>محصولات با موجودی کم یا صفر</small>
+  </div>
+
+  <div class="tableWrap">
+
+   <table>
+
+    <thead>
+     <tr>
+      <th>محصول</th>
+      <th>دسته</th>
+      <th>موجودی</th>
+      <th>وضعیت</th>
+      <th>عملیات</th>
+     </tr>
+    </thead>
+
+    <tbody id="inventoryTable"></tbody>
+
+   </table>
+
+  </div>
+
+ </div>
+
+</section>
+
+
+<!-- ================= REPORTS ================= -->
+
+<section class="page" id="reports">
+
+ <div class="grid3">
+
+  <div class="reportBox">
+   <h3>فروش کل</h3>
+   <strong id="reportSales">۰ تومان</strong>
+  </div>
+
+  <div class="reportBox">
+   <h3>تعداد سفارش</h3>
+   <strong id="reportOrders">۰</strong>
+  </div>
+
+  <div class="reportBox">
+   <h3>میانگین سفارش</h3>
+   <strong id="reportAverage">۰ تومان</strong>
+  </div>
+
+ </div>
+
+
+ <div class="card" style="margin-top:17px">
+
+  <div class="cardHead">
+   <h2>📈 گزارش کامل</h2>
+  </div>
+
+  <div class="reportText" id="reportText"></div>
+
+ </div>
+
+</section>
+
+
+<!-- ================= ACTIVITY ================= -->
+
+<section class="page" id="activity">
+
+ <div class="card">
+
+  <div class="cardHead">
+   <h2>📝 فعالیت‌های پنل</h2>
+   <button class="btn red small" onclick="clearActivities()">
+    پاک کردن
+   </button>
+  </div>
+
+  <div class="tableWrap">
+
+   <table>
+
+    <thead>
+     <tr>
+      <th>عملیات</th>
+      <th>ادمین</th>
+      <th>تاریخ</th>
+     </tr>
+    </thead>
+
+    <tbody id="activityTable"></tbody>
+
+   </table>
+
+  </div>
+
+ </div>
+
+</section>
+
+
+<!-- ================= SETTINGS ================= -->
+
+<section class="page" id="settings">
+
+ <div class="card">
+
+  <div class="cardHead">
+   <h2>⚙️ تنظیمات فروشگاه</h2>
+  </div>
+
+  <div class="formGrid">
+
+   <div class="field">
+    <label>نام فروشگاه</label>
+    <input id="settingName" value="ماهان سنتر ایران">
+   </div>
+
+   <div class="field">
+    <label>شماره تماس</label>
+    <input id="settingPhone">
+   </div>
+
+   <div class="field">
+    <label>اینستاگرام</label>
+    <input id="settingInstagram" value="@Omidi__xx">
+   </div>
+
+   <div class="field">
+    <label>وضعیت فروشگاه</label>
+    <select id="settingStatus">
+     <option value="active">فعال</option>
+     <option value="maintenance">در حال تعمیر</option>
+     <option value="closed">بسته</option>
+    </select>
+   </div>
+
+   <div class="field full">
+    <label>توضیحات فروشگاه</label>
+    <textarea id="settingDescription"></textarea>
+   </div>
+
+   <div class="field">
+    <label>حد هشدار موجودی</label>
+    <input id="settingLowStock" type="number" value="5">
+   </div>
+
+  </div>
+
+  <button class="btn gold" onclick="saveSettings()">
+   💾 ذخیره تنظیمات
+  </button>
+
+ </div>
+
+
+ <div class="card">
+
+  <div class="cardHead">
+   <h2>🔐 حساب مدیر</h2>
+  </div>
+
+  <p style="color:#888;font-size:12px;line-height:2">
+   ورود و احراز هویت این پنل توسط Firebase Authentication انجام می‌شود.
+   حساب مدیر را از بخش Authentication پروژه Firebase مدیریت کن.
+  </p>
+
+ </div>
+
+</section>
+
 
 </main>
-
 </div>
 
 
-<!-- PRODUCT MODAL -->
+<!-- ================= PRODUCT MODAL ================= -->
 
-<div class="modal" id="productModal">
+<div class="modalBg" id="productModal">
 
-<div class="modal-box">
+<div class="modal large">
 
-<div class="modal-title">
+ <div class="modalHead">
 
-<h3 id="productModalTitle">
-افزودن محصول
-</h3>
+  <h2 id="productModalTitle">افزودن محصول</h2>
 
-<button class="close" onclick="closeModal('productModal')">
-×
-</button>
+  <button class="closeBtn"
+          onclick="closeModal('productModal')">
+   ×
+  </button>
 
-</div>
-
-<input type="hidden" id="editProductId">
-
-<div class="form-grid">
-
-<div class="field full">
-<label>نام محصول</label>
-<input id="pName" placeholder="مثلاً آیفون 17 پرو مکس">
-</div>
-
-<div class="field">
-<label>دسته‌بندی</label>
-
-<select id="pCat">
-
-<option value="mobile">گوشی</option>
-<option value="gold">طلا و جواهرات</option>
-<option value="clothes">پوشاک</option>
-<option value="accessories">لوازم جانبی</option>
-<option value="digital">دیجیتال</option>
-<option value="shoes">کفش</option>
-<option value="watches">ساعت</option>
-
-</select>
-
-</div>
-
-<div class="field">
-<label>برند</label>
-<input id="pBrand" placeholder="مثلاً Apple">
-</div>
-
-<div class="field">
-<label>قیمت به تومان</label>
-<input id="pPrice" type="number" placeholder="456500000">
-</div>
-
-<div class="field">
-<label>آدرس تصویر</label>
-<input id="pImage" placeholder="images/phones/product.jpg">
-</div>
-
-<div class="field">
-<label>آیکون</label>
-<input id="pIcon" value="📦">
-</div>
-
-<div class="field full">
-<label>توضیحات کوتاه</label>
-<textarea id="pDesc" placeholder="توضیحات محصول..."></textarea>
-</div>
-
-<div class="field full">
-<label>مشخصات محصول</label>
-<textarea id="pSpecs" placeholder="رنگ: مشکی | حافظه: 256GB | ..."></textarea>
-</div>
-
-</div>
-
-<div class="modal-footer">
-
-<button class="secondary" onclick="closeModal('productModal')">
-انصراف
-</button>
-
-<button class="primary" onclick="saveProduct()">
-💾 ذخیره محصول
-</button>
-
-</div>
-
-</div>
-
-</div>
+ </div>
 
 
-<!-- DELETE MODAL -->
-
-<div class="modal" id="deleteModal">
-
-<div class="modal-box" style="max-width:420px;text-align:center">
-
-<div style="font-size:45px;margin-bottom:15px">
-⚠️
-</div>
-
-<h3 style="margin-bottom:10px">
-حذف محصول
-</h3>
-
-<p id="deleteText" style="color:#999;font-size:12px;line-height:2;margin-bottom:20px">
-آیا از حذف این محصول مطمئن هستید؟
-</p>
-
-<div class="modal-footer" style="justify-content:center">
-
-<button class="secondary" onclick="closeModal('deleteModal')">
-انصراف
-</button>
-
-<button class="danger" onclick="confirmDelete()">
-🗑️ حذف قطعی
-</button>
-
-</div>
-
-</div>
-
-</div>
+ <input type="hidden" id="editProductId">
 
 
-<!-- COUPON MODAL -->
+ <div class="formGrid">
 
-<div class="modal" id="couponModal">
+  <div class="field">
+   <label>نام محصول *</label>
+   <input id="pName">
+  </div>
 
-<div class="modal-box" style="max-width:500px">
+  <div class="field">
+   <label>برند</label>
+   <input id="pBrand">
+  </div>
 
-<div class="modal-title">
+  <div class="field">
+   <label>دسته‌بندی</label>
 
-<h3>افزودن کد تخفیف</h3>
+   <select id="pCat">
+    <option value="mobile">موبایل</option>
+    <option value="gold">طلا و جواهر</option>
+    <option value="clothes">پوشاک</option>
+    <option value="accessories">لوازم جانبی</option>
+    <option value="digital">کالای دیجیتال</option>
+    <option value="shoes">کفش</option>
+    <option value="watches">ساعت</option>
+   </select>
 
-<button class="close" onclick="closeModal('couponModal')">
-×
-</button>
+  </div>
 
-</div>
+  <div class="field">
+   <label>وضعیت</label>
 
-<div class="field">
-<label>کد تخفیف</label>
-<input id="couponCode" placeholder="مثلاً MAHAN10">
-</div>
+   <select id="pStatus">
+    <option value="active">فعال</option>
+    <option value="inactive">غیرفعال</option>
+   </select>
 
-<div class="field">
-<label>درصد تخفیف</label>
-<input id="couponPercent" type="number" min="1" max="100" placeholder="10">
-</div>
+  </div>
 
-<div class="field">
-<label>حداکثر استفاده</label>
-<input id="couponLimit" type="number" min="1" placeholder="100">
-</div>
 
-<div class="modal-footer">
+  <div class="field">
+   <label>قیمت اصلی</label>
+   <input id="pPrice" type="number">
+  </div>
 
-<button class="secondary" onclick="closeModal('couponModal')">
-انصراف
-</button>
+  <div class="field">
+   <label>قیمت با تخفیف</label>
+   <input id="pSalePrice" type="number">
+  </div>
 
-<button class="primary" onclick="saveCoupon()">
-💾 ذخیره
-</button>
+
+  <div class="field">
+   <label>موجودی</label>
+   <input id="pStock" type="number" value="0">
+  </div>
+
+  <div class="field">
+   <label>حد هشدار موجودی</label>
+   <input id="pLowStock" type="number" value="5">
+  </div>
+
+
+  <div class="field">
+   <label>رنگ</label>
+   <input id="pColors" placeholder="مشکی، سفید، طلایی">
+  </div>
+
+  <div class="field">
+   <label>سایز</label>
+   <input id="pSizes" placeholder="S، M، L، XL">
+  </div>
+
+
+  <div class="field">
+   <label>آیکون</label>
+   <input id="pIcon" placeholder="📱">
+  </div>
+
+  <div class="field">
+   <label>برچسب محصول</label>
+   <input id="pTag" placeholder="جدید / ویژه / پرفروش">
+  </div>
+
+
+  <div class="field full">
+   <label>توضیحات</label>
+   <textarea id="pDesc"></textarea>
+  </div>
+
+  <div class="field full">
+   <label>مشخصات</label>
+   <textarea id="pSpecs"></textarea>
+  </div>
+
+
+  <!-- UPLOAD -->
+
+  <div class="field full">
+
+   <label>تصاویر محصول</label>
+
+   <div class="uploadBox">
+
+    <input
+     type="file"
+     id="pFiles"
+     accept="image/*"
+     multiple
+     onchange="previewImages()">
+
+    <div style="margin-top:8px;font-size:11px">
+     چند تصویر انتخاب کن؛ تصاویر در Firebase Storage ذخیره می‌شوند.
+    </div>
+
+   </div>
+
+   <div class="previewGrid" id="previewGrid"></div>
+
+  </div>
+
+
+  <div class="field full">
+
+   <label>آدرس تصاویر قبلی</label>
+
+   <textarea
+    id="pImages"
+    placeholder="هر آدرس در یک خط"></textarea>
+
+  </div>
+
+ </div>
+
+
+ <div class="modalFooter">
+
+  <button class="btn"
+          onclick="closeModal('productModal')">
+   انصراف
+  </button>
+
+  <button class="btn gold"
+          onclick="saveProduct()">
+   💾 ذخیره محصول
+  </button>
+
+ </div>
 
 </div>
-
-</div>
-
 </div>
 
 
-<div id="toast" class="toast"></div>
+<!-- ================= COUPON MODAL ================= -->
+
+<div class="modalBg" id="couponModal">
+
+<div class="modal">
+
+ <div class="modalHead">
+
+  <h2>🎟️ ساخت کد تخفیف</h2>
+
+  <button class="closeBtn"
+          onclick="closeModal('couponModal')">
+   ×
+  </button>
+
+ </div>
 
 
-<!-- FIREBASE -->
+ <div class="formGrid">
+
+  <div class="field">
+   <label>کد تخفیف</label>
+   <input id="couponCode" placeholder="MAHAN50">
+  </div>
+
+  <div class="field">
+   <label>نوع</label>
+
+   <select id="couponType">
+    <option value="percent">درصدی</option>
+    <option value="fixed">مبلغ ثابت</option>
+   </select>
+
+  </div>
+
+  <div class="field">
+   <label>مقدار</label>
+   <input id="couponValue" type="number">
+  </div>
+
+  <div class="field">
+   <label>حداقل خرید</label>
+   <input id="couponMin" type="number" value="0">
+  </div>
+
+  <div class="field">
+   <label>حداکثر تخفیف</label>
+   <input id="couponMax" type="number" value="0">
+  </div>
+
+  <div class="field">
+   <label>محدودیت استفاده</label>
+   <input id="couponLimit" type="number" value="0">
+  </div>
+
+ </div>
+
+
+ <div class="modalFooter">
+
+  <button class="btn"
+          onclick="closeModal('couponModal')">
+   انصراف
+  </button>
+
+  <button class="btn gold"
+          onclick="saveCoupon()">
+   💾 ساخت کد
+  </button>
+
+ </div>
+
+</div>
+</div>
+
+
+<!-- ================= ORDER MODAL ================= -->
+
+<div class="modalBg" id="orderModal">
+
+<div class="modal">
+
+ <div class="modalHead">
+
+  <h2>🛒 جزئیات سفارش</h2>
+
+  <button class="closeBtn"
+          onclick="closeModal('orderModal')">
+   ×
+  </button>
+
+ </div>
+
+ <div id="orderDetails"></div>
+
+</div>
+</div>
+
+
+<!-- ================= LOADING ================= -->
+
+<div id="loading">
+ <div class="spinner"></div>
+</div>
+
+<div id="toast"></div>
+
+
+<!-- ================= FIREBASE ================= -->
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import {initializeApp}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 import {
-getAuth,
-signInWithEmailAndPassword,
-onAuthStateChanged,
-signOut
+ getAuth,
+ signInWithEmailAndPassword,
+ onAuthStateChanged,
+ signOut
 }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 import {
-getFirestore,
-collection,
-getDocs,
-getDoc,
-doc,
-addDoc,
-setDoc,
-updateDoc,
-deleteDoc,
-query,
-orderBy,
-limit,
-serverTimestamp
+ getFirestore,
+ collection,
+ getDocs,
+ getDoc,
+ addDoc,
+ setDoc,
+ updateDoc,
+ deleteDoc,
+ doc,
+ serverTimestamp
 }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+import {
+ getStorage,
+ ref,
+ uploadBytes,
+ getDownloadURL,
+ deleteObject
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-storage.js";
 
 
-/* FIREBASE */
+/* ================= CONFIG ================= */
 
 const firebaseConfig={
-apiKey:"AIzaSyDlrv12gAydgbx1qPJXAIm0kzcSeJF5pNs",
-authDomain:"mahan-center.firebaseapp.com",
-projectId:"mahan-center",
-storageBucket:"mahan-center.firebasestorage.app",
-messagingSenderId:"720478821753",
-appId:"1:720478821753:web:7a431c1a3f9e3abd7923a8"
+
+ apiKey:"AIzaSyDlrv12gAydgbx1qPJXAIm0kzcSeJF5pNs",
+
+ authDomain:"mahan-center.firebaseapp.com",
+
+ projectId:"mahan-center",
+
+ storageBucket:"mahan-center.firebasestorage.app",
+
+ messagingSenderId:"720478821753",
+
+ appId:"1:720478821753:web:7a431c1a3f9e3abd7923a"
+
 };
+
+
+/* ================= INIT ================= */
 
 const app=initializeApp(firebaseConfig);
 
@@ -1564,1363 +1987,1424 @@ const auth=getAuth(app);
 
 const db=getFirestore(app);
 
+const storage=getStorage(app);
 
-/* STATE */
+
+/* ================= DATA ================= */
 
 let products=[];
 let orders=[];
 let customers=[];
 let coupons=[];
-
-let deleteProductId=null;
-
-
-/* ELEMENTS */
-
-const loginPage=document.getElementById("loginPage");
-const adminApp=document.getElementById("adminApp");
-
-const loginBtn=document.getElementById("loginBtn");
-const logoutBtn=document.getElementById("logoutBtn");
-
-const emailInput=document.getElementById("email");
-const passwordInput=document.getElementById("password");
-
-const loginError=document.getElementById("loginError");
-
-const adminEmail=document.getElementById("adminEmail");
+let activities=[];
+let selectedFiles=[];
 
 
-/* HELPERS */
+/* ================= HELPERS ================= */
 
-function money(value){
+const $=id=>document.getElementById(id);
 
-return Number(value||0).toLocaleString("en-US")+" تومان";
+function money(n){
+
+ n=Number(n||0);
+
+ return n.toLocaleString("fa-IR")+" تومان";
 
 }
 
-function categoryName(cat){
+function num(n){
 
-const names={
-mobile:"گوشی",
-gold:"طلا و جواهرات",
-clothes:"پوشاک",
-accessories:"لوازم جانبی",
-digital:"دیجیتال",
-shoes:"کفش",
-watches:"ساعت"
-};
-
-return names[cat]||cat||"نامشخص";
+ return Number(n||0).toLocaleString("fa-IR");
 
 }
 
-function toast(message){
+function esc(v){
 
-const el=document.getElementById("toast");
-
-el.textContent=message;
-
-el.classList.add("show");
-
-setTimeout(()=>{
-el.classList.remove("show");
-},2800);
+ return String(v??"")
+ .replaceAll("&","&amp;")
+ .replaceAll("<","&lt;")
+ .replaceAll(">","&gt;")
+ .replaceAll('"',"&quot;")
+ .replaceAll("'","&#039;");
 
 }
 
-function escapeHTML(value){
+function toast(text){
 
-return String(value??"")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
+ const t=$("toast");
+
+ t.textContent=text;
+
+ t.classList.add("show");
+
+ setTimeout(()=>{
+  t.classList.remove("show");
+ },2800);
+
+}
+
+function loading(show){
+
+ $("loading").classList.toggle("show",show);
+
+}
+
+function categoryName(c){
+
+ const x={
+  mobile:"موبایل",
+  gold:"طلا و جواهر",
+  clothes:"پوشاک",
+  accessories:"لوازم جانبی",
+  digital:"کالای دیجیتال",
+  shoes:"کفش",
+  watches:"ساعت"
+ };
+
+ return x[c]||c||"-";
+
+}
+
+function statusName(s){
+
+ const x={
+  new:"جدید",
+  reviewing:"در حال بررسی",
+  approved:"تأیید شده",
+  ready:"آماده ارسال",
+  shipped:"ارسال شده",
+  delivered:"تحویل شده",
+  cancelled:"لغو شده"
+ };
+
+ return x[s]||"نامشخص";
+
+}
+
+function statusClass(s){
+
+ if(s==="delivered")return"green";
+ if(s==="cancelled")return"red";
+ if(s==="new")return"gold";
+ if(s==="shipped")return"blue";
+ return"";
+
+}
+
+function dateValue(v){
+
+ if(!v)return null;
+
+ if(typeof v.toDate==="function")
+  return v.toDate();
+
+ if(v.seconds)
+  return new Date(v.seconds*1000);
+
+ const d=new Date(v);
+
+ return isNaN(d.getTime())?null:d;
+
+}
+
+function dateText(v){
+
+ const d=dateValue(v);
+
+ if(!d)return"-";
+
+ return d.toLocaleDateString("fa-IR");
+
+}
+
+function dateTime(v){
+
+ const d=dateValue(v);
+
+ if(!d)return"-";
+
+ return d.toLocaleDateString("fa-IR")+" "+
+ d.toLocaleTimeString("fa-IR",{
+  hour:"2-digit",
+  minute:"2-digit"
+ });
 
 }
 
 
-/* MODAL */
+/* ================= AUTH ================= */
 
-window.closeModal=function(id){
+window.login=async function(){
 
-document.getElementById(id).classList.remove("show");
+ const email=$("loginEmail").value.trim();
 
-};
+ const password=$("loginPassword").value;
 
-function openModal(id){
+ $("loginError").textContent="";
 
-document.getElementById(id).classList.add("show");
+ if(!email||!password){
 
-}
+  $("loginError").textContent=
+   "ایمیل و رمز عبور را وارد کنید.";
 
+  return;
+ }
 
-/* LOGIN */
+ try{
 
-loginBtn.addEventListener("click",async()=>{
+  loading(true);
 
-const email=emailInput.value.trim();
+  await signInWithEmailAndPassword(
+   auth,
+   email,
+   password
+  );
 
-const password=passwordInput.value;
+ }catch(e){
 
-loginError.style.display="none";
+  console.error(e);
 
-if(!email||!password){
+  $("loginError").textContent=
+   "ورود ناموفق بود. اطلاعات ورود را بررسی کنید.";
 
-loginError.textContent="ایمیل و رمز عبور را وارد کنید.";
+ }finally{
 
-loginError.style.display="block";
+  loading(false);
 
-return;
-
-}
-
-loginBtn.disabled=true;
-
-loginBtn.textContent="در حال ورود...";
-
-try{
-
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-}catch(error){
-
-console.error(error);
-
-loginError.textContent=
-"ورود انجام نشد؛ ایمیل یا رمز عبور را بررسی کنید.";
-
-loginError.style.display="block";
-
-}finally{
-
-loginBtn.disabled=false;
-
-loginBtn.textContent="ورود به پنل";
-
-}
-
-});
-
-
-passwordInput.addEventListener("keydown",e=>{
-
-if(e.key==="Enter"){
-loginBtn.click();
-}
-
-});
-
-
-/* AUTH */
-
-onAuthStateChanged(auth,async user=>{
-
-if(user){
-
-loginPage.style.display="none";
-
-adminApp.style.display="block";
-
-adminEmail.textContent=
-"مدیر: "+(user.email||"");
-
-await refreshAll();
-
-}else{
-
-loginPage.style.display="flex";
-
-adminApp.style.display="none";
-
-}
-
-});
-
-
-/* LOGOUT */
-
-logoutBtn.addEventListener("click",async()=>{
-
-await signOut(auth);
-
-});
-
-
-/* MOBILE */
-
-document.getElementById("mobileMenu")
-.addEventListener("click",()=>{
-
-document.getElementById("sidebar")
-.classList.toggle("open");
-
-});
-
-
-/* NAVIGATION */
-
-const menuButtons=
-document.querySelectorAll(".menu button");
-
-menuButtons.forEach(button=>{
-
-button.addEventListener("click",()=>{
-
-showPage(button.dataset.page);
-
-});
-
-});
-
-
-window.showPage=function(page){
-
-document.querySelectorAll(".page")
-.forEach(x=>x.classList.remove("active"));
-
-const target=document.getElementById(page+"Page");
-
-if(target){
-target.classList.add("active");
-}
-
-menuButtons.forEach(x=>{
-
-x.classList.toggle(
-"active",
-x.dataset.page===page
-);
-
-});
-
-const titles={
-
-dashboard:"داشبورد مدیریت",
-products:"مدیریت محصولات",
-orders:"مدیریت سفارش‌ها",
-customers:"مدیریت مشتریان",
-coupons:"کدهای تخفیف",
-reports:"گزارش فروش",
-settings:"تنظیمات"
-
-};
-
-document.getElementById("pageTitle")
-.textContent=titles[page]||"پنل مدیریت";
-
-document.getElementById("sidebar")
-.classList.remove("open");
-
-if(page==="products")renderProducts();
-
-if(page==="orders")loadOrders();
-
-if(page==="customers")loadCustomers();
-
-if(page==="coupons")loadCoupons();
-
-if(page==="reports")renderReports();
+ }
 
 };
 
 
-/* PRODUCTS */
+window.logout=async function(){
+
+ await signOut(auth);
+
+};
+
+
+onAuthStateChanged(auth,user=>{
+
+ if(user){
+
+  $("loginPage").style.display="none";
+
+  $("app").style.display="block";
+
+  $("adminEmail").textContent=
+   user.email||"مدیر فروشگاه";
+
+  refreshAll();
+
+ }else{
+
+  $("loginPage").style.display="flex";
+
+  $("app").style.display="none";
+
+ }
+
+});
+
+
+/* ================= NAV ================= */
+
+window.showPage=function(id,button){
+
+ document.querySelectorAll(".page")
+ .forEach(p=>p.classList.remove("active"));
+
+ $(id)?.classList.add("active");
+
+ document.querySelectorAll(".nav button")
+ .forEach(b=>b.classList.remove("active"));
+
+ if(button)button.classList.add("active");
+
+ const names={
+  dashboard:"داشبورد",
+  products:"محصولات",
+  orders:"سفارش‌ها",
+  customers:"مشتریان",
+  coupons:"کدهای تخفیف",
+  inventory:"موجودی",
+  reports:"گزارش‌ها",
+  activity:"فعالیت‌ها",
+  settings:"تنظیمات"
+ };
+
+ $("pageTitle").textContent=names[id]||"پنل";
+
+ $("sidebar").classList.remove("open");
+
+};
+
+
+window.goPage=function(id){
+
+ const button=[...document.querySelectorAll(".nav button")]
+ .find(b=>
+  b.getAttribute("onclick")?.includes("'"+id+"'")
+ );
+
+ showPage(id,button);
+
+};
+
+
+window.toggleSidebar=function(){
+
+ $("sidebar").classList.toggle("open");
+
+};
+
+
+/* ================= PRODUCTS LOAD ================= */
 
 async function loadProducts(){
 
-try{
+ try{
 
-const snap=await getDocs(
-collection(db,"products")
-);
+  const snap=await getDocs(
+   collection(db,"products")
+  );
 
-products=snap.docs.map(d=>{
+  products=snap.docs.map(d=>({
+   id:d.id,
+   ...d.data()
+  }));
 
-const data=d.data();
+ }catch(e){
 
-return{
-id:d.id,
-...data
-};
+  console.error(e);
 
-});
+  products=[];
 
-products.sort((a,b)=>{
+ }
 
-const aa=Number(a.id)||0;
-const bb=Number(b.id)||0;
+ renderProducts();
 
-return aa-bb;
+ renderLatestProducts();
 
-});
+ renderBestProducts();
 
-document.getElementById("productsCount")
-.textContent=products.length.toLocaleString("fa-IR");
+ renderInventory();
 
-renderProducts();
-
-}catch(error){
-
-console.error(error);
-
-document.getElementById("productsList").innerHTML=`
-
-<div class="empty">
-
-<div class="empty-icon">⚠️</div>
-
-خطا در دریافت محصولات.
-
-<br><br>
-
-<small>${escapeHTML(error.message)}</small>
-
-</div>
-
-`;
-
-}
+ updateStats();
 
 }
 
 
-/* RENDER PRODUCTS */
+/* ================= PRODUCTS RENDER ================= */
 
 window.renderProducts=function(){
 
-const container=
-document.getElementById("productsList");
+ const search=
+  $("productSearch")?.value.trim().toLowerCase()||"";
 
-const search=
-(document.getElementById("productSearch")?.value||"")
-.toLowerCase()
-.trim();
+ const cat=
+  $("productCatFilter")?.value||"";
 
-const category=
-document.getElementById("categoryFilter")?.value||"all";
+ const status=
+  $("productStatusFilter")?.value||"";
 
-let list=products.filter(p=>{
+ const list=products.filter(p=>{
 
-const name=String(p.name||"").toLowerCase();
+  const text=[
+   p.name,
+   p.brand,
+   p.desc,
+   p.tag
+  ].join(" ").toLowerCase();
 
-const matchSearch=
-!search||
-name.includes(search)||
-String(p.brand||"").toLowerCase().includes(search);
+  return(
+   (!search||text.includes(search))&&
+   (!cat||p.cat===cat)&&
+   (!status||p.status===status)
+  );
 
-const matchCategory=
-category==="all"||
-p.cat===category;
+ });
 
-return matchSearch&&matchCategory;
+ const tbody=$("productsTable");
 
-});
+ if(!list.length){
 
-if(!list.length){
+  tbody.innerHTML=`
+   <tr>
+    <td colspan="8">
+     <div class="empty">
+      محصولی پیدا نشد.
+     </div>
+    </td>
+   </tr>`;
 
-container.innerHTML=`
+  return;
 
-<div class="empty">
+ }
 
-<div class="empty-icon">📦</div>
+ tbody.innerHTML=list.map(p=>{
 
-محصولی پیدا نشد.
+  const img=
+   p.image||
+   (Array.isArray(p.images)?p.images[0]:"");
 
-</div>
+  return`
 
-`;
+   <tr>
 
-return;
+    <td>
+     ${
+      img
+      ?`<img class="productImage"
+             src="${esc(img)}"
+             onerror="this.style.display='none'">`
+      :`<div class="iconImage">
+          ${esc(p.icon||"📦")}
+        </div>`
+     }
+    </td>
+
+    <td>
+     <b>${esc(p.name||"-")}</b>
+     ${
+      p.tag
+      ?`<div style="color:#8d7427;font-size:9px;margin-top:4px">
+          ${esc(p.tag)}
+        </div>`
+      :""
+     }
+    </td>
+
+    <td>${esc(p.brand||"-")}</td>
+
+    <td>${categoryName(p.cat)}</td>
+
+    <td>
+     ${
+      p.salePrice
+      ?`
+       <div style="color:#777;text-decoration:line-through">
+        ${money(p.price)}
+       </div>
+       <div style="color:#f0d56b">
+        ${money(p.salePrice)}
+       </div>
+      `
+      :money(p.price)
+     }
+    </td>
+
+    <td>
+     <span class="badge ${
+      Number(p.stock||0)<=Number(p.lowStock||5)
+      ?"red":"green"
+     }">
+      ${num(p.stock||0)}
+     </span>
+    </td>
+
+    <td>
+     <span class="badge ${
+      p.status==="inactive"?"red":"green"
+     }">
+      ${p.status==="inactive"?"غیرفعال":"فعال"}
+     </span>
+    </td>
+
+    <td>
+
+     <div class="actions">
+
+      <button class="actionBtn"
+       onclick="editProduct('${p.id}')">
+       ✏️
+      </button>
+
+      <button class="actionBtn"
+       onclick="duplicateProduct('${p.id}')">
+       📋
+      </button>
+
+      <button class="actionBtn"
+       onclick="deleteProduct('${p.id}')">
+       🗑️
+      </button>
+
+     </div>
+
+    </td>
+
+   </tr>
+  `;
+
+ }).join("");
+
+};
+
+
+function renderLatestProducts(){
+
+ /* داشبورد بعداً از bestProducts استفاده می‌کند */
 
 }
 
-container.innerHTML=list.map(p=>{
 
-const image=p.image
-?`<img src="${escapeHTML(p.image)}"
-onerror="this.style.display='none'"
-alt="">`
-:escapeHTML(p.icon||"📦");
+function renderBestProducts(){
 
-return`
+ const tbody=$("bestProducts");
 
-<div class="product-row">
+ const salesMap={};
 
-<div class="product-image">
-${image}
-</div>
+ orders.forEach(o=>{
 
-<div class="product-info">
+  const items=
+   Array.isArray(o.items)
+   ?o.items
+   :[];
 
-<div class="product-name">
-${escapeHTML(p.name||"بدون نام")}
-</div>
+  items.forEach(item=>{
 
-<div class="product-desc">
-${escapeHTML(categoryName(p.cat))}
-${p.brand?" • "+escapeHTML(p.brand):""}
-</div>
+   const id=item.productId||item.id||item.name;
 
-<div class="product-price">
-${money(p.price)}
-</div>
+   if(!id)return;
 
-</div>
+   if(!salesMap[id])
+    salesMap[id]={
+     name:item.name||id,
+     qty:0
+    };
 
-<div class="product-actions">
+   salesMap[id].qty+=
+    Number(item.quantity||item.qty||1);
 
-<button
-class="edit-btn"
-onclick="editProduct('${encodeURIComponent(p.id)}')">
-✏️ ویرایش
-</button>
+  });
 
-<button
-class="danger"
-onclick="deleteProduct('${encodeURIComponent(p.id)}')">
-🗑️ حذف
-</button>
+ });
 
-</div>
+ let list=Object.values(salesMap)
+ .sort((a,b)=>b.qty-a.qty)
+ .slice(0,7);
 
-</div>
+ if(!list.length){
 
-`;
+  list=products.slice(0,7).map(p=>({
+   name:p.name,
+   qty:0,
+   price:p.salePrice||p.price||0
+  }));
 
-}).join("");
+ }
 
-};
+ if(!list.length){
 
+  tbody.innerHTML=`
+   <tr>
+    <td colspan="4">
+     <div class="empty">اطلاعاتی وجود ندارد.</div>
+    </td>
+   </tr>`;
 
-/* ADD */
+  return;
 
-window.openAddProduct=function(){
+ }
 
-document.getElementById("productModalTitle")
-.textContent="افزودن محصول";
+ tbody.innerHTML=list.map(x=>`
 
-document.getElementById("editProductId").value="";
+  <tr>
 
-document.getElementById("pName").value="";
-document.getElementById("pCat").value="mobile";
-document.getElementById("pBrand").value="";
-document.getElementById("pPrice").value="";
-document.getElementById("pImage").value="";
-document.getElementById("pIcon").value="📦";
-document.getElementById("pDesc").value="";
-document.getElementById("pSpecs").value="";
+   <td>${esc(x.name||"-")}</td>
 
-openModal("productModal");
+   <td>${money(x.price||0)}</td>
 
-};
+   <td>${num(x.qty)}</td>
 
+   <td>
+    <span class="badge gold">پرفروش</span>
+   </td>
 
-/* EDIT */
+  </tr>
 
-window.editProduct=function(encodedId){
-
-const id=decodeURIComponent(encodedId);
-
-const p=products.find(x=>String(x.id)===String(id));
-
-if(!p){
-
-toast("محصول پیدا نشد.");
-
-return;
+ `).join("");
 
 }
 
-document.getElementById("productModalTitle")
-.textContent="ویرایش محصول";
 
-document.getElementById("editProductId").value=id;
+/* ================= PRODUCT MODAL ================= */
 
-document.getElementById("pName").value=p.name||"";
-document.getElementById("pCat").value=p.cat||"mobile";
-document.getElementById("pBrand").value=p.brand||"";
-document.getElementById("pPrice").value=p.price||"";
-document.getElementById("pImage").value=p.image||"";
-document.getElementById("pIcon").value=p.icon||"📦";
-document.getElementById("pDesc").value=p.desc||"";
-document.getElementById("pSpecs").value=p.specs||"";
+window.openProductModal=function(){
 
-openModal("productModal");
+ $("productModalTitle").textContent="افزودن محصول";
+
+ $("editProductId").value="";
+
+ [
+  "pName",
+  "pBrand",
+  "pPrice",
+  "pSalePrice",
+  "pColors",
+  "pSizes",
+  "pIcon",
+  "pTag",
+  "pDesc",
+  "pSpecs",
+  "pImages"
+ ].forEach(id=>$(id).value="");
+
+ $("pCat").value="mobile";
+
+ $("pStatus").value="active";
+
+ $("pStock").value="0";
+
+ $("pLowStock").value="5";
+
+ $("pFiles").value="";
+
+ $("previewGrid").innerHTML="";
+
+ selectedFiles=[];
+
+ $("productModal").classList.add("show");
 
 };
 
 
-/* SAVE PRODUCT */
+window.editProduct=function(id){
+
+ const p=products.find(x=>x.id===id);
+
+ if(!p)return;
+
+ $("productModalTitle").textContent="ویرایش محصول";
+
+ $("editProductId").value=id;
+
+ $("pName").value=p.name||"";
+ $("pBrand").value=p.brand||"";
+ $("pCat").value=p.cat||"mobile";
+ $("pStatus").value=p.status||"active";
+ $("pPrice").value=p.price||"";
+ $("pSalePrice").value=p.salePrice||"";
+ $("pStock").value=p.stock??0;
+ $("pLowStock").value=p.lowStock??5;
+ $("pColors").value=
+  Array.isArray(p.colors)
+  ?p.colors.join(", ")
+  :(p.colors||"");
+ $("pSizes").value=
+  Array.isArray(p.sizes)
+  ?p.sizes.join(", ")
+  :(p.sizes||"");
+ $("pIcon").value=p.icon||"";
+ $("pTag").value=p.tag||"";
+ $("pDesc").value=p.desc||"";
+ $("pSpecs").value=p.specs||"";
+
+ $("pImages").value=
+  Array.isArray(p.images)
+  ?p.images.join("\n")
+  :(p.image||"");
+
+ $("pFiles").value="";
+
+ selectedFiles=[];
+
+ $("previewGrid").innerHTML="";
+
+ $("productModal").classList.add("show");
+
+};
+
+
+/* ================= IMAGE PREVIEW ================= */
+
+window.previewImages=function(){
+
+ const files=
+  [...$("pFiles").files];
+
+ selectedFiles=files;
+
+ const grid=$("previewGrid");
+
+ grid.innerHTML="";
+
+ files.forEach((file,index)=>{
+
+  const reader=new FileReader();
+
+  reader.onload=e=>{
+
+   const div=document.createElement("div");
+
+   div.className="preview";
+
+   div.innerHTML=`
+    <img src="${e.target.result}">
+    <button onclick="removeSelectedFile(${index})">
+     ×
+    </button>
+   `;
+
+   grid.appendChild(div);
+
+  };
+
+  reader.readAsDataURL(file);
+
+ });
+
+};
+
+
+window.removeSelectedFile=function(index){
+
+ selectedFiles.splice(index,1);
+
+ const dt=new DataTransfer();
+
+ selectedFiles.forEach(f=>dt.items.add(f));
+
+ $("pFiles").files=dt.files;
+
+ previewImages();
+
+};
+
+
+/* ================= UPLOAD ================= */
+
+async function uploadImages(productId){
+
+ if(!selectedFiles.length)
+  return[];
+
+ const urls=[];
+
+ for(let i=0;i<selectedFiles.length;i++){
+
+  const file=selectedFiles[i];
+
+  const safeName=
+   file.name
+   .replace(/[^a-zA-Z0-9._-]/g,"_");
+
+  const path=
+   `products/${productId}/${Date.now()}_${i}_${safeName}`;
+
+  const storageRef=ref(storage,path);
+
+  await uploadBytes(
+   storageRef,
+   file
+  );
+
+  const url=
+   await getDownloadURL(storageRef);
+
+  urls.push(url);
+
+ }
+
+ return urls;
+
+}
+
+
+/* ================= SAVE PRODUCT ================= */
 
 window.saveProduct=async function(){
 
-const editId=
-document.getElementById("editProductId").value.trim();
+ const id=$("editProductId").value;
 
-const name=
-document.getElementById("pName").value.trim();
+ const name=$("pName").value.trim();
 
-const cat=
-document.getElementById("pCat").value;
+ if(!name){
 
-const brand=
-document.getElementById("pBrand").value.trim();
+  toast("نام محصول را وارد کن.");
 
-const price=
-Number(document.getElementById("pPrice").value||0);
+  return;
 
-const image=
-document.getElementById("pImage").value.trim();
+ }
 
-const icon=
-document.getElementById("pIcon").value.trim()||"📦";
+ const colors=
+  $("pColors").value
+  .split(",")
+  .map(x=>x.trim())
+  .filter(Boolean);
 
-const desc=
-document.getElementById("pDesc").value.trim();
+ const sizes=
+  $("pSizes").value
+  .split(",")
+  .map(x=>x.trim())
+  .filter(Boolean);
 
-const specs=
-document.getElementById("pSpecs").value.trim();
+ let images=
+  $("pImages").value
+  .split("\n")
+  .map(x=>x.trim())
+  .filter(Boolean);
 
-if(!name){
+ const data={
 
-toast("نام محصول را وارد کنید.");
+  name,
 
-return;
+  brand:$("pBrand").value.trim(),
 
-}
+  cat:$("pCat").value,
 
-if(price<0){
+  status:$("pStatus").value,
 
-toast("قیمت معتبر نیست.");
+  price:Number($("pPrice").value||0),
 
-return;
+  salePrice:Number($("pSalePrice").value||0),
 
-}
+  stock:Number($("pStock").value||0),
 
-const data={
+  lowStock:Number($("pLowStock").value||5),
 
-name,
-cat,
-brand,
-price,
-displayPrice:Number(price).toLocaleString("en-US"),
-image,
-icon,
-desc,
-specs,
-updatedAt:serverTimestamp()
+  colors,
 
-};
+  sizes,
 
-try{
+  icon:$("pIcon").value.trim(),
 
-if(editId){
+  tag:$("pTag").value.trim(),
 
-await updateDoc(
-doc(db,"products",editId),
-data
-);
+  desc:$("pDesc").value.trim(),
 
-toast("محصول با موفقیت ویرایش شد.");
+  specs:$("pSpecs").value.trim(),
 
-}else{
+  updatedAt:serverTimestamp()
 
-const newDoc=await addDoc(
-collection(db,"products"),
-data
-);
+ };
 
-toast("محصول جدید اضافه شد: "+newDoc.id);
+ try{
 
-}
+  loading(true);
 
-closeModal("productModal");
+  let productId=id;
 
-await loadProducts();
+  if(id){
 
-}catch(error){
+   await updateDoc(
+    doc(db,"products",id),
+    data
+   );
 
-console.error(error);
+  }else{
 
-toast("خطا در ذخیره محصول: "+error.message);
+   const newDoc=
+    await addDoc(
+     collection(db,"products"),
+     {
+      ...data,
+      images:[],
+      image:"",
+      createdAt:serverTimestamp()
+     }
+    );
 
-}
+   productId=newDoc.id;
 
-};
+  }
 
 
-/* DELETE */
+  if(selectedFiles.length){
 
-window.deleteProduct=function(encodedId){
+   const uploaded=
+    await uploadImages(productId);
 
-const id=decodeURIComponent(encodedId);
+   images=[
+    ...images,
+    ...uploaded
+   ];
 
-const p=products.find(x=>String(x.id)===String(id));
+  }
 
-if(!p)return;
 
-deleteProductId=id;
+  const image=images[0]||"";
 
-document.getElementById("deleteText")
-.textContent=
-`آیا مطمئن هستید که «${p.name||"این محصول"}» حذف شود؟`;
+  await updateDoc(
+   doc(db,"products",productId),
+   {
+    images,
+    image
+   }
+  );
 
-openModal("deleteModal");
 
-};
+  await addActivity(
+   id
+   ?"ویرایش محصول: "+name
+   :"افزودن محصول: "+name
+  );
 
 
-/* CONFIRM DELETE */
+  closeModal("productModal");
 
-window.confirmDelete=async function(){
+  toast(
+   id
+   ?"محصول ویرایش شد."
+   :"محصول اضافه شد."
+  );
 
-if(!deleteProductId)return;
+  selectedFiles=[];
 
-try{
+  await loadProducts();
 
-await deleteDoc(
-doc(db,"products",deleteProductId)
-);
+ }catch(e){
 
-closeModal("deleteModal");
+  console.error(e);
 
-toast("محصول حذف شد.");
+  toast(
+   "خطا در ذخیره محصول. اگر عکس آپلود می‌کنی Storage Rules را بررسی کن."
+  );
 
-deleteProductId=null;
+ }finally{
 
-await loadProducts();
+  loading(false);
 
-}catch(error){
-
-console.error(error);
-
-toast("خطا در حذف محصول: "+error.message);
-
-}
-
-};
-
-
-/* ORDERS */
-
-window.loadOrders=async function(){
-
-const table=
-document.getElementById("ordersTable");
-
-table.innerHTML=`
-
-<tr>
-<td colspan="6">
-<div class="loading">
-<div class="spinner"></div>
-در حال دریافت سفارش‌ها...
-</div>
-</td>
-</tr>
-`;
-
-try{
-
-const snap=await getDocs(
-collection(db,"orders")
-);
-
-orders=snap.docs.map(d=>({
-id:d.id,
-...d.data()
-}));
-
-document.getElementById("ordersCount")
-.textContent=orders.length.toLocaleString("fa-IR");
-
-if(!orders.length){
-
-table.innerHTML=`
-
-<tr>
-<td colspan="6">
-
-<div class="empty">
-
-<div class="empty-icon">🛒</div>
-
-هنوز سفارشی ثبت نشده است.
-
-</div>
-
-</td>
-</tr>
-
-`;
-
-renderLatestOrders();
-
-return;
-
-}
-
-table.innerHTML=orders.map(o=>{
-
-const status=o.status||"pending";
-
-let statusText="در انتظار";
-
-if(status==="completed"||status==="success")
-statusText="تکمیل شده";
-
-if(status==="cancelled"||status==="cancel")
-statusText="لغو شده";
-
-const badge=
-status==="completed"||status==="success"
-?"success":
-status==="cancelled"||status==="cancel"
-?"cancel":
-"pending";
-
-const date=o.createdAt?.toDate
-?o.createdAt.toDate().toLocaleDateString("fa-IR")
-:"-";
-
-return`
-
-<tr>
-
-<td>${escapeHTML(o.id)}</td>
-
-<td>
-${escapeHTML(o.customerName||o.name||"مشتری")}
-</td>
-
-<td>
-${money(o.total||o.price||0)}
-</td>
-
-<td>
-<span class="badge ${badge}">
-${statusText}
-</span>
-</td>
-
-<td>${date}</td>
-
-<td>
-
-<button
-class="edit-btn"
-onclick="changeOrderStatus('${encodeURIComponent(o.id)}')">
-تغییر وضعیت
-</button>
-
-</td>
-
-</tr>
-
-`;
-
-}).join("");
-
-renderLatestOrders();
-
-}catch(error){
-
-console.error(error);
-
-table.innerHTML=`
-
-<tr>
-<td colspan="6">
-
-<div class="empty">
-
-⚠️ خطا در دریافت سفارش‌ها.
-
-<br><br>
-
-<small>${escapeHTML(error.message)}</small>
-
-</div>
-
-</td>
-</tr>
-
-`;
-
-}
+ }
 
 };
 
 
-/* ORDER STATUS */
+/* ================= DUPLICATE ================= */
 
-window.changeOrderStatus=async function(encodedId){
+window.duplicateProduct=async function(id){
 
-const id=decodeURIComponent(encodedId);
+ const p=products.find(x=>x.id===id);
 
-const status=
-prompt(
-"وضعیت جدید را وارد کنید:\n\npending = در انتظار\ncompleted = تکمیل شده\ncancelled = لغو شده",
-"completed"
-);
+ if(!p)return;
 
-if(!status)return;
+ try{
 
-if(!["pending","completed","cancelled"].includes(status)){
+  loading(true);
 
-toast("وضعیت نامعتبر است.");
+  const copy={
+   ...p
+  };
 
-return;
+  delete copy.id;
 
-}
+  copy.name=(p.name||"محصول")+" - کپی";
 
-try{
+  copy.createdAt=serverTimestamp();
 
-await updateDoc(
-doc(db,"orders",id),
-{
-status,
-updatedAt:serverTimestamp()
-}
-);
+  copy.updatedAt=serverTimestamp();
 
-toast("وضعیت سفارش تغییر کرد.");
+  await addDoc(
+   collection(db,"products"),
+   copy
+  );
 
-await loadOrders();
+  await addActivity(
+   "کپی محصول: "+(p.name||"")
+  );
 
-}catch(error){
+  toast("محصول کپی شد.");
 
-toast("خطا: "+error.message);
+  await loadProducts();
 
-}
+ }catch(e){
+
+  console.error(e);
+
+  toast("خطا در کپی محصول.");
+
+ }finally{
+
+  loading(false);
+
+ }
 
 };
 
 
-/* LATEST ORDERS */
+/* ================= DELETE ================= */
+
+window.deleteProduct=async function(id){
+
+ const p=products.find(x=>x.id===id);
+
+ if(!p)return;
+
+ if(!confirm(
+  `محصول «${p.name||""}» حذف شود؟`
+ ))return;
+
+ try{
+
+  loading(true);
+
+  await deleteDoc(
+   doc(db,"products",id)
+  );
+
+  await addActivity(
+   "حذف محصول: "+(p.name||"")
+  );
+
+  toast("محصول حذف شد.");
+
+  await loadProducts();
+
+ }catch(e){
+
+  console.error(e);
+
+  toast("خطا در حذف محصول.");
+
+ }finally{
+
+  loading(false);
+
+ }
+
+};
+
+
+/* ================= ORDERS ================= */
+
+async function loadOrders(){
+
+ try{
+
+  const snap=await getDocs(
+   collection(db,"orders")
+  );
+
+  orders=snap.docs.map(d=>({
+   id:d.id,
+   ...d.data()
+  }));
+
+ }catch(e){
+
+  console.error(e);
+
+  orders=[];
+
+ }
+
+ renderOrders();
+
+ renderLatestOrders();
+
+ renderChart();
+
+ renderReports();
+
+ updateStats();
+
+ renderBestProducts();
+
+}
+
+
+window.renderOrders=function(){
+
+ const search=
+  $("orderSearch")?.value.trim().toLowerCase()||"";
+
+ const filter=
+  $("orderStatus")?.value||"";
+
+ const list=orders.filter(o=>{
+
+  const text=[
+   o.id,
+   o.name,
+   o.customerName,
+   o.phone,
+   o.email
+  ].join(" ").toLowerCase();
+
+  return(
+   (!search||text.includes(search))&&
+   (!filter||o.status===filter)
+  );
+
+ });
+
+ const tbody=$("ordersTable");
+
+ if(!list.length){
+
+  tbody.innerHTML=`
+   <tr>
+    <td colspan="7">
+     <div class="empty">
+      سفارشی پیدا نشد.
+     </div>
+    </td>
+   </tr>`;
+
+  return;
+
+ }
+
+ tbody.innerHTML=list.map(o=>`
+
+  <tr>
+
+   <td>
+    <button
+     class="btn small"
+     onclick="viewOrder('${o.id}')">
+     #${esc(o.id)}
+    </button>
+   </td>
+
+   <td>
+    ${esc(o.customerName||o.name||"مشتری")}
+   </td>
+
+   <td>
+    ${esc(o.phone||"-")}
+   </td>
+
+   <td>
+    ${money(o.total||o.price||0)}
+   </td>
+
+   <td>
+    ${dateText(o.createdAt)}
+   </td>
+
+   <td>
+
+    <select
+     onchange="changeOrderStatus('${o.id}',this.value)"
+     style="min-width:130px">
+
+     ${orderOptions(o.status)}
+
+    </select>
+
+   </td>
+
+   <td>
+
+    <button
+     class="actionBtn"
+     onclick="viewOrder('${o.id}')">
+     👁️
+    </button>
+
+   </td>
+
+  </tr>
+
+ `).join("");
+
+};
+
+
+function orderOptions(current){
+
+ const list=[
+  ["new","جدید"],
+  ["reviewing","در حال بررسی"],
+  ["approved","تأیید شده"],
+  ["ready","آماده ارسال"],
+  ["shipped","ارسال شده"],
+  ["delivered","تحویل شده"],
+  ["cancelled","لغو شده"]
+ ];
+
+ return list.map(x=>`
+
+  <option
+   value="${x[0]}"
+   ${current===x[0]?"selected":""}>
+   ${x[1]}
+  </option>
+
+ `).join("");
+
+}
+
 
 function renderLatestOrders(){
 
-const box=document.getElementById("latestOrders");
+ const tbody=$("latestOrders");
 
-const list=orders.slice(0,5);
+ const list=orders.slice()
+ .sort((a,b)=>
+  (dateValue(b.createdAt)?.getTime()||0)-
+  (dateValue(a.createdAt)?.getTime()||0)
+ )
+ .slice(0,6);
 
-if(!list.length){
+ if(!list.length){
 
-box.innerHTML=`
+  tbody.innerHTML=`
+   <tr>
+    <td colspan="4">
+     <div class="empty">
+      هنوز سفارشی ثبت نشده.
+     </div>
+    </td>
+   </tr>`;
 
-<div class="empty">
+  return;
 
-<div class="empty-icon">🛒</div>
+ }
 
-هنوز سفارشی ثبت نشده است.
+ tbody.innerHTML=list.map(o=>`
 
-</div>
+  <tr>
 
-`;
+   <td>#${esc(o.id)}</td>
 
-return;
+   <td>
+    ${esc(o.customerName||o.name||"-")}
+   </td>
 
-}
+   <td>
+    ${money(o.total||o.price||0)}
+   </td>
 
-box.innerHTML=list.map(o=>`
+   <td>
+    <span class="badge ${statusClass(o.status)}">
+     ${statusName(o.status)}
+    </span>
+   </td>
 
-<div class="order" style="
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:13px 0;
-border-bottom:1px solid #222
-">
+  </tr>
 
-<div>
-
-<div style="font-size:12px">
-${escapeHTML(o.customerName||o.name||"مشتری")}
-</div>
-
-<div style="font-size:10px;color:#777;margin-top:5px">
-${escapeHTML(o.id)}
-</div>
-
-</div>
-
-<div style="color:var(--gold);font-size:11px">
-${money(o.total||o.price||0)}
-</div>
-
-</div>
-
-`).join("");
+ `).join("");
 
 }
 
 
-/* CUSTOMERS */
+window.changeOrderStatus=async function(id,status){
 
-window.loadCustomers=async function(){
+ try{
 
-const table=
-document.getElementById("customersTable");
+  await updateDoc(
+   doc(db,"orders",id),
+   {
+    status,
+    updatedAt:serverTimestamp()
+   }
+  );
 
-try{
+  const order=orders.find(o=>o.id===id);
 
-const snap=await getDocs(
-collection(db,"customers")
-);
+  if(order)
+   order.status=status;
 
-customers=snap.docs.map(d=>({
-id:d.id,
-...d.data()
-}));
+  await addActivity(
+   `تغییر وضعیت سفارش ${id} به ${statusName(status)}`
+  );
 
-document.getElementById("customersCount")
-.textContent=customers.length.toLocaleString("fa-IR");
+  renderOrders();
 
-if(!customers.length){
+  renderLatestOrders();
 
-table.innerHTML=`
+  renderReports();
 
-<tr>
-<td colspan="5">
+  updateStats();
 
-<div class="empty">
+  toast("وضعیت سفارش تغییر کرد.");
 
-<div class="empty-icon">👥</div>
+ }catch(e){
 
-هنوز مشتری‌ای ثبت نشده است.
+  console.error(e);
 
-</div>
+  toast("خطا در تغییر وضعیت.");
 
-</td>
-</tr>
-
-`;
-
-return;
-
-}
-
-table.innerHTML=customers.map(c=>`
-
-<tr>
-
-<td>${escapeHTML(c.name||"بدون نام")}</td>
-
-<td>${escapeHTML(c.email||"-")}</td>
-
-<td>${escapeHTML(c.phone||"-")}</td>
-
-<td>${Number(c.ordersCount||0)}</td>
-
-<td>${money(c.totalSpent||0)}</td>
-
-</tr>
-
-`).join("");
-
-}catch(error){
-
-console.error(error);
-
-table.innerHTML=`
-
-<tr>
-<td colspan="5">
-
-<div class="empty">
-⚠️ خطا در دریافت مشتریان.
-</div>
-
-</td>
-</tr>
-
-`;
-
-}
+ }
 
 };
 
 
-/* COUPONS */
+window.viewOrder=function(id){
 
-window.loadCoupons=async function(){
+ const o=orders.find(x=>x.id===id);
 
-const box=document.getElementById("couponsList");
+ if(!o)return;
 
-box.innerHTML=`
+ const items=
+  Array.isArray(o.items)
+  ?o.items
+  :[];
 
-<div class="loading">
+ $("orderDetails").innerHTML=`
 
-<div class="spinner"></div>
+  <div class="grid3">
 
-در حال دریافت کدها...
+   <div class="reportBox">
+    <h3>شناسه</h3>
+    <strong style="font-size:14px">
+     #${esc(o.id)}
+    </strong>
+   </div>
 
-</div>
+   <div class="reportBox">
+    <h3>مبلغ</h3>
+    <strong style="font-size:14px">
+     ${money(o.total||o.price||0)}
+    </strong>
+   </div>
 
-`;
+   <div class="reportBox">
+    <h3>وضعیت</h3>
+    <strong style="font-size:14px">
+     ${statusName(o.status)}
+    </strong>
+   </div>
 
-try{
+  </div>
 
-const snap=await getDocs(
-collection(db,"coupons")
-);
+  <div class="card" style="margin-top:15px">
 
-coupons=snap.docs.map(d=>({
-id:d.id,
-...d.data()
-}));
+   <p style="line-height:2;font-size:12px">
+    👤 مشتری:
+    <b>${esc(o.customerName||o.name||"-")}</b>
+    <br>
+    📱 شماره:
+    <b>${esc(o.phone||"-")}</b>
+    <br>
+    📧 ایمیل:
+    <b>${esc(o.email||"-")}</b>
+    <br>
+    📅 تاریخ:
+    <b>${dateTime(o.createdAt)}</b>
+    <br>
+    📍 آدرس:
+    <b>${esc(o.address||"-")}</b>
+   </p>
 
-if(!coupons.length){
+  </div>
 
-box.innerHTML=`
+  <div class="card">
 
-<div class="empty">
+   <div class="cardHead">
+    <h2>محصولات سفارش</h2>
+   </div>
 
-<div class="empty-icon">🎁</div>
+   ${
+    items.length
+    ?`
+     <div class="tableWrap">
+      <table>
+       <thead>
+        <tr>
+         <th>محصول</th>
+         <th>تعداد</th>
+         <th>قیمت</th>
+        </tr>
+       </thead>
+       <tbody>
+        ${
+         items.map(i=>`
+          <tr>
+           <td>${esc(i.name||"-")}</td>
+           <td>${num(i.quantity||i.qty||1)}</td>
+           <td>${money(i.price||0)}</td>
+          </tr>
+         `).join("")
+        }
+       </tbody>
+      </table>
+     </div>
+    `
+    :`
+     <div class="empty">
+      جزئیات محصول در این سفارش ثبت نشده.
+     </div>
+    `
+   }
 
-هنوز کد تخفیفی ساخته نشده است.
+  </div>
+ `;
 
-</div>
-
-`;
-
-return;
-
-}
-
-box.innerHTML=coupons.map(c=>`
-
-<div class="product-row">
-
-<div class="product-image">
-🎁
-</div>
-
-<div class="product-info">
-
-<div class="product-name">
-${escapeHTML(c.code||c.id)}
-</div>
-
-<div class="product-desc">
-${Number(c.percent||0)}٪ تخفیف
-</div>
-
-<div class="product-price">
-حداکثر استفاده: ${Number(c.limit||0)}
-</div>
-
-</div>
-
-<div class="product-actions">
-
-<button
-class="danger"
-onclick="deleteCoupon('${encodeURIComponent(c.id)}')">
-🗑️ حذف
-</button>
-
-</div>
-
-</div>
-
-`).join("");
-
-}catch(error){
-
-console.error(error);
-
-box.innerHTML=`
-
-<div class="empty">
-⚠️ خطا در دریافت کدهای تخفیف.
-</div>
-
-`;
-
-}
-
-};
-
-
-/* COUPON MODAL */
-
-window.openCouponModal=function(){
-
-document.getElementById("couponCode").value="";
-document.getElementById("couponPercent").value="";
-document.getElementById("couponLimit").value="";
-
-openModal("couponModal");
+ $("orderModal").classList.add("show");
 
 };
 
 
-/* SAVE COUPON */
+/* ================= CUSTOMERS ================= */
 
-window.saveCoupon=async function(){
+async function loadCustomers(){
 
-const code=
-document.getElementById("couponCode")
-.value.trim()
-.toUpperCase();
+ try{
 
-const percent=
-Number(document.getElementById("couponPercent").value);
+  const snap=await getDocs(
+   collection(db,"customers")
+  );
 
-const limit=
-Number(document.getElementById("couponLimit").value||0);
+  customers=snap.docs.map(d=>({
+   id:d.id,
+   ...d.data()
+  }));
 
-if(!code){
+ }catch(e){
 
-toast("کد تخفیف را وارد کنید.");
+  console.error(e);
 
-return;
+  customers=[];
 
-}
+ }
 
-if(percent<1||percent>100){
+ renderCustomers();
 
-toast("درصد تخفیف باید بین ۱ تا ۱۰۰ باشد.");
-
-return;
-
-}
-
-try{
-
-await setDoc(
-doc(db,"coupons",code),
-{
-code,
-percent,
-limit,
-used:0,
-active:true,
-createdAt:serverTimestamp()
-}
-);
-
-closeModal("couponModal");
-
-toast("کد تخفیف ساخته شد.");
-
-await loadCoupons();
-
-}catch(error){
-
-toast("خطا در ساخت کد: "+error.message);
-
-}
-
-};
-
-
-/* DELETE COUPON */
-
-window.deleteCoupon=async function(encodedId){
-
-const id=decodeURIComponent(encodedId);
-
-if(!confirm("کد تخفیف حذف شود؟"))return;
-
-try{
-
-await deleteDoc(
-doc(db,"coupons",id)
-);
-
-toast("کد تخفیف حذف شد.");
-
-await loadCoupons();
-
-}catch(error){
-
-toast("خطا: "+error.message);
-
-}
-
-};
-
-
-/* REPORTS */
-
-window.renderReports=function(){
-
-const total=orders.reduce(
-(sum,o)=>sum+Number(o.total||o.price||0),
-0
-);
-
-const average=
-orders.length
-?Math.round(total/orders.length)
-:0;
-
-document.getElementById("totalSales")
-.textContent=money(total);
-
-document.getElementById("reportOrders")
-.textContent=orders.length.toLocaleString("fa-IR");
-
-document.getElementById("averageOrder")
-.textContent=money(average);
-
-document.getElementById("reportProducts")
-.textContent=products.length.toLocaleString("fa-IR");
-
-document.getElementById("reportSummary").innerHTML=`
-
-تعداد کل سفارش‌ها:
-<b style="color:#ddd">${orders.length}</b>
-<br>
-
-مجموع فروش ثبت‌شده:
-<b style="color:var(--gold)">${money(total)}</b>
-<br>
-
-میانگین ارزش هر سفارش:
-<b style="color:var(--gold)">${money(average)}</b>
-<br>
-
-تعداد محصولات فعال در پنل:
-<b style="color:#ddd">${products.length}</b>
-
-`;
-
-};
-
-
-/* TODAY SALES */
-
-function calculateTodaySales(){
-
-const now=new Date();
-
-let total=0;
-
-orders.forEach(o=>{
-
-if(!o.createdAt?.toDate)return;
-
-const d=o.createdAt.toDate();
-
-if(
-d.getFullYear()===now.getFullYear() &&
-d.getMonth()===now.getMonth() &&
-d.getDate()===now.getDate()
-){
-
-total+=Number(o.total||o.price||0);
-
-}
-
-});
-
-document.getElementById("todaySales")
-.textContent=money(total);
+ updateStats();
 
 }
 
 
-/* SETTINGS */
+window.renderCustomers=function(){
 
-window.saveSettings=async function(){
+ const search=
+  $("customerSearch")?.value.trim().toLowerCase()||"";
 
-const name=
-document.getElementById("storeName").value.trim();
+ const list=customers.filter(c=>{
 
-const description=
-document.getElementById("storeDescription").value.trim();
+  const text=[
+   c.name,
+   c.phone,
+   c.email
+  ].join(" ").toLowerCase();
 
-try{
+  return!search||text.includes(search);
 
-await setDoc(
-doc(db,"settings","store"),
-{
-name,
-description,
-updatedAt:serverTimestamp()
-},
-{merge:true}
-);
+ });
 
-toast("تنظیمات ذخیره شد.");
+ const tbody=$("customersTable");
 
-}catch(error){
+ if(!list.length){
 
-toast("خطا در ذخیره تنظیمات: "+error.message);
+  tbody.innerHTML=`
+   <tr>
+    <td colspan="6">
+     <div class="empty">
+      مشتری‌ای پیدا نشد.
+     </div>
+    </td>
+   </tr>`;
 
-}
+  return;
 
-};
+ }
 
+ tbody.innerHTML=list.map(c=>`
 
-/* LOAD SETTINGS */
+  <tr>
 
-async function loadSettings(){
+   <td>${esc(c.name||"-")}</td>
 
-try{
+   <td>${esc(c.phone||"-")}</td>
 
-const snap=
-await getDoc(
-doc(db,"settings","store")
-);
+   <td>${esc(c.email||"-")}</td>
 
-if(snap.exists()){
+   <td>${num(c.orderCount||0)}</td>
 
-const data=snap.data();
+   <td>${money(c.totalSpent||0)}</td>
 
-document.getElementById("storeName")
-.value=data.name||"ماهان سنتر ایران";
-
-document.getElementById("storeDescription")
-.value=data.description||"";
-
-}
-
-}catch(error){
-
-console.log(error);
-
-}
-
-}
-
-
-/* REFRESH */
-
-window.refreshAll=async function(){
-
-toast("در حال بروزرسانی...");
-
-await Promise.all([
-loadProducts(),
-loadOrders(),
-loadCustomers(),
-loadCoupons(),
-loadSettings()
-]);
-
-calculateTodaySales();
-
-renderReports();
-
-toast("اطلاعات بروزرسانی شد.");
-
-};
-
-
-/* START */
-
-</script>
-
-</body>
-    </html>
+   <td>${dateText(c
