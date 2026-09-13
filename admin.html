@@ -1621,6 +1621,117 @@ const db =
 
 
 /* =====================================================
+   CLOUDFLARE WORKER
+   Product reads go through Worker instead of direct Firestore.
+===================================================== */
+
+const WORKER_URL =
+    "https://curly-cherry-da35.amydypiam064.workers.dev";
+
+
+function firestoreValueToJS(value){
+
+    if(!value || typeof value !== "object"){
+        return value;
+    }
+
+    if(Object.prototype.hasOwnProperty.call(value,"stringValue")){
+        return value.stringValue;
+    }
+
+    if(Object.prototype.hasOwnProperty.call(value,"integerValue")){
+        return Number(value.integerValue);
+    }
+
+    if(Object.prototype.hasOwnProperty.call(value,"doubleValue")){
+        return Number(value.doubleValue);
+    }
+
+    if(Object.prototype.hasOwnProperty.call(value,"booleanValue")){
+        return value.booleanValue;
+    }
+
+    if(Object.prototype.hasOwnProperty.call(value,"timestampValue")){
+        return value.timestampValue;
+    }
+
+    if(Object.prototype.hasOwnProperty.call(value,"nullValue")){
+        return null;
+    }
+
+    if(Object.prototype.hasOwnProperty.call(value,"arrayValue")){
+
+        return (value.arrayValue.values || [])
+            .map(item => firestoreValueToJS(item));
+
+    }
+
+    if(Object.prototype.hasOwnProperty.call(value,"mapValue")){
+
+        const result = {};
+
+        Object.entries(
+            value.mapValue.fields || {}
+        ).forEach(([key,item]) => {
+            result[key] = firestoreValueToJS(item);
+        });
+
+        return result;
+    }
+
+    return value;
+}
+
+
+function firestoreDocumentToJS(document){
+
+    const data = {};
+
+    Object.entries(
+        document.fields || {}
+    ).forEach(([key,value]) => {
+        data[key] = firestoreValueToJS(value);
+    });
+
+    return {
+        id: document.name
+            ? document.name.split("/").pop()
+            : "",
+        ...data
+    };
+}
+
+
+async function fetchProductsFromWorker(){
+
+    const response =
+        await fetch(
+            WORKER_URL + "/products",
+            {
+                method: "GET",
+                cache: "no-store"
+            }
+        );
+
+    if(!response.ok){
+        throw new Error(
+            "Worker HTTP " + response.status
+        );
+    }
+
+    const json =
+        await response.json();
+
+    if(!Array.isArray(json.documents)){
+        return [];
+    }
+
+    return json.documents
+        .map(firestoreDocumentToJS);
+}
+
+
+/* =====================================================
    DEFAULT CATEGORIES
 ===================================================== */
 
@@ -2403,31 +2514,8 @@ async function loadProducts(){
 
     try{
 
-        const snap =
-            await getDocs(
-                collection(
-                    db,
-                    "products"
-                )
-            );
-
-
-        products = [];
-
-
-        snap.forEach(
-            item=>{
-
-                products.push({
-
-                    id:item.id,
-
-                    ...item.data()
-
-                });
-
-            }
-        );
+        products =
+            await fetchProductsFromWorker();
 
 
         if(
@@ -3138,19 +3226,25 @@ async function(id){
 
     try{
 
-        const snap =
-            await getDoc(
-                doc(
-                    db,
-                    "products",
-                    id
-                )
+        let product =
+            products.find(
+                item => item.id === id
             );
 
 
-        if(
-            !snap.exists()
-        ){
+        if(!product){
+
+            await loadProducts();
+
+            product =
+                products.find(
+                    item => item.id === id
+                );
+
+        }
+
+
+        if(!product){
 
             toast(
                 "محصول پیدا نشد.",
@@ -3160,10 +3254,6 @@ async function(id){
             return;
 
         }
-
-
-        const product =
-            snap.data();
 
 
         fillCategorySelect();
@@ -3926,13 +4016,18 @@ async function refreshDashboard(){
 
     try{
 
-        const productSnap =
-            await getDocs(
-                collection(
-                    db,
-                    "products"
-                )
-            );
+        if(!Array.isArray(products)){
+            products = [];
+        }
+
+
+        if(products.length === 0){
+            await loadProducts();
+        }
+
+
+        const productCount =
+            products.length;
 
 
         let userCount = null;
@@ -3964,7 +4059,7 @@ async function refreshDashboard(){
         $("homeProducts")
             .textContent =
             formatNumber(
-                productSnap.size
+                productCount
             );
 
 
@@ -4040,13 +4135,18 @@ async function loadStats(){
 
     try{
 
-        const productSnap =
-            await getDocs(
-                collection(
-                    db,
-                    "products"
-                )
-            );
+        if(!Array.isArray(products)){
+            products = [];
+        }
+
+
+        if(products.length === 0){
+            await loadProducts();
+        }
+
+
+        const productsCount =
+            products.length;
 
 
         let userCount = null;
@@ -4076,7 +4176,7 @@ async function loadStats(){
 
 
         const productsCount =
-            productSnap.size;
+            products.length;
 
 
         const categoriesCount =
