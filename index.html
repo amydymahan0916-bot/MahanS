@@ -45,13 +45,9 @@ max-width:1250px;
 margin:auto;
 }
 
-/* BRAND */
-
 .brand-mahan{color:var(--green)!important}
 .brand-center{color:#fff!important}
 .brand-iran{color:var(--red)!important}
-
-/* HEADER */
 
 header{
 position:sticky;
@@ -161,8 +157,6 @@ align-items:center;
 justify-content:center;
 }
 
-/* NAV */
-
 .navbar{border-top:1px solid #171717}
 
 .nav{
@@ -201,8 +195,6 @@ border-color:var(--green);
 transform:translateY(-2px);
 }
 
-/* APP */
-
 #app{min-height:70vh}
 
 .page{
@@ -214,8 +206,6 @@ animation:pageIn .22s ease;
 from{opacity:0;transform:translateY(7px)}
 to{opacity:1;transform:none}
 }
-
-/* HOME */
 
 .home-intro{
 display:flex;
@@ -288,8 +278,6 @@ font-size:11px;
 color:#888;
 }
 
-/* SECTION */
-
 .section{margin-top:32px}
 
 .section-head{
@@ -301,8 +289,6 @@ margin-bottom:18px;
 
 .section-head h2{font-size:22px}
 .section-head span{color:#888;font-size:12px}
-
-/* CATEGORIES */
 
 .categories{
 display:grid;
@@ -374,8 +360,6 @@ font-size:10px;
 margin-top:3px;
 }
 
-/* SUBCATEGORIES */
-
 .subcategories{
 display:flex;
 gap:8px;
@@ -402,8 +386,6 @@ background:var(--green);
 border-color:var(--green);
 color:#06120a;
 }
-
-/* PRODUCTS */
 
 .products{
 display:grid;
@@ -558,8 +540,6 @@ z-index:8;
 
 .favorite.active{color:#ff3440}
 
-/* SORT */
-
 .sort-area{
 position:relative;
 display:flex;
@@ -624,8 +604,6 @@ border-radius:10px;
 background:var(--green);
 color:#06120a;
 }
-
-/* PRODUCT DETAIL */
 
 .product-detail{
 display:grid;
@@ -774,8 +752,6 @@ min-width:25px;
 text-align:center;
 }
 
-/* BUTTONS */
-
 .primary-btn{
 display:inline-flex;
 align-items:center;
@@ -805,8 +781,6 @@ padding:11px 20px;
 border-radius:12px;
 }
 
-/* OFFER */
-
 .offer{
 margin-top:35px;
 padding:28px;
@@ -822,8 +796,6 @@ gap:20px;
 .offer h2{margin-bottom:5px}
 .offer p{color:#999;font-size:13px}
 
-/* PAGE TITLE */
-
 .page-title{
 display:flex;
 align-items:center;
@@ -833,8 +805,6 @@ margin-bottom:25px;
 
 .page-title h1{font-size:29px}
 .page-title p{color:#888;font-size:12px}
-
-/* CART */
 
 .cart-page{
 max-width:900px;
@@ -919,8 +889,6 @@ font-size:19px;
 font-weight:bold;
 }
 
-/* SUPPORT */
-
 .support-page{
 max-width:850px;
 margin:auto;
@@ -995,6 +963,7 @@ border:1px solid #2b2b2b;
 }
 
 .contact-info{flex:1}
+
 .contact-info small{
 color:#777;
 display:block;
@@ -1023,8 +992,6 @@ color:#06120a;
 font-weight:bold;
 }
 
-/* LAWS */
-
 .laws-box{
 min-height:450px;
 background:#101010;
@@ -1049,8 +1016,6 @@ text-align:center;
 color:#555;
 font-size:13px;
 }
-
-/* MODAL */
 
 .modal-backdrop{
 position:fixed;
@@ -1125,8 +1090,6 @@ border-radius:13px;
 padding:12px;
 }
 
-/* FLOATING SUPPORT */
-
 .floating-support{
 position:fixed;
 right:20px;
@@ -1148,8 +1111,6 @@ transition:.25s;
 .floating-support:hover{
 transform:scale(1.08) rotate(-3deg);
 }
-
-/* LOADING */
 
 .no-result{
 text-align:center;
@@ -1173,8 +1134,6 @@ font-size:50px;
 margin-bottom:10px;
 }
 
-/* TOAST */
-
 .toast{
 position:fixed;
 bottom:25px;
@@ -1197,8 +1156,6 @@ transform:translateY(0);
 opacity:1;
 }
 
-/* FOOTER */
-
 footer{
 margin-top:50px;
 padding:30px 0;
@@ -1211,8 +1168,6 @@ text-align:center;
 color:#666;
 font-size:11px;
 }
-
-/* MOBILE */
 
 @media(max-width:950px){
 
@@ -1415,19 +1370,35 @@ title="سبد خرید"
 
 <a href="#/" data-route="/" onclick="go('/')">خانه</a>
 
-<a href="#/categories" data-route="/categories" onclick="go('/categories')">
+<a
+href="#/categories"
+data-route="/categories"
+onclick="go('/categories')"
+>
 دسته‌بندی‌ها
 </a>
 
-<a href="#/discount" data-route="/discount" onclick="go('/discount')">
+<a
+href="#/discount"
+data-route="/discount"
+onclick="go('/discount')"
+>
 🔥 تخفیف‌ها
 </a>
 
-<a href="#/laws" data-route="/laws" onclick="go('/laws')">
+<a
+href="#/laws"
+data-route="/laws"
+onclick="go('/laws')"
+>
 📜 قوانین
 </a>
 
-<a href="#/support" data-route="/support" onclick="go('/support')">
+<a
+href="#/support"
+data-route="/support"
+onclick="go('/support')"
+>
 پشتیبانی
 </a>
 
@@ -1461,12 +1432,14 @@ title="پشتیبانی"
 <div class="container copy">
 
 <span id="footerStoreName">
+
 <span class="brand-mahan">ماهان</span>
 <span class="brand-center"> سنتر</span>
 <span class="brand-iran"> ایران</span>
+
 </span>
 
- — تمامی اطلاعات محفوظ است.
+— تمامی اطلاعات محفوظ است.
 
 </div>
 
@@ -1702,7 +1675,11 @@ document.getElementById("headerStoreName");
 if(headerName){
 
 headerName.innerHTML=
-window.formatStoreName(storeName);
+typeof window.formatStoreName==="function"
+?
+window.formatStoreName(storeName)
+:
+storeName;
 
 }
 
@@ -1712,7 +1689,11 @@ document.getElementById("footerStoreName");
 if(footer){
 
 footer.innerHTML=
-window.formatStoreName(storeName);
+typeof window.formatStoreName==="function"
+?
+window.formatStoreName(storeName)
+:
+storeName;
 
 }
 
@@ -2106,11 +2087,41 @@ error
 
 <script>
 
-/* =========================================================
-   IMPORTANT:
-   این DEFAULT_CATEGORIES داخل اسکریپت دوم تعریف شده
-   تا مشکل Scope برطرف شود.
-========================================================= */
+/*
+=========================================================
+FIX:
+برای جلوگیری از اجرای render قبل از آماده شدن
+اسکریپت type="module"، تابع formatStoreName
+اینجا نیز به‌صورت امن تعریف می‌شود.
+=========================================================
+*/
+
+if(typeof window.formatStoreName!=="function"){
+
+window.formatStoreName=function(name){
+
+const value=String(
+name || "ماهان سنتر ایران"
+);
+
+if(value.trim()==="ماهان سنتر ایران"){
+
+return `
+<span class="brand-mahan">ماهان</span>
+<span class="brand-center"> سنتر</span>
+<span class="brand-iran"> ایران</span>
+`;
+
+}
+
+return value;
+
+};
+
+}
+
+
+/* DEFAULT CATEGORIES */
 
 const DEFAULT_CATEGORIES=[
 
@@ -2204,6 +2215,38 @@ subcategories:[
 var products=[];
 var settings=window.settings || {};
 
+
+/*
+FIX:
+حتی اگر Firebase هنوز اجرا نشده باشد،
+formatStoreName همیشه در دسترس است.
+*/
+
+if(typeof window.formatStoreName!=="function"){
+
+window.formatStoreName=function(name){
+
+const value=String(
+name || "ماهان سنتر ایران"
+);
+
+if(value.trim()==="ماهان سنتر ایران"){
+
+return `
+<span class="brand-mahan">ماهان</span>
+<span class="brand-center"> سنتر</span>
+<span class="brand-iran"> ایران</span>
+`;
+
+}
+
+return value;
+
+};
+
+}
+
+
 window.escapeHTML=function(text){
 
 return String(text ?? "")
@@ -2265,12 +2308,15 @@ const map={};
 DEFAULT_CATEGORIES.forEach(c=>{
 
 map[String(c.id)]={
+
 ...c,
+
 subcategories:Array.isArray(c.subcategories)
 ?
 [...c.subcategories]
 :
 []
+
 };
 
 });
@@ -2288,6 +2334,7 @@ c.id ||
 if(map[id]){
 
 map[id]={
+
 ...map[id],
 ...c,
 
@@ -2303,17 +2350,20 @@ map[id].subcategories
 }else{
 
 map[id]={
+
 ...c,
 id:id,
 name:c.name || "دسته‌بندی",
 icon:c.icon || "📦",
 image:c.image || "",
+
 subcategories:
 Array.isArray(c.subcategories)
 ?
 c.subcategories
 :
 []
+
 };
 
 }
@@ -2393,12 +2443,14 @@ return defaultCategoryImages.default;
 function getCategories(){
 
 return mergeCategories(
+
 settings &&
 Array.isArray(settings.categories)
 ?
 settings.categories
 :
 DEFAULT_CATEGORIES
+
 );
 
 }
@@ -2411,21 +2463,29 @@ var categories=getCategories();
 var cart=[];
 
 try{
+
 cart=JSON.parse(
 localStorage.getItem("mahanCart") || "[]"
 );
+
 }catch(e){
+
 cart=[];
+
 }
 
 var favorites=[];
 
 try{
+
 favorites=JSON.parse(
 localStorage.getItem("mahanFavorites") || "[]"
 );
+
 }catch(e){
+
 favorites=[];
+
 }
 
 var tempQty=1;
@@ -2626,6 +2686,12 @@ window.getRoute=getRoute;
 
 function render(route){
 
+const appElement=
+document.getElementById("app");
+
+if(!appElement)
+return;
+
 settings=
 window.settings || {};
 
@@ -2633,31 +2699,45 @@ categories=
 getCategories();
 
 if(route==="/"){
+
 renderHome();
+
 }
 
 else if(route==="/categories"){
+
 renderCategories();
+
 }
 
 else if(route==="/discount"){
+
 renderDiscount();
+
 }
 
 else if(route==="/favorites"){
+
 renderFavorites();
+
 }
 
 else if(route==="/cart"){
+
 renderCart();
+
 }
 
 else if(route==="/laws"){
+
 renderLaws();
+
 }
 
 else if(route==="/support"){
+
 renderSupport();
+
 }
 
 else if(route.startsWith("/category/")){
@@ -2722,7 +2802,7 @@ settings.storeName ||
 
 const welcome=
 settings.welcomeText ||
-"ماهان سنتر ایران یک فروشگاه آنلاین برای ارائه محصولات متنوع و باکیفیت است.";
+"ماهان سنتر ایران یک فروشگاه آنلاین برای ارائه محصولات متنوع و باکیفیت.";
 
 const newest=
 sortProducts(products).slice(0,8);
@@ -5555,6 +5635,11 @@ return num.toLocaleString("fa-IR");
 
 
 /* INITIAL */
+
+/*
+این قسمت عمداً بعد از تعریف fallback اجرا می‌شود
+تا صفحه خانه قبل از آماده شدن module متوقف نشود.
+*/
 
 updateCartCount();
 
