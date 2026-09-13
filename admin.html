@@ -2049,8 +2049,23 @@ $("loginBtn")
 
         }catch(error){
 
+            console.error("LOGIN ERROR", error);
+
+            let message = firebaseError(error);
+
+            if(error?.code === "auth/network-request-failed"){
+
+                if(location.protocol === "file:"){
+                    message = "Firebase از فایل مستقیم اجرا نمی‌شود. این فایل را روی هاست یا localhost اجرا کنید.";
+                }else if(!navigator.onLine){
+                    message = "اینترنت دستگاه قطع است. اتصال اینترنت را بررسی کنید.";
+                }else{
+                    message = "اتصال به Firebase برقرار نشد. تنظیمات Authentication و دامنه مجاز پروژه را بررسی کنید.";
+                }
+            }
+
             toast(
-                firebaseError(error),
+                message,
                 "error"
             );
 
