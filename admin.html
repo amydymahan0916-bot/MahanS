@@ -1,4520 +1,5746 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
 <title>پنل مدیریت | ماهان سنتر ایران</title>
 
 <style>
-
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 :root{
---green:#19d66b;
---green2:#0fb957;
---yellow:#ffc400;
---red:#e50914;
---bg:#070707;
---card:#111;
---card2:#181818;
---border:#292929;
---text:#fff;
---muted:#999;
+    --bg:#060708;
+    --panel:#0d0f11;
+    --panel2:#111417;
+    --panel3:#171b1f;
+    --border:#252a2f;
+
+    --green:#19d66b;
+    --green2:#0fb957;
+
+    --red:#e50914;
+    --yellow:#ffc400;
+    --blue:#4285f4;
+
+    --text:#f7f7f7;
+    --muted:#8e969e;
+
+    --danger:#ff3344;
+    --success:#19d66b;
+
+    --shadow:0 20px 60px rgba(0,0,0,.45);
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
-font-family:Tahoma,Arial,sans-serif;
-background:
-radial-gradient(circle at top right,rgba(25,214,107,.06),transparent 30%),
-var(--bg);
-color:white;
-min-height:100vh;
+    background:
+        radial-gradient(circle at 80% 0%,rgba(25,214,107,.07),transparent 30%),
+        radial-gradient(circle at 10% 100%,rgba(229,9,20,.05),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    font-family:
+        Tahoma,
+        Arial,
+        sans-serif;
+    overflow-x:hidden;
 }
 
 button,
 input,
 textarea,
 select{
-font-family:inherit;
+    font-family:inherit;
 }
 
 button{
-cursor:pointer;
+    cursor:pointer;
+    border:0;
 }
 
-.hidden{
-display:none!important;
+a{
+    text-decoration:none;
+    color:inherit;
 }
 
+/* =========================
+   LOGIN
+========================= */
 
-/* LOGIN */
-
-.login-page{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
+.login-screen{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:
+        radial-gradient(circle at center,rgba(25,214,107,.08),transparent 35%),
+        #050607;
 }
 
 .login-box{
-width:100%;
-max-width:430px;
-background:#111;
-border:1px solid #292929;
-border-radius:28px;
-padding:35px;
-box-shadow:0 30px 100px #000;
+    width:100%;
+    max-width:430px;
+    background:rgba(13,15,17,.96);
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:34px;
+    box-shadow:var(--shadow);
+    position:relative;
+    overflow:hidden;
+}
+
+.login-box:before{
+    content:"";
+    position:absolute;
+    top:0;
+    right:0;
+    left:0;
+    height:3px;
+    background:linear-gradient(90deg,var(--red),var(--green));
 }
 
 .login-logo{
-width:90px;
-height:90px;
-display:block;
-margin:0 auto 20px;
-border-radius:50%;
-object-fit:cover;
-border:3px solid var(--green);
+    width:85px;
+    height:85px;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    margin:0 auto 20px;
+    border:2px solid rgba(25,214,107,.5);
+    box-shadow:0 0 35px rgba(25,214,107,.15);
 }
 
-.login-box h1{
-text-align:center;
-font-size:25px;
-margin-bottom:7px;
+.login-title{
+    text-align:center;
+    font-size:24px;
+    font-weight:900;
+    margin-bottom:7px;
 }
 
-.login-box h1 span{
-color:var(--green);
+.login-title span{
+    color:var(--green);
 }
 
-.login-box h1 b{
-color:var(--red);
+.login-title b{
+    color:var(--red);
 }
 
-.login-box p{
-text-align:center;
-color:#777;
-font-size:12px;
-margin-bottom:25px;
+.login-subtitle{
+    color:var(--muted);
+    text-align:center;
+    font-size:13px;
+    margin-bottom:28px;
+}
+
+.login-field{
+    margin-bottom:15px;
+}
+
+.login-field label{
+    display:block;
+    color:#cfd3d7;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+.login-field input{
+    width:100%;
+    height:52px;
+    border:1px solid var(--border);
+    background:#080a0c;
+    color:white;
+    border-radius:14px;
+    padding:0 15px;
+    outline:none;
+    transition:.2s;
+    direction:ltr;
+    text-align:left;
+}
+
+.login-field input:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(25,214,107,.08);
+}
+
+.login-btn{
+    width:100%;
+    height:53px;
+    border-radius:15px;
+    color:#061008;
+    font-size:15px;
+    font-weight:900;
+    background:linear-gradient(135deg,var(--green),#58f29a);
+    margin-top:5px;
+    transition:.2s;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 30px rgba(25,214,107,.18);
 }
 
 .login-error{
-background:#351014;
-border:1px solid #8e1b26;
-color:#ff6772;
-padding:10px;
-border-radius:10px;
-font-size:12px;
-margin-bottom:12px;
-text-align:center;
+    display:none;
+    margin-top:15px;
+    padding:12px 14px;
+    background:rgba(229,9,20,.1);
+    border:1px solid rgba(229,9,20,.25);
+    color:#ff7580;
+    border-radius:12px;
+    font-size:12px;
+    line-height:1.8;
 }
 
+/* =========================
+   APP
+========================= */
 
-/* INPUT */
-
-.form-group{
-margin-bottom:15px;
+.app{
+    display:none;
+    min-height:100vh;
 }
 
-.form-group label{
-display:block;
-font-size:12px;
-color:#aaa;
-margin-bottom:7px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-width:100%;
-background:#191919;
-border:1px solid #333;
-color:white;
-border-radius:11px;
-padding:12px;
-outline:none;
-font-size:13px;
-}
-
-.form-group textarea{
-min-height:110px;
-resize:vertical;
-line-height:1.8;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus{
-border-color:var(--green);
-}
-
-.grid-2{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-}
-
-.grid-3{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:12px;
-}
-
-
-/* BUTTON */
-
-.btn{
-border:0;
-border-radius:11px;
-padding:11px 17px;
-font-size:13px;
-transition:.2s;
-}
-
-.btn:hover{
-transform:translateY(-2px);
-}
-
-.btn-green{
-background:var(--green);
-color:#06120a;
-font-weight:bold;
-}
-
-.btn-dark{
-background:#191919;
-border:1px solid #333;
-color:white;
-}
-
-.btn-red{
-background:var(--red);
-color:white;
-}
-
-.btn-yellow{
-background:var(--yellow);
-color:#111;
-font-weight:bold;
-}
-
-
-/* ADMIN */
-
-.admin{
-display:none;
-min-height:100vh;
-}
-
-.admin.active{
-display:block;
-}
+/* =========================
+   SIDEBAR
+========================= */
 
 .sidebar{
-position:fixed;
-right:0;
-top:0;
-bottom:0;
-width:250px;
-background:#0d0d0d;
-border-left:1px solid #292929;
-padding:20px 14px;
-z-index:1000;
-overflow-y:auto;
+    position:fixed;
+    right:0;
+    top:0;
+    bottom:0;
+    width:270px;
+    background:
+        linear-gradient(180deg,#0d1012,#080a0c);
+    border-left:1px solid var(--border);
+    z-index:1000;
+    display:flex;
+    flex-direction:column;
+    padding:20px 14px;
 }
 
 .brand{
-display:flex;
-align-items:center;
-gap:10px;
-padding:5px 7px 20px;
-border-bottom:1px solid #242424;
-margin-bottom:15px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:8px 10px 20px;
+    border-bottom:1px solid var(--border);
+    margin-bottom:18px;
 }
 
 .brand img{
-width:48px;
-height:48px;
-border-radius:50%;
-border:2px solid var(--green);
-object-fit:cover;
+    width:48px;
+    height:48px;
+    border-radius:15px;
+    object-fit:cover;
 }
 
-.brand-title{
-font-size:14px;
-font-weight:bold;
+.brand-text{
+    min-width:0;
 }
 
-.brand-title span{
-color:var(--green);
+.brand-text strong{
+    display:block;
+    font-size:16px;
+    font-weight:900;
+    white-space:nowrap;
 }
 
-.brand-title b{
-color:var(--red);
+.brand-text strong span{
+    color:var(--green);
 }
 
-.menu-title{
-font-size:10px;
-color:#555;
-margin:16px 8px 7px;
+.brand-text strong b{
+    color:var(--red);
 }
 
-.side-btn{
-width:100%;
-border:0;
-background:transparent;
-color:#999;
-padding:12px;
-border-radius:11px;
-text-align:right;
-font-size:13px;
-margin-bottom:4px;
+.brand-text small{
+    color:var(--muted);
+    display:block;
+    margin-top:4px;
+    font-size:10px;
 }
 
-.side-btn:hover,
-.side-btn.active{
-background:#17231b;
-color:var(--green);
+.sidebar-menu{
+    flex:1;
+    overflow-y:auto;
+    padding-left:2px;
 }
 
-.logout{
-margin-top:15px;
-color:#ff5963;
+.menu-label{
+    color:#555d64;
+    font-size:10px;
+    font-weight:bold;
+    padding:12px 12px 7px;
 }
 
+.menu-item{
+    width:100%;
+    height:47px;
+    border-radius:13px;
+    background:transparent;
+    color:#aeb4ba;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 14px;
+    margin-bottom:5px;
+    text-align:right;
+    transition:.2s;
+    font-size:13px;
+}
 
-/* CONTENT */
+.menu-item .mi{
+    width:27px;
+    height:27px;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#15191c;
+    font-size:14px;
+    flex:none;
+}
 
-.content{
-margin-right:250px;
-padding:25px;
+.menu-item:hover{
+    background:#14181b;
+    color:#fff;
+}
+
+.menu-item.active{
+    background:linear-gradient(90deg,rgba(25,214,107,.13),rgba(25,214,107,.03));
+    color:#fff;
+    border:1px solid rgba(25,214,107,.13);
+}
+
+.menu-item.active .mi{
+    background:rgba(25,214,107,.13);
+    color:var(--green);
+}
+
+.sidebar-bottom{
+    border-top:1px solid var(--border);
+    padding-top:15px;
+}
+
+.admin-user{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px;
+    margin-bottom:8px;
+}
+
+.admin-avatar{
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    background:linear-gradient(135deg,var(--green),#075a2e);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#001b0b;
+    font-weight:900;
+}
+
+.admin-info{
+    min-width:0;
+}
+
+.admin-info strong{
+    display:block;
+    font-size:12px;
+}
+
+.admin-info small{
+    display:block;
+    color:var(--muted);
+    font-size:9px;
+    margin-top:3px;
+    direction:ltr;
+    text-align:right;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.logout-btn{
+    width:100%;
+    height:42px;
+    border-radius:11px;
+    background:#15181b;
+    color:#ff5965;
+    font-size:12px;
+    border:1px solid #24282c;
+}
+
+.logout-btn:hover{
+    background:rgba(229,9,20,.08);
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    margin-right:270px;
+    min-height:100vh;
 }
 
 .topbar{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:15px;
-margin-bottom:25px;
+    height:76px;
+    border-bottom:1px solid var(--border);
+    background:rgba(6,7,8,.85);
+    backdrop-filter:blur(15px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    position:sticky;
+    top:0;
+    z-index:900;
 }
 
-.topbar h1{
-font-size:25px;
+.topbar-title h1{
+    font-size:19px;
+    font-weight:900;
 }
 
-.topbar p{
-font-size:11px;
-color:#777;
-margin-top:3px;
+.topbar-title p{
+    color:var(--muted);
+    font-size:10px;
+    margin-top:5px;
 }
 
-.content-page{
-display:none;
+.topbar-actions{
+    display:flex;
+    align-items:center;
+    gap:9px;
 }
 
-.content-page.active{
-display:block;
+.top-icon{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background:#0d1012;
+    color:#d8dde1;
 }
 
-
-/* CARDS */
-
-.card{
-background:#111;
-border:1px solid #292929;
-border-radius:18px;
-padding:20px;
-margin-bottom:18px;
+.mobile-menu{
+    display:none;
 }
 
-.card-title{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-margin-bottom:18px;
+.content{
+    padding:28px;
+    max-width:1700px;
+    margin:auto;
 }
 
-.card-title h2{
-font-size:17px;
+/* =========================
+   PAGE
+========================= */
+
+.page{
+    display:none;
 }
 
-.card-title span{
-font-size:11px;
-color:#777;
+.page.active{
+    display:block;
+    animation:pageIn .25s ease;
 }
 
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(5px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
 
-/* STATS */
+.page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.page-header h2{
+    font-size:25px;
+    font-weight:900;
+}
+
+.page-header p{
+    color:var(--muted);
+    font-size:12px;
+    margin-top:7px;
+}
+
+.header-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
+    min-height:43px;
+    padding:0 17px;
+    border-radius:12px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    font-size:12px;
+    font-weight:800;
+    transition:.2s;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+.btn-green{
+    background:var(--green);
+    color:#00170a;
+}
+
+.btn-dark{
+    background:#15191c;
+    color:#ddd;
+    border:1px solid var(--border);
+}
+
+.btn-red{
+    background:rgba(229,9,20,.1);
+    color:#ff5b65;
+    border:1px solid rgba(229,9,20,.25);
+}
+
+.btn-yellow{
+    background:var(--yellow);
+    color:#1c1600;
+}
+
+.btn-blue{
+    background:rgba(66,133,244,.12);
+    color:#79a9ff;
+    border:1px solid rgba(66,133,244,.2);
+}
+
+/* =========================
+   DASHBOARD
+========================= */
 
 .stats-grid{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:22px;
 }
 
 .stat-card{
-background:#111;
-border:1px solid #292929;
-border-radius:18px;
-padding:20px;
+    min-height:145px;
+    background:linear-gradient(145deg,#101315,#0b0d0f);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:20px;
+    position:relative;
+    overflow:hidden;
+}
+
+.stat-card:after{
+    content:"";
+    position:absolute;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    background:rgba(25,214,107,.05);
+    left:-30px;
+    bottom:-45px;
 }
 
 .stat-icon{
-font-size:28px;
-margin-bottom:10px;
+    width:42px;
+    height:42px;
+    border-radius:13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#161a1d;
+    font-size:18px;
+    margin-bottom:14px;
 }
 
-.stat-card strong{
-font-size:25px;
-display:block;
-color:var(--green);
+.stat-card h3{
+    font-size:25px;
+    font-weight:900;
 }
 
-.stat-card span{
-font-size:11px;
-color:#777;
+.stat-card p{
+    color:var(--muted);
+    font-size:11px;
+    margin-top:5px;
 }
 
+.quick-grid{
+    display:grid;
+    grid-template-columns:1.35fr 1fr;
+    gap:18px;
+}
 
-/* PRODUCT TOOLBAR */
+.panel{
+    background:linear-gradient(145deg,#0f1214,#0b0d0f);
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.panel-head{
+    padding:18px 20px;
+    border-bottom:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.panel-head h3{
+    font-size:14px;
+    font-weight:900;
+}
+
+.panel-head span{
+    color:var(--muted);
+    font-size:10px;
+}
+
+.panel-body{
+    padding:20px;
+}
+
+/* =========================
+   PRODUCTS
+========================= */
 
 .toolbar{
-display:flex;
-gap:10px;
-align-items:center;
-margin-bottom:18px;
-flex-wrap:wrap;
+    background:#0d1012;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:13px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    margin-bottom:17px;
+    flex-wrap:wrap;
 }
 
 .search{
-flex:1;
-min-width:200px;
-background:#151515;
-border:1px solid #333;
-border-radius:11px;
-padding:11px 14px;
-color:white;
-outline:none;
+    flex:1;
+    min-width:210px;
+    position:relative;
 }
 
-.search:focus{
-border-color:var(--green);
+.search input{
+    width:100%;
+    height:43px;
+    background:#080a0c;
+    border:1px solid var(--border);
+    color:white;
+    border-radius:12px;
+    padding:0 14px;
+    outline:none;
 }
 
-
-/* TABLE */
-
-.table-wrap{
-overflow-x:auto;
+.search input:focus{
+    border-color:var(--green);
 }
 
-table{
-width:100%;
-border-collapse:collapse;
-min-width:800px;
+.select{
+    height:43px;
+    min-width:160px;
+    background:#080a0c;
+    border:1px solid var(--border);
+    color:#eee;
+    border-radius:12px;
+    padding:0 12px;
+    outline:none;
 }
 
-th,
-td{
-padding:13px 10px;
-border-bottom:1px solid #242424;
-text-align:right;
-font-size:12px;
+.products-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
 }
 
-th{
-color:#777;
-font-size:11px;
-font-weight:normal;
+.product-admin-card{
+    background:linear-gradient(145deg,#111416,#0c0f11);
+    border:1px solid var(--border);
+    border-radius:20px;
+    overflow:hidden;
+    transition:.2s;
 }
 
-td{
-color:#ddd;
+.product-admin-card:hover{
+    border-color:#343b41;
+    transform:translateY(-2px);
 }
 
-.product-thumb{
-width:55px;
-height:55px;
-border-radius:10px;
-object-fit:contain;
-background:#191919;
+.product-admin-image{
+    height:210px;
+    background:#080a0c;
+    position:relative;
+    overflow:hidden;
+}
+
+.product-admin-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.product-no-image{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#454b50;
+    font-size:40px;
+}
+
+.product-admin-body{
+    padding:16px;
+}
+
+.product-admin-title{
+    font-size:15px;
+    font-weight:900;
+    margin-bottom:6px;
+}
+
+.product-admin-meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    color:var(--muted);
+    font-size:10px;
+    margin-bottom:14px;
 }
 
 .badge{
-display:inline-block;
-padding:4px 8px;
-border-radius:7px;
-font-size:10px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:25px;
+    padding:0 9px;
+    border-radius:8px;
+    background:#171b1e;
+    color:#aaa;
+    font-size:9px;
 }
 
 .badge-green{
-background:#103c23;
-color:#41e986;
-}
-
-.badge-yellow{
-background:#3d3105;
-color:#ffd33b;
+    color:var(--green);
+    background:rgba(25,214,107,.08);
 }
 
 .badge-red{
-background:#3c1014;
-color:#ff5b66;
+    color:#ff6972;
+    background:rgba(229,9,20,.08);
 }
 
-.action-row{
-display:flex;
-gap:6px;
+.price-admin{
+    font-size:17px;
+    font-weight:900;
+    color:#fff;
+    margin-bottom:13px;
 }
 
-.action-btn{
-border:1px solid #333;
-background:#191919;
-color:white;
-border-radius:8px;
-padding:7px 10px;
-font-size:11px;
+.price-admin small{
+    color:var(--muted);
+    font-size:10px;
 }
 
-.action-btn.edit{
-color:var(--green);
+.stock-row{
+    display:flex;
+    gap:7px;
+    margin-bottom:12px;
 }
 
-.action-btn.delete{
-color:#ff5661;
+.stock-input{
+    flex:1;
+    height:39px;
+    min-width:0;
+    background:#080a0c;
+    border:1px solid var(--border);
+    color:#fff;
+    border-radius:10px;
+    padding:0 10px;
+    outline:none;
+    direction:ltr;
+    text-align:center;
 }
 
-
-/* CATEGORY */
-
-.category-list{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:13px;
+.stock-input:focus{
+    border-color:var(--green);
 }
 
-.category-item{
-background:#151515;
-border:1px solid #292929;
-border-radius:15px;
-padding:15px;
-display:flex;
-align-items:center;
-gap:12px;
+.stock-save{
+    width:105px;
+    border-radius:10px;
+    background:#161a1d;
+    border:1px solid var(--border);
+    color:var(--green);
+    font-size:10px;
+    font-weight:bold;
 }
 
-.category-item-icon{
-font-size:30px;
+.product-actions{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:7px;
 }
 
-.category-item-info{
-flex:1;
+.product-actions button{
+    height:39px;
+    border-radius:10px;
+    font-size:10px;
+    font-weight:bold;
 }
 
-.category-item-info strong{
-display:block;
-font-size:13px;
+.edit-btn{
+    background:rgba(66,133,244,.1);
+    color:#78a8ff;
 }
 
-.category-item-info small{
-display:block;
-color:#777;
-font-size:10px;
-margin-top:3px;
+.delete-btn{
+    background:rgba(229,9,20,.08);
+    color:#ff6972;
 }
 
-
-/* MODAL */
-
-.modal{
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.8);
-backdrop-filter:blur(7px);
-display:none;
-align-items:center;
-justify-content:center;
-padding:15px;
-z-index:5000;
+.view-btn{
+    background:#161a1d;
+    color:#ccc;
 }
 
-.modal.active{
-display:flex;
+/* =========================
+   CATEGORY
+========================= */
+
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
 }
 
-.modal-box{
-width:100%;
-max-width:850px;
-max-height:94vh;
-overflow-y:auto;
-background:#111;
-border:1px solid #333;
-border-radius:22px;
-padding:25px;
-box-shadow:0 30px 100px #000;
+.category-card{
+    border:1px solid var(--border);
+    background:#0e1113;
+    border-radius:18px;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:13px;
 }
 
-.modal-head{
-display:flex;
-align-items:center;
-justify-content:space-between;
-margin-bottom:22px;
+.category-icon{
+    width:54px;
+    height:54px;
+    border-radius:16px;
+    background:#171b1e;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    flex:none;
 }
 
-.modal-head h2{
-font-size:19px;
+.category-info{
+    flex:1;
+    min-width:0;
 }
 
-.close{
-width:35px;
-height:35px;
-border:1px solid #333;
-background:#191919;
-color:white;
-border-radius:9px;
-font-size:18px;
+.category-info strong{
+    font-size:14px;
+    display:block;
 }
 
+.category-info small{
+    display:block;
+    color:var(--muted);
+    margin-top:5px;
+    font-size:10px;
+}
 
-/* IMAGES */
+.category-actions{
+    display:flex;
+    gap:5px;
+}
+
+.small-action{
+    width:34px;
+    height:34px;
+    border-radius:9px;
+    background:#171b1e;
+    color:#bbb;
+}
+
+.small-action.delete{
+    color:#ff5e69;
+}
+
+/* =========================
+   FORMS
+========================= */
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.form-group{
+    min-width:0;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    display:block;
+    font-size:11px;
+    color:#c5cbd0;
+    margin-bottom:8px;
+}
+
+.form-group label .required{
+    color:var(--red);
+}
+
+.input,
+.textarea,
+.form-select{
+    width:100%;
+    background:#080a0c;
+    border:1px solid var(--border);
+    color:#fff;
+    border-radius:12px;
+    outline:none;
+    transition:.2s;
+}
+
+.input{
+    height:46px;
+    padding:0 13px;
+}
+
+.textarea{
+    min-height:110px;
+    resize:vertical;
+    padding:12px 13px;
+    line-height:1.9;
+}
+
+.form-select{
+    height:46px;
+    padding:0 12px;
+}
+
+.input:focus,
+.textarea:focus,
+.form-select:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(25,214,107,.06);
+}
+
+.help{
+    color:#687077;
+    font-size:9px;
+    margin-top:6px;
+    line-height:1.7;
+}
+
+/* =========================
+   IMAGES
+========================= */
 
 .image-upload{
-border:1px dashed #444;
-border-radius:14px;
-padding:18px;
-text-align:center;
-background:#151515;
+    border:1px dashed #343a40;
+    border-radius:16px;
+    padding:15px;
+    background:#090b0d;
 }
 
-.image-upload input{
-display:none;
+.image-upload-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
 }
 
-.image-upload label{
-display:block;
-cursor:pointer;
-color:#aaa;
-font-size:12px;
+.image-upload-head strong{
+    font-size:12px;
 }
 
-.image-upload label strong{
-display:block;
-color:var(--green);
-font-size:15px;
-margin-bottom:5px;
+.image-upload-head span{
+    font-size:9px;
+    color:var(--muted);
 }
 
-.image-preview{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:15px;
+.images-preview{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
 }
 
-.preview-item{
-position:relative;
-height:150px;
-background:#191919;
-border-radius:12px;
-overflow:hidden;
-border:1px solid #333;
+.image-box{
+    aspect-ratio:1;
+    background:#111417;
+    border:1px solid var(--border);
+    border-radius:13px;
+    position:relative;
+    overflow:hidden;
 }
 
-.preview-item img{
-width:100%;
-height:100%;
-object-fit:contain;
+.image-box img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.image-box.empty{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    color:#555d64;
+    gap:5px;
+}
+
+.image-box.empty span{
+    font-size:8px;
 }
 
 .remove-image{
-position:absolute;
-top:5px;
-left:5px;
-width:27px;
-height:27px;
-border:0;
-border-radius:50%;
-background:#d71925;
-color:white;
+    position:absolute;
+    top:6px;
+    left:6px;
+    width:27px;
+    height:27px;
+    border-radius:8px;
+    background:rgba(0,0,0,.8);
+    color:#ff6872;
+    z-index:2;
 }
 
-
-/* SETTINGS */
-
-.settings-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
+.file-input{
+    width:100%;
+    margin-top:11px;
+    color:#aaa;
+    font-size:10px;
 }
 
-.setting-box{
-background:#151515;
-border:1px solid #292929;
-border-radius:16px;
-padding:18px;
+.file-input::file-selector-button{
+    height:37px;
+    padding:0 12px;
+    margin-left:8px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    background:#171b1e;
+    color:#ddd;
+    cursor:pointer;
 }
 
-.setting-box h3{
-font-size:14px;
-margin-bottom:15px;
-color:var(--green);
+/* =========================
+   CONTENT / STATS
+========================= */
+
+.content-editor{
+    max-width:1000px;
 }
 
-.range-row{
-display:grid;
-grid-template-columns:1fr 90px;
-gap:10px;
-align-items:center;
-margin-bottom:12px;
+.editor-card{
+    background:#0d1012;
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:22px;
+    margin-bottom:17px;
 }
 
-.range-row label{
-font-size:11px;
-color:#aaa;
+.editor-card h3{
+    font-size:15px;
+    margin-bottom:5px;
 }
 
-.range-row input[type=range]{
-width:100%;
+.editor-card > p{
+    color:var(--muted);
+    font-size:10px;
+    margin-bottom:20px;
 }
 
-.range-value{
-background:#202020;
-border:1px solid #333;
-border-radius:8px;
-padding:7px;
-text-align:center;
-font-size:11px;
+.stats-editor{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:13px;
 }
 
-
-/* EMPTY */
-
-.empty{
-text-align:center;
-padding:60px 20px;
-color:#666;
+.stat-editor{
+    background:#090b0d;
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:15px;
 }
 
-.empty div{
-font-size:45px;
-margin-bottom:10px;
+.stat-editor label{
+    display:block;
+    font-size:10px;
+    color:#aaa;
+    margin-bottom:8px;
 }
 
-
-/* TOAST */
-
-.toast{
-position:fixed;
-bottom:25px;
-left:25px;
-background:#161616;
-border:1px solid #333;
-border-left:4px solid var(--green);
-padding:13px 17px;
-border-radius:12px;
-z-index:10000;
-transform:translateY(100px);
-opacity:0;
-transition:.3s;
-font-size:12px;
+.stat-editor input{
+    width:100%;
+    height:43px;
+    background:#111417;
+    border:1px solid var(--border);
+    border-radius:10px;
+    color:white;
+    padding:0 11px;
+    outline:none;
 }
 
-.toast.show{
-transform:none;
-opacity:1;
+/* =========================
+   TABLE
+========================= */
+
+.table-wrap{
+    overflow:auto;
 }
 
-
-/* LOADING */
-
-.loading{
-padding:60px;
-text-align:center;
-color:#777;
+.table{
+    width:100%;
+    min-width:750px;
+    border-collapse:collapse;
 }
 
-
-/* MOBILE */
-
-@media(max-width:900px){
-
-.sidebar{
-width:70px;
-padding:12px 8px;
+.table th,
+.table td{
+    padding:13px 12px;
+    border-bottom:1px solid #1d2125;
+    text-align:right;
+    font-size:11px;
 }
 
-.brand-title,
-.menu-title,
-.side-btn span{
-display:none;
+.table th{
+    color:#727a82;
+    font-weight:normal;
 }
 
-.brand{
-justify-content:center;
-padding-bottom:15px;
+.table td{
+    color:#ddd;
 }
 
-.side-btn{
-text-align:center;
-font-size:20px;
+.table tr:last-child td{
+    border-bottom:0;
 }
 
-.content{
-margin-right:70px;
-padding:15px;
+/* =========================
+   MODAL
+========================= */
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:10000;
+    background:rgba(0,0,0,.76);
+    backdrop-filter:blur(8px);
+    padding:20px;
+    overflow:auto;
 }
 
-.stats-grid{
-grid-template-columns:repeat(2,1fr);
-}
-
-.category-list{
-grid-template-columns:1fr 1fr;
-}
-
-}
-
-@media(max-width:600px){
-
-.content{
-padding:10px;
-}
-
-.topbar h1{
-font-size:19px;
-}
-
-.grid-2,
-.grid-3{
-grid-template-columns:1fr;
-}
-
-.settings-grid{
-grid-template-columns:1fr;
-}
-
-.category-list{
-grid-template-columns:1fr;
-}
-
-.stats-grid{
-gap:8px;
-}
-
-.stat-card{
-padding:13px;
-}
-
-.stat-card strong{
-font-size:20px;
+.modal.show{
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
 
 .modal-box{
-padding:17px;
+    width:100%;
+    max-width:900px;
+    max-height:94vh;
+    overflow:auto;
+    background:#0c0f11;
+    border:1px solid #30363b;
+    border-radius:25px;
+    box-shadow:0 30px 100px rgba(0,0,0,.65);
 }
 
-.image-preview{
-grid-template-columns:1fr 1fr 1fr;
+.modal-head{
+    position:sticky;
+    top:0;
+    z-index:3;
+    background:#0c0f11;
+    border-bottom:1px solid var(--border);
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-.preview-item{
-height:105px;
+.modal-head h3{
+    font-size:17px;
 }
 
-.toolbar{
-align-items:stretch;
+.modal-close{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    background:#171b1e;
+    color:#bbb;
+    font-size:20px;
 }
 
-.search{
-min-width:100%;
+.modal-body{
+    padding:22px;
 }
 
+.modal-footer{
+    position:sticky;
+    bottom:0;
+    background:#0c0f11;
+    border-top:1px solid var(--border);
+    padding:15px 22px;
+    display:flex;
+    justify-content:flex-start;
+    gap:9px;
 }
 
+/* =========================
+   TOAST
+========================= */
+
+.toast-container{
+    position:fixed;
+    left:20px;
+    bottom:20px;
+    z-index:999999;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+    width:min(380px,calc(100vw - 40px));
+}
+
+.toast{
+    background:#111518;
+    border:1px solid #2b3237;
+    border-right:4px solid var(--green);
+    color:#fff;
+    border-radius:14px;
+    padding:13px 15px;
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+    font-size:11px;
+    line-height:1.8;
+    animation:toastIn .25s ease;
+}
+
+.toast.error{
+    border-right-color:var(--red);
+}
+
+.toast.warning{
+    border-right-color:var(--yellow);
+}
+
+@keyframes toastIn{
+    from{
+        opacity:0;
+        transform:translateX(-20px);
+    }
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+/* =========================
+   EMPTY / LOADING
+========================= */
+
+.loading{
+    padding:55px 20px;
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+}
+
+.spinner{
+    width:27px;
+    height:27px;
+    border:3px solid #252a2e;
+    border-top-color:var(--green);
+    border-radius:50%;
+    animation:spin .8s linear infinite;
+    margin:0 auto 13px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+.empty{
+    padding:55px 20px;
+    text-align:center;
+    color:#626a71;
+}
+
+.empty-icon{
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.empty p{
+    font-size:11px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1100px){
+    .products-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .category-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .quick-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+        transform:translateX(100%);
+        transition:.25s;
+        width:280px;
+        box-shadow:-30px 0 80px rgba(0,0,0,.5);
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+        margin-right:0;
+    }
+
+    .mobile-menu{
+        display:block;
+    }
+
+    .topbar{
+        height:68px;
+        padding:0 15px;
+    }
+
+    .topbar-title h1{
+        font-size:15px;
+    }
+
+    .topbar-title p{
+        display:none;
+    }
+
+    .content{
+        padding:17px 13px;
+    }
+
+    .page-header{
+        align-items:flex-start;
+        flex-direction:column;
+        margin-bottom:17px;
+    }
+
+    .page-header h2{
+        font-size:21px;
+    }
+
+    .stats-grid{
+        gap:9px;
+    }
+
+    .stat-card{
+        min-height:120px;
+        padding:15px;
+        border-radius:16px;
+    }
+
+    .stat-card h3{
+        font-size:21px;
+    }
+
+    .stat-card p{
+        font-size:9px;
+    }
+
+    .products-grid{
+        grid-template-columns:1fr;
+    }
+
+    .category-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .stats-editor{
+        grid-template-columns:1fr;
+    }
+
+    .modal{
+        padding:8px;
+    }
+
+    .modal-box{
+        max-height:96vh;
+        border-radius:20px;
+    }
+
+    .modal-body{
+        padding:15px;
+    }
+
+    .modal-footer{
+        padding:12px 15px;
+    }
+}
+
+@media(max-width:500px){
+
+    .topbar-actions .top-icon:not(.mobile-menu){
+        display:none;
+    }
+
+    .header-actions{
+        width:100%;
+    }
+
+    .header-actions .btn{
+        flex:1;
+    }
+
+    .toolbar{
+        padding:9px;
+    }
+
+    .search{
+        min-width:100%;
+    }
+
+    .select{
+        flex:1;
+        min-width:0;
+    }
+
+    .product-admin-image{
+        height:230px;
+    }
+
+    .login-box{
+        padding:25px 18px;
+        border-radius:22px;
+    }
+}
 </style>
 </head>
 
 <body>
 
+<!-- =========================
+     LOGIN
+========================= -->
 
-<!-- LOGIN -->
+<div class="login-screen" id="loginScreen">
 
-<div class="login-page" id="loginPage">
+    <div class="login-box">
 
-<div class="login-box">
+        <img src="logo.jpg"
+             class="login-logo"
+             onerror="this.style.display='none'">
 
-<img
-src="logo.jpg"
-class="login-logo"
-onerror="this.style.display='none'"
->
+        <div class="login-title">
+            <span>ماهان سنتر</span> <b>ایران</b>
+        </div>
 
-<h1>
-<span>ماهان سنتر</span> <b>ایران</b>
-</h1>
+        <div class="login-subtitle">
+            پنل مدیریت حرفه‌ای فروشگاه
+        </div>
 
-<p>
-ورود به پنل مدیریت فروشگاه
-</p>
+        <div class="login-field">
+            <label>ایمیل مدیر</label>
+            <input
+                id="loginEmail"
+                type="email"
+                placeholder="admin@example.com"
+                autocomplete="username">
+        </div>
+
+        <div class="login-field">
+            <label>رمز عبور</label>
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="رمز عبور"
+                autocomplete="current-password">
+        </div>
+
+        <button
+            class="login-btn"
+            id="loginBtn">
+            ورود به پنل مدیریت
+        </button>
+
+        <div
+            class="login-error"
+            id="loginError"></div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     APP
+========================= -->
+
+<div class="app" id="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <div class="brand">
+
+            <img
+                src="logo.jpg"
+                onerror="this.style.display='none'">
+
+            <div class="brand-text">
+                <strong>
+                    <span>ماهان سنتر</span>
+                    <b> ایران</b>
+                </strong>
+
+                <small>
+                    MANAGEMENT PANEL
+                </small>
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-menu">
+
+            <div class="menu-label">
+                مدیریت
+            </div>
+
+            <button
+                class="menu-item active"
+                data-page="dashboard">
+                <span class="mi">⌂</span>
+                داشبورد
+            </button>
+
+            <button
+                class="menu-item"
+                data-page="products">
+                <span class="mi">📦</span>
+                محصولات
+            </button>
+
+            <button
+                class="menu-item"
+                data-page="categories">
+                <span class="mi">▦</span>
+                دسته‌بندی‌ها
+            </button>
+
+
+            <div class="menu-label">
+                محتوای سایت
+            </div>
+
+            <button
+                class="menu-item"
+                data-page="content">
+                <span class="mi">✎</span>
+                متن‌های سایت
+            </button>
+
+            <button
+                class="menu-item"
+                data-page="stats">
+                <span class="mi">◈</span>
+                آمار صفحه اصلی
+            </button>
+
+
+            <div class="menu-label">
+                سیستم
+            </div>
+
+            <button
+                class="menu-item"
+                data-page="settings">
+                <span class="mi">⚙</span>
+                تنظیمات
+            </button>
+
+        </div>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="admin-user">
+
+                <div class="admin-avatar">
+                    M
+                </div>
+
+                <div class="admin-info">
+
+                    <strong>
+                        مدیر فروشگاه
+                    </strong>
+
+                    <small id="adminEmail">
+                        ...
+                    </small>
+
+                </div>
+
+            </div>
+
+            <button
+                class="logout-btn"
+                id="logoutBtn">
+                خروج از حساب مدیریت
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div class="topbar-title">
+
+                <h1 id="topTitle">
+                    داشبورد
+                </h1>
+
+                <p>
+                    مدیریت هوشمند ماهان سنتر ایران
+                </p>
+
+            </div>
+
+            <div class="topbar-actions">
+
+                <button
+                    class="top-icon mobile-menu"
+                    id="mobileMenu">
+                    ☰
+                </button>
+
+                <button
+                    class="top-icon"
+                    id="refreshBtn"
+                    title="به‌روزرسانی">
+                    ↻
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <div class="content">
+
+
+            <!-- =====================
+                 DASHBOARD
+            ====================== -->
+
+            <section
+                class="page active"
+                id="page-dashboard">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>
+                            داشبورد
+                        </h2>
+
+                        <p>
+                            نمای کلی فروشگاه و وضعیت محصولات
+                        </p>
+                    </div>
+
+                    <div class="header-actions">
+
+                        <button
+                            class="btn btn-green"
+                            onclick="openProductModal()">
+                            ＋ افزودن محصول
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📦</div>
+                        <h3 id="dashProducts">0</h3>
+                        <p>تعداد محصولات</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">▦</div>
+                        <h3 id="dashCategories">0</h3>
+                        <p>دسته‌بندی‌ها</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">✓</div>
+                        <h3 id="dashStock">0</h3>
+                        <p>موجودی کل کالاها</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">⚠</div>
+                        <h3 id="dashLow">0</h3>
+                        <p>کالاهای کم‌موجودی</p>
+                    </div>
+
+                </div>
+
+
+                <div class="quick-grid">
+
+                    <div class="panel">
+
+                        <div class="panel-head">
+                            <h3>
+                                آخرین محصولات
+                            </h3>
+
+                            <span>
+                                آخرین کالاهای ثبت‌شده
+                            </span>
+                        </div>
+
+                        <div
+                            class="panel-body"
+                            id="dashboardProducts">
+                        </div>
+
+                    </div>
+
+
+                    <div class="panel">
+
+                        <div class="panel-head">
+                            <h3>
+                                وضعیت سیستم
+                            </h3>
+
+                            <span>
+                                اتصال Firebase
+                            </span>
+                        </div>
+
+                        <div class="panel-body">
+
+                            <div
+                                id="systemStatus"
+                                style="
+                                display:grid;
+                                gap:10px;
+                                ">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 PRODUCTS
+            ====================== -->
+
+            <section
+                class="page"
+                id="page-products">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>
+                            محصولات
+                        </h2>
+
+                        <p>
+                            افزودن، ویرایش، حذف و مدیریت موجودی
+                        </p>
+                    </div>
+
+                    <div class="header-actions">
+
+                        <button
+                            class="btn btn-green"
+                            onclick="openProductModal()">
+                            ＋ محصول جدید
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="toolbar">
+
+                    <div class="search">
+
+                        <input
+                            id="productSearch"
+                            placeholder="جستجوی نام، کد، برند یا محصول..."
+                            oninput="renderProducts()">
+
+                    </div>
+
+
+                    <select
+                        class="select"
+                        id="productCategoryFilter"
+                        onchange="renderProducts()">
+
+                        <option value="">
+                            همه دسته‌بندی‌ها
+                        </option>
+
+                    </select>
+
+
+                    <button
+                        class="btn btn-dark"
+                        onclick="loadAll()">
+                        ↻ بروزرسانی
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="products-grid"
+                    id="productsGrid">
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 CATEGORIES
+            ====================== -->
+
+            <section
+                class="page"
+                id="page-categories">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>
+                            دسته‌بندی‌ها
+                        </h2>
+
+                        <p>
+                            دسته‌بندی بساز و محصولات را داخل آن قرار بده
+                        </p>
+                    </div>
+
+                    <button
+                        class="btn btn-green"
+                        onclick="openCategoryModal()">
+                        ＋ دسته‌بندی جدید
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="category-grid"
+                    id="categoryGrid">
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 CONTENT
+            ====================== -->
+
+            <section
+                class="page"
+                id="page-content">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>
+                            متن‌های سایت
+                        </h2>
+
+                        <p>
+                            متن‌های اصلی فروشگاه را از اینجا تغییر بده
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="content-editor">
+
+                    <div class="editor-card">
+
+                        <h3>
+                            متن خوش‌آمدگویی صفحه اصلی
+                        </h3>
+
+                        <p>
+                            این متن در صفحه اصلی فروشگاه نمایش داده می‌شود.
+                        </p>
+
+                        <textarea
+                            class="textarea"
+                            id="welcomeText"
+                            placeholder="متن خوش آمدگویی..."></textarea>
+
+                    </div>
+
+
+                    <div class="editor-card">
+
+                        <h3>
+                            قوانین سایت
+                        </h3>
+
+                        <p>
+                            متن کامل قوانین فروشگاه.
+                        </p>
+
+                        <textarea
+                            class="textarea"
+                            id="lawsText"
+                            placeholder="قوانین سایت..."></textarea>
+
+                    </div>
+
+
+                    <div class="editor-card">
+
+                        <h3>
+                            پشتیبانی و تماس
+                        </h3>
+
+                        <p>
+                            اطلاعاتی که مشتری در صفحه پشتیبانی مشاهده می‌کند.
+                        </p>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label>
+                                    شماره تماس
+                                </label>
+
+                                <input
+                                    class="input"
+                                    id="supportPhone"
+                                    placeholder="09332540425">
+                            </div>
+
+                            <div class="form-group">
+                                <label>
+                                    آیدی روبیکا
+                                </label>
+
+                                <input
+                                    class="input"
+                                    id="supportRubika"
+                                    placeholder="@omidi__xx">
+                            </div>
+
+                            <div class="form-group full">
+                                <label>
+                                    متن پشتیبانی
+                                </label>
+
+                                <textarea
+                                    class="textarea"
+                                    id="supportText"
+                                    placeholder="متن صفحه پشتیبانی..."></textarea>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="btn btn-green"
+                        onclick="saveSiteContent()">
+                        ✓ ذخیره تمام متن‌ها
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 STATS
+            ====================== -->
+
+            <section
+                class="page"
+                id="page-stats">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>
+                            آمار صفحه اصلی
+                        </h2>
+
+                        <p>
+                            اعداد نمایش داده شده در صفحه اصلی را مدیریت کن
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="content-editor">
+
+                    <div class="editor-card">
+
+                        <h3>
+                            آمار فروشگاه
+                        </h3>
+
+                        <p>
+                            این سه مقدار در کارت‌های آماری صفحه اصلی نمایش داده می‌شوند.
+                        </p>
+
+
+                        <div class="stats-editor">
+
+                            <div class="stat-editor">
+
+                                <label>
+                                    کاربران سایت
+                                </label>
+
+                                <input
+                                    id="statUsers"
+                                    type="number"
+                                    min="0"
+                                    value="0">
+
+                            </div>
+
+
+                            <div class="stat-editor">
+
+                                <label>
+                                    خرید موفق
+                                </label>
+
+                                <input
+                                    id="statOrders"
+                                    type="number"
+                                    min="0"
+                                    value="0">
+
+                            </div>
+
+
+                            <div class="stat-editor">
+
+                                <label>
+                                    رضایت
+                                </label>
+
+                                <input
+                                    id="statSatisfaction"
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    value="0">
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            style="
+                            margin-top:17px;
+                            color:#707980;
+                            font-size:10px;
+                            line-height:1.8;
+                            ">
+                            مثال: برای رضایت فقط عدد 98 را وارد کن؛
+                            سایت خودش علامت % را نمایش می‌دهد.
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="btn btn-green"
+                        onclick="saveStats()">
+                        ✓ ذخیره آمار
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- =====================
+                 SETTINGS
+            ====================== -->
+
+            <section
+                class="page"
+                id="page-settings">
+
+                <div class="page-header">
+
+                    <div>
+                        <h2>
+                            تنظیمات
+                        </h2>
+
+                        <p>
+                            اطلاعات عمومی فروشگاه
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="content-editor">
+
+                    <div class="editor-card">
+
+                        <h3>
+                            اطلاعات فروشگاه
+                        </h3>
+
+                        <p>
+                            اطلاعات پایه‌ای ماهان سنتر ایران.
+                        </p>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label>
+                                    نام فروشگاه
+                                </label>
+
+                                <input
+                                    class="input"
+                                    id="storeName"
+                                    value="ماهان سنتر ایران">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>
+                                    کد تخفیف
+                                </label>
+
+                                <input
+                                    class="input"
+                                    id="storeCoupon"
+                                    placeholder="Mahan_Roni">
+                            </div>
+
+
+                            <div class="form-group">
+                                <label>
+                                    درصد تخفیف
+                                </label>
+
+                                <input
+                                    class="input"
+                                    id="storeDiscount"
+                                    type="number"
+                                    min="0"
+                                    max="100"
+                                    value="0">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        class="btn btn-green"
+                        onclick="saveSettings()">
+                        ✓ ذخیره تنظیمات
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     PRODUCT MODAL
+========================= -->
 
 <div
-id="loginError"
-class="login-error hidden"
-></div>
+    class="modal"
+    id="productModal">
 
-<div class="form-group">
+    <div class="modal-box">
 
-<label>
-ایمیل مدیر
-</label>
+        <div class="modal-head">
 
-<input
-id="loginEmail"
-type="email"
-placeholder="ایمیل مدیر"
->
+            <h3 id="productModalTitle">
+                افزودن محصول
+            </h3>
+
+            <button
+                class="modal-close"
+                onclick="closeProductModal()">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label>
+                        نام محصول
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        class="input"
+                        id="pName"
+                        placeholder="مثلاً آیفون 17 پرو">
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        کد محصول
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        class="input"
+                        id="pCode"
+                        type="number"
+                        min="1"
+                        placeholder="مثلاً 1001">
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        دسته‌بندی
+                        <span class="required">*</span>
+                    </label>
+
+                    <select
+                        class="form-select"
+                        id="pCategory">
+
+                        <option value="">
+                            در حال بارگذاری دسته‌بندی‌ها...
+                        </option>
+
+                    </select>
+
+                    <div class="help">
+                        دسته‌بندی‌های این قسمت از بخش «دسته‌بندی‌ها» خوانده می‌شوند.
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        برند
+                    </label>
+
+                    <input
+                        class="input"
+                        id="pBrand"
+                        placeholder="مثلاً Apple">
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        دسته طلا
+                    </label>
+
+                    <input
+                        class="input"
+                        id="pGoldCat"
+                        placeholder="مثلاً انگشتر">
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        آیکون
+                    </label>
+
+                    <input
+                        class="input"
+                        id="pIcon"
+                        value="🛍️"
+                        placeholder="🛍️">
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        قیمت
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        class="input"
+                        id="pPrice"
+                        type="number"
+                        min="0"
+                        step="1"
+                        placeholder="قیمت به تومان">
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        تخفیف درصدی
+                    </label>
+
+                    <input
+                        class="input"
+                        id="pDiscount"
+                        type="number"
+                        min="0"
+                        max="100"
+                        value="0"
+                        placeholder="مثلاً 10">
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        موجودی انبار
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        class="input"
+                        id="pStock"
+                        type="number"
+                        min="0"
+                        step="1"
+                        value="0"
+                        placeholder="مثلاً 25">
+
+                    <div class="help">
+                        تعداد واقعی موجود در انبار را وارد کن.
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        حداقل موجودی
+                    </label>
+
+                    <input
+                        class="input"
+                        id="pMinStock"
+                        type="number"
+                        min="0"
+                        step="1"
+                        value="3">
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        وضعیت
+                    </label>
+
+                    <select
+                        class="form-select"
+                        id="pStatus">
+
+                        <option value="available">
+                            موجود
+                        </option>
+
+                        <option value="hidden">
+                            مخفی
+                        </option>
+
+                        <option value="out">
+                            ناموجود
+                        </option>
+
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label>
+                        عبارت جستجو
+                    </label>
+
+                    <input
+                        class="input"
+                        id="pSearch"
+                        placeholder="مثلاً آیفون اپل موبایل">
+                </div>
+
+
+                <div class="form-group full">
+
+                    <div class="image-upload">
+
+                        <div class="image-upload-head">
+
+                            <strong>
+                                تصاویر محصول
+                            </strong>
+
+                            <span>
+                                حداکثر ۳ تصویر
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="images-preview"
+                            id="imagesPreview">
+                        </div>
+
+
+                        <input
+                            class="file-input"
+                            id="pImages"
+                            type="file"
+                            accept="image/*"
+                            multiple>
+
+                        <div class="help">
+                            از گالری گوشی حداکثر ۳ عکس انتخاب کن.
+                            عکس‌ها در Firebase Storage ذخیره می‌شوند.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group full">
+                    <label>
+                        توضیحات محصول
+                    </label>
+
+                    <textarea
+                        class="textarea"
+                        id="pDescription"
+                        placeholder="توضیحات محصول..."></textarea>
+                </div>
+
+
+                <div class="form-group full">
+                    <label>
+                        مشخصات محصول
+                    </label>
+
+                    <textarea
+                        class="textarea"
+                        id="pSpecs"
+                        placeholder="مثلاً حافظه: 256GB | رم: 8GB | نمایشگر: 6.7 اینچ"></textarea>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="btn btn-green"
+                id="saveProductBtn"
+                onclick="saveProduct()">
+                ✓ ذخیره محصول
+            </button>
+
+            <button
+                class="btn btn-dark"
+                onclick="closeProductModal()">
+                انصراف
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
-<div class="form-group">
 
-<label>
-رمز عبور
-</label>
-
-<input
-id="loginPassword"
-type="password"
-placeholder="رمز عبور"
->
-
-</div>
-
-<button
-class="btn btn-green"
-style="width:100%"
-onclick="loginAdmin()"
->
-ورود به پنل مدیریت
-</button>
-
-</div>
-
-</div>
-
-
-<!-- ADMIN -->
+<!-- =========================
+     CATEGORY MODAL
+========================= -->
 
 <div
-class="admin"
-id="adminPanel"
->
+    class="modal"
+    id="categoryModal">
 
+    <div
+        class="modal-box"
+        style="max-width:520px">
 
-<!-- SIDEBAR -->
+        <div class="modal-head">
 
-<aside class="sidebar">
+            <h3 id="categoryModalTitle">
+                افزودن دسته‌بندی
+            </h3>
 
-<div class="brand">
+            <button
+                class="modal-close"
+                onclick="closeCategoryModal()">
+                ×
+            </button>
 
-<img
-src="logo.jpg"
-onerror="this.style.display='none'"
->
+        </div>
 
-<div class="brand-title">
-<span>ماهان سنتر</span> <b>ایران</b>
-</div>
 
-</div>
+        <div class="modal-body">
 
+            <div class="form-group">
 
-<button
-class="side-btn active"
-onclick="showPage('dashboard',this)"
->
-📊 <span>داشبورد</span>
-</button>
+                <label>
+                    نام دسته‌بندی
+                    <span class="required">*</span>
+                </label>
 
+                <input
+                    class="input"
+                    id="cName"
+                    placeholder="مثلاً 🚗 ماشین">
 
-<button
-class="side-btn"
-onclick="showPage('products',this)"
->
-📦 <span>محصولات</span>
-</button>
+            </div>
 
 
-<button
-class="side-btn"
-onclick="showPage('categories',this)"
->
-🗂️ <span>دسته‌بندی‌ها</span>
-</button>
+            <div
+                class="form-group"
+                style="margin-top:15px">
 
+                <label>
+                    شناسه دسته‌بندی
+                    <span class="required">*</span>
+                </label>
 
-<button
-class="side-btn"
-onclick="showPage('content',this)"
->
-📝 <span>متن‌های سایت</span>
-</button>
+                <input
+                    class="input"
+                    id="cId"
+                    placeholder="مثلاً cars"
+                    dir="ltr">
 
+                <div class="help">
+                    فقط حروف انگلیسی، عدد و خط تیره استفاده کن.
+                    مثال: cars
+                </div>
 
-<button
-class="side-btn"
-onclick="showPage('stats',this)"
->
-📈 <span>آمار صفحه اصلی</span>
-</button>
+            </div>
 
 
-<button
-class="side-btn"
-onclick="showPage('fonts',this)"
->
-🔤 <span>اندازه فونت</span>
-</button>
+            <div
+                class="form-group"
+                style="margin-top:15px">
 
+                <label>
+                    ایموجی
+                </label>
 
-<button
-class="side-btn"
-onclick="showPage('settings',this)"
->
-⚙️ <span>تنظیمات</span>
-</button>
+                <input
+                    class="input"
+                    id="cIcon"
+                    value="📦"
+                    placeholder="📦">
 
+            </div>
 
-<button
-class="side-btn logout"
-onclick="logoutAdmin()"
->
-🚪 <span>خروج</span>
-</button>
+        </div>
 
-</aside>
 
+        <div class="modal-footer">
 
-<!-- CONTENT -->
+            <button
+                class="btn btn-green"
+                onclick="saveCategory()">
+                ✓ ذخیره دسته‌بندی
+            </button>
 
-<main class="content">
+            <button
+                class="btn btn-dark"
+                onclick="closeCategoryModal()">
+                انصراف
+            </button>
 
+        </div>
 
-<div class="topbar">
-
-<div>
-
-<h1 id="pageTitle">
-داشبورد
-</h1>
-
-<p>
-مدیریت کامل ماهان سنتر ایران
-</p>
-
-</div>
-
-<button
-class="btn btn-green"
-onclick="openProductModal()"
->
-＋ افزودن محصول
-</button>
-
-</div>
-
-
-<!-- DASHBOARD -->
-
-<section
-class="content-page active"
-id="page-dashboard"
->
-
-<div class="stats-grid">
-
-<div class="stat-card">
-<div class="stat-icon">📦</div>
-<strong id="dashProducts">0</strong>
-<span>تعداد محصولات</span>
-</div>
-
-<div class="stat-card">
-<div class="stat-icon">🗂️</div>
-<strong id="dashCategories">0</strong>
-<span>دسته‌بندی‌ها</span>
-</div>
-
-<div class="stat-card">
-<div class="stat-icon">🟢</div>
-<strong id="dashStock">0</strong>
-<span>مجموع موجودی</span>
-</div>
-
-<div class="stat-card">
-<div class="stat-icon">🔥</div>
-<strong id="dashDiscount">0</strong>
-<span>محصولات تخفیف‌دار</span>
-</div>
-
-</div>
-
-
-<div class="card" style="margin-top:18px">
-
-<div class="card-title">
-
-<h2>
-وضعیت انبار
-</h2>
-
-<span>
-محصولات کم‌موجود
-</span>
-
-</div>
-
-<div
-id="lowStockList"
->
-</div>
-
-</div>
-
-</section>
-
-
-<!-- PRODUCTS -->
-
-<section
-class="content-page"
-id="page-products"
->
-
-<div class="card">
-
-<div class="toolbar">
-
-<input
-class="search"
-id="productSearch"
-placeholder="جستجوی محصول..."
-oninput="renderProducts()"
->
-
-<select
-id="categoryFilter"
-class="search"
-style="max-width:220px"
-onchange="renderProducts()"
->
-<option value="all">
-همه دسته‌بندی‌ها
-</option>
-</select>
-
-<button
-class="btn btn-green"
-onclick="openProductModal()"
->
-＋ محصول جدید
-</button>
-
-</div>
-
-
-<div
-class="table-wrap"
->
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>تصویر</th>
-<th>محصول</th>
-<th>دسته‌بندی</th>
-<th>قیمت</th>
-<th>موجودی</th>
-<th>وضعیت</th>
-<th>عملیات</th>
-
-</tr>
-
-</thead>
-
-<tbody id="productsTable">
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- CATEGORIES -->
-
-<section
-class="content-page"
-id="page-categories"
->
-
-<div class="card">
-
-<div class="card-title">
-
-<h2>
-مدیریت دسته‌بندی‌ها
-</h2>
-
-<button
-class="btn btn-green"
-onclick="openCategoryModal()"
->
-＋ افزودن دسته‌بندی
-</button>
-
-</div>
-
-<div
-class="category-list"
-id="categoryList"
->
-</div>
-
-</div>
-
-</section>
-
-
-<!-- CONTENT -->
-
-<section
-class="content-page"
-id="page-content"
->
-
-<div class="card">
-
-<div class="card-title">
-
-<h2>
-متن‌های سایت
-</h2>
-
-<span>
-تغییر متن بدون تغییر کد
-</span>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-عنوان خوش‌آمدگویی
-</label>
-
-<input
-id="settingWelcomeTitle"
-placeholder="خوش آمدید به ماهان سنتر ایران"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-متن معرفی صفحه اصلی
-</label>
-
-<textarea
-id="settingWelcomeText"
-></textarea>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-متن قوانین سایت
-</label>
-
-<textarea
-id="settingLaws"
-style="min-height:220px"
-></textarea>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-عنوان پشتیبانی
-</label>
-
-<input
-id="settingSupportTitle"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-متن زیر عنوان پشتیبانی
-</label>
-
-<textarea
-id="settingSupportText"
-></textarea>
-
-</div>
-
-
-<button
-class="btn btn-green"
-onclick="saveContentSettings()"
->
-ذخیره متن‌ها
-</button>
-
-</div>
-
-</section>
-
-
-<!-- STATS -->
-
-<section
-class="content-page"
-id="page-stats"
->
-
-<div class="card">
-
-<div class="card-title">
-
-<h2>
-آمار صفحه اصلی
-</h2>
-
-<span>
-همان سه آماری که در صفحه اصلی نمایش داده می‌شوند
-</span>
-
-</div>
-
-
-<div class="grid-3">
-
-<div class="form-group">
-
-<label>
-کاربران سایت
-</label>
-
-<input
-id="statUsers"
-type="number"
-min="0"
->
-</div>
-
-
-<div class="form-group">
-
-<label>
-خرید موفق
-</label>
-
-<input
-id="statSales"
-type="number"
-min="0"
->
-</div>
-
-
-<div class="form-group">
-
-<label>
-رضایت
-</label>
-
-<input
-id="statSatisfaction"
-type="number"
-min="0"
-max="100"
->
-</div>
-
-</div>
-
-
-<button
-class="btn btn-green"
-onclick="saveStats()"
->
-ذخیره آمار
-</button>
-
-</div>
-
-</section>
-
-
-<!-- FONTS -->
-
-<section
-class="content-page"
-id="page-fonts"
->
-
-<div class="card">
-
-<div class="card-title">
-
-<h2>
-اندازه فونت سایت
-</h2>
-
-<span>
-مقادیر بر اساس پیکسل
-</span>
-
-</div>
-
-
-<div class="settings-grid">
-
-<div class="setting-box">
-
-<h3>
-فونت دسکتاپ
-</h3>
-
-<div class="range-row">
-
-<label>متن معرفی</label>
-
-<input
-type="range"
-min="12"
-max="24"
-id="fontHome"
-oninput="showRange(this,'fontHomeValue')"
->
-
-<div
-class="range-value"
-id="fontHomeValue"
->
-16px
-</div>
-
-</div>
-
-
-<div class="range-row">
-
-<label>عنوان محصول</label>
-
-<input
-type="range"
-min="12"
-max="24"
-id="fontProduct"
-oninput="showRange(this,'fontProductValue')"
->
-
-<div
-class="range-value"
-id="fontProductValue"
->
-16px
-</div>
-
-</div>
-
-
-<div class="range-row">
-
-<label>قیمت</label>
-
-<input
-type="range"
-min="12"
-max="28"
-id="fontPrice"
-oninput="showRange(this,'fontPriceValue')"
->
-
-<div
-class="range-value"
-id="fontPriceValue"
->
-17px
-</div>
-
-</div>
-
-</div>
-
-
-<div class="setting-box">
-
-<h3>
-فونت موبایل
-</h3>
-
-<div class="range-row">
-
-<label>متن معرفی</label>
-
-<input
-type="range"
-min="11"
-max="20"
-id="fontMobileHome"
-oninput="showRange(this,'fontMobileHomeValue')"
->
-
-<div
-class="range-value"
-id="fontMobileHomeValue"
->
-14px
-</div>
-
-</div>
-
-
-<div class="range-row">
-
-<label>عنوان محصول</label>
-
-<input
-type="range"
-min="11"
-max="20"
-id="fontMobileProduct"
-oninput="showRange(this,'fontMobileProductValue')"
->
-
-<div
-class="range-value"
-id="fontMobileProductValue"
->
-14px
-</div>
-
-</div>
-
-
-<div class="range-row">
-
-<label>قیمت</label>
-
-<input
-type="range"
-min="11"
-max="24"
-id="fontMobilePrice"
-oninput="showRange(this,'fontMobilePriceValue')"
->
-
-<div
-class="range-value"
-id="fontMobilePriceValue"
->
-15px
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<br>
-
-<button
-class="btn btn-green"
-onclick="saveFontSettings()"
->
-ذخیره اندازه فونت‌ها
-</button>
-
-</div>
-
-</section>
-
-
-<!-- SETTINGS -->
-
-<section
-class="content-page"
-id="page-settings"
->
-
-<div class="card">
-
-<div class="card-title">
-
-<h2>
-تنظیمات فروشگاه
-</h2>
-
-</div>
-
-
-<div class="grid-2">
-
-<div class="form-group">
-
-<label>
-نام فروشگاه
-</label>
-
-<input
-id="storeName"
-value="ماهان سنتر ایران"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-شماره تماس
-</label>
-
-<input
-id="storePhone"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-آیدی روبیکا
-</label>
-
-<input
-id="storeRubika"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-آیدی اینستاگرام
-</label>
-
-<input
-id="storeInstagram"
->
-
-</div>
-
-</div>
-
-
-<button
-class="btn btn-green"
-onclick="saveStoreSettings()"
->
-ذخیره تنظیمات فروشگاه
-</button>
-
-</div>
-
-</section>
-
-
-</main>
-
-</div>
-
-
-<!-- PRODUCT MODAL -->
-
-<div
-class="modal"
-id="productModal"
->
-
-<div class="modal-box">
-
-<div class="modal-head">
-
-<h2 id="productModalTitle">
-افزودن محصول
-</h2>
-
-<button
-class="close"
-onclick="closeProductModal()"
->
-×
-</button>
-
-</div>
-
-
-<input
-type="hidden"
-id="productId"
->
-
-
-<div class="grid-2">
-
-<div class="form-group">
-
-<label>
-نام محصول *
-</label>
-
-<input
-id="pName"
-placeholder="مثلاً آیفون 17 پرو"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-برند
-</label>
-
-<input
-id="pBrand"
-placeholder="مثلاً Apple"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-دسته‌بندی *
-</label>
-
-<select id="pCat">
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-کد محصول
-</label>
-
-<input
-id="pCode"
-type="number"
-placeholder="مثلاً 1001"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-قیمت اصلی (تومان) *
-</label>
-
-<input
-id="pPrice"
-type="number"
-min="0"
-placeholder="0"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-تخفیف درصدی
-</label>
-
-<input
-id="pDiscount"
-type="number"
-min="0"
-max="100"
-value="0"
->
-
-</div>
-
-
-<!-- موجودی -->
-
-<div class="form-group">
-
-<label>
-⭐ تعداد موجودی انبار *
-</label>
-
-<input
-id="pStock"
-type="number"
-min="0"
-value="0"
-placeholder="مثلاً 20"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-حداقل موجودی برای هشدار
-</label>
-
-<input
-id="pMinStock"
-type="number"
-min="0"
-value="3"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-وضعیت محصول
-</label>
-
-<select id="pStatus">
-
-<option value="active">
-فعال
-</option>
-
-<option value="inactive">
-غیرفعال
-</option>
-
-<option value="draft">
-پیش‌نویس
-</option>
-
-</select>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-آیکن در صورت نبود تصویر
-</label>
-
-<input
-id="pIcon"
-value="🛍️"
->
-
-</div>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-عبارت جستجو
-</label>
-
-<input
-id="pSearch"
-placeholder="نام‌های دیگر محصول برای جستجو"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-تصاویر محصول — حداکثر ۳ عکس</label>
-
-<div class="image-upload">
-
-<label for="pImages">
-
-<strong>
-📷 انتخاب عکس از گالری
-</strong>
-
-حداکثر ۳ تصویر انتخاب کنید
-
-</label>
-
-<input
-id="pImages"
-type="file"
-accept="image/*"
-multiple
-onchange="handleImageSelection(event)"
->
-
-<div
-class="image-preview"
-id="imagePreview"
->
-</div>
-
-</div>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-توضیحات محصول
-</label>
-
-<textarea
-id="pDesc"
-placeholder="توضیحات کامل محصول..."
-></textarea>
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-مشخصات محصول
-</label>
-
-<textarea
-id="pSpecs"
-placeholder="مثلاً ابعاد، حافظه، رنگ، وزن و..."
-></textarea>
-
-</div>
-
-
-<div
-id="uploadProgress"
-class="hidden"
-style="
-background:#191919;
-border:1px solid #333;
-border-radius:10px;
-padding:10px;
-margin-bottom:15px;
-font-size:11px;
-color:#aaa;
-"
->
-در حال آماده‌سازی تصاویر...
-</div>
-
-
-<div style="
-display:flex;
-gap:10px;
-justify-content:flex-start;
-">
-
-<button
-class="btn btn-green"
-onclick="saveProduct()"
-id="saveProductBtn"
->
-ذخیره محصول
-</button>
-
-<button
-class="btn btn-dark"
-onclick="closeProductModal()"
->
-انصراف
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- CATEGORY MODAL -->
-
-<div
-class="modal"
-id="categoryModal"
->
-
-<div
-class="modal-box"
-style="max-width:500px"
->
-
-<div class="modal-head">
-
-<h2 id="categoryModalTitle">
-افزودن دسته‌بندی
-</h2>
-
-<button
-class="close"
-onclick="closeCategoryModal()"
->
-×
-</button>
-
-</div>
-
-
-<input
-type="hidden"
-id="categoryId"
->
-
-
-<div class="form-group">
-
-<label>
-نام دسته‌بندی *
-</label>
-
-<input
-id="catName"
-placeholder="مثلاً ماشین"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-شناسه دسته‌بندی *
-</label>
-
-<input
-id="catKey"
-placeholder="مثلاً cars"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-آیکن
-</label>
-
-<input
-id="catIcon"
-placeholder="🚗"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-آدرس تصویر دسته‌بندی
-</label>
-
-<input
-id="catImage"
-placeholder="https://..."
->
-
-</div>
-
-
-<button
-class="btn btn-green"
-onclick="saveCategory()"
->
-ذخیره دسته‌بندی
-</button>
-
-</div>
+    </div>
 
 </div>
 
 
 <div
-class="toast"
-id="toast"
-></div>
+    class="toast-container"
+    id="toastContainer">
+</div>
 
 
-<!-- FIREBASE -->
+<!-- =========================
+     FIREBASE
+========================= -->
 
 <script type="module">
 
 import {
-initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
 
 import {
-getAuth,
-signInWithEmailAndPassword,
-onAuthStateChanged,
-signOut
-}
-from
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
-
+    getAuth,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js";
 
 import {
-getFirestore,
-collection,
-getDocs,
-getDoc,
-doc,
-setDoc,
-addDoc,
-updateDoc,
-deleteDoc,
-serverTimestamp
-}
-from
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-
+    getFirestore,
+    collection,
+    getDocs,
+    getDoc,
+    doc,
+    addDoc,
+    setDoc,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
 import {
-getStorage,
-ref,
-uploadBytes,
-getDownloadURL
-}
-from
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
+    getStorage,
+    ref,
+    uploadBytes,
+    getDownloadURL
+} from "https://www.gstatic.com/firebasejs/11.0.2/firebase-storage.js";
 
 
-const firebaseConfig={
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
-apiKey:
-"AIzaSyDlrv12gAydgbx1qPJXAIm0kzcSeJF5pNs",
+const firebaseConfig = {
 
-authDomain:
-"mahan-center.firebaseapp.com",
+    apiKey:
+        "AIzaSyDlrv12gAydgbx1qPJXAIm0kzcSeJF5pNs",
 
-projectId:
-"mahan-center",
+    authDomain:
+        "mahan-center.firebaseapp.com",
 
-storageBucket:
-"mahan-center.firebasestorage.app",
+    projectId:
+        "mahan-center",
 
-messagingSenderId:
-"720478821753",
+    storageBucket:
+        "mahan-center.firebasestorage.app",
 
-appId:
-"1:720478821753:web:7a431c1a3f9e3abd7923a"
+    messagingSenderId:
+        "720478821753",
 
+    appId:
+        "1:720478821753:web:7a431c1a3f9e3abd7923a"
 };
 
 
-const app=
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
-const auth=
-getAuth(app);
+const auth = getAuth(app);
 
-const db=
-getFirestore(app);
+const db = getFirestore(app);
 
-const storage=
-getStorage(app);
+const storage = getStorage(app);
 
 
-window.db=db;
-window.auth=auth;
-window.storage=storage;
+/* =========================
+   STATE
+========================= */
 
+let products = [];
 
-/* STATE */
+let categories = [];
 
-window.products=[];
-window.categoriesData=[];
-window.selectedImages=[];
-window.oldImages=[];
+let siteData = {};
 
+let editingProductId = null;
 
-/* LOGIN */
+let editingCategoryId = null;
 
-window.loginAdmin=async function(){
+let existingImages = [];
 
-const email=
-document.getElementById("loginEmail").value.trim();
+let newImageFiles = [];
 
-const password=
-document.getElementById("loginPassword").value;
+let deletedImageIndexes = [];
 
-const error=
-document.getElementById("loginError");
 
-error.classList.add("hidden");
+/* =========================
+   DEFAULT CATEGORIES
+========================= */
 
-if(!email || !password){
+const defaultCategories = [
 
-error.textContent=
-"ایمیل و رمز عبور را وارد کنید.";
+    {
+        id:"mobile",
+        name:"📱 گوشی",
+        icon:"📱"
+    },
 
-error.classList.remove("hidden");
+    {
+        id:"gold",
+        name:"💎 طلا",
+        icon:"💎"
+    },
 
-return;
+    {
+        id:"clothes",
+        name:"👕 پوشاک",
+        icon:"👕"
+    },
 
-}
+    {
+        id:"accessories",
+        name:"🎧 لوازم جانبی",
+        icon:"🎧"
+    },
 
-try{
+    {
+        id:"shoes",
+        name:"👟 کفش",
+        icon:"👟"
+    },
 
-await signInWithEmailAndPassword(
-auth,
-email,
-password
-);
-
-}catch(e){
-
-console.error(e);
-
-error.textContent=
-"ایمیل یا رمز عبور اشتباه است.";
-
-error.classList.remove("hidden");
-
-}
-
-};
-
-
-/* ENTER LOGIN */
-
-document
-.getElementById("loginPassword")
-.addEventListener(
-"keydown",
-e=>{
-
-if(e.key==="Enter"){
-window.loginAdmin();
-}
-
-});
-
-
-/* AUTH */
-
-onAuthStateChanged(
-auth,
-async user=>{
-
-if(user){
-
-document
-.getElementById("loginPage")
-.style.display="none";
-
-document
-.getElementById("adminPanel")
-.classList.add("active");
-
-await loadEverything();
-
-}else{
-
-document
-.getElementById("loginPage")
-.style.display="flex";
-
-document
-.getElementById("adminPanel")
-.classList.remove("active");
-
-}
-
-});
-
-
-window.logoutAdmin=async function(){
-
-await signOut(auth);
-
-};
-
-
-/* LOAD EVERYTHING */
-
-async function loadEverything(){
-
-await Promise.all([
-loadProducts(),
-loadCategories(),
-loadSettings()
-]);
-
-renderProducts();
-renderCategories();
-updateDashboard();
-
-}
-
-
-/* PRODUCTS */
-
-async function loadProducts(){
-
-try{
-
-const snap=
-await getDocs(
-collection(db,"products")
-);
-
-window.products=
-snap.docs.map(d=>{
-
-const x=d.data();
-
-return{
-
-...x,
-
-_firestoreId:d.id,
-
-id:Number(
-x.code || d.id
-) || 0,
-
-cat:
-x.category ||
-x.cat ||
-"digital",
-
-desc:
-x.description ||
-x.desc ||
-"",
-
-discount:
-Number(x.discount || 0),
-
-price:
-Number(x.price || 0),
-
-stock:
-Number(x.stock || 0),
-
-minStock:
-Number(x.minStock || 3)
-
-};
-
-});
-
-}catch(e){
-
-console.error(e);
-
-showToast(
-"خطا در دریافت محصولات"
-);
-
-}
-
-}
-
-
-/* CATEGORIES */
-
-async function loadCategories(){
-
-try{
-
-const snap=
-await getDocs(
-collection(db,"categories")
-);
-
-window.categoriesData=
-snap.docs.map(d=>({
-
-...d.data(),
-
-_firestoreId:d.id,
-
-key:
-d.data().key || d.id
-
-}));
-
-if(!window.categoriesData.length){
-
-const defaults=[
-
-{
-key:"mobile",
-name:"گوشی",
-icon:"📱",
-image:""
-},
-
-{
-key:"gold",
-name:"طلا",
-icon:"💎",
-image:""
-},
-
-{
-key:"clothes",
-name:"پوشاک",
-icon:"👕",
-image:""
-},
-
-{
-key:"accessories",
-name:"لوازم جانبی",
-icon:"🎧",
-image:""
-},
-
-{
-key:"shoes",
-name:"کفش",
-icon:"👟",
-image:""
-},
-
-{
-key:"watches",
-name:"ساعت",
-icon:"⌚",
-image:""
-}
+    {
+        id:"watches",
+        name:"⌚ ساعت",
+        icon:"⌚"
+    }
 
 ];
 
-for(const c of defaults){
 
-await setDoc(
-doc(db,"categories",c.key),
-{
-...c,
-createdAt:serverTimestamp()
-}
-);
+/* =========================
+   HELPERS
+========================= */
 
-}
-
-window.categoriesData=defaults;
-
-}
-
-populateCategorySelect();
-renderCategories();
-
-}catch(e){
-
-console.error(e);
-
-}
-
-}
+const $ = id => document.getElementById(id);
 
 
-/* CATEGORY SELECT */
+function toast(message,type="success"){
 
-function populateCategorySelect(){
+    const box = document.createElement("div");
 
-const select=
-document.getElementById("pCat");
+    box.className =
+        "toast " +
+        (type === "error" ? "error" :
+        type === "warning" ? "warning" : "");
 
-const filter=
-document.getElementById("categoryFilter");
+    box.innerHTML = escapeHTML(message);
 
-select.innerHTML="";
+    $("toastContainer").appendChild(box);
 
-filter.innerHTML=
-`<option value="all">همه دسته‌بندی‌ها</option>`;
-
-window.categoriesData.forEach(c=>{
-
-select.innerHTML+=`
-
-<option value="${escapeHTML(c.key)}">
-${escapeHTML(c.icon || "")}
-${escapeHTML(c.name)}
-</option>
-
-`;
-
-filter.innerHTML+=`
-
-<option value="${escapeHTML(c.key)}">
-${escapeHTML(c.name)}
-</option>
-
-`;
-
-});
-
+    setTimeout(()=>{
+        box.remove();
+    },5000);
 }
 
-
-/* RENDER PRODUCTS */
-
-window.renderProducts=function(){
-
-const search=
-document
-.getElementById("productSearch")
-.value
-.trim()
-.toLowerCase();
-
-const cat=
-document
-.getElementById("categoryFilter")
-.value;
-
-let list=
-window.products.filter(p=>{
-
-const text=[
-
-p.name,
-p.brand,
-p.search,
-p.cat
-
-]
-.join(" ")
-.toLowerCase();
-
-const matchSearch=
-!search ||
-text.includes(search);
-
-const matchCat=
-cat==="all" ||
-p.cat===cat;
-
-return matchSearch && matchCat;
-
-});
-
-
-const table=
-document.getElementById("productsTable");
-
-if(!list.length){
-
-table.innerHTML=`
-
-<tr>
-
-<td colspan="7">
-
-<div class="empty">
-
-<div>📦</div>
-
-محصولی پیدا نشد.
-
-</div>
-
-</td>
-
-</tr>
-
-`;
-
-return;
-
-}
-
-
-table.innerHTML=
-list.map(p=>{
-
-const category=
-window.categoriesData.find(
-c=>c.key===p.cat
-);
-
-const catName=
-category
-?
-category.name
-:
-p.cat;
-
-
-let stockClass=
-p.stock>p.minStock
-?
-"badge-green"
-:
-p.stock>0
-?
-"badge-yellow"
-:
-"badge-red";
-
-
-let status=
-p.status==="inactive"
-?
-"غیرفعال"
-:
-p.status==="draft"
-?
-"پیش‌نویس"
-:
-"فعال";
-
-
-return `
-
-<tr>
-
-<td>
-
-${
-p.image
-?
-`
-<img
-class="product-thumb"
-src="${escapeHTML(p.image)}"
->
-`
-:
-`
-<div
-class="product-thumb"
-style="
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:25px;
-"
->
-${escapeHTML(p.icon || "🛍️")}
-</div>
-`
-}
-
-</td>
-
-
-<td>
-
-<strong>
-${escapeHTML(p.name || "بدون نام")}
-</strong>
-
-<br>
-
-<small style="color:#666">
-کد: ${escapeHTML(p.code || p.id)}
-</small>
-
-</td>
-
-
-<td>
-${escapeHTML(catName)}
-</td>
-
-
-<td>
-
-${Number(p.price || 0)
-.toLocaleString("en-US")}
-
-تومان
-
-${
-p.discount>0
-?
-`
-<br>
-<span class="badge badge-red">
-${p.discount}% تخفیف
-</span>
-`
-:
-""
-}
-
-</td>
-
-
-<td>
-
-<span class="badge ${stockClass}">
-${Number(p.stock || 0)}
-عدد
-
-</span>
-
-</td>
-
-
-<td>
-
-<span class="badge ${
-p.status==="active"
-?
-"badge-green"
-:
-"badge-red"
-}">
-
-${status}
-
-</span>
-
-</td>
-
-
-<td>
-
-<div class="action-row">
-
-<button
-class="action-btn edit"
-onclick="editProduct('${p._firestoreId}')"
->
-ویرایش
-</button>
-
-<button
-class="action-btn delete"
-onclick="deleteProduct('${p._firestoreId}')"
->
-حذف
-</button>
-
-</div>
-
-</td>
-
-</tr>
-
-`;
-
-}).join("");
-
-};
-
-
-/* OPEN PRODUCT */
-
-window.openProductModal=function(){
-
-document
-.getElementById("productModal")
-.classList.add("active");
-
-document
-.getElementById("productModalTitle")
-.textContent=
-"افزودن محصول";
-
-clearProductForm();
-
-populateCategorySelect();
-
-};
-
-
-/* CLEAR */
-
-function clearProductForm(){
-
-document
-.getElementById("productId")
-.value="";
-
-document
-.getElementById("pCode")
-.value="";
-
-document
-.getElementById("pName")
-.value="";
-
-document
-.getElementById("pBrand")
-.value="";
-
-document
-.getElementById("pPrice")
-.value="";
-
-document
-.getElementById("pDiscount")
-.value="0";
-
-document
-.getElementById("pStock")
-.value="0";
-
-document
-.getElementById("pMinStock")
-.value="3";
-
-document
-.getElementById("pStatus")
-.value="active";
-
-document
-.getElementById("pIcon")
-.value="🛍️";
-
-document
-.getElementById("pSearch")
-.value="";
-
-document
-.getElementById("pDesc")
-.value="";
-
-document
-.getElementById("pSpecs")
-.value="";
-
-document
-.getElementById("pImages")
-.value="";
-
-window.selectedImages=[];
-
-window.oldImages=[];
-
-renderImagePreview();
-
-}
-
-
-/* CLOSE */
-
-window.closeProductModal=function(){
-
-document
-.getElementById("productModal")
-.classList.remove("active");
-
-};
-
-
-/* IMAGE SELECT */
-
-window.handleImageSelection=function(event){
-
-const files=
-Array.from(
-event.target.files || []
-);
-
-if(files.length>3){
-
-showToast(
-"حداکثر ۳ تصویر مجاز است."
-);
-
-event.target.value="";
-
-return;
-
-}
-
-window.selectedImages=files;
-
-renderImagePreview();
-
-};
-
-
-/* PREVIEW */
-
-function renderImagePreview(){
-
-const box=
-document.getElementById("imagePreview");
-
-box.innerHTML="";
-
-
-/* OLD */
-
-window.oldImages.forEach(
-(url,index)=>{
-
-box.innerHTML+=`
-
-<div class="preview-item">
-
-<img
-src="${escapeHTML(url)}"
->
-
-<button
-class="remove-image"
-onclick="removeOldImage(${index})"
->
-×
-</button>
-
-</div>
-
-`;
-
-});
-
-
-/* NEW */
-
-window.selectedImages.forEach(
-(file,index)=>{
-
-const reader=
-new FileReader();
-
-reader.onload=e=>{
-
-const div=
-document.createElement("div");
-
-div.className=
-"preview-item";
-
-div.innerHTML=`
-
-<img
-src="${e.target.result}"
->
-
-<button
-class="remove-image"
-onclick="removeNewImage(${index})"
->
-×
-</button>
-
-`;
-
-box.appendChild(div);
-
-};
-
-reader.readAsDataURL(file);
-
-});
-
-}
-
-
-/* REMOVE OLD */
-
-window.removeOldImage=function(index){
-
-window.oldImages.splice(index,1);
-
-renderImagePreview();
-
-};
-
-
-/* REMOVE NEW */
-
-window.removeNewImage=function(index){
-
-window.selectedImages.splice(index,1);
-
-renderImagePreview();
-
-};
-
-
-/* UPLOAD IMAGES */
-
-async function uploadProductImages(productCode){
-
-const uploaded=[];
-
-const progress=
-document.getElementById("uploadProgress");
-
-progress.classList.remove("hidden");
-
-for(let i=0;i<window.selectedImages.length;i++){
-
-const file=
-window.selectedImages[i];
-
-progress.textContent=
-"در حال آپلود تصویر "+
-(i+1)+
-" از "+
-window.selectedImages.length+
-"...";
-
-
-const safeName=
-file.name
-.replace(/[^a-zA-Z0-9._-]/g,"_");
-
-
-const path=
-"products/" +
-productCode +
-"/" +
-Date.now() +
-"_" +
-i +
-"_" +
-safeName;
-
-
-const storageRef=
-ref(storage,path);
-
-
-await uploadBytes(
-storageRef,
-file
-);
-
-
-const url=
-await getDownloadURL(
-storageRef
-);
-
-uploaded.push(url);
-
-}
-
-progress.textContent=
-"تصاویر با موفقیت آپلود شدند.";
-
-return uploaded;
-
-}
-
-
-/* SAVE PRODUCT */
-
-window.saveProduct=async function(){
-
-const btn=
-document.getElementById("saveProductBtn");
-
-const firestoreId=
-document.getElementById("productId")
-.value;
-
-const name=
-document.getElementById("pName")
-.value
-.trim();
-
-const cat=
-document.getElementById("pCat")
-.value;
-
-const price=
-Number(
-document.getElementById("pPrice")
-.value || 0
-);
-
-const stock=
-Number(
-document.getElementById("pStock")
-.value || 0
-);
-
-const discount=
-Math.min(
-100,
-Math.max(
-0,
-Number(
-document.getElementById("pDiscount")
-.value || 0
-)
-)
-);
-
-if(!name){
-
-showToast(
-"نام محصول را وارد کنید."
-);
-
-return;
-
-}
-
-if(!cat){
-
-showToast(
-"دسته‌بندی را انتخاب کنید."
-);
-
-return;
-
-}
-
-if(price<0 || stock<0){
-
-showToast(
-"قیمت یا موجودی نامعتبر است."
-);
-
-return;
-
-}
-
-
-btn.disabled=true;
-
-btn.textContent=
-"در حال ذخیره...";
-
-
-try{
-
-let code=
-Number(
-document.getElementById("pCode")
-.value || 0
-);
-
-
-/* برای محصول جدید اگر کد وارد نشده */
-
-if(!code){
-
-const max=
-window.products.reduce(
-(max,p)=>
-Math.max(
-max,
-Number(p.code || p.id || 0)
-),
-0
-);
-
-code=max+1;
-
-}
-
-
-/* تصاویر قدیمی */
-
-let images=[
-...window.oldImages
-];
-
-
-/* تصاویر جدید */
-
-if(window.selectedImages.length){
-
-const newImages=
-await uploadProductImages(code);
-
-images=[
-...images,
-...newImages
-];
-
-}
-
-
-/* حداکثر سه عکس */
-
-images=
-images
-.filter(Boolean)
-.slice(0,3);
-
-
-const data={
-
-code:code,
-
-name:name,
-
-brand:
-document
-.getElementById("pBrand")
-.value
-.trim(),
-
-category:cat,
-
-cat:cat,
-
-price:price,
-
-displayPrice:
-price
-.toLocaleString("en-US")+
-" تومان",
-
-stock:stock,
-
-minStock:
-Number(
-document
-.getElementById("pMinStock")
-.value || 3
-),
-
-status:
-document
-.getElementById("pStatus")
-.value,
-
-icon:
-document
-.getElementById("pIcon")
-.value
-.trim() ||
-"🛍️",
-
-search:
-document
-.getElementById("pSearch")
-.value
-.trim(),
-
-description:
-document
-.getElementById("pDesc")
-.value
-.trim(),
-
-desc:
-document
-.getElementById("pDesc")
-.value
-.trim(),
-
-specs:
-document
-.getElementById("pSpecs")
-.value
-.trim(),
-
-discount:discount,
-
-image:
-images[0] || "",
-
-image2:
-images[1] || "",
-
-image3:
-images[2] || "",
-
-images:images,
-
-updatedAt:
-serverTimestamp()
-
-};
-
-
-/* SAVE */
-
-if(firestoreId){
-
-await updateDoc(
-doc(
-db,
-"products",
-firestoreId
-),
-data
-);
-
-showToast(
-"محصول با موفقیت ویرایش شد ✓"
-);
-
-}else{
-
-data.createdAt=
-serverTimestamp();
-
-await addDoc(
-collection(db,"products"),
-data
-);
-
-showToast(
-"محصول با موفقیت اضافه شد ✓"
-);
-
-}
-
-
-await loadProducts();
-
-renderProducts();
-
-updateDashboard();
-
-closeProductModal();
-
-
-}catch(e){
-
-console.error(e);
-
-showToast(
-"خطا در ذخیره محصول: "+
-(e.message || "")
-);
-
-}finally{
-
-btn.disabled=false;
-
-btn.textContent=
-"ذخیره محصول";
-
-}
-
-};
-
-
-/* EDIT PRODUCT */
-
-window.editProduct=async function(id){
-
-const p=
-window.products.find(
-x=>x._firestoreId===id
-);
-
-if(!p)
-return;
-
-
-document
-.getElementById("productModal")
-.classList.add("active");
-
-document
-.getElementById("productModalTitle")
-.textContent=
-"ویرایش محصول";
-
-
-populateCategorySelect();
-
-
-document
-.getElementById("productId")
-.value=
-p._firestoreId;
-
-document
-.getElementById("pCode")
-.value=
-p.code || p.id || "";
-
-document
-.getElementById("pName")
-.value=
-p.name || "";
-
-document
-.getElementById("pBrand")
-.value=
-p.brand || "";
-
-document
-.getElementById("pCat")
-.value=
-p.cat || p.category || "";
-
-document
-.getElementById("pPrice")
-.value=
-p.price || 0;
-
-document
-.getElementById("pDiscount")
-.value=
-p.discount || 0;
-
-document
-.getElementById("pStock")
-.value=
-p.stock || 0;
-
-document
-.getElementById("pMinStock")
-.value=
-p.minStock || 3;
-
-document
-.getElementById("pStatus")
-.value=
-p.status || "active";
-
-document
-.getElementById("pIcon")
-.value=
-p.icon || "🛍️";
-
-document
-.getElementById("pSearch")
-.value=
-p.search || "";
-
-document
-.getElementById("pDesc")
-.value=
-p.description ||
-p.desc ||
-"";
-
-document
-.getElementById("pSpecs")
-.value=
-p.specs || "";
-
-
-window.selectedImages=[];
-
-window.oldImages=[
-p.image,
-p.image2,
-p.image3
-]
-.filter(Boolean);
-
-
-/* اگر آرایه images داشت */
-
-if(
-Array.isArray(p.images) &&
-p.images.length
-){
-
-window.oldImages=
-p.images
-.filter(Boolean)
-.slice(0,3);
-
-}
-
-renderImagePreview();
-
-};
-
-
-/* DELETE PRODUCT */
-
-window.deleteProduct=async function(id){
-
-const p=
-window.products.find(
-x=>x._firestoreId===id
-);
-
-if(!p)
-return;
-
-const ok=
-confirm(
-"آیا از حذف محصول «"+
-p.name+
-"» مطمئن هستید؟"
-);
-
-if(!ok)
-return;
-
-try{
-
-await deleteDoc(
-doc(
-db,
-"products",
-id
-)
-);
-
-showToast(
-"محصول حذف شد ✓"
-);
-
-await loadProducts();
-
-renderProducts();
-
-updateDashboard();
-
-}catch(e){
-
-console.error(e);
-
-showToast(
-"خطا در حذف محصول"
-);
-
-}
-
-};
-
-
-/* CATEGORY RENDER */
-
-window.renderCategories=function(){
-
-const box=
-document.getElementById("categoryList");
-
-if(!window.categoriesData.length){
-
-box.innerHTML=`
-
-<div class="empty">
-<div>🗂️</div>
-هنوز دسته‌بندی‌ای ثبت نشده.
-</div>
-
-`;
-
-return;
-
-}
-
-
-box.innerHTML=
-window.categoriesData.map(c=>`
-
-<div class="category-item">
-
-<div class="category-item-icon">
-${escapeHTML(c.icon || "📦")}
-</div>
-
-<div class="category-item-info">
-
-<strong>
-${escapeHTML(c.name)}
-</strong>
-
-<small>
-${escapeHTML(c.key)}
-</small>
-
-</div>
-
-
-<button
-class="action-btn edit"
-onclick="editCategory('${c._firestoreId}')"
->
-ویرایش
-</button>
-
-
-<button
-class="action-btn delete"
-onclick="deleteCategory('${c._firestoreId}')"
->
-حذف
-</button>
-
-</div>
-
-`).join("");
-
-};
-
-
-/* OPEN CATEGORY */
-
-window.openCategoryModal=function(){
-
-document
-.getElementById("categoryModal")
-.classList.add("active");
-
-document
-.getElementById("categoryModalTitle")
-.textContent=
-"افزودن دسته‌بندی";
-
-document
-.getElementById("categoryId")
-.value="";
-
-document
-.getElementById("catName")
-.value="";
-
-document
-.getElementById("catKey")
-.value="";
-
-document
-.getElementById("catIcon")
-.value="📦";
-
-document
-.getElementById("catImage")
-.value="";
-
-};
-
-
-/* CLOSE CATEGORY */
-
-window.closeCategoryModal=function(){
-
-document
-.getElementById("categoryModal")
-.classList.remove("active");
-
-};
-
-
-/* SAVE CATEGORY */
-
-window.saveCategory=async function(){
-
-const id=
-document
-.getElementById("categoryId")
-.value;
-
-const name=
-document
-.getElementById("catName")
-.value
-.trim();
-
-const key=
-document
-.getElementById("catKey")
-.value
-.trim()
-.toLowerCase()
-.replace(/\s+/g,"-");
-
-const icon=
-document
-.getElementById("catIcon")
-.value
-.trim();
-
-const image=
-document
-.getElementById("catImage")
-.value
-.trim();
-
-
-if(!name || !key){
-
-showToast(
-"نام و شناسه دسته‌بندی الزامی است."
-);
-
-return;
-
-}
-
-
-const data={
-
-key:key,
-
-name:name,
-
-icon:icon || "📦",
-
-image:image,
-
-updatedAt:
-serverTimestamp()
-
-};
-
-
-try{
-
-if(id){
-
-await updateDoc(
-doc(
-db,
-"categories",
-id
-),
-data
-);
-
-}else{
-
-await setDoc(
-doc(db,"categories",key),
-{
-...data,
-createdAt:serverTimestamp()
-}
-);
-
-}
-
-showToast(
-"دسته‌بندی ذخیره شد ✓"
-);
-
-await loadCategories();
-
-renderCategories();
-
-populateCategorySelect();
-
-closeCategoryModal();
-
-}catch(e){
-
-console.error(e);
-
-showToast(
-"خطا در ذخیره دسته‌بندی"
-);
-
-}
-
-};
-
-
-/* EDIT CATEGORY */
-
-window.editCategory=function(id){
-
-const c=
-window.categoriesData.find(
-x=>x._firestoreId===id
-);
-
-if(!c)
-return;
-
-
-document
-.getElementById("categoryModal")
-.classList.add("active");
-
-document
-.getElementById("categoryModalTitle")
-.textContent=
-"ویرایش دسته‌بندی";
-
-
-document
-.getElementById("categoryId")
-.value=
-c._firestoreId;
-
-document
-.getElementById("catName")
-.value=
-c.name || "";
-
-document
-.getElementById("catKey")
-.value=
-c.key || "";
-
-document
-.getElementById("catIcon")
-.value=
-c.icon || "📦";
-
-document
-.getElementById("catImage")
-.value=
-c.image || "";
-
-};
-
-
-/* DELETE CATEGORY */
-
-window.deleteCategory=async function(id){
-
-const c=
-window.categoriesData.find(
-x=>x._firestoreId===id
-);
-
-if(!c)
-return;
-
-
-const used=
-window.products.some(
-p=>p.cat===c.key
-);
-
-
-if(used){
-
-showToast(
-"این دسته‌بندی دارای محصول است؛ ابتدا محصولات آن را جابه‌جا کنید."
-);
-
-return;
-
-}
-
-
-if(
-!confirm(
-"حذف دسته‌بندی «"+
-c.name+
-"»؟"
-)
-)
-return;
-
-
-try{
-
-await deleteDoc(
-doc(
-db,
-"categories",
-id
-)
-);
-
-await loadCategories();
-
-renderCategories();
-
-populateCategorySelect();
-
-showToast(
-"دسته‌بندی حذف شد ✓"
-);
-
-}catch(e){
-
-console.error(e);
-
-showToast(
-"خطا در حذف دسته‌بندی"
-);
-
-}
-
-};
-
-
-/* SETTINGS */
-
-async function loadSettings(){
-
-try{
-
-const snap=
-await getDoc(
-doc(db,"settings","store")
-);
-
-if(snap.exists()){
-
-const x=snap.data();
-
-
-document
-.getElementById("storeName")
-.value=
-x.name ||
-"ماهان سنتر ایران";
-
-
-document
-.getElementById("storePhone")
-.value=
-x.phone || "";
-
-
-document
-.getElementById("storeRubika")
-.value=
-x.rubika || "";
-
-
-document
-.getElementById("storeInstagram")
-.value=
-x.instagram || "";
-
-
-document
-.getElementById("settingWelcomeTitle")
-.value=
-x.welcomeTitle ||
-"خوش آمدید به ماهان سنتر ایران";
-
-
-document
-.getElementById("settingWelcomeText")
-.value=
-x.welcomeText ||
-"ماهان سنتر ایران یک فروشگاه آنلاین برای ارائه محصولات متنوع و باکیفیت است.";
-
-
-document
-.getElementById("settingLaws")
-.value=
-x.laws || "";
-
-
-document
-.getElementById("settingSupportTitle")
-.value=
-x.supportTitle ||
-"پشتیبانی ماهان سنتر ایران";
-
-
-document
-.getElementById("settingSupportText")
-.value=
-x.supportText ||
-"برای ارتباط با ما یکی از روش‌های زیر را انتخاب کنید.";
-
-
-document
-.getElementById("statUsers")
-.value=
-x.statUsers ?? 0;
-
-
-document
-.getElementById("statSales")
-.value=
-x.statSales ?? 0;
-
-
-document
-.getElementById("statSatisfaction")
-.value=
-x.statSatisfaction ?? 0;
-
-
-setRange(
-"fontHome",
-x.fontHome || 16
-);
-
-setRange(
-"fontProduct",
-x.fontProduct || 16
-);
-
-setRange(
-"fontPrice",
-x.fontPrice || 17
-);
-
-setRange(
-"fontMobileHome",
-x.fontMobileHome || 14
-);
-
-setRange(
-"fontMobileProduct",
-x.fontMobileProduct || 14
-);
-
-setRange(
-"fontMobilePrice",
-x.fontMobilePrice || 15
-);
-
-}
-
-}catch(e){
-
-console.error(e);
-
-}
-
-}
-
-
-/* SAVE CONTENT */
-
-window.saveContentSettings=async function(){
-
-try{
-
-await setDoc(
-doc(db,"settings","store"),
-{
-
-welcomeTitle:
-document
-.getElementById("settingWelcomeTitle")
-.value
-.trim(),
-
-welcomeText:
-document
-.getElementById("settingWelcomeText")
-.value
-.trim(),
-
-laws:
-document
-.getElementById("settingLaws")
-.value
-.trim(),
-
-supportTitle:
-document
-.getElementById("settingSupportTitle")
-.value
-.trim(),
-
-supportText:
-document
-.getElementById("settingSupportText")
-.value
-.trim(),
-
-updatedAt:
-serverTimestamp()
-
-},
-{
-merge:true
-}
-);
-
-showToast(
-"متن‌های سایت ذخیره شدند ✓"
-);
-
-}catch(e){
-
-console.error(e);
-
-showToast(
-"خطا در ذخیره متن‌ها"
-);
-
-}
-
-};
-
-
-/* SAVE STATS */
-
-window.saveStats=async function(){
-
-try{
-
-await setDoc(
-doc(db,"settings","store"),
-{
-
-statUsers:
-Number(
-document.getElementById("statUsers").value || 0
-),
-
-statSales:
-Number(
-document.getElementById("statSales").value || 0
-),
-
-statSatisfaction:
-Number(
-document.getElementById("statSatisfaction").value || 0
-),
-
-updatedAt:
-serverTimestamp()
-
-},
-{
-merge:true
-}
-);
-
-showToast(
-"آمار صفحه اصلی ذخیره شد ✓"
-);
-
-}catch(e){
-
-console.error(e);
-
-showToast(
-"خطا در ذخیره آمار"
-);
-
-}
-
-};
-
-
-/* SAVE FONTS */
-
-window.saveFontSettings=async function(){
-
-try{
-
-await setDoc(
-doc(db,"settings","store"),
-{
-
-fontHome:
-Number(document.getElementById("fontHome").value),
-
-fontProduct:
-Number(document.getElementById("fontProduct").value),
-
-fontPrice:
-Number(document.getElementById("fontPrice").value),
-
-fontMobileHome:
-Number(document.getElementById("fontMobileHome").value),
-
-fontMobileProduct:
-Number(document.getElementById("fontMobileProduct").value),
-
-fontMobilePrice:
-Number(document.getElementById("fontMobilePrice").value),
-
-updatedAt:
-serverTimestamp()
-
-},
-{
-merge:true
-}
-);
-
-showToast(
-"اندازه فونت‌ها ذخیره شد ✓"
-);
-
-}catch(e){
-
-console.error(e);
-
-showToast(
-"خطا در ذخیره فونت‌ها"
-);
-
-}
-
-};
-
-
-/* STORE */
-
-window.saveStoreSettings=async function(){
-
-try{
-
-await setDoc(
-doc(db,"settings","store"),
-{
-
-name:
-document.getElementById("storeName").value.trim(),
-
-phone:
-document.getElementById("storePhone").value.trim(),
-
-rubika:
-document.getElementById("storeRubika").value.trim(),
-
-instagram:
-document.getElementById("storeInstagram").value.trim(),
-
-updatedAt:
-serverTimestamp()
-
-},
-{
-merge:true
-}
-);
-
-showToast(
-"تنظیمات ذخیره شد ✓"
-);
-
-}catch(e){
-
-console.error(e);
-
-showToast(
-"خطا در ذخیره تنظیمات"
-);
-
-}
-
-};
-
-
-/* DASHBOARD */
-
-function updateDashboard(){
-
-document
-.getElementById("dashProducts")
-.textContent=
-window.products.length;
-
-
-document
-.getElementById("dashCategories")
-.textContent=
-window.categoriesData.length;
-
-
-const totalStock=
-window.products.reduce(
-(sum,p)=>
-sum+
-Number(p.stock || 0),
-0
-);
-
-
-document
-.getElementById("dashStock")
-.textContent=
-totalStock.toLocaleString("en-US");
-
-
-const discount=
-window.products.filter(
-p=>
-Number(p.discount || 0)>0
-).length;
-
-
-document
-.getElementById("dashDiscount")
-.textContent=
-discount;
-
-
-const low=
-window.products.filter(
-p=>
-Number(p.stock || 0)
-<=
-Number(p.minStock || 3)
-);
-
-
-const box=
-document.getElementById("lowStockList");
-
-
-if(!low.length){
-
-box.innerHTML=`
-
-<div style="
-color:#19d66b;
-font-size:12px;
-padding:15px;
-background:#101c14;
-border-radius:10px;
-">
-✓ همه محصولات موجودی مناسبی دارند.
-</div>
-
-`;
-
-return;
-
-}
-
-
-box.innerHTML=
-low.slice(0,10).map(p=>`
-
-<div style="
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:12px;
-border-bottom:1px solid #242424;
-">
-
-<span>
-${escapeHTML(p.name)}
-</span>
-
-<span class="badge ${
-p.stock<=0
-?
-"badge-red"
-:
-"badge-yellow"
-}">
-${Number(p.stock || 0)}
-عدد
-</span>
-
-</div>
-
-`).join("");
-
-}
-
-
-/* PAGES */
-
-window.showPage=function(name,button){
-
-document
-.querySelectorAll(".content-page")
-.forEach(x=>
-x.classList.remove("active")
-);
-
-
-document
-.getElementById(
-"page-"+name
-)
-.classList.add("active");
-
-
-document
-.querySelectorAll(".side-btn")
-.forEach(x=>
-x.classList.remove("active")
-);
-
-
-if(button)
-button.classList.add("active");
-
-
-const titles={
-
-dashboard:"داشبورد",
-
-products:"مدیریت محصولات",
-
-categories:"مدیریت دسته‌بندی‌ها",
-
-content:"متن‌های سایت",
-
-stats:"آمار صفحه اصلی",
-
-fonts:"اندازه فونت",
-
-settings:"تنظیمات فروشگاه"
-
-};
-
-
-document
-.getElementById("pageTitle")
-.textContent=
-titles[name] ||
-"پنل مدیریت";
-
-
-if(name==="products")
-renderProducts();
-
-if(name==="categories")
-renderCategories();
-
-};
-
-
-/* RANGE */
-
-window.showRange=function(input,target){
-
-document
-.getElementById(target)
-.textContent=
-input.value+
-"px";
-
-};
-
-
-function setRange(id,value){
-
-const el=
-document.getElementById(id);
-
-if(!el)
-return;
-
-el.value=value;
-
-const target=
-id+"Value";
-
-const val=
-document.getElementById(target);
-
-if(val)
-val.textContent=value+"px";
-
-}
-
-
-/* ESCAPE */
 
 function escapeHTML(text){
 
-return String(
-text ?? ""
-)
+    return String(text ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
 
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+
+function errorText(error){
+
+    console.error(error);
+
+    if(!error){
+        return "خطای نامشخص";
+    }
+
+    if(error.code){
+
+        const map = {
+
+            "permission-denied":
+                "دسترسی Firebase اجازه این عملیات را نمی‌دهد.",
+
+            "storage/unauthorized":
+                "دسترسی Firebase Storage برای آپلود عکس مجاز نیست.",
+
+            "storage/unauthenticated":
+                "برای آپلود عکس باید وارد حساب مدیریت باشید.",
+
+            "storage/quota-exceeded":
+                "فضای ذخیره‌سازی Firebase کافی نیست.",
+
+            "auth/invalid-credential":
+                "ایمیل یا رمز عبور اشتباه است.",
+
+            "auth/invalid-email":
+                "فرمت ایمیل صحیح نیست.",
+
+            "auth/user-not-found":
+                "حساب مدیر پیدا نشد.",
+
+            "auth/wrong-password":
+                "رمز عبور اشتباه است.",
+
+            "auth/network-request-failed":
+                "اتصال اینترنت یا Firebase مشکل دارد."
+
+        };
+
+        if(map[error.code]){
+            return map[error.code];
+        }
+
+        return error.code + " — " + (error.message || "");
+    }
+
+    return error.message || String(error);
+}
+
+
+function formatPrice(number){
+
+    return Number(number || 0)
+        .toLocaleString("fa-IR");
+}
+
+
+function slugify(value){
+
+    return String(value || "")
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g,"-")
+        .replace(/[^a-z0-9_-]/g,"");
+}
+
+
+/* =========================
+   AUTH
+========================= */
+
+$("loginBtn").addEventListener("click",login);
+
+$("loginPassword").addEventListener("keydown",e=>{
+    if(e.key === "Enter"){
+        login();
+    }
+});
+
+
+async function login(){
+
+    const email =
+        $("loginEmail").value.trim();
+
+    const password =
+        $("loginPassword").value;
+
+    if(!email || !password){
+
+        showLoginError(
+            "ایمیل و رمز عبور را وارد کن."
+        );
+
+        return;
+    }
+
+    $("loginBtn").disabled = true;
+
+    $("loginBtn").textContent =
+        "در حال ورود...";
+
+    try{
+
+        await signInWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+
+    }catch(error){
+
+        showLoginError(
+            errorText(error)
+        );
+
+    }finally{
+
+        $("loginBtn").disabled = false;
+
+        $("loginBtn").textContent =
+            "ورود به پنل مدیریت";
+    }
+}
+
+
+function showLoginError(message){
+
+    $("loginError").style.display = "block";
+
+    $("loginError").textContent =
+        message;
+}
+
+
+onAuthStateChanged(auth,async user=>{
+
+    if(user){
+
+        $("loginScreen").style.display =
+            "none";
+
+        $("app").style.display =
+            "block";
+
+        $("adminEmail").textContent =
+            user.email || "مدیر";
+
+        await loadAll();
+
+    }else{
+
+        $("loginScreen").style.display =
+            "flex";
+
+        $("app").style.display =
+            "none";
+    }
+
+});
+
+
+$("logoutBtn").addEventListener("click",async()=>{
+
+    await signOut(auth);
+
+});
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+document.querySelectorAll(".menu-item")
+.forEach(button=>{
+
+    button.addEventListener("click",()=>{
+
+        const page =
+            button.dataset.page;
+
+        showPage(page);
+
+        $("sidebar").classList.remove("open");
+
+    });
+
+});
+
+
+function showPage(page){
+
+    document.querySelectorAll(".menu-item")
+    .forEach(x=>{
+        x.classList.toggle(
+            "active",
+            x.dataset.page === page
+        );
+    });
+
+
+    document.querySelectorAll(".page")
+    .forEach(x=>{
+        x.classList.remove("active");
+    });
+
+
+    const target =
+        $("page-" + page);
+
+    if(target){
+        target.classList.add("active");
+    }
+
+
+    const titles = {
+
+        dashboard:"داشبورد",
+
+        products:"مدیریت محصولات",
+
+        categories:"دسته‌بندی‌ها",
+
+        content:"متن‌های سایت",
+
+        stats:"آمار صفحه اصلی",
+
+        settings:"تنظیمات"
+
+    };
+
+
+    $("topTitle").textContent =
+        titles[page] || "پنل مدیریت";
+
+
+    if(page === "products"){
+        renderProducts();
+    }
+
+    if(page === "categories"){
+        renderCategories();
+    }
 
 }
 
 
-/* TOAST */
+$("mobileMenu").addEventListener("click",()=>{
 
-window.showToast=function(message){
+    $("sidebar").classList.toggle("open");
 
-const toast=
-document.getElementById("toast");
+});
 
-toast.textContent=
-message;
 
-toast.classList.add("show");
-
-clearTimeout(
-window.toastTimer
+$("refreshBtn").addEventListener(
+    "click",
+    loadAll
 );
 
-window.toastTimer=
-setTimeout(
-()=>{
-toast.classList.remove("show");
-},
-2800
-);
+
+/* =========================
+   LOAD ALL
+========================= */
+
+async function loadAll(){
+
+    try{
+
+        await loadCategories();
+
+        await loadProducts();
+
+        await loadSiteData();
+
+        updateDashboard();
+
+        renderProducts();
+
+        renderCategories();
+
+        renderCategorySelect();
+
+        fillSiteForms();
+
+        renderSystemStatus();
+
+    }catch(error){
+
+        toast(
+            "خطا در بارگذاری اطلاعات: " +
+            errorText(error),
+            "error"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   PRODUCTS LOAD
+========================= */
+
+async function loadProducts(){
+
+    const snap =
+        await getDocs(
+            collection(db,"products")
+        );
+
+    products = [];
+
+    snap.forEach(item=>{
+
+        const data =
+            item.data() || {};
+
+        products.push({
+
+            docId:item.id,
+
+            code:Number(data.code ?? 0),
+
+            category:
+                data.category ??
+                data.cat ??
+                "",
+
+            brand:
+                data.brand ?? "",
+
+            goldCat:
+                data.goldCat ?? "",
+
+            name:
+                data.name ?? "محصول بدون نام",
+
+            search:
+                data.search ??
+                data.name ??
+                "",
+
+            price:
+                Number(data.price ?? 0),
+
+            image:
+                data.image ?? "",
+
+            image2:
+                data.image2 ?? "",
+
+            image3:
+                data.image3 ?? "",
+
+            icon:
+                data.icon ?? "🛍️",
+
+            description:
+                data.description ??
+                data.desc ??
+                "",
+
+            specs:
+                data.specs ?? "",
+
+            stock:
+                Number(data.stock ?? 0),
+
+            discount:
+                Number(data.discount ?? 0),
+
+            minStock:
+                Number(data.minStock ?? 3),
+
+            status:
+                data.status ?? "available",
+
+            createdAt:
+                data.createdAt ?? null
+
+        });
+
+    });
+
+
+    products.sort(
+        (a,b)=>
+            Number(b.code || 0) -
+            Number(a.code || 0)
+    );
+
+}
+
+
+/* =========================
+   CATEGORY LOAD
+========================= */
+
+async function loadCategories(){
+
+    try{
+
+        const refDoc =
+            doc(db,"settings","site");
+
+        const snap =
+            await getDoc(refDoc);
+
+        if(
+            snap.exists() &&
+            Array.isArray(
+                snap.data().categories
+            )
+        ){
+
+            categories =
+                snap.data().categories;
+
+        }else{
+
+            categories =
+                [...defaultCategories];
+
+        }
+
+    }catch(error){
+
+        console.warn(
+            "Category load error",
+            error
+        );
+
+        categories =
+            [...defaultCategories];
+
+    }
+
+
+    normalizeCategories();
+
+}
+
+
+function normalizeCategories(){
+
+    categories =
+        categories
+        .filter(x=>x && x.id && x.name)
+        .map(x=>({
+
+            id:String(x.id),
+
+            name:String(x.name),
+
+            icon:String(x.icon || "📦")
+
+        }));
+
+
+    if(!categories.length){
+
+        categories =
+            [...defaultCategories];
+
+    }
+
+}
+
+
+/* =========================
+   SITE DATA
+========================= */
+
+async function loadSiteData(){
+
+    const snap =
+        await getDoc(
+            doc(db,"settings","site")
+        );
+
+    if(snap.exists()){
+
+        siteData =
+            snap.data() || {};
+
+    }else{
+
+        siteData = {};
+
+    }
+
+}
+
+
+function fillSiteForms(){
+
+    $("welcomeText").value =
+        siteData.welcomeText ||
+        "به ماهان سنتر ایران خوش آمدید.";
+
+    $("lawsText").value =
+        siteData.lawsText || "";
+
+    $("supportPhone").value =
+        siteData.supportPhone ||
+        "09332540425";
+
+    $("supportRubika").value =
+        siteData.supportRubika ||
+        "@omidi__xx";
+
+    $("supportText").value =
+        siteData.supportText ||
+        "";
+
+    $("statUsers").value =
+        Number(
+            siteData.stats?.users ?? 0
+        );
+
+    $("statOrders").value =
+        Number(
+            siteData.stats?.orders ?? 0
+        );
+
+    $("statSatisfaction").value =
+        Number(
+            siteData.stats?.satisfaction ?? 0
+        );
+
+    $("storeName").value =
+        siteData.storeName ||
+        "ماهان سنتر ایران";
+
+    $("storeCoupon").value =
+        siteData.coupon ||
+        "Mahan_Roni";
+
+    $("storeDiscount").value =
+        Number(siteData.discount ?? 0);
+
+}
+
+
+/* =========================
+   SAVE CONTENT
+========================= */
+
+window.saveSiteContent =
+async function(){
+
+    try{
+
+        await setDoc(
+
+            doc(db,"settings","site"),
+
+            {
+
+                ...siteData,
+
+                welcomeText:
+                    $("welcomeText").value.trim(),
+
+                lawsText:
+                    $("lawsText").value.trim(),
+
+                supportPhone:
+                    $("supportPhone").value.trim(),
+
+                supportRubika:
+                    $("supportRubika").value.trim(),
+
+                supportText:
+                    $("supportText").value.trim(),
+
+                updatedAt:
+                    serverTimestamp()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        await loadSiteData();
+
+        toast(
+            "متن‌های سایت با موفقیت ذخیره شدند."
+        );
+
+    }catch(error){
+
+        toast(
+            "ذخیره متن‌ها انجام نشد: " +
+            errorText(error),
+            "error"
+        );
+
+    }
 
 };
 
 
-/* CLOSE MODAL CLICK OUTSIDE */
+/* =========================
+   SAVE STATS
+========================= */
 
-document
-.getElementById("productModal")
-.addEventListener(
-"click",
-e=>{
+window.saveStats =
+async function(){
 
-if(
-e.target.id==="productModal"
-){
-closeProductModal();
+    const users =
+        Math.max(
+            0,
+            Number($("statUsers").value || 0)
+        );
+
+    const orders =
+        Math.max(
+            0,
+            Number($("statOrders").value || 0)
+        );
+
+    const satisfaction =
+        Math.min(
+            100,
+            Math.max(
+                0,
+                Number(
+                    $("statSatisfaction").value || 0
+                )
+            )
+        );
+
+
+    try{
+
+        await setDoc(
+
+            doc(db,"settings","site"),
+
+            {
+
+                ...siteData,
+
+                stats:{
+
+                    users,
+
+                    orders,
+
+                    satisfaction
+
+                },
+
+                updatedAt:
+                    serverTimestamp()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        siteData.stats = {
+
+            users,
+            orders,
+            satisfaction
+
+        };
+
+
+        toast(
+            "آمار صفحه اصلی ذخیره شد."
+        );
+
+    }catch(error){
+
+        toast(
+            "ذخیره آمار انجام نشد: " +
+            errorText(error),
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =========================
+   SAVE SETTINGS
+========================= */
+
+window.saveSettings =
+async function(){
+
+    try{
+
+        await setDoc(
+
+            doc(db,"settings","site"),
+
+            {
+
+                ...siteData,
+
+                storeName:
+                    $("storeName").value.trim(),
+
+                coupon:
+                    $("storeCoupon").value.trim(),
+
+                discount:
+                    Math.max(
+                        0,
+                        Math.min(
+                            100,
+                            Number(
+                                $("storeDiscount").value || 0
+                            )
+                        )
+                    ),
+
+                updatedAt:
+                    serverTimestamp()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        await loadSiteData();
+
+        toast(
+            "تنظیمات با موفقیت ذخیره شد."
+        );
+
+    }catch(error){
+
+        toast(
+            "ذخیره تنظیمات انجام نشد: " +
+            errorText(error),
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =========================
+   CATEGORY SELECT
+========================= */
+
+function renderCategorySelect(){
+
+    const select =
+        $("pCategory");
+
+    const filter =
+        $("productCategoryFilter");
+
+
+    const current =
+        select.value;
+
+
+    select.innerHTML =
+        `<option value="">انتخاب دسته‌بندی...</option>`;
+
+
+    filter.innerHTML =
+        `<option value="">همه دسته‌بندی‌ها</option>`;
+
+
+    categories.forEach(category=>{
+
+        const option =
+            document.createElement("option");
+
+        option.value =
+            category.id;
+
+        option.textContent =
+            category.name;
+
+        select.appendChild(option);
+
+
+        const option2 =
+            document.createElement("option");
+
+        option2.value =
+            category.id;
+
+        option2.textContent =
+            category.name;
+
+        filter.appendChild(option2);
+
+    });
+
+
+    if(current){
+        select.value = current;
+    }
+
 }
 
-});
+
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+window.renderProducts =
+function(){
+
+    const grid =
+        $("productsGrid");
+
+    const search =
+        $("productSearch")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const category =
+        $("productCategoryFilter")
+        .value;
 
 
-document
-.getElementById("categoryModal")
-.addEventListener(
-"click",
-e=>{
+    let list =
+        [...products];
 
-if(
-e.target.id==="categoryModal"
-){
-closeCategoryModal();
+
+    if(search){
+
+        list =
+            list.filter(product=>{
+
+                const text =
+                    [
+
+                        product.name,
+
+                        product.code,
+
+                        product.brand,
+
+                        product.search,
+
+                        product.category
+
+                    ]
+                    .join(" ")
+                    .toLowerCase();
+
+                return text.includes(search);
+
+            });
+
+    }
+
+
+    if(category){
+
+        list =
+            list.filter(
+                product =>
+                    product.category === category
+            );
+
+    }
+
+
+    if(!list.length){
+
+        grid.innerHTML = `
+
+            <div
+                class="empty"
+                style="grid-column:1/-1">
+
+                <div class="empty-icon">
+                    📦
+                </div>
+
+                <p>
+                    محصولی پیدا نشد.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+        list.map(productCard).join("");
+
+};
+
+
+function productCard(p){
+
+    const category =
+        categories.find(
+            x => x.id === p.category
+        );
+
+
+    const image =
+        p.image ||
+        p.image2 ||
+        p.image3 ||
+        "";
+
+
+    const stockClass =
+        p.stock <= p.minStock
+            ? "badge-red"
+            : "badge-green";
+
+
+    return `
+
+        <div class="product-admin-card">
+
+            <div class="product-admin-image">
+
+                ${
+                    image
+
+                    ?
+
+                    `
+                    <img
+                        src="${escapeHTML(image)}"
+                        loading="lazy"
+                        onerror="
+                        this.style.display='none';
+                        this.parentElement.innerHTML='<div class=&quot;product-no-image&quot;>🖼️</div>';
+                        "
+                    >
+                    `
+
+                    :
+
+                    `
+                    <div class="product-no-image">
+                        ${escapeHTML(p.icon)}
+                    </div>
+                    `
+                }
+
+            </div>
+
+
+            <div class="product-admin-body">
+
+                <div class="product-admin-title">
+                    ${escapeHTML(p.name)}
+                </div>
+
+
+                <div class="product-admin-meta">
+
+                    <span>
+                        #${escapeHTML(p.code)}
+                    </span>
+
+                    <span class="badge">
+                        ${escapeHTML(
+                            category?.name ||
+                            p.category ||
+                            "بدون دسته"
+                        )}
+                    </span>
+
+                </div>
+
+
+                <div class="price-admin">
+
+                    ${formatPrice(
+                        p.price
+                    )}
+
+                    <small>
+                        تومان
+                    </small>
+
+                </div>
+
+
+                <div class="stock-row">
+
+                    <input
+                        class="stock-input"
+                        id="stock-${escapeHTML(p.docId)}"
+                        type="number"
+                        min="0"
+                        step="1"
+                        value="${Number(p.stock || 0)}">
+
+                    <button
+                        class="stock-save"
+                        onclick="
+                        quickStockUpdate(
+                            '${escapeHTML(p.docId)}'
+                        )">
+                        ذخیره موجودی
+                    </button>
+
+                </div>
+
+
+                <div
+                    style="
+                    margin-bottom:12px;
+                    ">
+
+                    <span
+                        class="badge ${stockClass}">
+                        موجودی: ${Number(p.stock || 0)}
+                    </span>
+
+                </div>
+
+
+                <div class="product-actions">
+
+                    <button
+                        class="edit-btn"
+                        onclick="
+                        openProductModal(
+                            '${escapeHTML(p.docId)}'
+                        )">
+                        ویرایش
+                    </button>
+
+                    <button
+                        class="view-btn"
+                        onclick="
+                        openProductDetails(
+                            '${escapeHTML(p.docId)}'
+                        )">
+                        جزئیات
+                    </button>
+
+                    <button
+                        class="delete-btn"
+                        onclick="
+                        deleteProduct(
+                            '${escapeHTML(p.docId)}'
+                        )">
+                        حذف
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
 }
 
-});
+
+/* =========================
+   OPEN PRODUCT MODAL
+========================= */
+
+window.openProductModal =
+function(docId=null){
+
+    editingProductId =
+        docId;
+
+    existingImages =
+        [];
+
+    newImageFiles =
+        [];
+
+    deletedImageIndexes =
+        [];
+
+
+    clearProductForm();
+
+
+    if(docId){
+
+        const product =
+            products.find(
+                x => x.docId === docId
+            );
+
+
+        if(!product){
+
+            toast(
+                "محصول پیدا نشد.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        $("productModalTitle").textContent =
+            "ویرایش محصول";
+
+
+        $("pCode").value =
+            product.code || "";
+
+        $("pName").value =
+            product.name || "";
+
+        $("pCategory").value =
+            product.category || "";
+
+        $("pBrand").value =
+            product.brand || "";
+
+        $("pGoldCat").value =
+            product.goldCat || "";
+
+        $("pIcon").value =
+            product.icon || "🛍️";
+
+        $("pPrice").value =
+            product.price || 0;
+
+        $("pDiscount").value =
+            product.discount || 0;
+
+        $("pStock").value =
+            product.stock || 0;
+
+        $("pMinStock").value =
+            product.minStock ?? 3;
+
+        $("pStatus").value =
+            product.status || "available";
+
+        $("pSearch").value =
+            product.search || "";
+
+        $("pDescription").value =
+            product.description || "";
+
+        $("pSpecs").value =
+            product.specs || "";
+
+
+        existingImages = [
+
+            product.image,
+
+            product.image2,
+
+            product.image3
+
+        ].filter(Boolean);
+
+    }else{
+
+        $("productModalTitle").textContent =
+            "افزودن محصول";
+
+        $("pStatus").value =
+            "available";
+
+        $("pIcon").value =
+            "🛍️";
+
+        $("pStock").value =
+            "0";
+
+        $("pMinStock").value =
+            "3";
+
+        $("pDiscount").value =
+            "0";
+
+    }
+
+
+    renderImagePreview();
+
+
+    $("productModal")
+        .classList
+        .add("show");
+
+};
+
+
+/* =========================
+   CLEAR PRODUCT
+========================= */
+
+function clearProductForm(){
+
+    [
+
+        "pCode",
+        "pName",
+        "pBrand",
+        "pGoldCat",
+        "pPrice",
+        "pSearch",
+        "pDescription",
+        "pSpecs"
+
+    ].forEach(id=>{
+        $(id).value = "";
+    });
+
+
+    $("pCategory").value = "";
+
+    $("pIcon").value = "🛍️";
+
+    $("pDiscount").value = 0;
+
+    $("pStock").value = 0;
+
+    $("pMinStock").value = 3;
+
+    $("pStatus").value =
+        "available";
+
+    $("pImages").value = "";
+
+}
+
+
+/* =========================
+   CLOSE PRODUCT
+========================= */
+
+window.closeProductModal =
+function(){
+
+    $("productModal")
+        .classList
+        .remove("show");
+
+};
+
+
+/* =========================
+   IMAGE INPUT
+========================= */
+
+$("pImages").addEventListener(
+    "change",
+    e=>{
+
+        const files =
+            Array.from(
+                e.target.files || []
+            );
+
+
+        if(
+            existingImages.length +
+            newImageFiles.length +
+            files.length > 3
+        ){
+
+            toast(
+                "حداکثر ۳ تصویر برای هر محصول مجاز است.",
+                "warning"
+            );
+
+            e.target.value = "";
+
+            return;
+
+        }
+
+
+        files.forEach(file=>{
+
+            if(
+                !file.type.startsWith("image/")
+            ){
+
+                return;
+
+            }
+
+            newImageFiles.push(file);
+
+        });
+
+
+        renderImagePreview();
+
+        e.target.value = "";
+
+    }
+);
+
+
+/* =========================
+   IMAGE PREVIEW
+========================= */
+
+function renderImagePreview(){
+
+    const box =
+        $("imagesPreview");
+
+    let html = "";
+
+
+    existingImages.forEach(
+        (url,index)=>{
+
+            html += `
+
+                <div class="image-box">
+
+                    <img
+                        src="${escapeHTML(url)}"
+                        onerror="
+                        this.style.display='none'
+                        ">
+
+                    <button
+                        class="remove-image"
+                        onclick="
+                        removeExistingImage(
+                            ${index}
+                        )">
+                        ×
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    newImageFiles.forEach(
+        (file,index)=>{
+
+            const url =
+                URL.createObjectURL(file);
+
+            html += `
+
+                <div class="image-box">
+
+                    <img
+                        src="${url}">
+
+                    <button
+                        class="remove-image"
+                        onclick="
+                        removeNewImage(
+                            ${index}
+                        )">
+                        ×
+                    </button>
+
+                </div>
+
+            `;
+
+        }
+    );
+
+
+    const count =
+        existingImages.length +
+        newImageFiles.length;
+
+
+    while(
+        count + (
+            (html.match(/image-box/g) || []).length
+            -
+            count
+        ) < 3
+    ){
+
+        break;
+
+    }
+
+
+    for(
+        let i=count;
+        i<3;
+        i++
+    ){
+
+        html += `
+
+            <div class="image-box empty">
+                <strong>＋</strong>
+                <span>تصویر ${i+1}</span>
+            </div>
+
+        `;
+
+    }
+
+
+    box.innerHTML = html;
+
+}
+
+
+window.removeExistingImage =
+function(index){
+
+    existingImages.splice(
+        index,
+        1
+    );
+
+    renderImagePreview();
+
+};
+
+
+window.removeNewImage =
+function(index){
+
+    newImageFiles.splice(
+        index,
+        1
+    );
+
+    renderImagePreview();
+
+};
+
+
+/* =========================
+   UPLOAD IMAGES
+========================= */
+
+async function uploadProductImages(
+    code
+){
+
+    const urls =
+        [...existingImages];
+
+
+    for(
+        let i=0;
+        i<newImageFiles.length;
+        i++
+    ){
+
+        const file =
+            newImageFiles[i];
+
+
+        const extension =
+            (
+                file.name.split(".").pop()
+                || "jpg"
+            )
+            .toLowerCase();
+
+
+        const fileName =
+            "product_" +
+            code +
+            "_" +
+            Date.now() +
+            "_" +
+            i +
+            "." +
+            extension;
+
+
+        const storageRef =
+            ref(
+                storage,
+                "products/" +
+                fileName
+            );
+
+
+        const snapshot =
+            await uploadBytes(
+                storageRef,
+                file,
+                {
+                    contentType:
+                        file.type
+                }
+            );
+
+
+        const url =
+            await getDownloadURL(
+                snapshot.ref
+            );
+
+
+        urls.push(url);
+
+    }
+
+
+    return urls.slice(0,3);
+
+}
+
+
+/* =========================
+   SAVE PRODUCT
+========================= */
+
+window.saveProduct =
+async function(){
+
+    const saveBtn =
+        $("saveProductBtn");
+
+
+    const name =
+        $("pName").value.trim();
+
+    const code =
+        Number(
+            $("pCode").value || 0
+        );
+
+    const category =
+        $("pCategory").value;
+
+    const price =
+        Number(
+            $("pPrice").value || 0
+        );
+
+    const stock =
+        Number(
+            $("pStock").value || 0
+        );
+
+
+    if(!name){
+
+        toast(
+            "نام محصول را وارد کن.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+
+    if(!code || code < 1){
+
+        toast(
+            "کد محصول را وارد کن.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+
+    if(!category){
+
+        toast(
+            "دسته‌بندی محصول را انتخاب کن.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+
+    if(price < 0){
+
+        toast(
+            "قیمت نمی‌تواند منفی باشد.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+
+    if(stock < 0){
+
+        toast(
+            "موجودی نمی‌تواند منفی باشد.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+
+    /* جلوگیری از کد تکراری */
+
+    const duplicate =
+        products.find(
+            p =>
+                Number(p.code) === code &&
+                p.docId !== editingProductId
+        );
+
+
+    if(duplicate){
+
+        toast(
+            "این کد محصول قبلاً استفاده شده است.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+
+    saveBtn.disabled =
+        true;
+
+    saveBtn.textContent =
+        "در حال ذخیره...";
+
+
+    try{
+
+        /* آپلود تصاویر */
+
+        const images =
+            await uploadProductImages(
+                code
+            );
+
+
+        const image1 =
+            images[0] || "";
+
+        const image2 =
+            images[1] || "";
+
+        const image3 =
+            images[2] || "";
+
+
+        const productData = {
+
+            code,
+
+            category,
+
+            brand:
+                $("pBrand").value.trim(),
+
+            goldCat:
+                $("pGoldCat").value.trim(),
+
+            name,
+
+            search:
+                $("pSearch").value.trim()
+                ||
+                name,
+
+            price,
+
+            image:image1,
+
+            image2,
+
+            image3,
+
+            icon:
+                $("pIcon").value.trim()
+                || "🛍️",
+
+            description:
+                $("pDescription")
+                .value
+                .trim(),
+
+            specs:
+                $("pSpecs")
+                .value
+                .trim(),
+
+            stock,
+
+            minStock:
+                Number(
+                    $("pMinStock").value || 3
+                ),
+
+            status:
+                $("pStatus").value,
+
+            discount:
+                Math.max(
+                    0,
+                    Math.min(
+                        100,
+                        Number(
+                            $("pDiscount").value || 0
+                        )
+                    )
+                ),
+
+            updatedAt:
+                serverTimestamp()
+
+        };
+
+
+        if(editingProductId){
+
+            await updateDoc(
+
+                doc(
+                    db,
+                    "products",
+                    editingProductId
+                ),
+
+                productData
+
+            );
+
+            toast(
+                "محصول با موفقیت ویرایش شد."
+            );
+
+        }else{
+
+            productData.createdAt =
+                Date.now();
+
+
+            await addDoc(
+
+                collection(
+                    db,
+                    "products"
+                ),
+
+                productData
+
+            );
+
+
+            toast(
+                "محصول با موفقیت ساخته شد."
+            );
+
+        }
+
+
+        closeProductModal();
+
+        await loadProducts();
+
+        renderProducts();
+
+        updateDashboard();
+
+    }catch(error){
+
+        toast(
+            "ذخیره محصول انجام نشد: " +
+            errorText(error),
+            "error"
+        );
+
+    }finally{
+
+        saveBtn.disabled =
+            false;
+
+        saveBtn.textContent =
+            "✓ ذخیره محصول";
+
+    }
+
+};
+
+
+/* =========================
+   QUICK STOCK
+========================= */
+
+window.quickStockUpdate =
+async function(docId){
+
+    const input =
+        document.getElementById(
+            "stock-" + docId
+        );
+
+
+    if(!input){
+
+        return;
+
+    }
+
+
+    const stock =
+        Math.max(
+            0,
+            Number(input.value || 0)
+        );
+
+
+    try{
+
+        await updateDoc(
+
+            doc(
+                db,
+                "products",
+                docId
+            ),
+
+            {
+
+                stock,
+
+                status:
+                    stock > 0
+                        ? "available"
+                        : "out",
+
+                updatedAt:
+                    serverTimestamp()
+
+            }
+
+        );
+
+
+        const product =
+            products.find(
+                p=>p.docId===docId
+            );
+
+
+        if(product){
+
+            product.stock =
+                stock;
+
+            product.status =
+                stock > 0
+                    ? "available"
+                    : "out";
+
+        }
+
+
+        renderProducts();
+
+        updateDashboard();
+
+
+        toast(
+            "موجودی انبار با موفقیت تغییر کرد."
+        );
+
+    }catch(error){
+
+        toast(
+            "تغییر موجودی انجام نشد: " +
+            errorText(error),
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =========================
+   DELETE PRODUCT
+========================= */
+
+window.deleteProduct =
+async function(docId){
+
+    const product =
+        products.find(
+            x=>x.docId===docId
+        );
+
+
+    if(!product){
+
+        return;
+
+    }
+
+
+    const ok =
+        confirm(
+            "آیا از حذف «" +
+            product.name +
+            "» مطمئنی؟\n\nاین عملیات قابل برگشت نیست."
+        );
+
+
+    if(!ok){
+
+        return;
+
+    }
+
+
+    try{
+
+        await deleteDoc(
+            doc(
+                db,
+                "products",
+                docId
+            )
+        );
+
+
+        products =
+            products.filter(
+                x=>x.docId!==docId
+            );
+
+
+        renderProducts();
+
+        updateDashboard();
+
+
+        toast(
+            "محصول حذف شد."
+        );
+
+    }catch(error){
+
+        toast(
+            "حذف محصول انجام نشد: " +
+            errorText(error),
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =========================
+   PRODUCT DETAILS
+========================= */
+
+window.openProductDetails =
+function(docId){
+
+    const p =
+        products.find(
+            x=>x.docId===docId
+        );
+
+
+    if(!p){
+
+        return;
+
+    }
+
+
+    alert(
+
+        "نام: " + p.name +
+        "\n\n" +
+
+        "کد: " + p.code +
+        "\n\n" +
+
+        "دسته‌بندی: " +
+        (
+            categories.find(
+                x=>x.id===p.category
+            )?.name ||
+            p.category
+        ) +
+        "\n\n" +
+
+        "قیمت: " +
+        formatPrice(p.price) +
+        " تومان" +
+        "\n\n" +
+
+        "موجودی: " +
+        p.stock +
+
+        "\n\n" +
+
+        "تخفیف: " +
+        p.discount +
+        "%"
+
+    );
+
+};
+
+
+/* =========================
+   CATEGORIES
+========================= */
+
+function renderCategories(){
+
+    const grid =
+        $("categoryGrid");
+
+
+    if(!categories.length){
+
+        grid.innerHTML = `
+
+            <div
+                class="empty"
+                style="grid-column:1/-1">
+
+                <div class="empty-icon">
+                    ▦
+                </div>
+
+                <p>
+                    هنوز دسته‌بندی‌ای ساخته نشده.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    grid.innerHTML =
+        categories
+        .map(category=>{
+
+            const count =
+                products.filter(
+                    p =>
+                        p.category ===
+                        category.id
+                ).length;
+
+
+            return `
+
+                <div class="category-card">
+
+                    <div class="category-icon">
+                        ${escapeHTML(
+                            category.icon
+                        )}
+                    </div>
+
+                    <div class="category-info">
+
+                        <strong>
+                            ${escapeHTML(
+                                category.name
+                            )}
+                        </strong>
+
+                        <small>
+                            ${count}
+                            محصول
+                            •
+                            ${escapeHTML(
+                                category.id
+                            )}
+                        </small>
+
+                    </div>
+
+
+                    <div class="category-actions">
+
+                        <button
+                            class="small-action"
+                            onclick="
+                            openCategoryModal(
+                                '${escapeHTML(
+                                    category.id
+                                )}'
+                            )">
+                            ✎
+                        </button>
+
+                        <button
+                            class="small-action delete"
+                            onclick="
+                            deleteCategory(
+                                '${escapeHTML(
+                                    category.id
+                                )}'
+                            )">
+                            ×
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+        })
+        .join("");
+
+}
+
+
+/* =========================
+   CATEGORY MODAL
+========================= */
+
+window.openCategoryModal =
+function(id=null){
+
+    editingCategoryId =
+        id;
+
+
+    $("cName").value = "";
+
+    $("cId").value = "";
+
+    $("cIcon").value = "📦";
+
+
+    if(id){
+
+        const category =
+            categories.find(
+                x=>x.id===id
+            );
+
+
+        if(!category){
+
+            return;
+
+        }
+
+
+        $("categoryModalTitle")
+            .textContent =
+            "ویرایش دسته‌بندی";
+
+
+        $("cName").value =
+            category.name;
+
+        $("cId").value =
+            category.id;
+
+        $("cIcon").value =
+            category.icon;
+
+    }else{
+
+        $("categoryModalTitle")
+            .textContent =
+            "افزودن دسته‌بندی";
+
+    }
+
+
+    $("categoryModal")
+        .classList
+        .add("show");
+
+};
+
+
+window.closeCategoryModal =
+function(){
+
+    $("categoryModal")
+        .classList
+        .remove("show");
+
+};
+
+
+/* =========================
+   SAVE CATEGORY
+========================= */
+
+window.saveCategory =
+async function(){
+
+    const name =
+        $("cName")
+        .value
+        .trim();
+
+    const id =
+        slugify(
+            $("cId").value
+        );
+
+    const icon =
+        $("cIcon")
+        .value
+        .trim()
+        || "📦";
+
+
+    if(!name){
+
+        toast(
+            "نام دسته‌بندی را وارد کن.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+
+    if(!id){
+
+        toast(
+            "شناسه دسته‌بندی را وارد کن.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+
+    const duplicate =
+        categories.find(
+            x =>
+                x.id === id &&
+                x.id !== editingCategoryId
+        );
+
+
+    if(duplicate){
+
+        toast(
+            "این شناسه دسته‌بندی قبلاً وجود دارد.",
+            "warning"
+        );
+
+        return;
+
+    }
+
+
+    const updated =
+        [...categories];
+
+
+    if(editingCategoryId){
+
+        const index =
+            updated.findIndex(
+                x =>
+                    x.id ===
+                    editingCategoryId
+            );
+
+
+        if(index !== -1){
+
+            const oldId =
+                updated[index].id;
+
+
+            updated[index] = {
+
+                id,
+
+                name,
+
+                icon
+
+            };
+
+
+            /* اگر ID عوض شد،
+               دسته محصولات قبلی را هم تغییر بده */
+
+            if(oldId !== id){
+
+                for(
+                    const product of products
+                ){
+
+                    if(
+                        product.category ===
+                        oldId
+                    ){
+
+                        try{
+
+                            await updateDoc(
+
+                                doc(
+                                    db,
+                                    "products",
+                                    product.docId
+                                ),
+
+                                {
+                                    category:id
+                                }
+
+                            );
+
+                            product.category =
+                                id;
+
+                        }catch(error){
+
+                            console.error(
+                                error
+                            );
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }else{
+
+        updated.push({
+
+            id,
+
+            name,
+
+            icon
+
+        });
+
+    }
+
+
+    try{
+
+        await setDoc(
+
+            doc(
+                db,
+                "settings",
+                "site"
+            ),
+
+            {
+
+                ...siteData,
+
+                categories:
+                    updated,
+
+                updatedAt:
+                    serverTimestamp()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        categories =
+            updated;
+
+        siteData.categories =
+            updated;
+
+
+        renderCategories();
+
+        renderCategorySelect();
+
+        renderProducts();
+
+
+        closeCategoryModal();
+
+
+        toast(
+            editingCategoryId
+                ? "دسته‌بندی ویرایش شد."
+                : "دسته‌بندی جدید ساخته شد."
+        );
+
+    }catch(error){
+
+        toast(
+            "ساخت/ویرایش دسته‌بندی انجام نشد: " +
+            errorText(error),
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =========================
+   DELETE CATEGORY
+========================= */
+
+window.deleteCategory =
+async function(id){
+
+    const category =
+        categories.find(
+            x=>x.id===id
+        );
+
+
+    if(!category){
+
+        return;
+
+    }
+
+
+    const count =
+        products.filter(
+            p=>p.category===id
+        ).length;
+
+
+    let message =
+        "آیا دسته «" +
+        category.name +
+        "» حذف شود؟";
+
+
+    if(count){
+
+        message +=
+            "\n\n" +
+            count +
+            " محصول داخل این دسته وجود دارد." +
+            "\n" +
+            "قبل از حذف، بهتر است محصولات را به دسته دیگری منتقل کنی.";
+    }
+
+
+    if(!confirm(message)){
+
+        return;
+
+    }
+
+
+    try{
+
+        const updated =
+            categories.filter(
+                x=>x.id!==id
+            );
+
+
+        await setDoc(
+
+            doc(
+                db,
+                "settings",
+                "site"
+            ),
+
+            {
+
+                ...siteData,
+
+                categories:
+                    updated,
+
+                updatedAt:
+                    serverTimestamp()
+
+            },
+
+            {
+                merge:true
+            }
+
+        );
+
+
+        categories =
+            updated;
+
+        siteData.categories =
+            updated;
+
+
+        renderCategories();
+
+        renderCategorySelect();
+
+        toast(
+            "دسته‌بندی حذف شد."
+        );
+
+    }catch(error){
+
+        toast(
+            "حذف دسته‌بندی انجام نشد: " +
+            errorText(error),
+            "error"
+        );
+
+    }
+
+};
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function updateDashboard(){
+
+    $("dashProducts")
+        .textContent =
+        products.length
+        .toLocaleString("fa-IR");
+
+
+    $("dashCategories")
+        .textContent =
+        categories.length
+        .toLocaleString("fa-IR");
+
+
+    const totalStock =
+        products.reduce(
+            (sum,p)=>
+                sum +
+                Number(p.stock || 0),
+            0
+        );
+
+
+    const lowStock =
+        products.filter(
+            p =>
+                Number(p.stock || 0)
+                <=
+                Number(p.minStock ?? 3)
+        ).length;
+
+
+    $("dashStock")
+        .textContent =
+        totalStock
+        .toLocaleString("fa-IR");
+
+
+    $("dashLow")
+        .textContent =
+        lowStock
+        .toLocaleString("fa-IR");
+
+
+    renderDashboardProducts();
+
+}
+
+
+function renderDashboardProducts(){
+
+    const box =
+        $("dashboardProducts");
+
+
+    const list =
+        products.slice(0,6);
+
+
+    if(!list.length){
+
+        box.innerHTML = `
+
+            <div class="empty">
+                <div class="empty-icon">
+                    📦
+                </div>
+                <p>
+                    هنوز محصولی ثبت نشده.
+                </p>
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    box.innerHTML = `
+
+        <div class="table-wrap">
+
+            <table class="table">
+
+                <thead>
+
+                    <tr>
+                        <th>محصول</th>
+                        <th>قیمت</th>
+                        <th>موجودی</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    ${
+                        list.map(p=>`
+
+                            <tr>
+
+                                <td>
+                                    ${escapeHTML(
+                                        p.name
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${formatPrice(
+                                        p.price
+                                    )}
+                                </td>
+
+                                <td>
+                                    ${
+                                        Number(
+                                            p.stock || 0
+                                        )
+                                    }
+                                </td>
+
+                            </tr>
+
+                        `).join("")
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   SYSTEM STATUS
+========================= */
+
+function renderSystemStatus(){
+
+    $("systemStatus").innerHTML = `
+
+        <div
+            style="
+            display:flex;
+            justify-content:space-between;
+            padding:12px;
+            border-radius:12px;
+            background:#090b0d;
+            border:1px solid #1e2327;
+            ">
+
+            <span
+                style="font-size:11px">
+                Firebase
+            </span>
+
+            <span
+                style="
+                color:var(--green);
+                font-size:10px">
+                ● متصل
+            </span>
+
+        </div>
+
+
+        <div
+            style="
+            display:flex;
+            justify-content:space-between;
+            padding:12px;
+            border-radius:12px;
+            background:#090b0d;
+            border:1px solid #1e2327;
+            ">
+
+            <span
+                style="font-size:11px">
+                Firestore
+            </span>
+
+            <span
+                style="
+                color:var(--green);
+                font-size:10px">
+                ● فعال
+            </span>
+
+        </div>
+
+
+        <div
+            style="
+            display:flex;
+            justify-content:space-between;
+            padding:12px;
+            border-radius:12px;
+            background:#090b0d;
+            border:1px solid #1e2327;
+            ">
+
+            <span
+                style="font-size:11px">
+                Storage
+            </span>
+
+            <span
+                style="
+                color:var(--green);
+                font-size:10px">
+                ● آماده آپلود
+            </span>
+
+        </div>
+
+
+        <div
+            style="
+            display:flex;
+            justify-content:space-between;
+            padding:12px;
+            border-radius:12px;
+            background:#090b0d;
+            border:1px solid #1e2327;
+            ">
+
+            <span
+                style="font-size:11px">
+                محصولات
+            </span>
+
+            <span
+                style="
+                color:#aaa;
+                font-size:10px">
+                ${
+                    products.length
+                }
+                کالا
+            </span>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+$("pCategory").addEventListener(
+    "focus",
+    ()=>{
+        renderCategorySelect();
+    }
+);
+
+
+/* جلوگیری از بستن تصادفی */
+
+$("productModal").addEventListener(
+    "click",
+    e=>{
+
+        if(e.target === $("productModal")){
+
+            closeProductModal();
+
+        }
+
+    }
+);
+
+
+$("categoryModal").addEventListener(
+    "click",
+    e=>{
+
+        if(e.target === $("categoryModal")){
+
+            closeCategoryModal();
+
+        }
+
+    }
+);
 
 </script>
 
