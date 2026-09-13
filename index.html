@@ -1362,8 +1362,11 @@ title="سبد خرید">
 <div id="app">
 
 <div class="loading">
+
 <div>⏳</div>
+
 در حال دریافت اطلاعات فروشگاه...
+
 </div>
 
 </div>
@@ -1380,16 +1383,23 @@ title="پشتیبانی">👨🏻‍💻</button>
 <div class="container copy">
 
 <span id="footerStoreName">
+
 <span class="store-word-mahan">ماهان</span>
 <span class="store-word-center"> سنتر</span>
 <span class="store-word-iran"> ایران</span>
+
 </span>
 
- — تمامی اطلاعات محفوظ است.
+— تمامی اطلاعات محفوظ است.
 
 </div>
 
 </footer>
+
+
+<!-- =========================
+     FIREBASE
+========================= -->
 
 <script type="module">
 
@@ -1409,66 +1419,114 @@ doc
 from
 "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
+
 const firebaseConfig={
-apiKey:"AIzaSyDlrv12gAydgbx1qPJXAIm0kzcSeJF5pNs",
+
+apiKey:"AIzaSyDlrv12gAydxb1qPJXAIm0kzcSeJF5pNs",
+
 authDomain:"mahan-center.firebaseapp.com",
+
 projectId:"mahan-center",
+
 storageBucket:"mahan-center.firebasestorage.app",
+
 messagingSenderId:"720478821753",
+
 appId:"1:720478821753:web:7a431c1a3f9e3abd7923a"
+
 };
 
+
 const app=initializeApp(firebaseConfig);
+
 const db=getFirestore(app);
+
 
 /* DEFAULT CATEGORIES */
 
 const DEFAULT_CATEGORIES=[
 
 /* موبایل */
+
 {id:"mobile",name:"موبایل",icon:"📱",image:"",parentId:""},
+
 {id:"iphone",name:"آیفون",icon:"🍎",image:"",parentId:"mobile"},
+
 {id:"samsung",name:"سامسونگ",icon:"📱",image:"",parentId:"mobile"},
+
 {id:"xiaomi",name:"شیائومی",icon:"📱",image:"",parentId:"mobile"},
+
 {id:"nokia",name:"نوکیا",icon:"📱",image:"",parentId:"mobile"},
 
+
 /* طلا */
+
 {id:"gold",name:"طلا",icon:"💍",image:"",parentId:""},
+
 {id:"necklace",name:"گردنبند",icon:"📿",image:"",parentId:"gold"},
+
 {id:"anklet",name:"پابند",icon:"✨",image:"",parentId:"gold"},
+
 {id:"bangle",name:"النگو",icon:"⭕",image:"",parentId:"gold"},
+
 {id:"ring",name:"انگشتر",icon:"💍",image:"",parentId:"gold"},
+
 {id:"gold-set",name:"ست",icon:"💎",image:"",parentId:"gold"},
 
+
 /* پوشاک */
+
 {id:"clothes",name:"پوشاک",icon:"👕",image:"",parentId:""},
+
 {id:"formal",name:"لباس مجلسی",icon:"👗",image:"",parentId:"clothes"},
+
 {id:"daily",name:"لباس روزمره",icon:"👕",image:"",parentId:"clothes"},
+
 {id:"mantle",name:"مانتو",icon:"🧥",image:"",parentId:"clothes"},
+
 {id:"hoodie",name:"هودی",icon:"🧥",image:"",parentId:"clothes"},
+
 {id:"pants",name:"شلوار",icon:"👖",image:"",parentId:"clothes"},
+
 {id:"shirt",name:"پیراهن",icon:"👔",image:"",parentId:"clothes"},
 
+
 /* کفش */
+
 {id:"shoes",name:"کفش",icon:"👟",image:"",parentId:""},
+
 {id:"men-shoes",name:"کفش مردانه",icon:"👞",image:"",parentId:"shoes"},
+
 {id:"women-shoes",name:"کفش زنانه",icon:"👠",image:"",parentId:"shoes"},
+
 {id:"sport-shoes",name:"کفش اسپرت",icon:"👟",image:"",parentId:"shoes"},
 
+
 /* لوازم جانبی */
+
 {id:"accessories",name:"لوازم جانبی",icon:"🎧",image:"",parentId:""},
+
 {id:"headphone",name:"هدفون",icon:"🎧",image:"",parentId:"accessories"},
+
 {id:"handsfree",name:"هندزفری",icon:"🎧",image:"",parentId:"accessories"},
+
 {id:"charger",name:"شارژر",icon:"🔌",image:"",parentId:"accessories"},
+
 {id:"case",name:"قاب موبایل",icon:"📱",image:"",parentId:"accessories"},
 
+
 /* ساعت */
+
 {id:"watches",name:"ساعت",icon:"⌚",image:"",parentId:""},
+
 {id:"men-watches",name:"ساعت مردانه",icon:"⌚",image:"",parentId:"watches"},
+
 {id:"women-watches",name:"ساعت زنانه",icon:"⌚",image:"",parentId:"watches"},
+
 {id:"smart-watches",name:"ساعت هوشمند",icon:"⌚",image:"",parentId:"watches"}
 
 ];
+
 
 const DEFAULT_SETTINGS={
 
@@ -1487,14 +1545,21 @@ supportText:
 "در صورت داشتن هرگونه سؤال یا مشکل، با پشتیبانی تماس بگیرید.",
 
 supportPhone:"",
+
 supportRubika:"",
+
 couponCode:"",
+
 discountPercent:0,
+
 showStats:true,
+
 categories:DEFAULT_CATEGORIES,
+
 views:0
 
 };
+
 
 window.settings={
 ...DEFAULT_SETTINGS,
@@ -1502,6 +1567,9 @@ categories:DEFAULT_CATEGORIES.map(x=>({...x}))
 };
 
 window.products=[];
+
+window.firebaseStoreReady=false;
+
 
 /* MERGE CATEGORIES */
 
@@ -1526,9 +1594,13 @@ c.id||
 );
 
 map.set(id,{
+
 ...(map.get(id)||{}),
+
 ...c,
+
 id:id
+
 });
 
 });
@@ -1536,6 +1608,7 @@ id:id
 return [...map.values()];
 
 }
+
 
 /* SETTINGS */
 
@@ -1552,16 +1625,23 @@ if(snap.exists()){
 const data=snap.data()||{};
 
 window.settings={
+
 ...DEFAULT_SETTINGS,
+
 ...data,
+
 categories:mergeCategories(data.categories)
+
 };
 
 }else{
 
 window.settings={
+
 ...DEFAULT_SETTINGS,
+
 categories:DEFAULT_CATEGORIES.map(x=>({...x}))
+
 };
 
 }
@@ -1571,8 +1651,11 @@ categories:DEFAULT_CATEGORIES.map(x=>({...x}))
 console.error("Settings error:",error);
 
 window.settings={
+
 ...DEFAULT_SETTINGS,
+
 categories:DEFAULT_CATEGORIES.map(x=>({...x}))
+
 };
 
 }
@@ -1580,6 +1663,7 @@ categories:DEFAULT_CATEGORIES.map(x=>({...x}))
 applySiteSettings();
 
 }
+
 
 /* STORE NAME HTML */
 
@@ -1608,6 +1692,7 @@ return safe;
 
 }
 
+
 /* APPLY SETTINGS */
 
 function applySiteSettings(){
@@ -1630,6 +1715,7 @@ footer.innerHTML=storeNameHTML(storeName);
 
 }
 
+
 /* IMAGE */
 
 function resolveImage(path){
@@ -1644,6 +1730,7 @@ return path;
 return path.replace(/^\/+/,"");
 
 }
+
 
 /* PRODUCTS */
 
@@ -1677,15 +1764,21 @@ const description=data.description??data.desc??"";
 return{
 
 id:publicId,
+
 docId:docSnap.id,
+
 code:String(code),
+
 name:name,
 
 category:category,
+
 cat:category,
 
 brand:data.brand||"",
+
 goldCat:data.goldCat||"",
+
 subcategory:
 data.subcategory||
 data.subCategory||
@@ -1697,6 +1790,7 @@ search:data.search||
 `${name} ${data.brand||""} ${category} ${data.goldCat||""}`,
 
 price:Number(data.price||0),
+
 stock:Number(data.stock??0),
 
 status:data.status||
@@ -1729,14 +1823,19 @@ images:images
 icon:data.icon||"🛍️",
 
 desc:description,
+
 description:description,
+
 specs:data.specs||"",
+
 discount:Number(data.discount||0),
+
 createdAt:data.createdAt||null
 
 };
 
 }
+
 
 /* LOAD PRODUCTS */
 
@@ -1771,15 +1870,47 @@ String(a.name)
 
 window.products=list;
 
-window.dispatchEvent(
-new Event("firebaseProductsLoaded")
-);
+return true;
 
 }catch(error){
 
 console.error("Products error:",error);
 
 window.products=[];
+
+throw error;
+
+}
+
+}
+
+
+/* FIREBASE INITIALIZATION */
+
+async function initFirebaseStore(){
+
+try{
+
+await loadSettings();
+
+await loadProducts();
+
+window.firebaseStoreReady=true;
+
+window.firebaseProductsError=null;
+
+window.dispatchEvent(
+new Event("firebaseProductsLoaded")
+);
+
+}catch(error){
+
+console.error(
+"Firebase initialization error:",
+error
+);
+
+window.firebaseStoreReady=false;
 
 window.dispatchEvent(
 new CustomEvent(
@@ -1792,8 +1923,13 @@ new CustomEvent(
 
 }
 
-await loadSettings();
-await loadProducts();
+
+/* START FIREBASE */
+
+initFirebaseStore();
+
+
+/* AUTO SYNC */
 
 setInterval(
 async function(){
@@ -1801,19 +1937,27 @@ async function(){
 try{
 
 await loadSettings();
+
 await loadProducts();
 
-if(
-typeof getRoute==="function"&&
-typeof render==="function"
-)
-render(getRoute());
+window.firebaseStoreReady=true;
+
+window.dispatchEvent(
+new Event("firebaseProductsLoaded")
+);
 
 }catch(error){
 
 console.error(
 "Auto sync error:",
 error
+);
+
+window.dispatchEvent(
+new CustomEvent(
+"firebaseProductsError",
+{detail:error}
+)
 );
 
 }
@@ -1824,10 +1968,18 @@ error
 
 </script>
 
+
 <script>
 
-var products=[];
+/* مهم:
+   products از Firebase گرفته می‌شود.
+   دیگر اینجا با آرایه خالی overwrite نمی‌شود.
+*/
+
+var products=window.products||[];
+
 var settings=window.settings||{};
+
 
 /* CATEGORY FALLBACKS */
 
@@ -1883,27 +2035,43 @@ generic:
 
 };
 
+
 /* CATEGORY KEYWORDS */
 
 const categoryImageKeywords=[
 
 ["car",["ماشین","خودرو","اتومبیل","car","cars","automobile"]],
+
 ["animal",["حیوان","حیوانات","پت","animal","animals","pet"]],
+
 ["mobile",["موبایل","گوشی","mobile","phone","iphone","آیفون","سامسونگ","samsung","نوکیا","nokia","شیائومی","xiaomi"]],
+
 ["gold",["طلا","جواهر","جواهرات","gold","jewelry"]],
+
 ["necklace",["گردنبند","necklace"]],
+
 ["ring",["انگشتر","ring"]],
+
 ["clothes",["پوشاک","لباس","مانتو","هودی","شلوار","پیراهن","clothes","clothing"]],
+
 ["shoes",["کفش","shoes","shoe"]],
+
 ["accessories",["لوازم جانبی","اکسسوری","هدفون","هندزفری","شارژر","قاب","accessories","headphone","charger"]],
+
 ["watches",["ساعت","watch","watches"]],
+
 ["bag",["کیف","bag","bags"]],
+
 ["laptop",["لپ تاپ","لپ‌تاپ","laptop"]],
+
 ["sports",["ورزشی","ورزش","sport","sports"]],
+
 ["cosmetics",["آرایشی","بهداشتی","cosmetic","cosmetics"]],
+
 ["books",["کتاب","کتاب‌ها","book","books"]]
 
 ];
+
 
 function getCategoryImage(c,key){
 
@@ -1918,6 +2086,7 @@ String(c?.name||"")
 for(const item of categoryImageKeywords){
 
 const type=item[0];
+
 const words=item[1];
 
 if(
@@ -1932,6 +2101,7 @@ return categoryFallbackImages[type];
 return categoryFallbackImages.generic;
 
 }
+
 
 /* CATEGORIES */
 
@@ -1956,8 +2126,11 @@ c.id||"category_"+index
 result[id]={
 
 id:id,
+
 name:c.name||"دسته‌بندی",
+
 icon:c.icon||"📦",
+
 image:resolveImage(c.image||""),
 
 parentId:String(
@@ -1983,6 +2156,7 @@ return result;
 
 }
 
+
 function flattenNestedCategories(){
 
 Object.keys(categories).forEach(id=>{
@@ -2005,12 +2179,19 @@ child.name||
 if(!categories[childId]){
 
 categories[childId]={
+
 ...child,
+
 id:childId,
+
 name:child.name||"زیر دسته",
+
 icon:child.icon||"📦",
+
 image:resolveImage(child.image||""),
+
 parentId:id
+
 };
 
 }else{
@@ -2025,8 +2206,11 @@ categories[childId].parentId=id;
 
 }
 
+
 var categories=getCategories();
+
 flattenNestedCategories();
+
 
 /* CART */
 
@@ -2039,20 +2223,32 @@ localStorage.getItem("mahanFavorites")||"[]"
 );
 
 var tempQty=1;
+
 var currentPhoneBrand="all";
+
 var currentSort="newest";
+
 var sortMenuOpen=false;
+
+
+/* FIREBASE LOADED */
 
 window.addEventListener(
 "firebaseProductsLoaded",
 function(){
 
-products=window.products||[];
+products=Array.isArray(window.products)
+?window.products
+:[];
+
 settings=window.settings||{};
+
 categories=getCategories();
+
 flattenNestedCategories();
 
 updateCartCount();
+
 render(getRoute());
 
 setTimeout(
@@ -2063,40 +2259,112 @@ showFirstVisitLaw,
 }
 );
 
+
+/* FIREBASE ERROR */
+
 window.addEventListener(
 "firebaseProductsError",
 function(e){
 
+products=[];
+
+var message=
+e.detail?.message||
+"خطای نامشخص";
+
 document.getElementById("app").innerHTML=`
 
 <div class="page">
+
 <div class="container">
 
 <div class="no-result">
 
 <div>⚠️</div>
 
-خطا در دریافت محصولات از Firebase.
+خطا در دریافت اطلاعات فروشگاه از Firebase.
 
 <br>
 
 <small>
-${escapeHTML(
-e.detail?.message||"خطای نامشخص"
-)}
+${escapeHTML(message)}
 </small>
 
+<br><br>
+
+<button
+class="primary-btn"
+onclick="location.reload()">
+
+تلاش دوباره
+
+</button>
+
 </div>
 
 </div>
+
 </div>
+
 `;
-
-products=[];
-render(getRoute());
 
 }
 );
+
+
+/* FIREBASE IMPORT / CONNECTION TIMEOUT */
+
+window.firebaseLoadingTimeout=setTimeout(
+function(){
+
+if(window.firebaseStoreReady)
+return;
+
+const appBox=document.getElementById("app");
+
+if(!appBox)
+return;
+
+appBox.innerHTML=`
+
+<div class="page">
+
+<div class="container">
+
+<div class="no-result">
+
+<div>⚠️</div>
+
+اتصال به اطلاعات فروشگاه بیش از حد طول کشید.
+
+<br>
+
+<small>
+لطفاً اتصال اینترنت و تنظیمات Firebase را بررسی کنید.
+</small>
+
+<br><br>
+
+<button
+class="primary-btn"
+onclick="location.reload()">
+
+تلاش دوباره
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+},
+12000
+);
+
 
 /* STORAGE */
 
@@ -2115,6 +2383,7 @@ JSON.stringify(favorites)
 updateCartCount();
 
 }
+
 
 /* ROUTER */
 
@@ -2144,6 +2413,7 @@ behavior:"smooth"
 
 }
 
+
 window.addEventListener(
 "popstate",
 ()=>render(getRoute())
@@ -2154,22 +2424,27 @@ window.addEventListener(
 ()=>render(getRoute())
 );
 
+
 function getRoute(){
 
 var hash=location.hash.substring(1);
 
-if(!hash)return "/";
+if(!hash)
+return "/";
 
 return hash;
 
 }
+
 
 /* RENDER */
 
 function render(route){
 
 settings=window.settings||{};
+
 categories=getCategories();
+
 flattenNestedCategories();
 
 if(route==="/")
@@ -2221,6 +2496,7 @@ updateActiveNav();
 
 }
 
+
 /* HOME */
 
 function renderHome(){
@@ -2253,13 +2529,17 @@ alt="${escapeHTML(storeName)}">
 خوش آمدید به
 
 <span class="store-name-inline">
+
 ${storeNameHTML(storeName)}
+
 </span>
 
 </h1>
 
 <p class="home-description">
+
 ${escapeHTML(welcome)}
+
 </p>
 
 ${
@@ -2270,18 +2550,27 @@ settings.showStats===false
 <div class="stats">
 
 <div class="stat">
+
 <strong id="usersStat">—</strong>
+
 <span>کاربران سایت</span>
+
 </div>
 
 <div class="stat">
+
 <strong>${products.length}</strong>
+
 <span>محصولات</span>
+
 </div>
 
 <div class="stat">
+
 <strong>${Object.keys(categories).length}</strong>
+
 <span>دسته‌بندی</span>
+
 </div>
 
 </div>
@@ -2301,13 +2590,15 @@ settings.showStats===false
 
 }
 
+
 /* CATEGORY CARD */
 
 function categoryCard(key){
 
 var c=categories[key];
 
-if(!c)return "";
+if(!c)
+return "";
 
 var image=getCategoryImage(c,key);
 
@@ -2337,11 +2628,15 @@ onerror="this.style.display='none'">
 <div class="category-content">
 
 <div class="category-icon">
+
 ${escapeHTML(c.icon)}
+
 </div>
 
 <div class="category-name">
+
 ${escapeHTML(c.name)}
+
 </div>
 
 <div class="category-sub">
@@ -2362,6 +2657,7 @@ children.length
 
 }
 
+
 function getChildren(parentId){
 
 return Object.values(categories).filter(c=>
@@ -2370,6 +2666,7 @@ String(c.parentId||"")===String(parentId)
 
 }
 
+
 function getRootCategories(){
 
 return Object.keys(categories).filter(id=>
@@ -2377,6 +2674,7 @@ return Object.keys(categories).filter(id=>
 );
 
 }
+
 
 function renderCategories(){
 
@@ -2420,6 +2718,7 @@ keys.length
 `;
 
 }
+
 
 /* SORT */
 
@@ -2481,9 +2780,11 @@ return arr;
 
 }
 
+
 function getFinalPrice(p){
 
 var price=Number(p.price||0);
+
 var discount=Number(p.discount||0);
 
 return discount>0
@@ -2494,28 +2795,40 @@ price-(price*discount/100)
 
 }
 
+
 function sortName(){
 
 const names={
+
 newest:"جدیدترین",
+
 oldest:"قدیمی‌ترین",
+
 cheap:"ارزان‌ترین",
+
 expensive:"گران‌ترین",
+
 discount:"بیشترین تخفیف"
+
 };
 
 return names[currentSort]||"جدیدترین";
 
 }
 
+
 function sortFilters(){
 
 var items=[
 
 ["newest","جدیدترین"],
+
 ["oldest","قدیمی‌ترین"],
+
 ["cheap","ارزان‌ترین"],
+
 ["expensive","گران‌ترین"],
+
 ["discount","بیشترین تخفیف"]
 
 ];
@@ -2564,6 +2877,7 @@ ${name}
 
 }
 
+
 function toggleSortMenu(){
 
 sortMenuOpen=!sortMenuOpen;
@@ -2572,14 +2886,17 @@ render(getRoute());
 
 }
 
+
 function changeSort(sort){
 
 currentSort=sort;
+
 sortMenuOpen=false;
 
 render(getRoute());
 
 }
+
 
 /* CATEGORY MATCH */
 
@@ -2587,7 +2904,8 @@ function productMatchesCategory(p,cat){
 
 const category=categories[cat];
 
-if(!category)return false;
+if(!category)
+return false;
 
 const pcat=String(
 p.category||
@@ -2607,6 +2925,7 @@ childIds.includes(pcat)
 )
 return true;
 
+
 /* محصول زیر دسته با برند */
 
 if(
@@ -2615,11 +2934,13 @@ pcat===String(category.parentId)
 ){
 
 const name=String(
-category.name||""
+category.name||
+""
 ).toLowerCase();
 
 const brand=String(
-p.brand||""
+p.brand||
+""
 ).toLowerCase();
 
 if(
@@ -2648,6 +2969,7 @@ return brand==="nokia";
 
 }
 
+
 /* طلا */
 
 if(
@@ -2656,21 +2978,29 @@ pcat==="gold"
 ){
 
 const name=String(
-category.name||""
+category.name||
+""
 ).toLowerCase();
 
 const gold=String(
-p.goldCat||""
+p.goldCat||
+""
 ).toLowerCase();
 
 return (
+
 gold===String(category.id).toLowerCase()||
+
 gold===name||
+
 gold.includes(name)||
+
 name.includes(gold)
+
 );
 
 }
+
 
 /* زیر دسته عمومی */
 
@@ -2680,7 +3010,8 @@ pcat===String(category.parentId)
 ){
 
 const name=String(
-category.name||""
+category.name||
+""
 ).toLowerCase();
 
 const sub=String(
@@ -2689,10 +3020,15 @@ p.subcategory||
 ).toLowerCase();
 
 return (
+
 sub===String(category.id).toLowerCase()||
+
 sub===name||
+
 sub.includes(name)||
+
 name.includes(sub)
+
 );
 
 }
@@ -2700,6 +3036,7 @@ name.includes(sub)
 return false;
 
 }
+
 
 /* CATEGORY PAGE */
 
@@ -2803,15 +3140,19 @@ ${categoryProducts.map(productCard).join("")}
 
 }
 
+
 /* PHONES */
 
 function renderPhones(){
 
 var filtered=
+
 currentPhoneBrand==="all"
+
 ?products.filter(
 p=>String(p.cat)==="mobile"
 )
+
 :products.filter(
 p=>
 String(p.cat)==="mobile"&&
@@ -2819,11 +3160,17 @@ p.brand===currentPhoneBrand
 );
 
 var brands=[
+
 ["all","همه"],
+
 ["iphone","آیفون"],
+
 ["samsung","سامسونگ"],
+
 ["xiaomi","شیائومی"],
+
 ["nokia","نوکیا"]
+
 ];
 
 filtered=sortProducts(filtered);
@@ -2839,6 +3186,7 @@ document.getElementById("app").innerHTML=`
 <div>
 
 <h1>گوشی موبایل</h1>
+
 <p>${filtered.length} محصول</p>
 
 </div>
@@ -2888,27 +3236,38 @@ filtered.length
 
 }
 
+
 function filterPhones(brand){
 
 currentPhoneBrand=brand;
+
 renderPhones();
 
 }
+
 
 /* PRODUCT IMAGES */
 
 function getProductImages(p){
 
 var images=[
+
 p.image,
+
 p.image2,
+
 p.image3
+
 ].filter(Boolean);
 
 if(Array.isArray(p.images))
+
 images=[
+
 ...p.images,
+
 ...images
+
 ].filter(Boolean);
 
 images=[...new Set(images)];
@@ -2920,9 +3279,11 @@ return images.slice(0,3);
 
 }
 
+
 function productImageHTML(p){
 
 var images=getProductImages(p);
+
 var first=images[0];
 
 var pid=JSON.stringify(
@@ -2934,7 +3295,11 @@ if(!first){
 return`
 
 <div class="product-image">
-<span>${escapeHTML(p.icon||"🛍️")}</span>
+
+<span>
+${escapeHTML(p.icon||"🛍️")}
+</span>
+
 </div>
 
 `;
@@ -2959,7 +3324,9 @@ onclick="event.preventDefault();event.stopPropagation();changeCardImage(${pid},-
 <div
 class="image-number"
 id="cardImageNumber-${escapeHTML(String(p.id))}">
+
 1 / ${images.length}
+
 </div>
 
 `
@@ -2985,7 +3352,9 @@ ${arrows}
 
 }
 
+
 var cardImageIndexes={};
+
 
 function changeCardImage(id,amount){
 
@@ -2997,7 +3366,8 @@ if(!p)return;
 
 var images=getProductImages(p);
 
-if(images.length<=1)return;
+if(images.length<=1)
+return;
 
 if(cardImageIndexes[id]===undefined)
 cardImageIndexes[id]=0;
@@ -3029,6 +3399,7 @@ images.length;
 
 }
 
+
 /* PRODUCT CARD */
 
 function productCard(p){
@@ -3036,8 +3407,11 @@ function productCard(p){
 var isFav=favorites.includes(p.id);
 
 var price=Number(p.price||0);
+
 var discount=Number(p.discount||0);
+
 var finalPrice=getFinalPrice(p);
+
 var stock=Number(p.stock||0);
 
 var stockHTML=getStockHTML(stock);
@@ -3068,11 +3442,15 @@ ${productImageHTML(p)}
 <div class="product-info">
 
 <div class="product-title">
+
 ${escapeHTML(p.name)}
+
 </div>
 
 <div class="product-desc">
+
 ${escapeHTML(p.desc||"")}
+
 </div>
 
 <div class="product-price">
@@ -3082,13 +3460,17 @@ discount>0
 ?`
 
 <del style="color:#777;font-size:11px">
+
 ${price.toLocaleString("en-US")} تومان
+
 </del>
 
 <br>
 
 <span class="discount-label">
+
 ${discount}% تخفیف
+
 </span>
 
 `
@@ -3121,7 +3503,9 @@ ${stockHTML}
 
 <button
 onclick="go('/product/${encodeURIComponent(String(p.id))}')">
+
 جزئیات
+
 </button>
 
 <button
@@ -3141,6 +3525,7 @@ ${stock<=0?"ناموجود":"افزودن به سبد"}
 
 }
 
+
 /* STOCK */
 
 function getStockHTML(stock){
@@ -3157,9 +3542,11 @@ return `🔴 در انبار موجود نداریم`;
 
 }
 
+
 /* PRODUCT DETAIL */
 
 var detailImageIndexes={};
+
 
 function renderProduct(id){
 
@@ -3175,11 +3562,13 @@ if(!p){
 document.getElementById("app").innerHTML=`
 
 <div class="page">
+
 <div class="container">
 
 ${emptyResult("❌","محصول پیدا نشد")}
 
 </div>
+
 </div>
 
 `;
@@ -3195,8 +3584,11 @@ var images=getProductImages(p);
 detailImageIndexes[p.id]=0;
 
 var price=Number(p.price||0);
+
 var discount=Number(p.discount||0);
+
 var finalPrice=getFinalPrice(p);
+
 var stock=Number(p.stock||0);
 
 var productId=JSON.stringify(
@@ -3229,7 +3621,9 @@ onerror="this.style.display='none';">
 :`
 
 <span style="font-size:120px">
+
 ${escapeHTML(p.icon||"🛍️")}
+
 </span>
 
 `
@@ -3244,13 +3638,17 @@ images.length>1
 <button
 class="detail-arrow right"
 onclick="changeDetailImage(${productId},1)">
+
 ›
+
 </button>
 
 <button
 class="detail-arrow left"
 onclick="changeDetailImage(${productId},-1)">
+
 ‹
+
 </button>
 
 <div class="detail-dots" id="detailDots">
@@ -3277,9 +3675,12 @@ i===0?"active":""
 <h1>${escapeHTML(p.name)}</h1>
 
 <div class="detail-desc">
+
 ${escapeHTML(
-p.desc||"توضیحات محصول ثبت نشده است."
+p.desc||
+"توضیحات محصول ثبت نشده است."
 )}
+
 </div>
 
 <div class="detail-price">
@@ -3289,7 +3690,9 @@ discount>0
 ?`
 
 <del style="color:#777;font-size:14px">
+
 ${price.toLocaleString("en-US")} تومان
+
 </del>
 
 <br>
@@ -3319,6 +3722,7 @@ discount>0
 <br>
 
 قیمت بعد تخفیف:
+
 ${finalPrice.toLocaleString("en-US")} تومان
 
 </div>
@@ -3342,25 +3746,35 @@ ${getStockHTML(stock)}
 <div class="product-specs">
 
 <div class="product-specs-title">
+
 مشخصات محصول
+
 </div>
 
 <div class="product-specs-text">
+
 ${escapeHTML(
 p.specs||
 "مشخصات محصول ثبت نشده است."
 )}
+
 </div>
 
 </div>
 
 <div class="quantity">
 
-<button onclick="changeTempQty(-1)">−</button>
+<button onclick="changeTempQty(-1)">
+−
+</button>
 
-<strong id="tempQty">1</strong>
+<strong id="tempQty">
+1
+</strong>
 
-<button onclick="changeTempQty(1)">+</button>
+<button onclick="changeTempQty(1)">
++
+</button>
 
 </div>
 
@@ -3398,6 +3812,7 @@ favorites.includes(p.id)
 
 }
 
+
 function changeDetailImage(id,amount){
 
 var p=products.find(
@@ -3408,7 +3823,8 @@ if(!p)return;
 
 var images=getProductImages(p);
 
-if(images.length<=1)return;
+if(images.length<=1)
+return;
 
 if(detailImageIndexes[id]===undefined)
 detailImageIndexes[id]=0;
@@ -3441,12 +3857,16 @@ index===detailImageIndexes[id]
 
 }
 
+
 function changeTempQty(amount){
 
 tempQty+=amount;
 
-if(tempQty<1)tempQty=1;
-if(tempQty>99)tempQty=99;
+if(tempQty<1)
+tempQty=1;
+
+if(tempQty>99)
+tempQty=99;
 
 var el=document.getElementById("tempQty");
 
@@ -3454,6 +3874,7 @@ if(el)
 el.textContent=tempQty;
 
 }
+
 
 /* CART */
 
@@ -3465,11 +3886,13 @@ var p=products.find(
 x=>String(x.id)===String(id)
 );
 
-if(!p)return;
+if(!p)
+return;
 
 if(Number(p.stock||0)<=0){
 
 showToast("این محصول موجود نیست");
+
 return;
 
 }
@@ -3512,6 +3935,7 @@ showToast(
 
 }
 
+
 function updateCartCount(){
 
 var count=cart.reduce(
@@ -3529,13 +3953,15 @@ el.textContent=count;
 
 }
 
+
 function cartQty(id,amount){
 
 var item=cart.find(
 x=>String(x.id)===String(id)
 );
 
-if(!item)return;
+if(!item)
+return;
 
 var p=products.find(
 x=>String(x.id)===String(id)
@@ -3555,9 +3981,11 @@ x=>String(x.id)!==String(id)
 }
 
 saveData();
+
 renderCart();
 
 }
+
 
 function removeFromCart(id){
 
@@ -3566,11 +3994,13 @@ x=>String(x.id)!==String(id)
 );
 
 saveData();
+
 renderCart();
 
 showToast("محصول از سبد حذف شد");
 
 }
+
 
 /* CART PAGE */
 
@@ -3590,6 +4020,7 @@ return p
 :null;
 
 }).filter(Boolean);
+
 
 if(!items.length){
 
@@ -3614,6 +4045,7 @@ return;
 
 }
 
+
 var total=items.reduce(
 (sum,item)=>
 sum+
@@ -3621,6 +4053,7 @@ getFinalPrice(item)*
 item.qty,
 0
 );
+
 
 document.getElementById("app").innerHTML=`
 
@@ -3633,11 +4066,13 @@ document.getElementById("app").innerHTML=`
 <div>
 
 <h1>سبد خرید</h1>
+
 <p>${items.length} محصول</p>
 
 </div>
 
 </div>
+
 
 ${items.map(item=>{
 
@@ -3667,30 +4102,43 @@ alt="${escapeHTML(item.name)}">
 
 </div>
 
+
 <div class="cart-item-info">
 
 <h3>${escapeHTML(item.name)}</h3>
 
 <p>
+
 ${finalPrice.toLocaleString("en-US")} تومان
+
 </p>
 
 </div>
 
+
 <div class="qty">
 
-<button onclick="cartQty(${pid},-1)">−</button>
+<button onclick="cartQty(${pid},-1)">
+−
+</button>
 
-<strong>${item.qty}</strong>
+<strong>
+${item.qty}
+</strong>
 
-<button onclick="cartQty(${pid},1)">+</button>
+<button onclick="cartQty(${pid},1)">
++
+</button>
 
 </div>
+
 
 <button
 class="remove"
 onclick="removeFromCart(${pid})">
+
 ×
+
 </button>
 
 </div>
@@ -3699,6 +4147,7 @@ onclick="removeFromCart(${pid})">
 
 }).join("")}
 
+
 <div class="cart-summary">
 
 <div class="summary-row">
@@ -3706,20 +4155,26 @@ onclick="removeFromCart(${pid})">
 <span>جمع کل</span>
 
 <strong>
+
 ${total.toLocaleString("en-US")} تومان
+
 </strong>
 
 </div>
+
 
 <div class="summary-row total">
 
 <span>مبلغ نهایی</span>
 
 <strong>
+
 ${total.toLocaleString("en-US")} تومان
+
 </strong>
 
 </div>
+
 
 <button
 class="primary-btn"
@@ -3740,6 +4195,7 @@ onclick="checkout()">
 
 }
 
+
 function checkout(){
 
 showToast(
@@ -3747,6 +4203,7 @@ showToast(
 );
 
 }
+
 
 /* FAVORITES */
 
@@ -3781,6 +4238,7 @@ saveData();
 render(getRoute());
 
 }
+
 
 function renderFavorites(){
 
@@ -3838,6 +4296,7 @@ ${list.map(productCard).join("")}
 
 }
 
+
 /* SEARCH */
 
 function globalSearch(){
@@ -3850,13 +4309,15 @@ var q=input
 ?input.value.trim()
 :"";
 
-if(!q)return;
+if(!q)
+return;
 
 go(
 "/search/"+encodeURIComponent(q)
 );
 
 }
+
 
 function renderSearch(q){
 
@@ -3872,14 +4333,23 @@ categories[p.cat]
 var text=[
 
 p.name,
+
 p.search,
+
 p.brand,
+
 p.cat,
+
 categoryName,
+
 p.goldCat,
+
 p.subcategory,
+
 p.desc,
+
 p.specs,
+
 p.code
 
 ].join(" ").toLowerCase();
@@ -3903,8 +4373,11 @@ document.getElementById("app").innerHTML=`
 <h1>نتایج جستجو</h1>
 
 <p>
+
 برای «${escapeHTML(q)}»
+
 ${results.length} نتیجه
+
 </p>
 
 </div>
@@ -3920,7 +4393,9 @@ results.length
 ?`
 
 <div class="products">
+
 ${results.map(productCard).join("")}
+
 </div>
 
 `
@@ -3939,6 +4414,7 @@ ${results.map(productCard).join("")}
 `;
 
 }
+
 
 /* DISCOUNT */
 
@@ -3975,7 +4451,9 @@ list.length
 ?`
 
 <div class="products">
+
 ${list.map(productCard).join("")}
+
 </div>
 
 `
@@ -3992,6 +4470,7 @@ ${list.map(productCard).join("")}
 `;
 
 }
+
 
 /* LAWS */
 
@@ -4045,6 +4524,7 @@ rules.trim()
 
 }
 
+
 /* SUPPORT */
 
 function normalizePhone(phone){
@@ -4054,11 +4534,13 @@ return String(phone||"")
 
 }
 
+
 function normalizeRubika(value){
 
 var id=String(value||"").trim();
 
-if(!id)return "";
+if(!id)
+return "";
 
 id=id.replace(/^@/,"");
 
@@ -4066,9 +4548,11 @@ return id;
 
 }
 
+
 function renderSupport(){
 
 var phone=settings.supportPhone||"";
+
 var rubika=normalizeRubika(
 settings.supportRubika
 );
@@ -4097,14 +4581,19 @@ document.getElementById("app").innerHTML=`
 </div>
 
 <h1>
+
 پشتیبانی ${storeNameHTML(storeName)}
+
 </h1>
 
 <p>
+
 ${escapeHTML(supportText)}
+
 </p>
 
 </div>
+
 
 ${
 contactText
@@ -4112,14 +4601,20 @@ contactText
 
 <div class="contact-card">
 
-<div class="contact-icon">ℹ️</div>
+<div class="contact-icon">
+ℹ️
+</div>
 
 <div class="contact-info">
 
-<small>اطلاعات تماس</small>
+<small>
+اطلاعات تماس
+</small>
 
 <strong>
+
 ${escapeHTML(contactText)}
+
 </strong>
 
 </div>
@@ -4130,19 +4625,26 @@ ${escapeHTML(contactText)}
 :""
 }
 
+
 ${
 phone
 ?`
 
 <div class="contact-card">
 
-<div class="contact-icon">📞</div>
+<div class="contact-icon">
+📞
+</div>
 
 <div class="contact-info">
 
-<small>شماره تماس</small>
+<small>
+شماره تماس
+</small>
 
-<strong>${escapeHTML(phone)}</strong>
+<strong>
+${escapeHTML(phone)}
+</strong>
 
 </div>
 
@@ -4150,13 +4652,17 @@ phone
 
 <button
 onclick="copyText('${escapeHTML(phone)}')">
+
 کپی
+
 </button>
 
 <button
 class="contact-main"
 onclick="callPhone()">
+
 تماس
+
 </button>
 
 </div>
@@ -4167,20 +4673,27 @@ onclick="callPhone()">
 :""
 }
 
+
 ${
 rubika
 ?`
 
 <div class="contact-card">
 
-<div class="contact-icon">💬</div>
+<div class="contact-icon">
+💬
+</div>
 
 <div class="contact-info">
 
-<small>آیدی روبیکا</small>
+<small>
+آیدی روبیکا
+</small>
 
 <strong>
+
 @${escapeHTML(rubika)}
+
 </strong>
 
 </div>
@@ -4189,13 +4702,17 @@ rubika
 
 <button
 onclick="copyText('@${escapeHTML(rubika)}')">
+
 کپی
+
 </button>
 
 <button
 class="contact-main"
 onclick="openRubika()">
+
 پیام دادن
+
 </button>
 
 </div>
@@ -4205,6 +4722,7 @@ onclick="openRubika()">
 `
 :""
 }
+
 
 ${
 !phone&&!rubika&&!contactText
@@ -4222,6 +4740,7 @@ ${
 `;
 
 }
+
 
 function callPhone(){
 
@@ -4243,6 +4762,7 @@ window.location.href="tel:"+phone;
 
 }
 
+
 function openRubika(){
 
 var id=normalizeRubika(
@@ -4263,6 +4783,7 @@ window.location.href=
 "https://rubika.ir/"+id;
 
 }
+
 
 function copyText(text){
 
@@ -4291,6 +4812,7 @@ fallbackCopy(text);
 
 }
 
+
 function fallbackCopy(text){
 
 var area=document.createElement(
@@ -4311,6 +4833,7 @@ showToast("کپی شد ✓");
 
 }
 
+
 /* LAW MODAL */
 
 function showFirstVisitLaw(){
@@ -4325,19 +4848,26 @@ var modal=document.createElement(
 );
 
 modal.className="modal-backdrop";
+
 modal.id="lawWelcomeModal";
 
 modal.innerHTML=`
 
 <div class="law-modal">
 
-<div class="law-modal-icon">📜</div>
+<div class="law-modal-icon">
+📜
+</div>
 
-<h2>دوست عزیز</h2>
+<h2>
+دوست عزیز
+</h2>
 
 <p>
+
 قبل از خرید قوانین سایت را
 کامل مطالعه بفرمایید.
+
 </p>
 
 <div class="modal-actions">
@@ -4368,6 +4898,7 @@ document.body.appendChild(modal);
 
 }
 
+
 function acceptLawAndOpen(){
 
 localStorage.setItem(
@@ -4379,11 +4910,13 @@ var modal=document.getElementById(
 "lawWelcomeModal"
 );
 
-if(modal)modal.remove();
+if(modal)
+modal.remove();
 
 go("/laws");
 
 }
+
 
 function rejectLawModal(){
 
@@ -4396,9 +4929,11 @@ var modal=document.getElementById(
 "lawWelcomeModal"
 );
 
-if(modal)modal.remove();
+if(modal)
+modal.remove();
 
 }
+
 
 /* NAV */
 
@@ -4413,9 +4948,11 @@ document
 var r=a.dataset.route;
 
 a.classList.toggle(
+
 "active",
 
 r===route||
+
 (
 r==="/categories"&&
 route.startsWith("/category/")
@@ -4427,6 +4964,7 @@ route.startsWith("/category/")
 
 }
 
+
 /* HELPERS */
 
 function emptyResult(icon,text){
@@ -4435,7 +4973,9 @@ return`
 
 <div class="no-result">
 
-<div>${icon}</div>
+<div>
+${icon}
+</div>
 
 ${escapeHTML(text)}
 
@@ -4445,13 +4985,15 @@ ${escapeHTML(text)}
 
 }
 
+
 function showToast(message){
 
 var toast=document.getElementById(
 "toast"
 );
 
-if(!toast)return;
+if(!toast)
+return;
 
 toast.textContent=message;
 
@@ -4470,19 +5012,28 @@ toast.classList.remove("show");
 
 }
 
+
 function escapeHTML(text){
 
 return String(text??"")
 
 .replace(/&/g,"&amp;")
+
 .replace(/</g,"&lt;")
+
 .replace(/>/g,"&gt;")
+
 .replace(/"/g,"&quot;")
+
 .replace(/'/g,"&#039;");
 
 }
 
+
+/* INITIAL UI */
+
 updateCartCount();
+
 render(getRoute());
 
 </script>
