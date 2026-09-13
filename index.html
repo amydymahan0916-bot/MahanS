@@ -7,11 +7,7 @@
 <title>ماهان سنتر ایران</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 :root{
 --green:#19d66b;
@@ -27,9 +23,7 @@ box-sizing:border-box;
 --muted:#999;
 }
 
-html{
-scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
 font-family:Tahoma,Arial,sans-serif;
@@ -41,18 +35,9 @@ line-height:1.7;
 min-height:100vh;
 }
 
-button,input,select{
-font-family:inherit;
-}
-
-button{
-cursor:pointer;
-}
-
-a{
-color:inherit;
-text-decoration:none;
-}
+button,input,select{font-family:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
 
 .container{
 width:92%;
@@ -60,25 +45,13 @@ max-width:1250px;
 margin:auto;
 }
 
-/* =========================
-BRAND COLORS
-========================= */
+/* BRAND */
 
-.brand-mahan{
-color:var(--green)!important;
-}
+.brand-mahan{color:var(--green)!important}
+.brand-center{color:#fff!important}
+.brand-iran{color:var(--red)!important}
 
-.brand-center{
-color:#fff!important;
-}
-
-.brand-iran{
-color:var(--red)!important;
-}
-
-/* =========================
-HEADER
-========================= */
+/* HEADER */
 
 header{
 position:sticky;
@@ -188,13 +161,9 @@ align-items:center;
 justify-content:center;
 }
 
-/* =========================
-NAV
-========================= */
+/* NAV */
 
-.navbar{
-border-top:1px solid #171717;
-}
+.navbar{border-top:1px solid #171717}
 
 .nav{
 min-height:60px;
@@ -205,9 +174,7 @@ overflow-x:auto;
 padding:6px 0;
 }
 
-.nav::-webkit-scrollbar{
-display:none;
-}
+.nav::-webkit-scrollbar{display:none}
 
 .nav a{
 white-space:nowrap;
@@ -220,25 +187,11 @@ transition:.25s;
 background:linear-gradient(135deg,#151515,#0e0e0e);
 }
 
-.nav a:nth-child(1){
-border-radius:20px 8px 20px 8px;
-}
-
-.nav a:nth-child(2){
-border-radius:8px 20px 8px 20px;
-}
-
-.nav a:nth-child(3){
-border-radius:20px 8px 20px 8px;
-}
-
-.nav a:nth-child(4){
-border-radius:8px 20px 8px 20px;
-}
-
-.nav a:nth-child(5){
-border-radius:20px 8px 20px 8px;
-}
+.nav a:nth-child(1){border-radius:20px 8px 20px 8px}
+.nav a:nth-child(2){border-radius:8px 20px 8px 20px}
+.nav a:nth-child(3){border-radius:20px 8px 20px 8px}
+.nav a:nth-child(4){border-radius:8px 20px 8px 20px}
+.nav a:nth-child(5){border-radius:20px 8px 20px 8px}
 
 .nav a:hover,
 .nav a.active{
@@ -248,13 +201,9 @@ border-color:var(--green);
 transform:translateY(-2px);
 }
 
-/* =========================
-APP
-========================= */
+/* APP */
 
-#app{
-min-height:70vh;
-}
+#app{min-height:70vh}
 
 .page{
 padding:30px 0 50px;
@@ -262,19 +211,11 @@ animation:pageIn .22s ease;
 }
 
 @keyframes pageIn{
-from{
-opacity:0;
-transform:translateY(7px);
-}
-to{
-opacity:1;
-transform:none;
-}
+from{opacity:0;transform:translateY(7px)}
+to{opacity:1;transform:none}
 }
 
-/* =========================
-HOME
-========================= */
+/* HOME */
 
 .home-intro{
 display:flex;
@@ -291,11 +232,7 @@ padding:35px 35px 25px;
 border:1px solid #252525;
 border-radius:35px;
 background:
-radial-gradient(
-circle at 50% 0%,
-rgba(25,214,107,.12),
-transparent 45%
-),
+radial-gradient(circle at 50% 0%,rgba(25,214,107,.12),transparent 45%),
 linear-gradient(145deg,#151515,#090909);
 box-shadow:0 25px 80px rgba(0,0,0,.4);
 }
@@ -342,30 +279,18 @@ display:block;
 font-size:22px;
 }
 
-.stat:nth-child(1) strong{
-color:var(--green);
-}
-
-.stat:nth-child(2) strong{
-color:#fff;
-}
-
-.stat:nth-child(3) strong{
-color:var(--red);
-}
+.stat:nth-child(1) strong{color:var(--green)}
+.stat:nth-child(2) strong{color:#fff}
+.stat:nth-child(3) strong{color:var(--red)}
 
 .stat span{
 font-size:11px;
 color:#888;
 }
 
-/* =========================
-SECTION
-========================= */
+/* SECTION */
 
-.section{
-margin-top:32px;
-}
+.section{margin-top:32px}
 
 .section-head{
 display:flex;
@@ -374,18 +299,10 @@ justify-content:space-between;
 margin-bottom:18px;
 }
 
-.section-head h2{
-font-size:22px;
-}
+.section-head h2{font-size:22px}
+.section-head span{color:#888;font-size:12px}
 
-.section-head span{
-color:#888;
-font-size:12px;
-}
-
-/* =========================
-CATEGORIES
-========================= */
+/* CATEGORIES */
 
 .categories{
 display:grid;
@@ -432,12 +349,7 @@ opacity:.68;
 .category-overlay{
 position:absolute;
 inset:0;
-background:
-linear-gradient(
-to top,
-rgba(0,0,0,.94),
-rgba(0,0,0,.15)
-);
+background:linear-gradient(to top,rgba(0,0,0,.94),rgba(0,0,0,.15));
 }
 
 .category-content{
@@ -462,9 +374,7 @@ font-size:10px;
 margin-top:3px;
 }
 
-/* =========================
-SUBCATEGORIES
-========================= */
+/* SUBCATEGORIES */
 
 .subcategories{
 display:flex;
@@ -474,9 +384,7 @@ padding-bottom:5px;
 margin-bottom:18px;
 }
 
-.subcategories::-webkit-scrollbar{
-display:none;
-}
+.subcategories::-webkit-scrollbar{display:none}
 
 .subcategory-btn{
 border:1px solid #333;
@@ -495,9 +403,7 @@ border-color:var(--green);
 color:#06120a;
 }
 
-/* =========================
-PRODUCTS
-========================= */
+/* PRODUCTS */
 
 .products{
 display:grid;
@@ -552,13 +458,8 @@ align-items:center;
 justify-content:center;
 }
 
-.image-arrow.right{
-right:8px;
-}
-
-.image-arrow.left{
-left:8px;
-}
+.image-arrow.right{right:8px}
+.image-arrow.left{left:8px}
 
 .image-number{
 position:absolute;
@@ -573,9 +474,7 @@ font-size:9px;
 color:#ddd;
 }
 
-.product-info{
-padding:15px;
-}
+.product-info{padding:15px}
 
 .product-title{
 font-size:15px;
@@ -616,17 +515,9 @@ font-size:11px;
 font-weight:bold;
 }
 
-.stock.green{
-color:#19d66b;
-}
-
-.stock.yellow{
-color:#ffc400;
-}
-
-.stock.red{
-color:#ff3843;
-}
+.stock.green{color:#19d66b}
+.stock.yellow{color:#ffc400}
+.stock.red{color:#ff3843}
 
 .product-actions{
 display:flex;
@@ -665,13 +556,9 @@ font-size:19px;
 z-index:8;
 }
 
-.favorite.active{
-color:#ff3440;
-}
+.favorite.active{color:#ff3440}
 
-/* =========================
-SORT DROPDOWN
-========================= */
+/* SORT */
 
 .sort-area{
 position:relative;
@@ -680,9 +567,7 @@ justify-content:flex-start;
 margin-bottom:18px;
 }
 
-.sort-box{
-position:relative;
-}
+.sort-box{position:relative}
 
 .sort-toggle{
 min-width:190px;
@@ -697,9 +582,7 @@ border-radius:14px;
 padding:10px 15px;
 }
 
-.sort-toggle:hover{
-border-color:var(--green);
-}
+.sort-toggle:hover{border-color:var(--green)}
 
 .sort-menu{
 position:absolute;
@@ -721,14 +604,8 @@ animation:sortIn .18s ease;
 }
 
 @keyframes sortIn{
-from{
-opacity:0;
-transform:translateY(-5px);
-}
-to{
-opacity:1;
-transform:none;
-}
+from{opacity:0;transform:translateY(-5px)}
+to{opacity:1;transform:none}
 }
 
 .sort-option{
@@ -748,9 +625,7 @@ background:var(--green);
 color:#06120a;
 }
 
-/* =========================
-PRODUCT DETAIL
-========================= */
+/* PRODUCT DETAIL */
 
 .product-detail{
 display:grid;
@@ -801,13 +676,8 @@ z-index:5;
 font-size:20px;
 }
 
-.detail-arrow.right{
-right:12px;
-}
-
-.detail-arrow.left{
-left:12px;
-}
+.detail-arrow.right{right:12px}
+.detail-arrow.left{left:12px}
 
 .detail-dots{
 position:absolute;
@@ -825,13 +695,9 @@ border-radius:50%;
 background:#555;
 }
 
-.detail-dot.active{
-background:var(--green);
-}
+.detail-dot.active{background:var(--green)}
 
-.detail-info{
-padding:20px 5px;
-}
+.detail-info{padding:20px 5px}
 
 .detail-info h1{
 font-size:32px;
@@ -908,9 +774,7 @@ min-width:25px;
 text-align:center;
 }
 
-/* =========================
-BUTTONS
-========================= */
+/* BUTTONS */
 
 .primary-btn{
 display:inline-flex;
@@ -941,9 +805,7 @@ padding:11px 20px;
 border-radius:12px;
 }
 
-/* =========================
-OFFER
-========================= */
+/* OFFER */
 
 .offer{
 margin-top:35px;
@@ -957,18 +819,10 @@ justify-content:space-between;
 gap:20px;
 }
 
-.offer h2{
-margin-bottom:5px;
-}
+.offer h2{margin-bottom:5px}
+.offer p{color:#999;font-size:13px}
 
-.offer p{
-color:#999;
-font-size:13px;
-}
-
-/* =========================
-PAGE TITLE
-========================= */
+/* PAGE TITLE */
 
 .page-title{
 display:flex;
@@ -977,18 +831,10 @@ justify-content:space-between;
 margin-bottom:25px;
 }
 
-.page-title h1{
-font-size:29px;
-}
+.page-title h1{font-size:29px}
+.page-title p{color:#888;font-size:12px}
 
-.page-title p{
-color:#888;
-font-size:12px;
-}
-
-/* =========================
-CART
-========================= */
+/* CART */
 
 .cart-page{
 max-width:900px;
@@ -1025,18 +871,10 @@ object-fit:contain;
 padding:8px;
 }
 
-.cart-item-info{
-flex:1;
-}
+.cart-item-info{flex:1}
 
-.cart-item-info h3{
-font-size:14px;
-}
-
-.cart-item-info p{
-color:#888;
-font-size:11px;
-}
+.cart-item-info h3{font-size:14px}
+.cart-item-info p{color:#888;font-size:11px}
 
 .qty{
 display:flex;
@@ -1081,9 +919,7 @@ font-size:19px;
 font-weight:bold;
 }
 
-/* =========================
-SUPPORT
-========================= */
+/* SUPPORT */
 
 .support-page{
 max-width:850px;
@@ -1134,8 +970,7 @@ align-items:center;
 gap:15px;
 padding:20px;
 margin-bottom:13px;
-background:
-linear-gradient(135deg,#151515,#0d0d0d);
+background:linear-gradient(135deg,#151515,#0d0d0d);
 border:1px solid #292929;
 border-radius:21px;
 transition:.25s;
@@ -1159,19 +994,14 @@ font-size:25px;
 border:1px solid #2b2b2b;
 }
 
-.contact-info{
-flex:1;
-}
-
+.contact-info{flex:1}
 .contact-info small{
 color:#777;
 display:block;
 font-size:10px;
 }
 
-.contact-info strong{
-font-size:15px;
-}
+.contact-info strong{font-size:15px}
 
 .contact-actions{
 display:flex;
@@ -1193,9 +1023,7 @@ color:#06120a;
 font-weight:bold;
 }
 
-/* =========================
-LAWS
-========================= */
+/* LAWS */
 
 .laws-box{
 min-height:450px;
@@ -1222,9 +1050,7 @@ color:#555;
 font-size:13px;
 }
 
-/* =========================
-WELCOME LAW MODAL
-========================= */
+/* MODAL */
 
 .modal-backdrop{
 position:fixed;
@@ -1251,14 +1077,8 @@ text-align:center;
 }
 
 @keyframes modalIn{
-from{
-opacity:0;
-transform:scale(.92);
-}
-to{
-opacity:1;
-transform:scale(1);
-}
+from{opacity:0;transform:scale(.92)}
+to{opacity:1;transform:scale(1)}
 }
 
 .law-modal-icon{
@@ -1274,9 +1094,7 @@ margin:0 auto 15px;
 font-size:30px;
 }
 
-.law-modal h2{
-margin-bottom:8px;
-}
+.law-modal h2{margin-bottom:8px}
 
 .law-modal p{
 color:#999;
@@ -1307,9 +1125,7 @@ border-radius:13px;
 padding:12px;
 }
 
-/* =========================
-FLOATING SUPPORT
-========================= */
+/* FLOATING SUPPORT */
 
 .floating-support{
 position:fixed;
@@ -1333,9 +1149,7 @@ transition:.25s;
 transform:scale(1.08) rotate(-3deg);
 }
 
-/* =========================
-NO RESULT / LOADING
-========================= */
+/* LOADING */
 
 .no-result{
 text-align:center;
@@ -1359,9 +1173,7 @@ font-size:50px;
 margin-bottom:10px;
 }
 
-/* =========================
-TOAST
-========================= */
+/* TOAST */
 
 .toast{
 position:fixed;
@@ -1385,9 +1197,7 @@ transform:translateY(0);
 opacity:1;
 }
 
-/* =========================
-FOOTER
-========================= */
+/* FOOTER */
 
 footer{
 margin-top:50px;
@@ -1402,9 +1212,7 @@ color:#666;
 font-size:11px;
 }
 
-/* =========================
-MOBILE
-========================= */
+/* MOBILE */
 
 @media(max-width:950px){
 
@@ -1435,22 +1243,16 @@ grid-template-columns:1fr;
 
 @media(max-width:600px){
 
-.container{
-width:94%;
-}
+.container{width:94%}
 
 .logo img{
 width:58px;
 height:58px;
 }
 
-.logo-name{
-font-size:18px;
-}
+.logo-name{font-size:18px}
 
-.header-actions{
-margin-right:auto;
-}
+.header-actions{margin-right:auto}
 
 .header-btn{
 min-width:43px;
@@ -1477,17 +1279,10 @@ gap:6px;
 margin-top:12px;
 }
 
-.stat{
-padding:10px 4px;
-}
+.stat{padding:10px 4px}
 
-.stat strong{
-font-size:16px;
-}
-
-.stat span{
-font-size:8px;
-}
+.stat strong{font-size:16px}
+.stat span{font-size:8px}
 
 .categories{
 grid-template-columns:repeat(3,1fr);
@@ -1500,41 +1295,20 @@ border-radius:17px;
 padding:10px;
 }
 
-.category-icon{
-font-size:28px;
-}
+.category-icon{font-size:28px}
+.category-name{font-size:11px}
 
-.category-name{
-font-size:11px;
-}
+.products{gap:9px}
 
-.products{
-gap:9px;
-}
+.product-image{height:155px}
 
-.product-image{
-height:155px;
-}
+.product-info{padding:10px}
 
-.product-info{
-padding:10px;
-}
+.product-title{font-size:13px}
+.product-desc{font-size:9px}
+.product-price{font-size:13px}
 
-.product-title{
-font-size:13px;
-}
-
-.product-desc{
-font-size:9px;
-}
-
-.product-price{
-font-size:13px;
-}
-
-.product-actions{
-flex-direction:column;
-}
+.product-actions{flex-direction:column}
 
 .offer{
 flex-direction:column;
@@ -1546,33 +1320,23 @@ align-items:flex-start;
 min-height:280px;
 }
 
-.detail-info h1{
-font-size:24px;
-}
+.detail-info h1{font-size:24px}
 
-.cart-item{
-flex-wrap:wrap;
-}
+.cart-item{flex-wrap:wrap}
 
 .cart-item-info{
 min-width:calc(100% - 95px);
 }
 
-.contact-card{
-flex-wrap:wrap;
-}
+.contact-card{flex-wrap:wrap}
 
 .contact-info{
 min-width:calc(100% - 70px);
 }
 
-.contact-actions{
-width:100%;
-}
+.contact-actions{width:100%}
 
-.contact-actions button{
-flex:1;
-}
+.contact-actions button{flex:1}
 
 .floating-support{
 width:56px;
@@ -1581,17 +1345,11 @@ right:14px;
 bottom:14px;
 }
 
-.sort-toggle{
-width:100%;
-}
+.sort-toggle{width:100%}
 
-.sort-box{
-width:100%;
-}
+.sort-box{width:100%}
 
-.sort-menu{
-width:100%;
-}
+.sort-menu{width:100%}
 
 }
 </style>
@@ -1605,10 +1363,7 @@ width:100%;
 
 <a href="#/" class="logo" onclick="go('/')">
 
-<img
-src="logo.jpg"
-alt="ماهان سنتر ایران"
->
+<img src="logo.jpg" alt="ماهان سنتر ایران">
 
 <div class="logo-name" id="headerStoreName">
 <span class="brand-mahan">ماهان</span>
@@ -1627,9 +1382,7 @@ placeholder="جستجوی محصول؛ مثلاً A17..."
 onkeydown="if(event.key==='Enter')globalSearch()"
 >
 
-<button onclick="globalSearch()">
-⌕
-</button>
+<button onclick="globalSearch()">⌕</button>
 
 </div>
 
@@ -1660,9 +1413,7 @@ title="سبد خرید"
 
 <div class="container nav">
 
-<a href="#/" data-route="/" onclick="go('/')">
-خانه
-</a>
+<a href="#/" data-route="/" onclick="go('/')">خانه</a>
 
 <a href="#/categories" data-route="/categories" onclick="go('/categories')">
 دسته‌بندی‌ها
@@ -1721,6 +1472,11 @@ title="پشتیبانی"
 
 </footer>
 
+
+<!-- =========================================================
+     FIREBASE
+========================================================= -->
+
 <script type="module">
 
 import {initializeApp}
@@ -1736,6 +1492,7 @@ doc
 }
 from
 "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+
 
 const firebaseConfig={
 
@@ -1759,13 +1516,12 @@ appId:
 
 };
 
+
 const app=initializeApp(firebaseConfig);
 const db=getFirestore(app);
 
 
-/* =========================
-DEFAULT CATEGORIES
-========================= */
+/* DEFAULT CATEGORIES */
 
 const DEFAULT_CATEGORIES=[
 
@@ -1854,9 +1610,7 @@ subcategories:[
 ];
 
 
-/* =========================
-DEFAULT SETTINGS
-========================= */
+/* DEFAULT SETTINGS */
 
 const DEFAULT_SETTINGS={
 
@@ -1893,9 +1647,7 @@ views:0
 };
 
 
-/* =========================
-GLOBAL DATA
-========================= */
+/* GLOBAL FIREBASE DATA */
 
 window.settings={
 ...DEFAULT_SETTINGS,
@@ -1905,62 +1657,7 @@ categories:DEFAULT_CATEGORIES.map(x=>({...x}))
 window.products=[];
 
 
-/* =========================
-LOAD SETTINGS
-========================= */
-
-async function loadSettings(){
-
-try{
-
-const snap=await getDoc(
-doc(db,"settings","site")
-);
-
-if(snap.exists()){
-
-const data=snap.data() || {};
-
-window.settings={
-...DEFAULT_SETTINGS,
-...data,
-categories:
-Array.isArray(data.categories) &&
-data.categories.length
-?
-data.categories
-:
-DEFAULT_CATEGORIES
-};
-
-}else{
-
-window.settings={
-...DEFAULT_SETTINGS,
-categories:DEFAULT_CATEGORIES
-};
-
-}
-
-}catch(error){
-
-console.error("Settings error:",error);
-
-window.settings={
-...DEFAULT_SETTINGS,
-categories:DEFAULT_CATEGORIES
-};
-
-}
-
-applySiteSettings();
-
-}
-
-
-/* =========================
-BRAND HTML
-========================= */
+/* STORE NAME */
 
 window.formatStoreName=function(name){
 
@@ -1968,11 +1665,7 @@ const value=String(
 name || "ماهان سنتر ایران"
 );
 
-const safe=escapeHTML(value);
-
-if(
-value.trim()==="ماهان سنتر ایران"
-){
+if(value.trim()==="ماهان سنتر ایران"){
 
 return `
 <span class="brand-mahan">ماهان</span>
@@ -1982,14 +1675,16 @@ return `
 
 }
 
-return safe;
+return window.escapeHTML
+?
+window.escapeHTML(value)
+:
+value;
 
 };
 
 
-/* =========================
-APPLY SETTINGS
-========================= */
+/* APPLY SETTINGS */
 
 function applySiteSettings(){
 
@@ -2007,7 +1702,7 @@ document.getElementById("headerStoreName");
 if(headerName){
 
 headerName.innerHTML=
-formatStoreName(storeName);
+window.formatStoreName(storeName);
 
 }
 
@@ -2017,16 +1712,14 @@ document.getElementById("footerStoreName");
 if(footer){
 
 footer.innerHTML=
-formatStoreName(storeName);
+window.formatStoreName(storeName);
 
 }
 
 }
 
 
-/* =========================
-IMAGE PATH
-========================= */
+/* IMAGE PATH */
 
 function resolveImage(path){
 
@@ -2046,9 +1739,47 @@ return path.replace(/^\/+/,"");
 }
 
 
-/* =========================
-NORMALIZE PRODUCT
-========================= */
+/* FIREBASE DATE */
+
+function getCreatedTime(value){
+
+if(!value)
+return 0;
+
+if(typeof value==="number")
+return value;
+
+if(
+value &&
+typeof value.toMillis==="function"
+){
+
+return value.toMillis();
+
+}
+
+if(
+value &&
+value.seconds
+){
+
+return Number(value.seconds)*1000;
+
+}
+
+const time=
+new Date(value).getTime();
+
+return Number.isFinite(time)
+?
+time
+:
+0;
+
+}
+
+
+/* NORMALIZE PRODUCT */
 
 function normalizeProduct(docSnap){
 
@@ -2180,9 +1911,63 @@ createdAt:data.createdAt || null
 }
 
 
-/* =========================
-LOAD PRODUCTS
-========================= */
+/* LOAD SETTINGS */
+
+async function loadSettings(){
+
+try{
+
+const snap=
+await getDoc(
+doc(db,"settings","site")
+);
+
+if(snap.exists()){
+
+const data=snap.data() || {};
+
+window.settings={
+
+...DEFAULT_SETTINGS,
+
+...data,
+
+categories:
+Array.isArray(data.categories) &&
+data.categories.length
+?
+data.categories
+:
+DEFAULT_CATEGORIES
+
+};
+
+}else{
+
+window.settings={
+...DEFAULT_SETTINGS,
+categories:DEFAULT_CATEGORIES
+};
+
+}
+
+}catch(error){
+
+console.error("Settings error:",error);
+
+window.settings={
+...DEFAULT_SETTINGS,
+categories:DEFAULT_CATEGORIES
+};
+
+}
+
+applySiteSettings();
+
+}
+
+
+/* LOAD PRODUCTS */
 
 async function loadProducts(){
 
@@ -2194,9 +1979,7 @@ collection(db,"products")
 );
 
 const list=
-snap.docs.map(
-normalizeProduct
-);
+snap.docs.map(normalizeProduct);
 
 list.sort(
 (a,b)=>{
@@ -2219,8 +2002,8 @@ return bn-an;
 
 }
 
-return String(b.name)
-.localeCompare(String(a.name));
+return String(a.name)
+.localeCompare(String(b.name));
 
 }
 );
@@ -2249,52 +2032,38 @@ new CustomEvent(
 }
 
 
-/* =========================
-FIREBASE DATE
-========================= */
+/* INITIAL LOAD */
 
-function getCreatedTime(value){
-
-if(!value)
-return 0;
-
-if(typeof value==="number")
-return value;
-
-if(value.seconds)
-return Number(value.seconds)*1000;
-
-if(
-typeof value.toMillis==="function"
-){
-
-return value.toMillis();
-
-}
-
-const time=
-new Date(value).getTime();
-
-return Number.isFinite(time)
-?
-time
-:
-0;
-
-}
-
-
-/* =========================
-INITIAL LOAD
-========================= */
+try{
 
 await loadSettings();
 await loadProducts();
 
+}catch(error){
 
-/* =========================
-AUTO SYNC
-========================= */
+console.error(
+"Firebase initialization/load error:",
+error
+);
+
+window.settings={
+...DEFAULT_SETTINGS,
+categories:DEFAULT_CATEGORIES
+};
+
+window.products=[];
+
+window.dispatchEvent(
+new CustomEvent(
+"firebaseProductsError",
+{detail:error}
+)
+);
+
+}
+
+
+/* AUTO SYNC */
 
 setInterval(
 async function(){
@@ -2305,11 +2074,13 @@ await loadSettings();
 await loadProducts();
 
 if(
-typeof getRoute==="function" &&
-typeof render==="function"
+typeof window.getRoute==="function" &&
+typeof window.render==="function"
 ){
 
-render(getRoute());
+window.render(
+window.getRoute()
+);
 
 }
 
@@ -2329,14 +2100,122 @@ error
 </script>
 
 
+<!-- =========================================================
+     MAIN APPLICATION
+========================================================= -->
+
 <script>
 
-/* =========================
-GLOBAL DATA
-========================= */
+/* =========================================================
+   IMPORTANT:
+   این DEFAULT_CATEGORIES داخل اسکریپت دوم تعریف شده
+   تا مشکل Scope برطرف شود.
+========================================================= */
+
+const DEFAULT_CATEGORIES=[
+
+{
+id:"mobile",
+name:"موبایل",
+icon:"📱",
+image:"",
+subcategories:[
+"آیفون",
+"سامسونگ",
+"شیائومی",
+"نوکیا",
+"سایر"
+]
+},
+
+{
+id:"gold",
+name:"طلا",
+icon:"💍",
+image:"",
+subcategories:[
+"گردنبند",
+"پابند",
+"النگو",
+"انگشتر",
+"ست"
+]
+},
+
+{
+id:"clothes",
+name:"پوشاک",
+icon:"👕",
+image:"",
+subcategories:[
+"تی‌شرت",
+"شلوار",
+"هودی",
+"مانتو",
+"لباس مجلسی"
+]
+},
+
+{
+id:"shoes",
+name:"کفش",
+icon:"👟",
+image:"",
+subcategories:[
+"اسپرت",
+"مجلسی",
+"مردانه",
+"زنانه"
+]
+},
+
+{
+id:"accessories",
+name:"لوازم جانبی",
+icon:"🎧",
+image:"",
+subcategories:[
+"هدفون",
+"هندزفری",
+"قاب موبایل",
+"شارژر",
+"کابل"
+]
+},
+
+{
+id:"watches",
+name:"ساعت",
+icon:"⌚",
+image:"",
+subcategories:[
+"هوشمند",
+"کلاسیک",
+"مردانه",
+"زنانه"
+]
+}
+
+];
+
+
+/* GLOBAL DATA */
 
 var products=[];
 var settings=window.settings || {};
+
+window.escapeHTML=function(text){
+
+return String(text ?? "")
+
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+};
+
 
 const defaultCategoryImages={
 
@@ -2370,9 +2249,7 @@ default:
 };
 
 
-/* =========================
-CATEGORY MERGE
-========================= */
+/* CATEGORY MERGE */
 
 function mergeCategories(raw){
 
@@ -2420,6 +2297,7 @@ Array.isArray(c.subcategories)
 c.subcategories
 :
 map[id].subcategories
+
 };
 
 }else{
@@ -2447,9 +2325,7 @@ return map;
 }
 
 
-/* =========================
-CATEGORY IMAGE INFERENCE
-========================= */
+/* CATEGORY IMAGE */
 
 function inferCategoryImage(category){
 
@@ -2462,83 +2338,57 @@ String(category.name || "")
 if(
 /mobile|موبایل|گوشی|آیفون|iphone|سامسونگ|samsung|شیائومی|xiaomi|نوکیا|nokia/
 .test(text)
-){
-
+)
 return defaultCategoryImages.mobile;
-
-}
 
 if(
 /gold|طلا|جواهر|گردنبند|النگو|انگشتر|پابند|ست/
 .test(text)
-){
-
+)
 return defaultCategoryImages.gold;
-
-}
 
 if(
 /clothes|پوشاک|لباس|پیراهن|مانتو|هودی|شلوار|تی.?شرت/
 .test(text)
-){
-
+)
 return defaultCategoryImages.clothes;
-
-}
 
 if(
 /shoes|کفش|کتانی|اسپرت/
 .test(text)
-){
-
+)
 return defaultCategoryImages.shoes;
-
-}
 
 if(
 /accessories|لوازم.?جانبی|هدفون|هندزفری|قاب|شارژر|کابل|اکسسوری/
 .test(text)
-){
-
+)
 return defaultCategoryImages.accessories;
-
-}
 
 if(
 /watch|watches|ساعت/
 .test(text)
-){
-
+)
 return defaultCategoryImages.watches;
-
-}
 
 if(
 /car|ماشین|خودرو|اتومبیل|موتور/
 .test(text)
-){
-
+)
 return defaultCategoryImages.car;
-
-}
 
 if(
 /animal|animals|حیوان|حیوانات|سگ|گربه/
 .test(text)
-){
-
+)
 return defaultCategoryImages.animal;
-
-}
 
 return defaultCategoryImages.default;
 
 }
 
 
-/* =========================
-DYNAMIC CATEGORIES
-========================= */
+/* DYNAMIC CATEGORIES */
 
 function getCategories(){
 
@@ -2556,19 +2406,27 @@ DEFAULT_CATEGORIES
 var categories=getCategories();
 
 
-/* =========================
-CART / FAVORITES
-========================= */
+/* CART / FAVORITES */
 
-var cart=
-JSON.parse(
+var cart=[];
+
+try{
+cart=JSON.parse(
 localStorage.getItem("mahanCart") || "[]"
 );
+}catch(e){
+cart=[];
+}
 
-var favorites=
-JSON.parse(
+var favorites=[];
+
+try{
+favorites=JSON.parse(
 localStorage.getItem("mahanFavorites") || "[]"
 );
+}catch(e){
+favorites=[];
+}
 
 var tempQty=1;
 
@@ -2579,23 +2437,25 @@ var currentSort="newest";
 var currentSubcategory="all";
 
 
-/* =========================
-FIREBASE LOADED
-========================= */
+/* FIREBASE LOADED */
 
 window.addEventListener(
 "firebaseProductsLoaded",
 function(){
 
-products=window.products || [];
+products=
+Array.isArray(window.products)
+?
+window.products
+:
+[];
 
-settings=window.settings || {};
+settings=
+window.settings || {};
 
 categories=getCategories();
 
 updateCartCount();
-
-applySiteSettings();
 
 render(getRoute());
 
@@ -2608,13 +2468,20 @@ showFirstVisitLaw,
 );
 
 
-/* =========================
-FIREBASE ERROR
-========================= */
+/* FIREBASE ERROR */
 
 window.addEventListener(
 "firebaseProductsError",
 function(e){
+
+const errorMessage=
+e &&
+e.detail &&
+e.detail.message
+?
+e.detail.message
+:
+"ارتباط با Firebase برقرار نشد.";
 
 document.getElementById("app").innerHTML=`
 
@@ -2626,16 +2493,33 @@ document.getElementById("app").innerHTML=`
 
 <div>⚠️</div>
 
-خطا در دریافت محصولات از Firebase.
+<h2 style="margin-bottom:10px">
+خطا در دریافت اطلاعات فروشگاه
+</h2>
 
-<br>
+<p style="color:#888;line-height:2">
+اتصال به Firebase با مشکل مواجه شد.
+</p>
 
-<small>
-${escapeHTML(
-e.detail?.message ||
-"خطای نامشخص"
-)}
+<small
+style="
+display:block;
+margin-top:12px;
+color:#666;
+direction:ltr;
+word-break:break-word;
+"
+>
+${escapeHTML(errorMessage)}
 </small>
+
+<button
+class="primary-btn"
+style="margin-top:20px"
+onclick="location.reload()"
+>
+تلاش مجدد
+</button>
 
 </div>
 
@@ -2651,9 +2535,7 @@ products=[];
 );
 
 
-/* =========================
-STORAGE
-========================= */
+/* STORAGE */
 
 function saveData(){
 
@@ -2672,9 +2554,7 @@ updateCartCount();
 }
 
 
-/* =========================
-ROUTER
-========================= */
+/* ROUTER */
 
 function go(path){
 
@@ -2706,6 +2586,7 @@ behavior:"smooth"
 
 }
 
+
 window.addEventListener(
 "popstate",
 function(){
@@ -2714,6 +2595,7 @@ render(getRoute());
 
 }
 );
+
 
 window.addEventListener(
 "hashchange",
@@ -2727,7 +2609,8 @@ render(getRoute());
 
 function getRoute(){
 
-var hash=location.hash.substring(1);
+var hash=
+location.hash.substring(1);
 
 if(!hash)
 return "/";
@@ -2736,16 +2619,18 @@ return hash;
 
 }
 
+window.getRoute=getRoute;
 
-/* =========================
-RENDER
-========================= */
+
+/* RENDER */
 
 function render(route){
 
-settings=window.settings || {};
+settings=
+window.settings || {};
 
-categories=getCategories();
+categories=
+getCategories();
 
 if(route==="/"){
 renderHome();
@@ -2824,10 +2709,10 @@ updateActiveNav();
 
 }
 
+window.render=render;
 
-/* =========================
-HOME
-========================= */
+
+/* HOME */
 
 function renderHome(){
 
@@ -2861,7 +2746,7 @@ alt="${escapeHTML(storeName)}"
 <h1>
 خوش آمدید به
 <br>
-${formatStoreName(storeName)}
+${window.formatStoreName(storeName)}
 </h1>
 
 <p class="home-description">
@@ -2889,9 +2774,7 @@ settings.users ??
 )}
 </strong>
 
-<span>
-کاربران فعال
-</span>
+<span>کاربران فعال</span>
 
 </div>
 
@@ -2906,9 +2789,7 @@ settings.successfulOrders ??
 )}
 </strong>
 
-<span>
-سفارش موفق
-</span>
+<span>سفارش موفق</span>
 
 </div>
 
@@ -2923,9 +2804,7 @@ settings.satisfaction ??
 )}%
 </strong>
 
-<span>
-رضایت
-</span>
+<span>رضایت</span>
 
 </div>
 
@@ -2948,13 +2827,9 @@ Object.keys(categories).length
 
 <div class="section-head">
 
-<h2>
-دسته‌بندی‌های فروشگاه
-</h2>
+<h2>دسته‌بندی‌های فروشگاه</h2>
 
-<span>
-انتخاب سریع
-</span>
+<span>انتخاب سریع</span>
 
 </div>
 
@@ -2984,13 +2859,9 @@ newest.length
 
 <div class="section-head">
 
-<h2>
-جدیدترین محصولات
-</h2>
+<h2>جدیدترین محصولات</h2>
 
-<span>
-${newest.length} محصول
-</span>
+<span>${newest.length} محصول</span>
 
 </div>
 
@@ -3005,6 +2876,7 @@ ${newest.map(productCard).join("")}
 `
 :
 `
+
 <section class="section">
 
 <div class="no-result">
@@ -3016,6 +2888,7 @@ ${newest.map(productCard).join("")}
 </div>
 
 </section>
+
 `
 }
 
@@ -3024,9 +2897,7 @@ ${newest.map(productCard).join("")}
 
 <div>
 
-<h2>
-✨ خریدی ساده و حرفه‌ای
-</h2>
+<h2>✨ خریدی ساده و حرفه‌ای</h2>
 
 <p>
 محصول موردنظر خود را انتخاب کنید و جزئیات آن را مشاهده نمایید.
@@ -3052,9 +2923,7 @@ onclick="go('/categories')"
 }
 
 
-/* =========================
-CATEGORY CARD
-========================= */
+/* CATEGORY CARD */
 
 function categoryCard(key){
 
@@ -3122,13 +2991,12 @@ escapeHTML(subs.join(" • "))
 }
 
 
-/* =========================
-CATEGORIES PAGE
-========================= */
+/* CATEGORIES */
 
 function renderCategories(){
 
-const keys=Object.keys(categories);
+const keys=
+Object.keys(categories);
 
 document.getElementById("app").innerHTML=`
 
@@ -3140,13 +3008,9 @@ document.getElementById("app").innerHTML=`
 
 <div>
 
-<h1>
-دسته‌بندی‌ها
-</h1>
+<h1>دسته‌بندی‌ها</h1>
 
-<p>
-انتخاب دسته‌بندی محصولات
-</p>
+<p>انتخاب دسته‌بندی محصولات</p>
 
 </div>
 
@@ -3176,9 +3040,36 @@ emptyResult(
 }
 
 
-/* =========================
-SORT
-========================= */
+/* SORT */
+
+function getCreatedTime(value){
+
+if(!value)
+return 0;
+
+if(typeof value==="number")
+return value;
+
+if(
+value &&
+typeof value.toMillis==="function"
+)
+return value.toMillis();
+
+if(value && value.seconds)
+return Number(value.seconds)*1000;
+
+const time=
+new Date(value).getTime();
+
+return Number.isFinite(time)
+?
+time
+:
+0;
+
+}
+
 
 function sortProducts(list){
 
@@ -3259,9 +3150,11 @@ return arr;
 
 function getFinalPrice(p){
 
-const price=Number(p.price || 0);
+const price=
+Number(p.price || 0);
 
-const discount=Number(p.discount || 0);
+const discount=
+Number(p.discount || 0);
 
 return discount>0
 ?
@@ -3274,21 +3167,20 @@ price;
 }
 
 
-/* =========================
-SORT DROPDOWN
-========================= */
-
 function getSortName(){
 
 const names={
+
 newest:"جدیدترین",
 oldest:"قدیمی‌ترین",
 cheap:"ارزان‌ترین",
 expensive:"گران‌ترین",
 discount:"بیشترین تخفیف"
+
 };
 
-return names[currentSort] || "مرتب‌سازی";
+return names[currentSort] ||
+"مرتب‌سازی";
 
 }
 
@@ -3323,9 +3215,7 @@ ${getSortName()}
 </strong>
 </span>
 
-<span>
-⌄
-</span>
+<span>⌄</span>
 
 </button>
 
@@ -3347,9 +3237,7 @@ currentSort===key
 }"
 onclick="changeSort('${key}')"
 >
-
 ${name}
-
 </button>
 
 `
@@ -3414,9 +3302,7 @@ render(getRoute());
 }
 
 
-/* =========================
-SUBCATEGORY HELPERS
-========================= */
+/* SUBCATEGORY */
 
 function getProductSubcategory(p){
 
@@ -3433,7 +3319,10 @@ p.goldCat ||
 }
 
 
-function getCategorySubcategories(cat,categoryProducts){
+function getCategorySubcategories(
+cat,
+categoryProducts
+){
 
 const configured=
 Array.isArray(cat?.subcategories)
@@ -3457,7 +3346,10 @@ return [
 }
 
 
-function renderSubcategories(cat,categoryProducts){
+function renderSubcategories(
+cat,
+categoryProducts
+){
 
 const list=
 getCategorySubcategories(
@@ -3498,9 +3390,7 @@ currentSubcategory===sub
 }"
 onclick="changeSubcategory(${JSON.stringify(sub).replace(/</g,"\\u003c")})"
 >
-
 ${escapeHTML(sub)}
-
 </button>
 
 `
@@ -3545,25 +3435,18 @@ encodeURIComponent(sub)
 }
 
 
-/* =========================
-CATEGORY PAGE
-========================= */
+/* CATEGORY PAGE */
 
 function renderCategory(cat,sub){
 
-const category=categories[cat];
+const category=
+categories[cat];
 
 let categoryProducts=
 products.filter(
 p=>
 String(p.category || p.cat)===
 String(cat)
-);
-
-const allSubcategories=
-getCategorySubcategories(
-category,
-categoryProducts
 );
 
 if(
@@ -3574,7 +3457,8 @@ sub!=="all"
 categoryProducts=
 categoryProducts.filter(
 p=>
-getProductSubcategory(p)===String(sub)
+getProductSubcategory(p)===
+String(sub)
 );
 
 }
@@ -3591,6 +3475,13 @@ category
 category.name
 :
 "محصولات";
+
+const allProducts=
+products.filter(
+p=>
+String(p.category || p.cat)===
+String(cat)
+);
 
 document.getElementById("app").innerHTML=`
 
@@ -3620,9 +3511,10 @@ categoryProducts.length+" محصول"
 
 </div>
 
-${renderSubcategories(category,products.filter(
-p=>String(p.category || p.cat)===String(cat)
-))}
+${renderSubcategories(
+category,
+allProducts
+)}
 
 ${sortFilters()}
 
@@ -3661,9 +3553,7 @@ emptyResult(
 }
 
 
-/* =========================
-PHONES
-========================= */
+/* PHONES */
 
 function renderPhones(){
 
@@ -3703,13 +3593,9 @@ document.getElementById("app").innerHTML=`
 
 <div>
 
-<h1>
-گوشی موبایل
-</h1>
+<h1>گوشی موبایل</h1>
 
-<p>
-${filtered.length} محصول
-</p>
+<p>${filtered.length} محصول</p>
 
 </div>
 
@@ -3730,9 +3616,7 @@ currentPhoneBrand===key
 }"
 onclick="filterPhones('${key}')"
 >
-
 ${name}
-
 </button>
 
 `
@@ -3775,9 +3659,7 @@ renderPhones();
 }
 
 
-/* =========================
-PRODUCT IMAGES
-========================= */
+/* PRODUCT IMAGES */
 
 function getProductImages(p){
 
@@ -3808,7 +3690,8 @@ return images.slice(0,3);
 
 function productImageHTML(p){
 
-const images=getProductImages(p);
+const images=
+getProductImages(p);
 
 const first=images[0];
 
@@ -3908,28 +3791,16 @@ return;
 
 if(
 cardImageIndexes[id]===undefined
-){
-
+)
 cardImageIndexes[id]=0;
-
-}
 
 cardImageIndexes[id]+=amount;
 
-if(cardImageIndexes[id]<0){
+if(cardImageIndexes[id]<0)
+cardImageIndexes[id]=images.length-1;
 
-cardImageIndexes[id]=
-images.length-1;
-
-}
-
-if(
-cardImageIndexes[id]>=images.length
-){
-
+if(cardImageIndexes[id]>=images.length)
 cardImageIndexes[id]=0;
-
-}
 
 const img=
 document.getElementById(
@@ -3941,12 +3812,8 @@ document.getElementById(
 "cardImageNumber-"+id
 );
 
-if(img){
-
-img.src=
-images[cardImageIndexes[id]];
-
-}
+if(img)
+img.src=images[cardImageIndexes[id]];
 
 if(number){
 
@@ -3960,9 +3827,7 @@ images.length;
 }
 
 
-/* =========================
-PRODUCT CARD
-========================= */
+/* PRODUCT CARD */
 
 function productCard(p){
 
@@ -4000,9 +3865,7 @@ isFav ? "active" : ""
 onclick="toggleFavorite(${productId})"
 title="علاقه‌مندی"
 >
-
 ${isFav ? "♥" : "♡"}
-
 </button>
 
 <a
@@ -4042,16 +3905,13 @@ ${discount}% تخفیف
 </span>
 
 `
-
 :
 ""
 }
 
 ${finalPrice.toLocaleString("en-US")}
 
-<small>
-تومان
-</small>
+<small>تومان</small>
 
 </div>
 
@@ -4088,7 +3948,6 @@ class="buy"
 onclick="addToCart(${productId},1)"
 ${stock<=0 ? "disabled" : ""}
 >
-
 ${
 stock<=0
 ?
@@ -4096,7 +3955,6 @@ stock<=0
 :
 "افزودن به سبد"
 }
-
 </button>
 
 </div>
@@ -4108,9 +3966,7 @@ stock<=0
 }
 
 
-/* =========================
-STOCK
-========================= */
+/* STOCK */
 
 function getStockHTML(stock){
 
@@ -4134,16 +3990,12 @@ return `
 
 }
 
-return `
-🔴 در انبار موجود نداریم
-`;
+return `🔴 در انبار موجود نداریم`;
 
 }
 
 
-/* =========================
-PRODUCT DETAIL
-========================= */
+/* PRODUCT DETAIL */
 
 var detailImageIndexes={};
 
@@ -4183,17 +4035,22 @@ return;
 
 tempQty=1;
 
-const images=getProductImages(p);
+const images=
+getProductImages(p);
 
 detailImageIndexes[p.id]=0;
 
-const price=Number(p.price || 0);
+const price=
+Number(p.price || 0);
 
-const discount=Number(p.discount || 0);
+const discount=
+Number(p.discount || 0);
 
-const finalPrice=getFinalPrice(p);
+const finalPrice=
+getFinalPrice(p);
 
-const stock=Number(p.stock || 0);
+const stock=
+Number(p.stock || 0);
 
 const productId=
 JSON.stringify(String(p.id));
@@ -4268,11 +4125,7 @@ ${images.map(
 
 <span
 class="detail-dot ${
-i===0
-?
-"active"
-:
-""
+i===0 ? "active" : ""
 }"
 ></span>
 
@@ -4282,7 +4135,6 @@ i===0
 </div>
 
 `
-
 :
 ""
 }
@@ -4349,7 +4201,6 @@ discount>0
 <br>
 
 قیمت بعد تخفیف:
-
 ${finalPrice.toLocaleString("en-US")}
 تومان
 
@@ -4397,21 +4248,11 @@ p.specs ||
 
 <div class="quantity">
 
-<button
-onclick="changeTempQty(-1)"
->
-−
-</button>
+<button onclick="changeTempQty(-1)">−</button>
 
-<strong id="tempQty">
-1
-</strong>
+<strong id="tempQty">1</strong>
 
-<button
-onclick="changeTempQty(1)"
->
-+
-</button>
+<button onclick="changeTempQty(1)">+</button>
 
 </div>
 
@@ -4420,7 +4261,6 @@ class="primary-btn"
 onclick="addToCart(${productId},tempQty)"
 ${stock<=0 ? "disabled" : ""}
 >
-
 ${
 stock<=0
 ?
@@ -4428,7 +4268,6 @@ stock<=0
 :
 "افزودن به سبد خرید"
 }
-
 </button>
 
 <button
@@ -4436,7 +4275,6 @@ class="secondary-btn"
 style="margin-right:8px"
 onclick="toggleFavorite(${productId})"
 >
-
 ${
 favorites.some(
 x=>String(x)===String(p.id)
@@ -4446,7 +4284,6 @@ x=>String(x)===String(p.id)
 :
 "♡ علاقه‌مندی"
 }
-
 </button>
 
 </div>
@@ -4472,47 +4309,32 @@ x=>String(x.id)===String(id)
 if(!p)
 return;
 
-const images=getProductImages(p);
+const images=
+getProductImages(p);
 
 if(images.length<=1)
 return;
 
 if(
 detailImageIndexes[id]===undefined
-){
-
+)
 detailImageIndexes[id]=0;
-
-}
 
 detailImageIndexes[id]+=amount;
 
-if(detailImageIndexes[id]<0){
+if(detailImageIndexes[id]<0)
+detailImageIndexes[id]=images.length-1;
 
-detailImageIndexes[id]=
-images.length-1;
-
-}
-
-if(
-detailImageIndexes[id]>=images.length
-){
-
+if(detailImageIndexes[id]>=images.length)
 detailImageIndexes[id]=0;
-
-}
 
 const img=
 document.getElementById(
 "detailMainImage"
 );
 
-if(img){
-
-img.src=
-images[detailImageIndexes[id]];
-
-}
+if(img)
+img.src=images[detailImageIndexes[id]];
 
 document
 .querySelectorAll(".detail-dot")
@@ -4549,9 +4371,7 @@ el.textContent=tempQty;
 }
 
 
-/* =========================
-CART
-========================= */
+/* CART */
 
 function addToCart(id,qty){
 
@@ -4703,9 +4523,7 @@ showToast(
 }
 
 
-/* =========================
-CART PAGE
-========================= */
+/* CART PAGE */
 
 function renderCart(){
 
@@ -4769,13 +4587,9 @@ document.getElementById("app").innerHTML=`
 
 <div>
 
-<h1>
-سبد خرید
-</h1>
+<h1>سبد خرید</h1>
 
-<p>
-${items.length} محصول
-</p>
+<p>${items.length} محصول</p>
 
 </div>
 
@@ -4833,21 +4647,11 @@ ${finalPrice.toLocaleString("en-US")}
 
 <div class="qty">
 
-<button
-onclick="cartQty(${pid},-1)"
->
-−
-</button>
+<button onclick="cartQty(${pid},-1)">−</button>
 
-<strong>
-${item.qty}
-</strong>
+<strong>${item.qty}</strong>
 
-<button
-onclick="cartQty(${pid},1)"
->
-+
-</button>
+<button onclick="cartQty(${pid},1)">+</button>
 
 </div>
 
@@ -4868,9 +4672,7 @@ onclick="removeFromCart(${pid})"
 
 <div class="summary-row">
 
-<span>
-جمع کل
-</span>
+<span>جمع کل</span>
 
 <strong>
 ${total.toLocaleString("en-US")}
@@ -4881,9 +4683,7 @@ ${total.toLocaleString("en-US")}
 
 <div class="summary-row total">
 
-<span>
-مبلغ نهایی
-</span>
+<span>مبلغ نهایی</span>
 
 <strong>
 ${total.toLocaleString("en-US")}
@@ -4897,9 +4697,7 @@ class="primary-btn"
 style="width:100%;margin-top:10px"
 onclick="checkout()"
 >
-
 ثبت سفارش
-
 </button>
 
 </div>
@@ -4922,9 +4720,7 @@ showToast(
 }
 
 
-/* =========================
-FAVORITES
-========================= */
+/* FAVORITES */
 
 function toggleFavorite(id){
 
@@ -4983,13 +4779,9 @@ document.getElementById("app").innerHTML=`
 
 <div>
 
-<h1>
-علاقه‌مندی‌ها
-</h1>
+<h1>علاقه‌مندی‌ها</h1>
 
-<p>
-${list.length} محصول
-</p>
+<p>${list.length} محصول</p>
 
 </div>
 
@@ -5029,9 +4821,7 @@ emptyResult(
 }
 
 
-/* =========================
-SEARCH
-========================= */
+/* SEARCH */
 
 function globalSearch(){
 
@@ -5104,18 +4894,14 @@ document.getElementById("app").innerHTML=`
 
 <div>
 
-<h1>
-نتایج جستجو
-</h1>
+<h1>نتایج جستجو</h1>
 
 <p>
-
 برای «${escapeHTML(q)}»
 
 <br>
 
-${results.length}
-نتیجه
+${results.length} نتیجه
 
 </p>
 
@@ -5158,9 +4944,7 @@ emptyResult(
 }
 
 
-/* =========================
-DISCOUNT
-========================= */
+/* DISCOUNT */
 
 function renderDiscount(){
 
@@ -5181,9 +4965,7 @@ document.getElementById("app").innerHTML=`
 
 <div>
 
-<h1>
-🔥 تخفیف‌ها
-</h1>
+<h1>🔥 تخفیف‌ها</h1>
 
 <p>
 ${list.length}
@@ -5229,9 +5011,7 @@ emptyResult(
 }
 
 
-/* =========================
-LAWS
-========================= */
+/* LAWS */
 
 function renderLaws(){
 
@@ -5249,13 +5029,9 @@ document.getElementById("app").innerHTML=`
 
 <div>
 
-<h1>
-📜 قوانین سایت
-</h1>
+<h1>📜 قوانین سایت</h1>
 
-<p>
-قوانین و شرایط استفاده از فروشگاه
-</p>
+<p>قوانین و شرایط استفاده از فروشگاه</p>
 
 </div>
 
@@ -5292,9 +5068,7 @@ escapeHTML(rules)
 }
 
 
-/* =========================
-SUPPORT
-========================= */
+/* SUPPORT */
 
 function normalizePhone(phone){
 
@@ -5353,7 +5127,7 @@ document.getElementById("app").innerHTML=`
 </div>
 
 <h1>
-پشتیبانی ${formatStoreName(storeName)}
+پشتیبانی ${window.formatStoreName(storeName)}
 </h1>
 
 <p>
@@ -5370,15 +5144,11 @@ contactText
 
 <div class="contact-card">
 
-<div class="contact-icon">
-ℹ️
-</div>
+<div class="contact-icon">ℹ️</div>
 
 <div class="contact-info">
 
-<small>
-اطلاعات تماس
-</small>
+<small>اطلاعات تماس</small>
 
 <strong>
 ${escapeHTML(contactText)}
@@ -5401,15 +5171,11 @@ phone
 
 <div class="contact-card">
 
-<div class="contact-icon">
-📞
-</div>
+<div class="contact-icon">📞</div>
 
 <div class="contact-info">
 
-<small>
-شماره تماس
-</small>
+<small>شماره تماس</small>
 
 <strong>
 ${escapeHTML(phone)}
@@ -5449,15 +5215,11 @@ rubika
 
 <div class="contact-card">
 
-<div class="contact-icon">
-💬
-</div>
+<div class="contact-icon">💬</div>
 
 <div class="contact-info">
 
-<small>
-آیدی روبیکا
-</small>
+<small>آیدی روبیکا</small>
 
 <strong>
 @${escapeHTML(rubika)}
@@ -5564,19 +5326,17 @@ navigator.clipboard &&
 navigator.clipboard.writeText
 ){
 
-navigator.clipboard.writeText(
-text
-)
-.then(()=>{
-
+navigator.clipboard.writeText(text)
+.then(
+()=>{
 showToast("کپی شد ✓");
-
-})
-.catch(()=>{
-
+}
+)
+.catch(
+()=>{
 fallbackCopy(text);
-
-});
+}
+);
 
 }else{
 
@@ -5607,19 +5367,14 @@ showToast("کپی شد ✓");
 }
 
 
-/* =========================
-FIRST VISIT LAW
-========================= */
+/* FIRST VISIT LAW */
 
 function showFirstVisitLaw(){
 
 if(
 localStorage.getItem("mahanLawSeen")
-){
-
+)
 return;
-
-}
 
 const modal=
 document.createElement("div");
@@ -5638,9 +5393,7 @@ modal.innerHTML=`
 📜
 </div>
 
-<h2>
-دوست عزیز
-</h2>
+<h2>دوست عزیز</h2>
 
 <p>
 قبل از خرید قوانین سایت را
@@ -5712,13 +5465,12 @@ modal.remove();
 }
 
 
-/* =========================
-NAV
-========================= */
+/* NAV */
 
 function updateActiveNav(){
 
-const route=getRoute();
+const route=
+getRoute();
 
 document
 .querySelectorAll(".nav a")
@@ -5743,9 +5495,7 @@ route.startsWith("/category/")
 }
 
 
-/* =========================
-HELPERS
-========================= */
+/* HELPERS */
 
 function emptyResult(icon,text){
 
@@ -5753,9 +5503,7 @@ return `
 
 <div class="no-result">
 
-<div>
-${icon}
-</div>
+<div>${icon}</div>
 
 ${escapeHTML(text)}
 
@@ -5785,9 +5533,7 @@ window.toastTimer
 window.toastTimer=
 setTimeout(
 ()=>{
-
 toast.classList.remove("show");
-
 },
 2500
 );
@@ -5797,7 +5543,8 @@ toast.classList.remove("show");
 
 function formatNumber(value){
 
-const num=Number(value || 0);
+const num=
+Number(value || 0);
 
 if(!Number.isFinite(num))
 return "0";
@@ -5807,26 +5554,7 @@ return num.toLocaleString("fa-IR");
 }
 
 
-/* =========================
-ESCAPE HTML
-========================= */
-
-function escapeHTML(text){
-
-return String(text ?? "")
-
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================
-INITIAL
-========================= */
+/* INITIAL */
 
 updateCartCount();
 
@@ -5835,4 +5563,4 @@ render(getRoute());
 </script>
 
 </body>
-  </html>
+ </html>
