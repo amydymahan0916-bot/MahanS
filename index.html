@@ -41,8 +41,7 @@ line-height:1.7;
 min-height:100vh;
 }
 
-button,
-input{
+button,input{
 font-family:inherit;
 }
 
@@ -104,13 +103,12 @@ font-size:24px;
 font-weight:bold;
 }
 
-/* رنگ‌بندی دقیق نام فروشگاه */
 .logo-name .mahan-word{
 color:var(--green);
 }
 
 .logo-name .center-word{
-color:white;
+color:#fff;
 }
 
 .logo-name .iran-word{
@@ -282,7 +280,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
-transform:translateY(-50px);
+transform:translateY(-85px);
 }
 
 .home-box{
@@ -316,17 +314,16 @@ font-size:clamp(28px,5vw,50px);
 margin-bottom:18px;
 }
 
-.home-box h1 .mahan-word{
+.brand-name .mahan-word{
 color:var(--green);
 }
 
-.home-box h1 .center-word{
-color:white;
+.brand-name .center-word{
+color:#fff;
 }
 
-.home-box h1 .iran-word{
+.brand-name .iran-word{
 color:var(--red);
-font-weight:bold;
 }
 
 .home-description{
@@ -364,27 +361,27 @@ font-size:22px;
 font-size:11px;
 }
 
-.stat-users strong{
+.stat:nth-child(1) strong{
 color:var(--green);
 }
 
-.stat-users span{
+.stat:nth-child(1) span{
 color:var(--green);
 }
 
-.stat-orders strong{
-color:white;
+.stat:nth-child(2) strong{
+color:#fff;
 }
 
-.stat-orders span{
-color:white;
+.stat:nth-child(2) span{
+color:#fff;
 }
 
-.stat-satisfaction strong{
+.stat:nth-child(3) strong{
 color:var(--red);
 }
 
-.stat-satisfaction span{
+.stat:nth-child(3) span{
 color:var(--red);
 }
 
@@ -420,6 +417,10 @@ CATEGORIES
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:15px;
+}
+
+.category-wrap{
+position:relative;
 }
 
 .category{
@@ -488,6 +489,60 @@ font-weight:bold;
 .category-sub{
 color:#aaa;
 font-size:10px;
+}
+
+.category-submenu{
+display:none;
+position:absolute;
+top:calc(100% + 8px);
+right:0;
+left:0;
+z-index:50;
+background:#101010;
+border:1px solid #333;
+border-radius:16px;
+padding:8px;
+box-shadow:0 18px 40px rgba(0,0,0,.6);
+}
+
+.category-wrap.open .category-submenu{
+display:block;
+animation:submenuIn .18s ease;
+}
+
+@keyframes submenuIn{
+from{
+opacity:0;
+transform:translateY(-5px);
+}
+to{
+opacity:1;
+transform:none;
+}
+}
+
+.subcategory-btn{
+display:block;
+width:100%;
+border:1px solid transparent;
+background:#171717;
+color:#ccc;
+padding:9px 12px;
+border-radius:10px;
+margin-bottom:5px;
+text-align:right;
+font-size:11px;
+transition:.2s;
+}
+
+.subcategory-btn:last-child{
+margin-bottom:0;
+}
+
+.subcategory-btn:hover,
+.subcategory-btn.active{
+background:var(--green);
+color:#06120a;
 }
 
 /* =========================
@@ -665,7 +720,7 @@ color:#ff3440;
 }
 
 /* =========================
-FILTER / SORT DROPDOWN
+FILTER / SORT
 ========================= */
 
 .filters{
@@ -695,137 +750,79 @@ border-color:var(--green);
 color:#06120a;
 }
 
-/* منوی جدید مرتب‌سازی */
-.sort-menu{
+.sort-box{
 position:relative;
+display:inline-block;
 margin-bottom:20px;
 }
 
-.sort-toggle{
+.sort-main{
+min-width:170px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:15px;
-min-width:190px;
+gap:12px;
 border:1px solid #333;
-background:linear-gradient(135deg,#171717,#0d0d0d);
+background:linear-gradient(135deg,#181818,#101010);
 color:#fff;
-border-radius:14px;
+border-radius:13px;
 padding:11px 15px;
-font-size:13px;
+font-size:12px;
 transition:.2s;
 }
 
-.sort-toggle:hover{
+.sort-main:hover{
 border-color:var(--green);
 }
 
-.sort-toggle-arrow{
+.sort-arrow{
 font-size:12px;
 transition:.2s;
 }
 
-.sort-menu.open .sort-toggle-arrow{
+.sort-box.open .sort-arrow{
 transform:rotate(180deg);
 }
 
-.sort-options{
+.sort-menu{
 display:none;
 position:absolute;
-top:calc(100% + 7px);
 right:0;
+top:calc(100% + 7px);
+min-width:190px;
 z-index:100;
-min-width:210px;
 padding:7px;
 background:#111;
 border:1px solid #333;
-border-radius:16px;
-box-shadow:0 20px 45px rgba(0,0,0,.5);
+border-radius:15px;
+box-shadow:0 20px 50px rgba(0,0,0,.65);
 }
 
-.sort-menu.open .sort-options{
+.sort-box.open .sort-menu{
 display:block;
-animation:sortOpen .18s ease;
-}
-
-@keyframes sortOpen{
-from{
-opacity:0;
-transform:translateY(-5px);
-}
-to{
-opacity:1;
-transform:none;
-}
+animation:submenuIn .18s ease;
 }
 
 .sort-option{
-display:flex;
-align-items:center;
-justify-content:space-between;
 width:100%;
-padding:10px 12px;
-border:0;
-border-radius:10px;
-background:transparent;
-color:#bbb;
-font-size:12px;
+display:block;
 text-align:right;
+border:0;
+background:#171717;
+color:#bbb;
+padding:10px 12px;
+border-radius:10px;
+margin-bottom:4px;
+font-size:11px;
+}
+
+.sort-option:last-child{
+margin-bottom:0;
 }
 
 .sort-option:hover,
 .sort-option.active{
-background:rgba(25,214,107,.12);
-color:var(--green);
-}
-
-.sort-option-check{
-font-size:12px;
-}
-
-/* =========================
-SUB CATEGORIES
-========================= */
-
-.subcategory-box{
-margin-bottom:20px;
-padding:15px;
-background:#101010;
-border:1px solid #292929;
-border-radius:20px;
-}
-
-.subcategory-title{
-font-size:13px;
-color:#aaa;
-margin-bottom:10px;
-}
-
-.subcategory-list{
-display:flex;
-gap:8px;
-overflow-x:auto;
-}
-
-.subcategory-list::-webkit-scrollbar{
-display:none;
-}
-
-.subcategory-btn{
-white-space:nowrap;
-padding:8px 14px;
-border-radius:11px;
-border:1px solid #333;
-background:#171717;
-color:#aaa;
-font-size:11px;
-transition:.2s;
-}
-
-.subcategory-btn:hover,
-.subcategory-btn.active{
 background:var(--green);
-border-color:var(--green);
 color:#06120a;
 }
 
@@ -1524,7 +1521,7 @@ padding:0 8px;
 
 .home-intro{
 min-height:calc(100vh - 190px);
-transform:translateY(-50px);
+transform:translateY(-75px);
 }
 
 .home-box{
@@ -1570,6 +1567,12 @@ font-size:28px;
 
 .category-name{
 font-size:11px;
+}
+
+.category-submenu{
+position:relative;
+top:auto;
+margin-top:6px;
 }
 
 .products{
@@ -1645,11 +1648,15 @@ right:14px;
 bottom:14px;
 }
 
-.sort-toggle{
+.sort-main{
 width:100%;
 }
 
-.sort-options{
+.sort-box{
+width:100%;
+}
+
+.sort-menu{
 width:100%;
 }
 
@@ -1675,22 +1682,9 @@ alt="ماهان سنتر ایران"
 >
 
 <div class="logo-name">
-
-<span
-class="mahan-word"
-id="logoMahan"
->ماهان</span>
-
-<span
-class="center-word"
-id="logoCenter"
-> سنتر</span>
-
-<b
-class="iran-word"
-id="logoIran"
-> ایران</b>
-
+<span class="mahan-word">ماهان</span>
+<span class="center-word"> سنتر</span>
+<span class="iran-word"> ایران</span>
 </div>
 
 </a>
@@ -1786,7 +1780,6 @@ onclick="go('/support')"
 </a>
 
 </div>
-
 </div>
 
 </header>
@@ -1814,15 +1807,13 @@ title="پشتیبانی"
 
 <div class="container copy">
 
-<span id="footerStoreName">
-ماهان سنتر ایران
-</span>
-
- — تمامی اطلاعات محفوظ است.
+<span id="footerStoreName"></span>
+— تمامی اطلاعات محفوظ است.
 
 </div>
 
 </footer>
+
 
 <!-- =========================
 FIREBASE
@@ -1846,6 +1837,7 @@ doc
 from
 "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
 
+
 const firebaseConfig = {
 
 apiKey:
@@ -1868,6 +1860,7 @@ appId:
 
 };
 
+
 const app =
 initializeApp(firebaseConfig);
 
@@ -1876,7 +1869,7 @@ getFirestore(app);
 
 
 /* =========================
-DEFAULT CATEGORIES
+DEFAULT SETTINGS
 ========================= */
 
 const DEFAULT_CATEGORIES = [
@@ -1926,10 +1919,6 @@ image:""
 ];
 
 
-/* =========================
-DEFAULT SETTINGS
-========================= */
-
 const DEFAULT_SETTINGS = {
 
 storeName:
@@ -1962,7 +1951,12 @@ discountPercent:
 showStats:
 true,
 
-/* مقادیر آمار */
+categories:
+DEFAULT_CATEGORIES,
+
+views:
+0,
+
 activeUsers:
 0,
 
@@ -1970,26 +1964,16 @@ successfulOrders:
 0,
 
 satisfaction:
-0,
-
-/* برای سازگاری با تنظیمات قبلی */
-users:
-0,
-
-orders:
-0,
-
-views:
-0,
-
-categories:
-DEFAULT_CATEGORIES
+0
 
 };
 
 
-window.settings =
-{
+/* =========================
+GLOBAL DATA
+========================= */
+
+window.settings = {
 ...DEFAULT_SETTINGS,
 categories:
 DEFAULT_CATEGORIES.map(x=>({...x}))
@@ -2035,7 +2019,9 @@ DEFAULT_CATEGORIES
 }else{
 
 window.settings = {
-...DEFAULT_SETTINGS
+...DEFAULT_SETTINGS,
+categories:
+DEFAULT_CATEGORIES.map(x=>({...x}))
 };
 
 }
@@ -2048,51 +2034,14 @@ error
 );
 
 window.settings = {
-...DEFAULT_SETTINGS
+...DEFAULT_SETTINGS,
+categories:
+DEFAULT_CATEGORIES.map(x=>({...x}))
 };
 
 }
 
 applySiteSettings();
-
-}
-
-
-/* =========================
-STORE NAME COLORS
-========================= */
-
-function renderStoreNameHTML(storeName){
-
-const name =
-String(
-storeName ||
-"ماهان سنتر ایران"
-).trim();
-
-/*
-اگر نام دقیق ماهان سنتر ایران باشد،
-رنگ‌بندی اختصاصی اعمال می‌شود.
-در صورت تغییر نام از پنل،
-همان نام بدون دستکاری نمایش داده می‌شود.
-*/
-
-if(
-name === "ماهان سنتر ایران"
-){
-
-return `
-<span class="mahan-word">ماهان</span>
-<span class="center-word"> سنتر</span>
-<b class="iran-word"> ایران</b>
-`;
-
-}
-
-/*
-حالت نام سفارشی از پنل
-*/
-return escapeHTML(name);
 
 }
 
@@ -2117,16 +2066,14 @@ storeName;
 /* لوگو */
 
 const logoName =
-document.querySelector(
-".logo-name"
+document.getElementById(
+"logoStoreName"
 );
 
 if(logoName){
 
 logoName.innerHTML =
-renderStoreNameHTML(
-storeName
-);
+brandNameHTML(storeName);
 
 }
 
@@ -2140,23 +2087,48 @@ document.getElementById(
 
 if(footer){
 
+footer.innerHTML =
+brandNameHTML(storeName);
+
+}
+
+}
+
+
+/* =========================
+BRAND NAME
+========================= */
+
+function brandNameHTML(name){
+
+const text =
+String(name || "ماهان سنتر ایران");
+
 if(
-storeName === "ماهان سنتر ایران"
+text.trim()==="ماهان سنتر ایران"
 ){
 
-footer.innerHTML =
-renderStoreNameHTML(
-storeName
+return `
+<span class="mahan-word">ماهان</span>
+<span class="center-word"> سنتر</span>
+<span class="iran-word"> ایران</span>
+`;
+
+}
+
+return escapeHTML(text)
+.replace(
+"ماهان",
+'<span class="mahan-word">ماهان</span>'
+)
+.replace(
+"سنتر",
+'<span class="center-word">سنتر</span>'
+)
+.replace(
+"ایران",
+'<span class="iran-word">ایران</span>'
 );
-
-}else{
-
-footer.textContent =
-storeName;
-
-}
-
-}
 
 }
 
@@ -2172,6 +2144,9 @@ return "";
 
 path =
 String(path).trim();
+
+if(!path)
+return "";
 
 if(
 /^https?:\/\//i.test(path)
@@ -2190,9 +2165,7 @@ return path.replace(/^\/+/,"");
 NORMALIZE PRODUCT
 ========================= */
 
-function normalizeProduct(
-docSnap
-){
+function normalizeProduct(docSnap){
 
 const data =
 docSnap.data() || {};
@@ -2267,16 +2240,14 @@ data.goldCat || "",
 subcategory:
 data.subcategory ||
 data.subCategory ||
-data.sub_cat ||
-"",
-
-clothesCat:
-data.clothesCat ||
+data.subcat ||
+data.type ||
+data.productType ||
 "",
 
 search:
 data.search ||
-`${name} ${data.brand || ""} ${category} ${data.goldCat || ""} ${data.subcategory || ""}`,
+`${name} ${data.brand || ""} ${category}`,
 
 price:
 Number(data.price || 0),
@@ -2477,17 +2448,18 @@ MAIN APP
 
 <script>
 
-var products=[];
+var products = [];
 
 var settings =
 window.settings || {};
+
 
 
 /* =========================
 CATEGORY FALLBACK IMAGES
 ========================= */
 
-const categoryFallbackImages={
+const categoryFallbackImages = {
 
 mobile:
 "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80",
@@ -2505,13 +2477,19 @@ shoes:
 "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=900&q=80",
 
 watches:
-"https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=80"
+"https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=900&q=80",
+
+car:
+"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80",
+
+animals:
+"https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=900&q=80"
 
 };
 
 
 /* =========================
-SMART CATEGORY IMAGE
+CATEGORY DEFAULT IMAGE
 ========================= */
 
 function getCategoryFallbackImage(c){
@@ -2519,27 +2497,19 @@ function getCategoryFallbackImage(c){
 if(!c)
 return "";
 
-var id =
-String(c.id || "")
-.toLowerCase()
-.trim();
-
-var name =
+const name =
 String(c.name || "")
 .toLowerCase()
 .trim();
 
-var combined =
-id+" "+name;
-
-
-/* دسته‌های اصلی */
+const id =
+String(c.id || "")
+.toLowerCase();
 
 if(
-combined.includes("mobile") ||
-combined.includes("موبایل") ||
-combined.includes("گوشی") ||
-combined.includes("phone")
+id==="mobile" ||
+name.includes("موبایل") ||
+name.includes("گوشی")
 ){
 
 return categoryFallbackImages.mobile;
@@ -2547,10 +2517,9 @@ return categoryFallbackImages.mobile;
 }
 
 if(
-combined.includes("gold") ||
-combined.includes("طلا") ||
-combined.includes("جواهر") ||
-combined.includes("زیور")
+id==="gold" ||
+name.includes("طلا") ||
+name.includes("جواهر")
 ){
 
 return categoryFallbackImages.gold;
@@ -2558,10 +2527,10 @@ return categoryFallbackImages.gold;
 }
 
 if(
-combined.includes("clothes") ||
-combined.includes("پوشاک") ||
-combined.includes("لباس") ||
-combined.includes("پوشیدنی")
+id==="clothes" ||
+name.includes("پوشاک") ||
+name.includes("لباس") ||
+name.includes("مانتو")
 ){
 
 return categoryFallbackImages.clothes;
@@ -2569,9 +2538,8 @@ return categoryFallbackImages.clothes;
 }
 
 if(
-combined.includes("shoe") ||
-combined.includes("کفش") ||
-combined.includes("کتانی")
+id==="shoes" ||
+name.includes("کفش")
 ){
 
 return categoryFallbackImages.shoes;
@@ -2579,9 +2547,9 @@ return categoryFallbackImages.shoes;
 }
 
 if(
-combined.includes("accessor") ||
-combined.includes("لوازم جانبی") ||
-combined.includes("اکسسوری")
+id==="accessories" ||
+name.includes("لوازم جانبی") ||
+name.includes("اکسسوری")
 ){
 
 return categoryFallbackImages.accessories;
@@ -2589,78 +2557,38 @@ return categoryFallbackImages.accessories;
 }
 
 if(
-combined.includes("watch") ||
-combined.includes("ساعت")
+id==="watches" ||
+name.includes("ساعت")
 ){
 
 return categoryFallbackImages.watches;
 
 }
 
-
-/* خودرو */
-
 if(
-combined.includes("car") ||
-combined.includes("ماشین") ||
-combined.includes("خودرو") ||
-combined.includes("اتومبیل")
+name.includes("ماشین") ||
+name.includes("خودرو") ||
+name.includes("اتومبیل") ||
+name.includes("خودروسازی")
 ){
 
-return
-"https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80";
+return categoryFallbackImages.car;
 
 }
 
-
-/* حیوانات */
-
 if(
-combined.includes("animal") ||
-combined.includes("حیوان") ||
-combined.includes("حیوانات") ||
-combined.includes("سگ") ||
-combined.includes("گربه")
+name.includes("حیوان") ||
+name.includes("پرنده") ||
+name.includes("سگ") ||
+name.includes("گربه")
 ){
 
-return
-"https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=900&q=80";
+return categoryFallbackImages.animals;
 
 }
 
-
-/* لپ‌تاپ */
-
-if(
-combined.includes("laptop") ||
-combined.includes("لپ تاپ") ||
-combined.includes("لپ‌تاپ")
-){
-
 return
-"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=900&q=80";
-
-}
-
-
-/* لوازم خانگی */
-
-if(
-combined.includes("home") ||
-combined.includes("خانه") ||
-combined.includes("خانگی")
-){
-
-return
-"https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80";
-
-}
-
-
-/* اگر هیچ موردی پیدا نشد */
-
-return
-"https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=900&q=80";
+categoryFallbackImages.mobile;
 
 }
 
@@ -2705,20 +2633,7 @@ icon:
 c.icon ||
 "📦",
 
-/*
-اگر پنل تصویر داشته باشد
-همان تصویر اولویت دارد.
-در غیر این صورت تصویر هوشمند
-بر اساس نام دسته انتخاب می‌شود.
-*/
-
 image:
-resolveImage(
-c.image || ""
-) ||
-getCategoryFallbackImage(c),
-
-rawImage:
 resolveImage(
 c.image || ""
 )
@@ -2730,28 +2645,6 @@ c.image || ""
 return result;
 
 }
-
-
-function resolveImage(path){
-
-if(!path)
-return "";
-
-path =
-String(path).trim();
-
-if(
-/^https?:\/\//i.test(path)
-){
-
-return path;
-
-}
-
-return path.replace(/^\/+/,"");
-
-}
-
 
 var categories =
 getCategories();
@@ -2857,10 +2750,6 @@ e.detail?.message ||
 
 products=[];
 
-render(
-getRoute()
-);
-
 }
 );
 
@@ -2922,7 +2811,6 @@ behavior:"smooth"
 
 }
 
-
 window.addEventListener(
 "popstate",
 function(){
@@ -2934,7 +2822,6 @@ getRoute()
 }
 );
 
-
 window.addEventListener(
 "hashchange",
 function(){
@@ -2945,7 +2832,6 @@ getRoute()
 
 }
 );
-
 
 function getRoute(){
 
@@ -2973,31 +2859,45 @@ categories =
 getCategories();
 
 if(route === "/"){
+
 renderHome();
+
 }
 
 else if(route === "/categories"){
+
 renderCategories();
+
 }
 
 else if(route === "/discount"){
+
 renderDiscount();
+
 }
 
 else if(route === "/favorites"){
+
 renderFavorites();
+
 }
 
 else if(route === "/cart"){
+
 renderCart();
+
 }
 
 else if(route === "/laws"){
+
 renderLaws();
+
 }
 
 else if(route === "/support"){
+
 renderSupport();
+
 }
 
 else if(
@@ -3059,7 +2959,23 @@ settings.storeName ||
 
 const welcome =
 settings.welcomeText ||
-"ماهان سنتر ایران یک فروشگاه آنلاین برای ارائه محصولات متنوع و باکیفیت است. هدف ما فراهم کردن تجربه‌ای ساده، سریع و حرفه‌ای برای انتخاب و خرید شماست.";
+"ماهان سنتر ایران یک فروشگاه آنلاین برای ارائه محصولات متنوع و باکیفیت. هدف ما فراهم کردن تجربه‌ای ساده، سریع و حرفه‌ای برای انتخاب و خرید شماست.";
+
+const activeUsers =
+settings.activeUsers ??
+settings.users ??
+settings.views ??
+0;
+
+const successfulOrders =
+settings.successfulOrders ??
+settings.orders ??
+0;
+
+const satisfaction =
+settings.satisfaction ??
+settings.satisfactionPercent ??
+0;
 
 document.getElementById(
 "app"
@@ -3080,21 +2996,16 @@ alt="${escapeHTML(storeName)}"
 >
 
 <h1>
-
 خوش آمدید به
 
-<span>
-
-${renderStoreNameHTML(storeName)}
-
+<span class="brand-name">
+${brandNameHTML(storeName)}
 </span>
 
 </h1>
 
 <p class="home-description">
-
 ${escapeHTML(welcome)}
-
 </p>
 
 ${
@@ -3106,14 +3017,10 @@ settings.showStats === false
 
 <div class="stats">
 
-<div class="stat stat-users">
+<div class="stat">
 
-<strong>
-${getStatValue(
-"activeUsers",
-"users",
-"0"
-)}
+<strong id="usersStat">
+${Number(activeUsers).toLocaleString("en-US")}
 </strong>
 
 <span>
@@ -3122,14 +3029,10 @@ ${getStatValue(
 
 </div>
 
-<div class="stat stat-orders">
+<div class="stat">
 
 <strong>
-${getStatValue(
-"successfulOrders",
-"orders",
-"0"
-)}
+${Number(successfulOrders).toLocaleString("en-US")}
 </strong>
 
 <span>
@@ -3138,15 +3041,12 @@ ${getStatValue(
 
 </div>
 
-<div class="stat stat-satisfaction">
+<div class="stat">
 
 <strong>
-${getStatValue(
-"satisfaction",
-null,
-"0"
-)}
-%</strong>
+${escapeHTML(String(satisfaction))}
+${String(satisfaction).includes("%") ? "" : "%"}
+</strong>
 
 <span>
 رضایت
@@ -3173,49 +3073,179 @@ null,
 
 
 /* =========================
-STAT VALUE
+CATEGORY SUBCATEGORIES
 ========================= */
 
-function getStatValue(primary,fallback,defaultValue){
+function getSubcategories(cat){
 
-var value =
-settings
-?
-settings[primary]
-:
-undefined;
+const categoryProducts =
+products.filter(
+p =>
+String(p.category || p.cat) === String(cat)
+);
 
-if(
-value === undefined ||
-value === null ||
-value === ""
-){
+const result=[];
 
-if(
-fallback &&
-settings
-){
+categoryProducts.forEach(p=>{
 
-value =
-settings[fallback];
+const catId =
+String(cat);
 
-}
+let value="";
 
-}
-
-if(
-value === undefined ||
-value === null ||
-value === ""
-){
+if(catId==="mobile"){
 
 value =
-defaultValue;
+p.brand ||
+p.subcategory ||
+"";
 
 }
 
-return escapeHTML(
-String(value)
+else if(catId==="gold"){
+
+value =
+p.goldCat ||
+p.subcategory ||
+"";
+
+}
+
+else{
+
+value =
+p.subcategory ||
+p.subCategory ||
+p.type ||
+"";
+
+}
+
+if(value){
+
+value =
+String(value).trim();
+
+if(
+value &&
+!result.some(
+x =>
+x.toLowerCase() === value.toLowerCase()
+)
+){
+
+result.push(value);
+
+}
+
+}
+
+});
+
+const fixed = {
+
+mobile:[
+"آیفون",
+"سامسونگ",
+"شیائومی",
+"نوکیا"
+],
+
+gold:[
+"گردنبند",
+"پابند",
+"النگو",
+"انگشتر",
+"ست"
+]
+
+};
+
+if(
+fixed[cat]
+){
+
+fixed[cat].forEach(x=>{
+
+if(
+!result.some(
+y =>
+y.toLowerCase()===x.toLowerCase()
+)
+){
+
+result.push(x);
+
+}
+
+});
+
+}
+
+return result;
+
+}
+
+
+/* =========================
+SUBCATEGORY MATCH
+========================= */
+
+function productMatchesSubcategory(
+p,
+cat,
+sub
+){
+
+if(sub==="all")
+return true;
+
+const categoryId =
+String(cat);
+
+const values=[];
+
+if(categoryId==="mobile"){
+
+values.push(
+p.brand,
+p.subcategory,
+p.subCategory
+);
+
+}
+
+else if(categoryId==="gold"){
+
+values.push(
+p.goldCat,
+p.subcategory,
+p.subCategory
+);
+
+}
+
+else{
+
+values.push(
+p.subcategory,
+p.subCategory,
+p.type,
+p.productType
+);
+
+}
+
+const wanted =
+String(sub)
+.toLowerCase()
+.trim();
+
+return values.some(
+value =>
+String(value || "")
+.toLowerCase()
+.trim() === wanted
 );
 
 }
@@ -3237,12 +3267,31 @@ var image =
 c.image ||
 getCategoryFallbackImage(c);
 
+const subs =
+getSubcategories(key);
+
+const hasSubs =
+subs.length > 0;
+
 return `
+
+<div
+class="category-wrap"
+id="categoryWrap-${escapeHTML(key)}"
+>
 
 <a
 class="category"
 href="#/category/${encodeURIComponent(key)}"
-onclick="go('/category/${encodeURIComponent(key)}')"
+onclick="
+if(${hasSubs}){
+event.preventDefault();
+toggleCategoryMenu('${escapeJS(key)}');
+}
+else{
+go('/category/${escapeJS(key)}');
+}
+"
 >
 
 ${
@@ -3254,7 +3303,7 @@ image
 class="category-image"
 src="${escapeHTML(image)}"
 alt="${escapeHTML(c.name)}"
-onerror="this.src='${escapeHTML(getCategoryFallbackImage(c))}'"
+onerror="this.onerror=null;this.src='${escapeHTML(getCategoryFallbackImage(c))}'"
 >
 
 `
@@ -3275,17 +3324,119 @@ ${escapeHTML(c.name)}
 </div>
 
 <div class="category-sub">
-مشاهده محصولات
+
+${
+hasSubs
+?
+"مشاهده زیر‌دسته‌ها"
+:
+"مشاهده محصولات"
+}
+
 </div>
 
 </div>
 
 </a>
 
+${
+hasSubs
+?
+`
+
+<div class="category-submenu">
+
+<button
+class="subcategory-btn active"
+onclick="
+event.stopPropagation();
+go('/category/${escapeJS(key)}')
+"
+>
+همه محصولات
+</button>
+
+${subs.map(sub=>`
+
+<button
+class="subcategory-btn"
+onclick="
+event.stopPropagation();
+openSubcategory('${escapeJS(key)}','${escapeJS(sub)}')
+"
+>
+${escapeHTML(sub)}
+</button>
+
+`).join("")}
+
+</div>
+
+`
+:
+""
+}
+
+</div>
+
 `;
 
 }
 
+
+function toggleCategoryMenu(key){
+
+document
+.querySelectorAll(".category-wrap")
+.forEach(
+el=>{
+
+if(
+el.id !==
+"categoryWrap-"+key
+){
+
+el.classList.remove("open");
+
+}
+
+}
+);
+
+const el =
+document.getElementById(
+"categoryWrap-"+key
+);
+
+if(el){
+
+el.classList.toggle("open");
+
+}
+
+}
+
+
+function openSubcategory(
+cat,
+sub
+){
+
+currentSubcategory=sub;
+
+go(
+"/category/" +
+encodeURIComponent(cat) +
+"?sub=" +
+encodeURIComponent(sub)
+);
+
+}
+
+
+/* =========================
+CATEGORIES PAGE
+========================= */
 
 function renderCategories(){
 
@@ -3351,9 +3502,29 @@ var arr=[...list];
 if(currentSort==="newest"){
 
 arr.sort(
-(a,b)=>
+(a,b)=>{
+
+const aCreated =
+getCreatedTime(a);
+
+const bCreated =
+getCreatedTime(b);
+
+if(
+aCreated &&
+bCreated &&
+aCreated !== bCreated
+){
+
+return bCreated-aCreated;
+
+}
+
+return
 Number(b.code || b.id) -
-Number(a.code || a.id)
+Number(a.code || a.id);
+
+}
 );
 
 }
@@ -3361,9 +3532,29 @@ Number(a.code || a.id)
 else if(currentSort==="oldest"){
 
 arr.sort(
-(a,b)=>
+(a,b)=>{
+
+const aCreated =
+getCreatedTime(a);
+
+const bCreated =
+getCreatedTime(b);
+
+if(
+aCreated &&
+bCreated &&
+aCreated !== bCreated
+){
+
+return aCreated-bCreated;
+
+}
+
+return
 Number(a.code || a.id) -
-Number(b.code || b.id)
+Number(b.code || b.id);
+
+}
 );
 
 }
@@ -3403,6 +3594,43 @@ return arr;
 }
 
 
+function getCreatedTime(p){
+
+if(!p || !p.createdAt)
+return 0;
+
+const value =
+p.createdAt;
+
+if(
+typeof value==="number"
+){
+
+return value;
+
+}
+
+if(
+typeof value==="object" &&
+typeof value.toMillis==="function"
+){
+
+return value.toMillis();
+
+}
+
+const parsed =
+Date.parse(value);
+
+return Number.isNaN(parsed)
+?
+0
+:
+parsed;
+
+}
+
+
 function getFinalPrice(p){
 
 var price =
@@ -3424,73 +3652,56 @@ price;
 
 
 /* =========================
-SORT DROPDOWN
+SORT MENU
 ========================= */
-
-function getSortName(){
-
-var names={
-
-newest:"جدیدترین",
-
-oldest:"قدیمی‌ترین",
-
-cheap:"ارزان‌ترین",
-
-expensive:"گران‌ترین",
-
-discount:"بیشترین تخفیف"
-
-};
-
-return names[currentSort] || "جدیدترین";
-
-}
-
 
 function sortFilters(){
 
-var items=[
-
-["newest","جدیدترین"],
-
-["oldest","قدیمی‌ترین"],
-
-["cheap","ارزان‌ترین"],
-
-["expensive","گران‌ترین"],
-
-["discount","بیشترین تخفیف"]
-
-];
+var currentName =
+getSortName();
 
 return `
 
-<div class="sort-menu" id="sortMenu">
+<div class="sort-box" id="sortBox">
 
 <button
-class="sort-toggle"
-onclick="toggleSortMenu(event)"
+class="sort-main"
+onclick="toggleSortMenu()"
 >
 
 <span>
-مرتب‌سازی:
-<strong id="currentSortName">
-${getSortName()}
-</strong>
+مرتب‌سازی: ${currentName}
 </span>
 
-<span class="sort-toggle-arrow">
-⌄
+<span class="sort-arrow">
+▼
 </span>
 
 </button>
 
-<div class="sort-options">
+<div class="sort-menu">
 
-${
-items.map(
-([key,name])=>`
+${sortOption("newest","جدیدترین")}
+${sortOption("oldest","قدیمی‌ترین")}
+${sortOption("cheap","ارزان‌ترین")}
+${sortOption("expensive","گران‌ترین")}
+${sortOption("discount","بیشترین تخفیف")}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+function sortOption(
+key,
+name
+){
+
+return `
 
 <button
 class="sort-option ${
@@ -3503,292 +3714,61 @@ currentSort===key
 onclick="changeSort('${key}')"
 >
 
-<span>
 ${name}
-</span>
-
-${
-currentSort===key
-?
-`<span class="sort-option-check">✓</span>`
-:
-""
-}
 
 </button>
-
-`
-).join("")
-}
-
-</div>
-
-</div>
 
 `;
 
 }
 
 
-function toggleSortMenu(event){
+function getSortName(){
 
-if(event){
-event.stopPropagation();
+const names={
+
+newest:
+"جدیدترین",
+
+oldest:
+"قدیمی‌ترین",
+
+cheap:
+"ارزان‌ترین",
+
+expensive:
+"گران‌ترین",
+
+discount:
+"بیشترین تخفیف"
+
+};
+
+return names[currentSort] ||
+"جدیدترین";
+
 }
 
-var menu =
+
+function toggleSortMenu(){
+
+const box =
 document.getElementById(
-"sortMenu"
+"sortBox"
 );
 
-if(!menu)
-return;
+if(box){
 
-menu.classList.toggle(
-"open"
-);
-
-}
-
-
-document.addEventListener(
-"click",
-function(e){
-
-var menu =
-document.getElementById(
-"sortMenu"
-);
-
-if(
-menu &&
-!menu.contains(e.target)
-){
-
-menu.classList.remove(
-"open"
-);
+box.classList.toggle("open");
 
 }
 
 }
-);
 
 
 function changeSort(sort){
 
 currentSort=sort;
-
-var route=
-getRoute();
-
-render(route);
-
-}
-
-
-/* =========================
-SUBCATEGORY HELPERS
-========================= */
-
-function getProductSubcategory(p,categoryId){
-
-if(!p)
-return "";
-
-var value =
-p.subcategory ||
-p.subCategory ||
-p.sub_cat ||
-"";
-
-if(value)
-return String(value);
-
-var cat =
-String(categoryId || "")
-.toLowerCase();
-
-if(
-cat === "mobile"
-){
-
-return p.brand || "";
-
-}
-
-if(
-cat === "gold"
-){
-
-return p.goldCat || "";
-
-}
-
-if(
-cat === "clothes"
-){
-
-return p.clothesCat || "";
-
-}
-
-return "";
-
-}
-
-
-function getSubcategories(categoryId,categoryProducts){
-
-var map={};
-
-categoryProducts.forEach(
-p=>{
-
-var value =
-getProductSubcategory(
-p,
-categoryId
-);
-
-if(
-!value
-)
-return;
-
-var key =
-String(value).trim();
-
-if(!key)
-return;
-
-map[key]=true;
-
-}
-);
-
-return Object.keys(map);
-
-}
-
-
-function getSubcategoryDisplayName(categoryId,value){
-
-var map={
-
-iphone:"آیفون",
-
-samsung:"سامسونگ",
-
-xiaomi:"شیائومی",
-
-nokia:"نوکیا",
-
-motorola:"موتورولا",
-
-huawei:"هواوی",
-
-oneplus:"وان‌پلاس",
-
-necklace:"گردنبند",
-
-anklet:"پابند",
-
-bangle:"النگو",
-
-ring:"انگشتر",
-
-set:"ست"
-
-};
-
-return map[value] ||
-value;
-
-}
-
-
-function renderSubcategories(
-categoryId,
-categoryProducts
-){
-
-var subs =
-getSubcategories(
-categoryId,
-categoryProducts
-);
-
-if(
-!subs.length
-){
-
-return "";
-
-}
-
-return `
-
-<div class="subcategory-box">
-
-<div class="subcategory-title">
-زیر‌دسته‌های این بخش
-</div>
-
-<div class="subcategory-list">
-
-<button
-class="subcategory-btn ${
-currentSubcategory==="all"
-?
-"active"
-:
-""
-}"
-onclick="changeSubcategory('all')"
->
-همه
-</button>
-
-${
-subs.map(
-sub=>`
-
-<button
-class="subcategory-btn ${
-currentSubcategory===sub
-?
-"active"
-:
-""
-}"
-onclick="changeSubcategory(${JSON.stringify(sub).replace(/"/g,"&quot;")})"
->
-${escapeHTML(
-getSubcategoryDisplayName(
-categoryId,
-sub
-)
-)}
-</button>
-
-`
-).join("")
-}
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-function changeSubcategory(value){
-
-currentSubcategory =
-value;
 
 var route =
 getRoute();
@@ -3807,13 +3787,60 @@ function renderCategory(cat){
 var category =
 categories[cat];
 
-var allCategoryProducts =
+var categoryProducts =
 products.filter(
-p=>
-String(p.category || p.cat)
-===
+p =>
+String(p.category || p.cat) ===
 String(cat)
 );
+
+
+/* زیر دسته از URL */
+
+const hash =
+location.hash;
+
+const queryIndex =
+hash.indexOf("?");
+
+if(queryIndex>=0){
+
+const query =
+hash.substring(
+queryIndex+1
+);
+
+const params =
+new URLSearchParams(query);
+
+const sub =
+params.get("sub");
+
+if(sub){
+
+currentSubcategory =
+sub;
+
+}
+
+}
+
+if(
+currentSubcategory &&
+currentSubcategory!=="all"
+){
+
+categoryProducts =
+categoryProducts.filter(
+p =>
+productMatchesSubcategory(
+p,
+cat,
+currentSubcategory
+)
+);
+
+}
 
 var categoryName =
 category
@@ -3822,44 +3849,10 @@ category.name
 :
 "محصولات";
 
-
-/*
-زیر دسته‌ها
-*/
-
-var subcategoriesHTML =
-renderSubcategories(
-cat,
-allCategoryProducts
-);
-
-
-var categoryProducts =
-allCategoryProducts;
-
-if(
-currentSubcategory !== "all"
-){
-
-categoryProducts =
-categoryProducts.filter(
-p=>
-String(
-getProductSubcategory(
-p,
-cat
-)
-) ===
-String(currentSubcategory)
-);
-
-}
-
 categoryProducts =
 sortProducts(
 categoryProducts
 );
-
 
 document.getElementById(
 "app"
@@ -3880,13 +3873,23 @@ ${escapeHTML(categoryName)}
 <p>
 ${categoryProducts.length}
 محصول
+${
+currentSubcategory &&
+currentSubcategory!=="all"
+?
+" — "+escapeHTML(currentSubcategory)
+:
+""
+}
 </p>
 
 </div>
 
 </div>
 
-${subcategoriesHTML}
+${
+renderSubcategoryFilters(cat)
+}
 
 ${sortFilters()}
 
@@ -3925,6 +3928,88 @@ emptyResult(
 }
 
 
+function renderSubcategoryFilters(cat){
+
+const subs =
+getSubcategories(cat);
+
+if(!subs.length)
+return "";
+
+return `
+
+<div class="filters">
+
+<button
+class="filter ${
+!currentSubcategory ||
+currentSubcategory==="all"
+?
+"active"
+:
+""
+}"
+onclick="selectSubcategory('all')"
+>
+همه
+</button>
+
+${subs.map(sub=>`
+
+<button
+class="filter ${
+currentSubcategory===sub
+?
+"active"
+:
+""
+}"
+onclick="selectSubcategory('${escapeJS(sub)}')"
+>
+${escapeHTML(sub)}
+</button>
+
+`).join("")}
+
+</div>
+
+`;
+
+}
+
+
+function selectSubcategory(sub){
+
+currentSubcategory =
+sub;
+
+const cat =
+decodeURIComponent(
+getRoute()
+.split("/")[2] || ""
+);
+
+if(sub==="all"){
+
+go(
+"/category/" +
+encodeURIComponent(cat)
+);
+
+return;
+
+}
+
+go(
+"/category/" +
+encodeURIComponent(cat) +
+"?sub=" +
+encodeURIComponent(sub)
+);
+
+}
+
+
 /* =========================
 PHONES
 ========================= */
@@ -3937,16 +4022,16 @@ currentPhoneBrand==="all"
 ?
 
 products.filter(
-p=>
+p =>
 String(p.cat)==="mobile"
 )
 
 :
 
 products.filter(
-p=>
+p =>
 String(p.cat)==="mobile" &&
-p.brand===currentPhoneBrand
+String(p.brand)===String(currentPhoneBrand)
 );
 
 var brands=[
@@ -3993,8 +4078,7 @@ ${filtered.length}
 
 <div class="filters">
 
-${
-brands.map(
+${brands.map(
 ([key,name])=>`
 
 <button
@@ -4013,8 +4097,7 @@ ${name}
 </button>
 
 `
-).join("")
-}
+).join("")}
 
 </div>
 
@@ -4067,12 +4150,10 @@ PRODUCT IMAGES
 
 function getProductImages(p){
 
-var images = [
+var images=[
 
 p.image,
-
 p.image2,
-
 p.image3
 
 ].filter(Boolean);
@@ -4081,16 +4162,14 @@ if(
 Array.isArray(p.images)
 ){
 
-images =
-[
+images=[
 ...p.images,
 ...images
 ].filter(Boolean);
 
 }
 
-images =
-[
+images=[
 ...new Set(images)
 ];
 
@@ -4114,8 +4193,9 @@ var first =
 images[0];
 
 var pid =
-JSON.stringify(String(p.id))
-.replace(/"/g,"&quot;");
+JSON.stringify(
+String(p.id)
+);
 
 if(!first){
 
@@ -4124,11 +4204,9 @@ return `
 <div class="product-image">
 
 <span>
-
 ${escapeHTML(
 p.icon || "🛍️"
 )}
-
 </span>
 
 </div>
@@ -4202,7 +4280,7 @@ function changeCardImage(id,amount){
 
 var p =
 products.find(
-x=>
+x =>
 String(x.id)===String(id)
 );
 
@@ -4264,7 +4342,6 @@ cardImageIndexes[id]
 if(number){
 
 number.textContent =
-
 (
 cardImageIndexes[id]+1
 )
@@ -4425,9 +4502,7 @@ ${stockHTML}
 <button
 onclick="go('/product/${encodeURIComponent(String(p.id))}')"
 >
-
 جزئیات
-
 </button>
 
 <button
@@ -4500,7 +4575,7 @@ function renderProduct(id){
 
 var p =
 products.find(
-x=>
+x =>
 String(x.id)===String(id) ||
 String(x.docId)===String(id) ||
 String(x.code)===String(id)
@@ -4603,7 +4678,6 @@ p.icon ||
 </span>
 
 `
-
 }
 
 </div>
@@ -4619,18 +4693,14 @@ images.length>1
 class="detail-arrow right"
 onclick="changeDetailImage(${productId},1)"
 >
-
 ›
-
 </button>
 
 <button
 class="detail-arrow left"
 onclick="changeDetailImage(${productId},-1)"
 >
-
 ‹
-
 </button>
 
 <div
@@ -4661,11 +4731,9 @@ i===0
 :
 
 ""
-
 }
 
 </div>
-
 
 <div class="detail-info">
 
@@ -4721,11 +4789,9 @@ ${finalPrice.toLocaleString("en-US")}
 </small>
 
 `
-
 }
 
 </div>
-
 
 ${
 discount>0
@@ -4753,9 +4819,7 @@ ${finalPrice.toLocaleString("en-US")}
 :
 
 ""
-
 }
-
 
 <div
 class="detail-stock ${
@@ -4775,13 +4839,10 @@ ${getStockHTML(stock)}
 
 </div>
 
-
 <div class="product-specs">
 
 <div class="product-specs-title">
-
 مشخصات محصول
-
 </div>
 
 <div class="product-specs-text">
@@ -4794,7 +4855,6 @@ p.specs ||
 </div>
 
 </div>
-
 
 <div class="quantity">
 
@@ -4816,7 +4876,6 @@ onclick="changeTempQty(1)"
 
 </div>
 
-
 <button
 class="primary-btn"
 onclick="addToCart(${productId},tempQty)"
@@ -4832,7 +4891,6 @@ stock<=0
 }
 
 </button>
-
 
 <button
 class="secondary-btn"
@@ -4867,7 +4925,7 @@ function changeDetailImage(id,amount){
 
 var p =
 products.find(
-x=>
+x =>
 String(x.id)===String(id)
 );
 
@@ -4970,7 +5028,7 @@ Number(qty || 1);
 
 var p =
 products.find(
-x=>
+x =>
 String(x.id)===String(id)
 );
 
@@ -4991,7 +5049,7 @@ return;
 
 var item =
 cart.find(
-x=>
+x =>
 String(x.id)===String(id)
 );
 
@@ -5062,7 +5120,7 @@ function cartQty(id,amount){
 
 var item =
 cart.find(
-x=>
+x =>
 String(x.id)===String(id)
 );
 
@@ -5071,7 +5129,7 @@ return;
 
 var p =
 products.find(
-x=>
+x =>
 String(x.id)===String(id)
 );
 
@@ -5095,7 +5153,7 @@ if(item.qty<1){
 
 cart =
 cart.filter(
-x=>
+x =>
 String(x.id)!==
 String(id)
 );
@@ -5113,7 +5171,7 @@ function removeFromCart(id){
 
 cart =
 cart.filter(
-x=>
+x =>
 String(x.id)!==
 String(id)
 );
@@ -5140,7 +5198,7 @@ cart.map(item=>{
 
 var p =
 products.find(
-x=>
+x =>
 String(x.id)===String(item.id) ||
 String(x.docId)===String(item.id) ||
 String(x.code)===String(item.id)
@@ -5153,6 +5211,7 @@ return p
 null;
 
 }).filter(Boolean);
+
 
 if(!items.length){
 
@@ -5179,6 +5238,7 @@ return;
 
 }
 
+
 var total =
 items.reduce(
 (sum,item)=>{
@@ -5190,6 +5250,7 @@ item.qty;
 },
 0
 );
+
 
 document.getElementById(
 "app"
@@ -5215,7 +5276,6 @@ ${items.length}
 </div>
 
 </div>
-
 
 ${items.map(item=>{
 
@@ -5258,7 +5318,6 @@ item.icon ||
 
 </div>
 
-
 <div class="cart-item-info">
 
 <h3>
@@ -5271,7 +5330,6 @@ ${finalPrice.toLocaleString("en-US")}
 </p>
 
 </div>
-
 
 <div class="qty">
 
@@ -5292,7 +5350,6 @@ onclick="cartQty(${pid},1)"
 </button>
 
 </div>
-
 
 <button
 class="remove"
@@ -5323,7 +5380,6 @@ ${total.toLocaleString("en-US")}
 
 </div>
 
-
 <div class="summary-row total">
 
 <span>
@@ -5337,15 +5393,12 @@ ${total.toLocaleString("en-US")}
 
 </div>
 
-
 <button
 class="primary-btn"
 style="width:100%;margin-top:10px"
 onclick="checkout()"
 >
-
 ثبت سفارش
-
 </button>
 
 </div>
@@ -5376,7 +5429,7 @@ function toggleFavorite(id){
 
 var found =
 favorites.find(
-x=>
+x =>
 String(x)===String(id)
 );
 
@@ -5384,7 +5437,7 @@ if(found !== undefined){
 
 favorites =
 favorites.filter(
-x=>
+x =>
 String(x)!==
 String(id)
 );
@@ -5416,9 +5469,9 @@ function renderFavorites(){
 
 var list =
 products.filter(
-p=>
+p =>
 favorites.some(
-id=>
+id =>
 String(id)===String(p.id)
 )
 );
@@ -5451,9 +5504,7 @@ ${list.length}
 
 </div>
 
-
 ${
-
 list.length
 
 ?
@@ -5596,7 +5647,6 @@ ${results.length}
 
 ${sortFilters()}
 
-
 <div class="search-results">
 
 ${
@@ -5644,7 +5694,7 @@ function renderDiscount(){
 
 var list =
 products.filter(
-p=>
+p =>
 Number(
 p.discount || 0
 )>0
@@ -5680,9 +5730,7 @@ ${list.length}
 
 ${sortFilters()}
 
-
 ${
-
 list.length
 
 ?
@@ -5750,7 +5798,6 @@ document.getElementById(
 </div>
 
 </div>
-
 
 <div class="laws-box">
 
@@ -5852,7 +5899,10 @@ document.getElementById(
 </div>
 
 <h1>
-پشتیبانی ${renderStoreNameHTML(storeName)}
+
+پشتیبانی
+${brandNameHTML(storeName)}
+
 </h1>
 
 <p>
@@ -5861,7 +5911,6 @@ ${escapeHTML(supportText)}
 
 </div>
 
-
 ${
 contactText
 
@@ -5869,9 +5918,7 @@ contactText
 
 `
 
-<div
-class="contact-card"
->
+<div class="contact-card">
 
 <div class="contact-icon">
 ℹ️
@@ -5896,7 +5943,6 @@ ${escapeHTML(contactText)}
 :
 
 ""
-
 }
 
 
@@ -5928,7 +5974,7 @@ ${escapeHTML(phone)}
 <div class="contact-actions">
 
 <button
-onclick="copyText('${escapeHTML(phone)}')"
+onclick="copyText('${escapeJS(phone)}')"
 >
 کپی
 </button>
@@ -5981,7 +6027,7 @@ rubika
 <div class="contact-actions">
 
 <button
-onclick="copyText('@${escapeHTML(rubika)}')"
+onclick="copyText('@${escapeJS(rubika)}')"
 >
 کپی
 </button>
@@ -6007,7 +6053,9 @@ onclick="openRubika()"
 
 
 ${
-!phone && !rubika && !contactText
+!phone &&
+!rubika &&
+!contactText
 
 ?
 
@@ -6019,7 +6067,6 @@ emptyResult(
 :
 
 ""
-
 }
 
 </div>
@@ -6175,8 +6222,10 @@ modal.innerHTML=`
 </h2>
 
 <p>
+
 قبل از خرید قوانین سایت را
 کامل مطالعه بفرمایید.
+
 </p>
 
 <div class="modal-actions">
@@ -6185,18 +6234,14 @@ modal.innerHTML=`
 class="accept-btn"
 onclick="acceptLawAndOpen()"
 >
-
 پذیرش و خواندن قوانین
-
 </button>
 
 <button
 class="reject-btn"
 onclick="rejectLawModal()"
 >
-
 رد کردن
-
 </button>
 
 </div>
@@ -6389,6 +6434,41 @@ text ?? ""
 }
 
 
+/* برای قرار دادن متن داخل onclick */
+function escapeJS(text){
+
+return String(
+text ?? ""
+)
+
+.replace(
+/\\/g,
+"\\\\"
+)
+
+.replace(
+/'/g,
+"\\'"
+)
+
+.replace(
+/"/g,
+'\\"'
+)
+
+.replace(
+/\n/g,
+"\\n"
+)
+
+.replace(
+/\r/g,
+"\\r"
+);
+
+}
+
+
 /* =========================
 INITIAL
 ========================= */
@@ -6402,4 +6482,4 @@ getRoute()
 </script>
 
 </body>
-     </html>
+ </html>
