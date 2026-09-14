@@ -29,6 +29,8 @@ html{
     scroll-behavior:smooth;
 }
 
+body.store-loading{visibility:hidden;}
+
 body{
     font-family:Tahoma,Arial,sans-serif;
     background:
@@ -1746,7 +1748,7 @@ footer{
 
 </head>
 
-<body>
+<body class="store-loading">
 
 <!-- =========================================================
      HEADER
@@ -3217,16 +3219,6 @@ function getRoute(){
 }
 
 
-window.addEventListener(
-    "popstate",
-    () => {
-
-        render(
-            getRoute()
-        );
-
-    }
-);
 
 
 window.addEventListener(
@@ -7009,8 +7001,9 @@ async function initializeStore(){
     categories = getCategories();
     applySiteSettings();
 
-    // یک رندر نهایی؛ مسیر موجود در URL دقیقاً حفظ می‌شود.
+    // فقط یک رندر نهایی؛ بعد از آماده‌شدن داده‌ها صفحه نمایان می‌شود.
     render(getRoute());
+    document.body.classList.remove("store-loading");
 
     setTimeout(showFirstVisitLaw, 700);
 }
