@@ -3019,104 +3019,139 @@ async function loadSettings(){
 
 async function loadProducts(){
 
+    const WORKER_PRODUCTS_URL =
+        "https://curly-cherry-da35.amydypiam064.workers.dev/products";
+
     try{
 
-        const snap =
-            await getDocs(
-                collection(
-                    db,
-                    "products"
-                )
+        const response =
+            await fetch(
+                WORKER_PRODUCTS_URL,
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
             );
 
+        if(!response.ok){
+            throw new Error(
+                "Worker HTTP " + response.status
+            );
+        }
+
+        const data =
+            await response.json();
+
+        let rawList = [];
+
+        if(Array.isArray(data)){
+            rawList = data;
+        }
+        else if(Array.isArray(data.documents)){
+            rawList = data.documents;
+        }
+        else if(Array.isArray(data.products)){
+            rawList = data.products;
+        }
 
         const list =
-            snap.docs.map(
-                normalizeProduct
-            );
+            rawList.map(item => {
 
+                if(item && item.fields){
 
-        list.sort(
-            (a,b) => {
+                    const fields = item.fields;
 
-                const ad =
-                    getCreatedTime(
-                        a.createdAt
-                    );
+                    const getValue = field => {
 
-                const bd =
-                    getCreatedTime(
-                        b.createdAt
-                    );
+                        if(!field || typeof field !== "object"){
+                            return "";
+                        }
 
+                        if(field.stringValue !== undefined){
+                            return field.stringValue;
+                        }
 
-                if(ad !== bd)
-                    return bd - ad;
+                        if(field.integerValue !== undefined){
+                            return Number(field.integerValue);
+                        }
 
+                        if(field.doubleValue !== undefined){
+                            return Number(field.doubleValue);
+                        }
 
-                const an =
-                    Number(a.code);
+                        if(field.booleanValue !== undefined){
+                            return field.booleanValue;
+                        }
 
-                const bn =
-                    Number(b.code);
+                        return "";
+                    };
 
-
-                if(
-                    Number.isFinite(an) &&
-                    Number.isFinite(bn)
-                ){
-
-                    return bn - an;
-
+                    return normalizeProduct({
+                        code: getValue(fields.code),
+                        category: getValue(fields.category),
+                        brand: getValue(fields.brand),
+                        goldCat: getValue(fields.goldCat),
+                        name: getValue(fields.name),
+                        search: getValue(fields.search),
+                        price: getValue(fields.price),
+                        image: getValue(fields.image),
+                        icon: getValue(fields.icon),
+                        description: getValue(fields.description),
+                        specs: getValue(fields.specs),
+                        stock: getValue(fields.stock),
+                        discount: getValue(fields.discount),
+                        createdAt: getValue(fields.createdAt),
+                        image2: getValue(fields.image2),
+                        image3: getValue(fields.image3)
+                    });
                 }
 
+                return normalizeProduct(item);
+            });
 
-                return String(a.name)
-                    .localeCompare(
-                        String(b.name),
-                        "fa"
-                    );
+        list.sort((a,b) => {
 
+            const ad = getCreatedTime(a.createdAt);
+            const bd = getCreatedTime(b.createdAt);
+
+            if(ad !== bd)
+                return bd - ad;
+
+            const an = Number(a.code);
+            const bn = Number(b.code);
+
+            if(Number.isFinite(an) && Number.isFinite(bn)){
+                return bn - an;
             }
-        );
 
+            return String(a.name).localeCompare(
+                String(b.name),
+                "fa"
+            );
+        });
 
         products = list;
 
-
         console.log(
-            "MAHAN CENTER PRODUCTS:",
+            "MAHAN CENTER PRODUCTS FROM WORKER:",
             products.length
         );
 
-
         return true;
-
 
     }catch(error){
 
         console.error(
-            "Products Firebase error:",
+            "Products Worker error:",
             error
         );
 
-
-        /*
-           محصولات قبلی را پاک نمی‌کنیم.
-           این کار باعث می‌شود اگر درخواست
-           بعدی خطا خورد، صفحه خالی نشود.
-        */
-
-
         showSmallFirebaseError(
-            "دریافت محصولات از Firebase انجام نشد."
+            "ارتباط با فروشگاه برقرار نشد."
         );
 
-
         return false;
-
     }
-
 }
 
 
