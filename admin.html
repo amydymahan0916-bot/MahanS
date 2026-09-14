@@ -211,6 +211,7 @@ button{cursor:pointer}
   .card{padding:9px}
   .wrap{padding:14px 9px}
 }
+.orders-list{display:grid;gap:13px}.order-card{position:relative;overflow:hidden;background:linear-gradient(145deg,#151515,#0b0b0b);border:1px solid #292929;border-radius:21px;padding:16px;box-shadow:0 15px 40px rgba(0,0,0,.18)}.order-card:before{content:"";position:absolute;right:-55px;top:-70px;width:150px;height:150px;border-radius:50%;background:rgba(25,214,107,.05)}.order-head{position:relative;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.order-name{font-size:16px;font-weight:900}.order-phone{direction:ltr;color:var(--green);font-size:12px;margin-top:3px}.order-meta{color:#777;font-size:10px;line-height:1.9}.order-customer-line{margin-top:10px;padding:11px 12px;border-radius:14px;background:#0a0a0a;border:1px solid #222;color:#aaa;font-size:11px;line-height:1.9}.order-customer-line b{color:#fff}.order-items{margin-top:10px;padding:11px;border-radius:14px;background:#0a0a0a;border:1px solid #202020;color:#bbb;font-size:11px;line-height:2}.order-items b{color:#fff}.order-total{margin-top:11px;color:var(--yellow);font-weight:900;font-size:13px}.order-status{padding:5px 9px;border-radius:999px;background:#102c1c;border:1px solid #176f3c;color:var(--green);font-size:9px}.order-copy{display:inline-block;margin-top:9px;padding:7px 10px;border:1px solid #292929;border-radius:10px;background:#151515;color:#aaa;font-size:9px;cursor:pointer}.order-copy:hover{border-color:var(--green);color:var(--green)}@media(max-width:520px){.order-head{align-items:flex-start;flex-direction:column}}
 </style>
 </head>
 
@@ -241,6 +242,7 @@ button{cursor:pointer}
   <div class="tabs">
     <button class="tab active" data-tab="products">📦 محصولات</button>
     <button class="tab" data-tab="categories">🗂 دسته‌بندی‌ها</button>
+    <button class="tab" data-tab="orders">🧾 سفارش‌ها</button>
   </div>
 
   <section id="productsPanel" class="panel active">
@@ -265,6 +267,15 @@ button{cursor:pointer}
     </div>
     <input id="categorySearch" class="search" placeholder="جستجوی دسته‌بندی..." oninput="renderCategories()">
     <div id="categoriesList" class="cat-grid"><div class="loading">در حال دریافت دسته‌بندی‌ها...</div></div>
+  </section>
+
+  <section id="ordersPanel" class="panel">
+    <div class="section-head">
+      <div><h2>سفارش‌های مشتریان</h2><div class="count" id="orderCount">در حال دریافت...</div></div>
+      <button class="btn btn-green" onclick="loadOrders()">↻ بروزرسانی</button>
+    </div>
+    <input id="orderSearch" class="search" placeholder="جستجوی نام یا شماره تلفن..." oninput="renderOrders()">
+    <div id="ordersList" class="orders-list"><div class="loading">در حال دریافت سفارش‌ها...</div></div>
   </section>
 
 </main>
@@ -421,6 +432,7 @@ let products = [];
 let categories = [];
 let generatedImageNames = [];
 let editingImagePaths = [];
+let orders = [];
 
 /* =========================================================
    HELPERS
@@ -951,6 +963,59 @@ async function deleteCategory(encodedId){
 }
 
 /* =========================================================
+   ORDERS
+========================================================= */
+function formatOrderDate(value){
+  if(!value) return "تاریخ نامشخص";
+  const d=new Date(value);
+  if(Number.isNaN(d.getTime())) return String(value);
+  return new Intl.DateTimeFormat("fa-IR",{dateStyle:"medium",timeStyle:"short"}).format(d);
+}
+function orderStatusLabel(status){
+  const map={new:"جدید",pending:"در انتظار بررسی",confirmed:"تأیید شده",processing:"در حال آماده‌سازی",shipped:"ارسال شده",done:"تکمیل شده",cancelled:"لغو شده"};
+  return map[status]||status||"جدید";
+}
+function renderOrders(){
+  const box=$("ordersList"), q=($("orderSearch")?.value||"").trim().toLowerCase();
+  const list=orders.filter(o=>{
+    const c=o.customer||{};
+    const items=(o.items||[]).map(x=>x.name||"").join(" ");
+    const text=[c.fullName,c.firstName,c.lastName,c.phone,o.id,o.orderId,items].join(" ").toLowerCase();
+    return !q || text.includes(q);
+  });
+  $("orderCount").textContent=`${list.length} سفارش`;
+  if(!list.length){box.innerHTML='<div class="empty">هنوز سفارشی پیدا نشد.</div>';return;}
+  box.innerHTML=list.map(o=>{
+    const c=o.customer||{};
+    const fullName=c.fullName||`${c.firstName||""} ${c.lastName||""}`.trim()||"مشتری بدون نام";
+    const phone=c.phone||"بدون شماره";
+    const items=(o.items||[]).map(x=>`<div>🛍️ <b>${escapeHTML(x.name||"محصول")}</b> × ${Number(x.qty||1).toLocaleString("fa-IR")}</div>`).join("") || "موردی ثبت نشده";
+    const total=Number(o.total||0).toLocaleString("en-US");
+    const orderId=o.id||o.orderId||"";
+    const summary=`${fullName} با شماره تلفن ${phone} — ${(o.items||[]).map(x=>`${x.name||"محصول"} × ${x.qty||1}`).join("، ")}`;
+    return `<article class="order-card">
+      <div class="order-head"><div><div class="order-name">👤 ${escapeHTML(fullName)}</div><div class="order-phone">${escapeHTML(phone)}</div></div><span class="order-status">${escapeHTML(orderStatusLabel(o.status))}</span></div>
+      <div class="order-customer-line"><b>🧾 سفارش مشتری:</b> ${escapeHTML(fullName)} با شماره تلفن ${escapeHTML(phone)}<br><span class="order-meta">شناسه: ${escapeHTML(orderId||"-")} · ${escapeHTML(formatOrderDate(o.createdAt||o.orderDate))}</span></div>
+      <div class="order-items"><b>محصولات:</b>${items}</div>
+      <div class="order-total">💰 مبلغ نهایی: ${total} تومان</div>
+      <button class="order-copy" onclick='navigator.clipboard?.writeText(${JSON.stringify(summary)});toast("اطلاعات سفارش کپی شد.")'>📋 کپی خلاصه سفارش</button>
+    </article>`;
+  }).join("");
+}
+async function loadOrders(){
+  $("ordersList").innerHTML='<div class="loading">در حال دریافت سفارش‌ها...</div>';
+  try{
+    const data=await api("/orders");
+    orders=Array.isArray(data)?data:(data.orders||data.documents||[]);
+    renderOrders();
+  }catch(error){
+    orders=[];
+    $("orderCount").textContent="خطا در دریافت";
+    $("ordersList").innerHTML=`<div class="empty">دریافت سفارش‌ها ناموفق بود.<br><small>${escapeHTML(error.message)}</small></div>`;
+  }
+}
+
+/* =========================================================
    TABS
 ========================================================= */
 document.querySelectorAll(".tab").forEach(btn=>{
@@ -963,9 +1028,12 @@ document.querySelectorAll(".tab").forEach(btn=>{
     if(name==="products"){
       $("productsPanel").classList.add("active");
       if(!products.length) await loadProducts();
-    }else{
+    }else if(name==="categories"){
       $("categoriesPanel").classList.add("active");
       if(!categories.length) await loadCategories();
+    }else{
+      $("ordersPanel").classList.add("active");
+      await loadOrders();
     }
   });
 });
