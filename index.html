@@ -1692,6 +1692,7 @@ footer{
 .product-card{border-radius:23px;background:linear-gradient(145deg,#151515,#0d0d0d);box-shadow:0 12px 35px rgba(0,0,0,.18)}.product-card:hover{border-color:rgba(25,214,107,.5);box-shadow:0 18px 45px rgba(0,0,0,.38)}.product-image{height:235px;background:radial-gradient(circle,#202020,#141414)}.product-image img{padding:15px;transition:.3s}.product-card:hover .product-image img{transform:scale(1.035)}.product-info{padding:16px 16px 12px}.product-title{font-size:15px;font-weight:bold}.product-desc{line-height:1.8}.product-price{color:#fff;font-size:17px}.product-actions{padding:0 16px 16px}.product-actions button{border-radius:12px}.product-actions .buy{box-shadow:0 7px 20px rgba(25,214,107,.1)}
 @media(max-width:700px){.home-intro{transform:translateY(-8px)}.home-box{padding:23px 15px 17px;border-radius:26px}.home-logo-small{width:78px;height:78px}.home-box h1{font-size:25px}.home-description{font-size:12px;line-height:1.85}.stats{gap:7px}.stat{padding:10px 5px;min-height:80px}.stat strong{font-size:22px}.stat span{font-size:9px}.stat-icon{font-size:15px}.laws-hero{padding:15px}.laws-hero h1{font-size:19px}.laws-box{padding:13px}.law-item{padding:13px;gap:9px}.law-number{flex-basis:33px;height:33px;font-size:15px}.law-body h2{font-size:13px}.law-body p{font-size:11px;line-height:2}.support-grid{grid-template-columns:1fr}.support-hero-pro{padding:25px 15px}.support-hero-pro h1{font-size:21px}.channel-actions{flex-direction:column}.products{grid-template-columns:repeat(2,1fr);gap:10px}.product-image{height:185px}.product-info{padding:12px}.product-actions{padding:0 12px 12px;flex-direction:column}.product-actions button{width:100%}.modal-actions{grid-template-columns:1fr}.law-modal{padding:20px}.law-modal-points{justify-content:flex-start}}
 
+.customer-modal-backdrop{position:fixed;inset:0;z-index:7000;background:rgba(0,0,0,.82);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:18px}.customer-modal{width:min(520px,100%);background:radial-gradient(circle at 50% 0,rgba(25,214,107,.12),transparent 42%),linear-gradient(145deg,#171717,#090909);border:1px solid #303030;border-radius:30px;padding:25px;box-shadow:0 35px 120px #000;text-align:center}.customer-modal-icon{width:64px;height:64px;margin:auto;border-radius:20px;display:grid;place-items:center;background:rgba(25,214,107,.12);border:1px solid rgba(25,214,107,.35);font-size:30px}.customer-modal-tag{color:var(--green);font-size:10px;margin-top:12px}.customer-modal h2{font-size:23px;margin:3px 0 8px}.customer-modal>p{color:#999;font-size:11px;line-height:2;margin-bottom:15px}.customer-form{display:grid;gap:9px}.customer-form input{width:100%;padding:12px;border-radius:12px;background:#080808;border:1px solid #2d2d2d;color:#fff;outline:none}.customer-form input:focus{border-color:var(--green)}.customer-private{margin-top:10px;padding:10px;border-radius:12px;background:rgba(25,214,107,.045);border:1px solid rgba(25,214,107,.15);color:#8dba9e;font-size:9px;line-height:1.8}.customer-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}.customer-actions button{border:0;border-radius:12px;padding:11px;font-weight:bold}.customer-save{background:var(--green);color:#06120a}.customer-cancel{background:#241012;color:#ff6570;border:1px solid #64151c!important}@media(max-width:600px){.customer-modal{padding:20px;border-radius:24px}.customer-actions{grid-template-columns:1fr}}
 </style>
 
 </head>
@@ -3391,6 +3392,2884 @@ function renderHome(){
    LAWS
 ========================================================= */
 
+function categoryCard(key){
+
+    const c =
+        categories[key];
+
+
+    if(!c)
+        return "";
+
+
+    const image =
+        resolveImage(
+            c.image || ""
+        ) ||
+        inferCategoryImage(c);
+
+
+    const subs =
+        Array.isArray(
+            c.subcategories
+        )
+            ? c.subcategories.slice(0,3)
+            : [];
+
+
+    const route =
+        "/category/" +
+        encodeURIComponent(key);
+
+
+    return `
+
+        <a
+            class="category"
+            href="#${route}"
+            onclick='go(${JSON.stringify(route)});return false'
+        >
+
+            <img
+                class="category-image"
+                src="${escapeHTML(image)}"
+                alt="${escapeHTML(c.name)}"
+                onerror="this.src='${escapeHTML(
+                    inferCategoryImage(c)
+                )}'"
+            >
+
+            <div class="category-overlay"></div>
+
+            <div class="category-content">
+
+                <div class="category-icon">
+                    ${escapeHTML(
+                        c.icon || "📦"
+                    )}
+                </div>
+
+                <div class="category-name">
+                    ${escapeHTML(
+                        c.name
+                    )}
+                </div>
+
+                <div class="category-sub">
+
+                    ${
+                        subs.length
+                            ? escapeHTML(
+                                subs.join(" • ")
+                              )
+                            : "مشاهده محصولات"
+                    }
+
+                </div>
+
+            </div>
+
+        </a>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CATEGORIES PAGE
+========================================================= */
+
+function renderCategories(){
+
+    const keys =
+        Object.keys(
+            categories
+        );
+
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <main class="page">
+
+            <div class="container">
+
+                <div class="page-title">
+
+                    <div>
+
+                        <h1>
+                            دسته‌بندی‌ها
+                        </h1>
+
+                        <p>
+                            انتخاب دسته‌بندی محصولات
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="categories">
+
+                    ${
+                        keys.length
+                            ? keys
+                                .map(categoryCard)
+                                .join("")
+                            : emptyResult(
+                                "📂",
+                                "هنوز دسته‌بندی‌ای ثبت نشده است"
+                              )
+                    }
+
+                </div>
+
+            </div>
+
+        </main>
+
+    `;
+
+}
+
+
+/* =========================================================
+   SORT
+========================================================= */
+
+function getFinalPrice(p){
+
+    const price =
+        Number(
+            p.price || 0
+        );
+
+
+    const discount =
+        Number(
+            p.discount || 0
+        );
+
+
+    return discount > 0
+        ? Math.round(
+            price -
+            (
+                price *
+                discount /
+                100
+            )
+          )
+        : price;
+
+}
+
+
+function sortProducts(list){
+
+    const arr =
+        [...list];
+
+
+    if(
+        currentSort ===
+        "newest"
+    ){
+
+        arr.sort(
+            (a,b) => {
+
+                const at =
+                    getCreatedTime(
+                        a.createdAt
+                    );
+
+                const bt =
+                    getCreatedTime(
+                        b.createdAt
+                    );
+
+
+                if(at !== bt)
+                    return bt - at;
+
+
+                return Number(
+                    b.code || 0
+                )
+                -
+                Number(
+                    a.code || 0
+                );
+
+            }
+        );
+
+    }
+
+
+    else if(
+        currentSort ===
+        "oldest"
+    ){
+
+        arr.sort(
+            (a,b) => {
+
+                const at =
+                    getCreatedTime(
+                        a.createdAt
+                    );
+
+                const bt =
+                    getCreatedTime(
+                        b.createdAt
+                    );
+
+
+                if(at !== bt)
+                    return at - bt;
+
+
+                return Number(
+                    a.code || 0
+                )
+                -
+                Number(
+                    b.code || 0
+                );
+
+            }
+        );
+
+    }
+
+
+    else if(
+        currentSort ===
+        "cheap"
+    ){
+
+        arr.sort(
+            (a,b) =>
+                getFinalPrice(a) -
+                getFinalPrice(b)
+        );
+
+    }
+
+
+    else if(
+        currentSort ===
+        "expensive"
+    ){
+
+        arr.sort(
+            (a,b) =>
+                getFinalPrice(b) -
+                getFinalPrice(a)
+        );
+
+    }
+
+
+    else if(
+        currentSort ===
+        "discount"
+    ){
+
+        arr.sort(
+            (a,b) =>
+                Number(
+                    b.discount || 0
+                )
+                -
+                Number(
+                    a.discount || 0
+                )
+        );
+
+    }
+
+
+    return arr;
+
+}
+
+
+function getSortName(){
+
+    const names = {
+
+        newest:"جدیدترین",
+
+        oldest:"قدیمی‌ترین",
+
+        cheap:"ارزان‌ترین",
+
+        expensive:"گران‌ترین",
+
+        discount:"بیشترین تخفیف"
+
+    };
+
+
+    return (
+        names[currentSort] ||
+        "مرتب‌سازی"
+    );
+
+}
+
+
+function sortFilters(){
+
+    const items = [
+
+        ["newest","جدیدترین"],
+
+        ["oldest","قدیمی‌ترین"],
+
+        ["cheap","ارزان‌ترین"],
+
+        ["expensive","گران‌ترین"],
+
+        ["discount","بیشترین تخفیف"]
+
+    ];
+
+
+    return `
+
+        <div class="sort-area">
+
+            <div class="sort-box">
+
+                <button
+                    class="sort-toggle"
+                    onclick="toggleSortMenu(event)"
+                >
+
+                    <span>
+
+                        مرتب‌سازی:
+
+                        <strong>
+                            ${getSortName()}
+                        </strong>
+
+                    </span>
+
+                    <span>
+                        ⌄
+                    </span>
+
+                </button>
+
+
+                <div
+                    class="sort-menu"
+                    id="sortMenu"
+                >
+
+                    ${
+                        items
+                            .map(
+                                ([key,name]) =>
+                                `
+
+                                <button
+                                    class="sort-option ${
+                                        currentSort === key
+                                            ? "active"
+                                            : ""
+                                    }"
+                                    onclick="changeSort('${key}')"
+                                >
+                                    ${name}
+                                </button>
+
+                                `
+                            )
+                            .join("")
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+function toggleSortMenu(event){
+
+    if(event)
+        event.stopPropagation();
+
+
+    const menu =
+        document.getElementById(
+            "sortMenu"
+        );
+
+
+    if(menu)
+        menu.classList.toggle(
+            "open"
+        );
+
+}
+
+
+function changeSort(sort){
+
+    currentSort =
+        String(
+            sort ||
+            "newest"
+        );
+
+
+    render(
+        getRoute()
+    );
+
+}
+
+
+/* =========================================================
+   CATEGORY HELPERS
+========================================================= */
+
+function getProductSubcategory(p){
+
+    return String(
+
+        p.subcategory ||
+        p.subCat ||
+        p.sub_category ||
+        p.childCategory ||
+        p.childCat ||
+        p.goldCat ||
+        ""
+
+    ).trim();
+
+}
+
+
+function productBelongsToCategory(
+    product,
+    categoryId
+){
+
+    const cat =
+        categories[
+            String(categoryId)
+        ];
+
+
+    const values = [
+
+        product.category,
+
+        product.cat,
+
+        product.categoryId,
+
+        product.categoryName
+
+    ]
+    .map(normalizeText)
+    .filter(Boolean);
+
+
+    const wantedId =
+        normalizeText(
+            categoryId
+        );
+
+
+    const wantedName =
+        normalizeText(
+            cat?.name
+        );
+
+
+    return (
+
+        values.includes(
+            wantedId
+        )
+
+        ||
+
+        (
+            wantedName &&
+            values.includes(
+                wantedName
+            )
+        )
+
+    );
+
+}
+
+
+function getCategorySubcategories(
+    cat,
+    categoryProducts
+){
+
+    const configured =
+        Array.isArray(
+            cat?.subcategories
+        )
+            ? cat.subcategories.filter(
+                Boolean
+              )
+            : [];
+
+
+    const derived =
+        categoryProducts
+            .map(
+                getProductSubcategory
+            )
+            .filter(Boolean);
+
+
+    return [
+        ...new Set([
+            ...configured,
+            ...derived
+        ])
+    ];
+
+}
+
+
+function renderSubcategories(
+    cat,
+    categoryProducts
+){
+
+    const list =
+        getCategorySubcategories(
+            cat,
+            categoryProducts
+        );
+
+
+    if(!list.length)
+        return "";
+
+
+    return `
+
+        <div class="subcategories">
+
+            <button
+                class="subcategory-btn ${
+                    currentSubcategory === "all"
+                        ? "active"
+                        : ""
+                }"
+                onclick="changeSubcategory('all')"
+            >
+                همه
+            </button>
+
+
+            ${
+                list
+                    .map(
+                        sub =>
+                        `
+
+                        <button
+                            class="subcategory-btn ${
+                                currentSubcategory === sub
+                                    ? "active"
+                                    : ""
+                            }"
+                            onclick='changeSubcategory(${JSON.stringify(sub)})'
+                        >
+                            ${escapeHTML(sub)}
+                        </button>
+
+                        `
+                    )
+                    .join("")
+            }
+
+        </div>
+
+    `;
+
+}
+
+
+function changeSubcategory(sub){
+
+    currentSubcategory =
+        String(
+            sub ||
+            "all"
+        );
+
+
+    const route =
+        getRoute();
+
+
+    const parts =
+        route
+            .split("/")
+            .filter(Boolean);
+
+
+    const cat =
+        decodeURIComponent(
+            parts[1] || ""
+        );
+
+
+    if(
+        currentSubcategory ===
+        "all"
+    ){
+
+        go(
+            "/category/" +
+            encodeURIComponent(cat)
+        );
+
+    }else{
+
+        go(
+            "/category/" +
+            encodeURIComponent(cat) +
+            "/" +
+            encodeURIComponent(
+                currentSubcategory
+            )
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   CATEGORY PAGE
+========================================================= */
+
+function renderCategory(
+    cat,
+    sub
+){
+
+    const category =
+        categories[
+            String(cat)
+        ];
+
+
+    let categoryProducts =
+        products.filter(
+            p =>
+                productBelongsToCategory(
+                    p,
+                    cat
+                )
+        );
+
+
+    const allProducts =
+        [...categoryProducts];
+
+
+    if(
+        sub &&
+        sub !== "all"
+    ){
+
+        categoryProducts =
+            categoryProducts.filter(
+                p =>
+                    getProductSubcategory(p) ===
+                    String(sub)
+            );
+
+    }
+
+
+    currentSubcategory =
+        sub || "all";
+
+
+    categoryProducts =
+        sortProducts(
+            categoryProducts
+        );
+
+
+    const categoryName =
+        category
+            ? category.name
+            : "محصولات";
+
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <main class="page">
+
+            <div class="container">
+
+                <div class="page-title">
+
+                    <div>
+
+                        <h1>
+                            ${escapeHTML(
+                                categoryName
+                            )}
+                        </h1>
+
+                        <p>
+
+                            ${
+                                sub &&
+                                sub !== "all"
+                                    ? "زیر دسته: " +
+                                      escapeHTML(sub)
+                                    : allProducts.length +
+                                      " محصول"
+                            }
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                ${renderSubcategories(
+                    category,
+                    allProducts
+                )}
+
+
+                ${sortFilters()}
+
+
+                ${
+                    categoryProducts.length
+
+                        ?
+
+                        `
+
+                        <div class="products">
+
+                            ${
+                                categoryProducts
+                                    .map(productCard)
+                                    .join("")
+                            }
+
+                        </div>
+
+                        `
+
+                        :
+
+                        emptyResult(
+                            "📦",
+                            "محصولی در این دسته وجود ندارد"
+                        )
+                }
+
+            </div>
+
+        </main>
+
+    `;
+
+}
+
+
+/* =========================================================
+   PHONE
+========================================================= */
+
+function renderPhones(){
+
+    let filtered =
+        currentPhoneBrand === "all"
+
+            ?
+
+            products.filter(
+                p =>
+                    productBelongsToCategory(
+                        p,
+                        "mobile"
+                    )
+            )
+
+            :
+
+            products.filter(
+                p =>
+                    productBelongsToCategory(
+                        p,
+                        "mobile"
+                    )
+                    &&
+                    normalizeText(
+                        p.brand
+                    ) ===
+                    normalizeText(
+                        currentPhoneBrand
+                    )
+            );
+
+
+    const brands = [
+
+        ["all","همه"],
+
+        ["iphone","آیفون"],
+
+        ["samsung","سامسونگ"],
+
+        ["xiaomi","شیائومی"],
+
+        ["nokia","نوکیا"]
+
+    ];
+
+
+    filtered =
+        sortProducts(
+            filtered
+        );
+
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <main class="page">
+
+            <div class="container">
+
+                <div class="page-title">
+
+                    <div>
+
+                        <h1>
+                            گوشی موبایل
+                        </h1>
+
+                        <p>
+                            ${filtered.length}
+                            محصول
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="subcategories">
+
+                    ${
+                        brands
+                            .map(
+                                ([key,name]) =>
+                                `
+
+                                <button
+                                    class="subcategory-btn ${
+                                        currentPhoneBrand === key
+                                            ? "active"
+                                            : ""
+                                    }"
+                                    onclick="filterPhones('${key}')"
+                                >
+                                    ${name}
+                                </button>
+
+                                `
+                            )
+                            .join("")
+                    }
+
+                </div>
+
+
+                ${sortFilters()}
+
+
+                <div class="products">
+
+                    ${
+                        filtered.length
+
+                            ?
+
+                            filtered
+                                .map(productCard)
+                                .join("")
+
+                            :
+
+                            emptyResult(
+                                "📱",
+                                "محصولی پیدا نشد"
+                            )
+                    }
+
+                </div>
+
+            </div>
+
+        </main>
+
+    `;
+
+}
+
+
+function filterPhones(brand){
+
+    currentPhoneBrand =
+        brand;
+
+
+    renderPhones();
+
+}
+
+
+/* =========================================================
+   PRODUCT IMAGES
+========================================================= */
+
+function getProductImages(p){
+
+    const images = [
+
+        p.image,
+
+        p.image2,
+
+        p.image3,
+
+        ...(Array.isArray(p.images)
+            ? p.images
+            : [])
+
+    ]
+    .filter(Boolean)
+    .map(resolveImage);
+
+
+    return [
+        ...new Set(
+            images
+        )
+    ].slice(0,3);
+
+}
+
+
+/* =========================================================
+   CARD IMAGE
+========================================================= */
+
+function productImageHTML(p){
+
+    const images =
+        getProductImages(p);
+
+
+    const first =
+        images[0];
+
+
+    const id =
+        escapeHTML(
+            String(p.id)
+        );
+
+
+    if(!first){
+
+        return `
+
+            <div class="product-image">
+
+                <span>
+                    ${escapeHTML(
+                        p.icon ||
+                        "🛍️"
+                    )}
+                </span>
+
+            </div>
+
+        `;
+
+    }
+
+
+    const arrows =
+        images.length > 1
+
+            ?
+
+            `
+
+            <button
+                class="image-arrow right"
+                onclick='event.preventDefault();event.stopPropagation();changeCardImage(${JSON.stringify(String(p.id))},1)'
+            >
+                ›
+            </button>
+
+
+            <button
+                class="image-arrow left"
+                onclick='event.preventDefault();event.stopPropagation();changeCardImage(${JSON.stringify(String(p.id))},-1)'
+            >
+                ‹
+            </button>
+
+
+            <div
+                class="image-number"
+                id="cardImageNumber-${id}"
+            >
+                1 / ${images.length}
+            </div>
+
+            `
+
+            : "";
+
+
+    return `
+
+        <div
+            class="product-image"
+            id="productImage-${id}"
+        >
+
+            <img
+                id="cardImg-${id}"
+                src="${escapeHTML(first)}"
+                alt="${escapeHTML(p.name)}"
+                onerror="
+                    this.onerror=null;
+                    this.style.display='none';
+                "
+            >
+
+            ${arrows}
+
+        </div>
+
+    `;
+
+}
+
+
+function changeCardImage(
+    id,
+    amount
+){
+
+    const p =
+        products.find(
+            x =>
+                String(x.id) ===
+                String(id)
+        );
+
+
+    if(!p)
+        return;
+
+
+    const images =
+        getProductImages(p);
+
+
+    if(images.length <= 1)
+        return;
+
+
+    if(
+        cardImageIndexes[id] ===
+        undefined
+    ){
+
+        cardImageIndexes[id] =
+            0;
+
+    }
+
+
+    cardImageIndexes[id] +=
+        Number(
+            amount || 0
+        );
+
+
+    if(
+        cardImageIndexes[id] < 0
+    ){
+
+        cardImageIndexes[id] =
+            images.length - 1;
+
+    }
+
+
+    if(
+        cardImageIndexes[id] >=
+        images.length
+    ){
+
+        cardImageIndexes[id] =
+            0;
+
+    }
+
+
+    const img =
+        document.getElementById(
+            "cardImg-" + id
+        );
+
+
+    const number =
+        document.getElementById(
+            "cardImageNumber-" + id
+        );
+
+
+    if(img){
+
+        img.src =
+            images[
+                cardImageIndexes[id]
+            ];
+
+    }
+
+
+    if(number){
+
+        number.textContent =
+            (
+                cardImageIndexes[id] + 1
+            ) +
+            " / " +
+            images.length;
+
+    }
+
+}
+
+
+/* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+function productCard(p){
+
+    const isFav =
+        favorites.some(
+            x =>
+                String(x) ===
+                String(p.id)
+        );
+
+
+    const price =
+        Number(
+            p.price || 0
+        );
+
+
+    const discount =
+        Number(
+            p.discount || 0
+        );
+
+
+    const finalPrice =
+        getFinalPrice(p);
+
+
+    const stock =
+        Number(
+            p.stock || 0
+        );
+
+
+    const stockHTML =
+        getStockHTML(
+            stock
+        );
+
+
+    const productId =
+        JSON.stringify(
+            String(p.id)
+        );
+
+
+    const route =
+        "/product/" +
+        encodeURIComponent(
+            String(p.id)
+        );
+
+
+    return `
+
+        <article class="product-card">
+
+            <button
+                class="favorite ${
+                    isFav
+                        ? "active"
+                        : ""
+                }"
+                onclick='toggleFavorite(${productId})'
+                title="علاقه‌مندی"
+            >
+
+                ${
+                    isFav
+                        ? "♥"
+                        : "♡"
+                }
+
+            </button>
+
+
+            <a
+                href="#${route}"
+                onclick='go(${JSON.stringify(route)});return false'
+            >
+
+                ${productImageHTML(p)}
+
+
+                <div class="product-info">
+
+                    <div class="product-title">
+
+                        ${escapeHTML(
+                            p.name
+                        )}
+
+                    </div>
+
+
+                    <div class="product-desc">
+
+                        ${escapeHTML(
+                            p.desc || ""
+                        )}
+
+                    </div>
+
+
+                    <div class="product-price">
+
+                        ${
+                            discount > 0
+
+                                ?
+
+                                `
+
+                                <del
+                                    style="
+                                        color:#777;
+                                        font-size:11px
+                                    "
+                                >
+
+                                    ${price.toLocaleString("en-US")}
+                                    تومان
+
+                                </del>
+
+                                <br>
+
+                                <span class="discount-label">
+
+                                    ${discount}%
+                                    تخفیف
+
+                                </span>
+
+                                `
+
+                                : ""
+                        }
+
+
+                        ${finalPrice.toLocaleString("en-US")}
+
+                        <small>
+                            تومان
+                        </small>
+
+                    </div>
+
+
+                    <div
+                        class="stock ${
+                            stock > 10
+                                ? "green"
+                                : stock > 0
+                                    ? "yellow"
+                                    : "red"
+                        }"
+                    >
+
+                        ${stockHTML}
+
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <div class="product-actions">
+
+                <button
+                    onclick='go(${JSON.stringify(route)})'
+                >
+                    جزئیات
+                </button>
+
+
+                <button
+                    class="buy"
+                    onclick='addToCart(${productId},1)'
+                    ${stock <= 0 ? "disabled" : ""}
+                >
+
+                    ${
+                        stock <= 0
+                            ? "ناموجود"
+                            : "افزودن به سبد"
+                    }
+
+                </button>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+function getStockHTML(stock){
+
+    stock =
+        Number(
+            stock || 0
+        );
+
+
+    if(stock > 10){
+
+        return `
+            🟢
+            ${formatNumber(stock)}
+            عدد در انبار موجود می‌باشد
+        `;
+
+    }
+
+
+    if(stock > 0){
+
+        return `
+            🟡
+            ${formatNumber(stock)}
+            عدد در انبار موجود می‌باشد
+        `;
+
+    }
+
+
+    return `
+        🔴
+        در انبار موجود نداریم
+    `;
+
+}
+
+
+/* =========================================================
+   PRODUCT DETAIL
+========================================================= */
+
+function renderProduct(id){
+
+    const p =
+        products.find(
+            x =>
+                String(x.id) ===
+                    String(id)
+
+                ||
+
+                String(x.docId) ===
+                    String(id)
+
+                ||
+
+                String(x.code) ===
+                    String(id)
+        );
+
+
+    if(!p){
+
+        document.getElementById(
+            "app"
+        ).innerHTML = `
+
+            <div class="page">
+
+                <div class="container">
+
+                    ${emptyResult(
+                        "❌",
+                        "محصول پیدا نشد"
+                    )}
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    tempQty = 1;
+
+
+    const images =
+        getProductImages(p);
+
+
+    detailImageIndexes[
+        p.id
+    ] = 0;
+
+
+    const price =
+        Number(
+            p.price || 0
+        );
+
+
+    const discount =
+        Number(
+            p.discount || 0
+        );
+
+
+    const finalPrice =
+        getFinalPrice(p);
+
+
+    const stock =
+        Number(
+            p.stock || 0
+        );
+
+
+    const productId =
+        JSON.stringify(
+            String(p.id)
+        );
+
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <main class="page">
+
+            <div class="container">
+
+                <div class="product-detail">
+
+                    <div class="detail-gallery">
+
+                        <div class="detail-gallery-main">
+
+                            ${
+                                images[0]
+
+                                    ?
+
+                                    `
+
+                                    <img
+                                        id="detailMainImage"
+                                        src="${escapeHTML(images[0])}"
+                                        alt="${escapeHTML(p.name)}"
+                                        onerror="
+                                            this.onerror=null;
+                                            this.style.display='none';
+                                        "
+                                    >
+
+                                    `
+
+                                    :
+
+                                    `
+
+                                    <span>
+                                        ${escapeHTML(
+                                            p.icon ||
+                                            "🛍️"
+                                        )}
+                                    </span>
+
+                                    `
+                            }
+
+                        </div>
+
+
+                        ${
+                            images.length > 1
+
+                                ?
+
+                                `
+
+                                <button
+                                    class="detail-arrow right"
+                                    onclick='changeDetailImage(${productId},1)'
+                                >
+                                    ›
+                                </button>
+
+
+                                <button
+                                    class="detail-arrow left"
+                                    onclick='changeDetailImage(${productId},-1)'
+                                >
+                                    ‹
+                                </button>
+
+
+                                <div
+                                    class="detail-dots"
+                                    id="detailDots"
+                                >
+
+                                    ${
+                                        images
+                                            .map(
+                                                (x,i) =>
+                                                `
+
+                                                <span
+                                                    class="detail-dot ${
+                                                        i === 0
+                                                            ? "active"
+                                                            : ""
+                                                    }"
+                                                ></span>
+
+                                                `
+                                            )
+                                            .join("")
+                                    }
+
+                                </div>
+
+                                `
+
+                                : ""
+                        }
+
+                    </div>
+
+
+                    <div class="detail-info">
+
+                        <h1>
+                            ${escapeHTML(
+                                p.name
+                            )}
+                        </h1>
+
+
+                        <div class="detail-desc">
+
+                            ${escapeHTML(
+                                p.desc ||
+                                "توضیحات محصول ثبت نشده است."
+                            )}
+
+                        </div>
+
+
+                        <div class="detail-price">
+
+                            ${
+                                discount > 0
+
+                                    ?
+
+                                    `
+
+                                    <del
+                                        style="
+                                            color:#777;
+                                            font-size:14px
+                                        "
+                                    >
+
+                                        ${price.toLocaleString("en-US")}
+                                        تومان
+
+                                    </del>
+
+                                    <br>
+
+                                    ${finalPrice.toLocaleString("en-US")}
+                                    تومان
+
+                                    `
+
+                                    :
+
+                                    `
+
+                                    ${finalPrice.toLocaleString("en-US")}
+
+                                    <small>
+                                        تومان
+                                    </small>
+
+                                    `
+                            }
+
+                        </div>
+
+
+                        ${
+                            discount > 0
+
+                                ?
+
+                                `
+
+                                <div class="detail-discount">
+
+                                    🏷️
+                                    ${discount}%
+                                    تخفیف
+
+                                    <br>
+
+                                    قیمت بعد تخفیف:
+
+                                    ${finalPrice.toLocaleString("en-US")}
+                                    تومان
+
+                                </div>
+
+                                `
+
+                                : ""
+                        }
+
+
+                        <div
+                            class="
+                                detail-stock
+                                ${
+                                    stock > 10
+                                        ? "stock green"
+                                        : stock > 0
+                                            ? "stock yellow"
+                                            : "stock red"
+                                }
+                            "
+                        >
+
+                            ${getStockHTML(
+                                stock
+                            )}
+
+                        </div>
+
+
+                        <div class="product-specs">
+
+                            <div class="product-specs-title">
+
+                                مشخصات محصول
+
+                            </div>
+
+
+                            <div class="product-specs-text">
+
+                                ${escapeHTML(
+                                    p.specs ||
+                                    "مشخصات محصول ثبت نشده است."
+                                )}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="quantity">
+
+                            <button
+                                onclick="changeTempQty(-1)"
+                            >
+                                −
+                            </button>
+
+
+                            <strong id="tempQty">
+                                1
+                            </strong>
+
+
+                            <button
+                                onclick="changeTempQty(1)"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            class="primary-btn"
+                            onclick='addToCart(${productId},window.tempQty)'
+                            ${stock <= 0 ? "disabled" : ""}
+                        >
+
+                            ${
+                                stock <= 0
+                                    ? "ناموجود"
+                                    : "افزودن به سبد خرید"
+                            }
+
+                        </button>
+
+
+                        <button
+                            class="secondary-btn"
+                            style="margin-right:8px"
+                            onclick='toggleFavorite(${productId})'
+                        >
+
+                            ${
+                                favorites.some(
+                                    x =>
+                                        String(x) ===
+                                        String(p.id)
+                                )
+
+                                    ?
+
+                                    "♥ حذف از علاقه‌مندی"
+
+                                    :
+
+                                    "♡ علاقه‌مندی"
+                            }
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    `;
+
+
+    window.tempQty =
+        tempQty;
+
+}
+
+
+function changeDetailImage(
+    id,
+    amount
+){
+
+    const p =
+        products.find(
+            x =>
+                String(x.id) ===
+                String(id)
+        );
+
+
+    if(!p)
+        return;
+
+
+    const images =
+        getProductImages(p);
+
+
+    if(images.length <= 1)
+        return;
+
+
+    if(
+        detailImageIndexes[id] ===
+        undefined
+    ){
+
+        detailImageIndexes[id] =
+            0;
+
+    }
+
+
+    detailImageIndexes[id] +=
+        Number(
+            amount || 0
+        );
+
+
+    if(
+        detailImageIndexes[id] < 0
+    ){
+
+        detailImageIndexes[id] =
+            images.length - 1;
+
+    }
+
+
+    if(
+        detailImageIndexes[id] >=
+        images.length
+    ){
+
+        detailImageIndexes[id] =
+            0;
+
+    }
+
+
+    const img =
+        document.getElementById(
+            "detailMainImage"
+        );
+
+
+    if(img){
+
+        img.src =
+            images[
+                detailImageIndexes[id]
+            ];
+
+    }
+
+
+    document
+        .querySelectorAll(
+            ".detail-dot"
+        )
+        .forEach(
+            (dot,index) => {
+
+                dot.classList.toggle(
+                    "active",
+                    index ===
+                    detailImageIndexes[id]
+                );
+
+            }
+        );
+
+}
+
+
+function changeTempQty(amount){
+
+    tempQty +=
+        Number(
+            amount || 0
+        );
+
+
+    if(tempQty < 1)
+        tempQty = 1;
+
+
+    if(tempQty > 99)
+        tempQty = 99;
+
+
+    window.tempQty =
+        tempQty;
+
+
+    const el =
+        document.getElementById(
+            "tempQty"
+        );
+
+
+    if(el)
+        el.textContent =
+            tempQty;
+
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+function addToCart(
+    id,
+    qty
+){
+
+    qty =
+        Number(
+            qty || 1
+        );
+
+
+    if(
+        !Number.isFinite(qty) ||
+        qty < 1
+    ){
+
+        qty = 1;
+
+    }
+
+
+    const p =
+        products.find(
+            x =>
+                String(x.id) ===
+                    String(id)
+
+                ||
+
+                String(x.docId) ===
+                    String(id)
+
+                ||
+
+                String(x.code) ===
+                    String(id)
+        );
+
+
+    if(!p){
+
+        showToast(
+            "محصول پیدا نشد"
+        );
+
+        return;
+
+    }
+
+
+    const stock =
+        Number(
+            p.stock || 0
+        );
+
+
+    if(stock <= 0){
+
+        showToast(
+            "این محصول موجود نیست"
+        );
+
+        return;
+
+    }
+
+
+    const item =
+        cart.find(
+            x =>
+                String(x.id) ===
+                String(id)
+        );
+
+
+    const currentQty =
+        item
+            ? Number(
+                item.qty || 0
+              )
+            : 0;
+
+
+    if(
+        currentQty + qty >
+        stock
+    ){
+
+        showToast(
+            "تعداد انتخابی بیشتر از موجودی است"
+        );
+
+        return;
+
+    }
+
+
+    if(item){
+
+        item.qty += qty;
+
+    }else{
+
+        cart.push({
+
+            id:p.id,
+
+            qty:qty
+
+        });
+
+    }
+
+
+    saveData();
+
+
+    showToast(
+        "محصول به سبد خرید اضافه شد ✓"
+    );
+
+}
+
+
+function cartQty(
+    id,
+    amount
+){
+
+    const item =
+        cart.find(
+            x =>
+                String(x.id) ===
+                String(id)
+        );
+
+
+    if(!item)
+        return;
+
+
+    const p =
+        products.find(
+            x =>
+                String(x.id) ===
+                String(id)
+                ||
+                String(x.docId) ===
+                String(id)
+                ||
+                String(x.code) ===
+                String(id)
+        );
+
+
+    item.qty +=
+        Number(
+            amount || 0
+        );
+
+
+    if(p){
+
+        item.qty =
+            Math.min(
+                item.qty,
+                Number(
+                    p.stock || 0
+                )
+            );
+
+    }
+
+
+    if(item.qty < 1){
+
+        cart =
+            cart.filter(
+                x =>
+                    String(x.id) !==
+                    String(id)
+            );
+
+    }
+
+
+    saveData();
+
+
+    renderCart();
+
+}
+
+
+function removeFromCart(id){
+
+    cart =
+        cart.filter(
+            x =>
+                String(x.id) !==
+                String(id)
+        );
+
+
+    saveData();
+
+
+    renderCart();
+
+
+    showToast(
+        "محصول از سبد حذف شد"
+    );
+
+}
+
+
+/* =========================================================
+   CART PAGE
+========================================================= */
+
+function renderCart(){
+
+    const items =
+        cart
+            .map(
+                item => {
+
+                    const p =
+                        products.find(
+                            x =>
+                                String(x.id) ===
+                                    String(item.id)
+
+                                ||
+
+                                String(x.docId) ===
+                                    String(item.id)
+
+                                ||
+
+                                String(x.code) ===
+                                    String(item.id)
+                        );
+
+
+                    return p
+                        ? {
+                            ...p,
+                            qty:
+                                Number(
+                                    item.qty || 0
+                                )
+                          }
+                        : null;
+
+                }
+            )
+            .filter(Boolean);
+
+
+    if(!items.length){
+
+        document.getElementById(
+            "app"
+        ).innerHTML = `
+
+            <main class="page">
+
+                <div class="container cart-page">
+
+                    ${emptyResult(
+                        "🛒",
+                        "سبد خرید شما خالی است"
+                    )}
+
+                </div>
+
+            </main>
+
+        `;
+
+        return;
+
+    }
+
+
+    const total =
+        items.reduce(
+            (sum,item) =>
+                sum +
+                getFinalPrice(item) *
+                item.qty,
+            0
+        );
+
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <main class="page">
+
+            <div class="container cart-page">
+
+                <div class="page-title">
+
+                    <div>
+
+                        <h1>
+                            سبد خرید
+                        </h1>
+
+                        <p>
+                            ${items.length}
+                            محصول
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                ${
+                    items
+                        .map(
+                            item => {
+
+                                const finalPrice =
+                                    getFinalPrice(item);
+
+
+                                const pid =
+                                    JSON.stringify(
+                                        String(item.id)
+                                    );
+
+
+                                return `
+
+                                    <div class="cart-item">
+
+                                        <div class="cart-icon">
+
+                                            ${
+                                                item.image
+
+                                                    ?
+
+                                                    `
+
+                                                    <img
+                                                        src="${escapeHTML(item.image)}"
+                                                        alt="${escapeHTML(item.name)}"
+                                                        onerror="this.style.display='none'"
+                                                    >
+
+                                                    `
+
+                                                    :
+
+                                                    escapeHTML(
+                                                        item.icon ||
+                                                        "🛍️"
+                                                    )
+                                            }
+
+                                        </div>
+
+
+                                        <div class="cart-item-info">
+
+                                            <h3>
+                                                ${escapeHTML(
+                                                    item.name
+                                                )}
+                                            </h3>
+
+                                            <p>
+                                                ${finalPrice.toLocaleString("en-US")}
+                                                تومان
+                                            </p>
+
+                                        </div>
+
+
+                                        <div class="qty">
+
+                                            <button
+                                                onclick='cartQty(${pid},-1)'
+                                            >
+                                                −
+                                            </button>
+
+
+                                            <strong>
+                                                ${item.qty}
+                                            </strong>
+
+
+                                            <button
+                                                onclick='cartQty(${pid},1)'
+                                            >
+                                                +
+                                            </button>
+
+                                        </div>
+
+
+                                        <button
+                                            class="remove"
+                                            onclick='removeFromCart(${pid})'
+                                        >
+                                            ×
+                                        </button>
+
+                                    </div>
+
+                                `;
+
+                            }
+                        )
+                        .join("")
+                }
+
+
+                <div class="cart-summary">
+
+                    <div class="summary-row">
+
+                        <span>
+                            جمع کل
+                        </span>
+
+                        <strong>
+                            ${total.toLocaleString("en-US")}
+                            تومان
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row total">
+
+                        <span>
+                            مبلغ نهایی
+                        </span>
+
+                        <strong>
+                            ${total.toLocaleString("en-US")}
+                            تومان
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        style="width:100%;margin-top:10px"
+                        onclick="checkout()"
+                    >
+                        ثبت سفارش
+                    </button>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    `;
+
+}
+
+
+function getCustomer(){ return safeJSON(localStorage.getItem("mahanCustomer"), null); }
+function normalizeIranPhone(value){ let s=String(value||"").trim().replace(/\s+/g,"").replace(/[^0-9+]/g,""); if(/^09\d{9}$/.test(s))return s; if(/^\+989\d{9}$/.test(s))return "0"+s.slice(3); if(/^989\d{9}$/.test(s))return "0"+s.slice(2); return s; }
+function openCustomerRegistration(nextAction="checkout"){
+ const old=document.getElementById("customerRegisterModal"); if(old)old.remove(); const c=getCustomer()||{}; const m=document.createElement("div"); m.className="customer-modal-backdrop";m.id="customerRegisterModal";
+ m.innerHTML=`<div class="customer-modal"><div class="customer-modal-icon">👤</div><div class="customer-modal-tag">ثبت اطلاعات مشتری</div><h2>برای ادامه، خودتو معرفی کن</h2><p>نام، نام خانوادگی و شماره تلفنت نزد ماهان سنتر محفوظ می‌مونه و فقط برای ثبت و پیگیری سفارش استفاده می‌شه.</p><div class="customer-form"><input id="customerFirstName" placeholder="نام" value="${escapeHTML(c.firstName||"")}"><input id="customerLastName" placeholder="نام خانوادگی" value="${escapeHTML(c.lastName||"")}"><input id="customerPhone" inputmode="tel" placeholder="شماره تلفن؛ مثال 09123456789" value="${escapeHTML(c.phone||"")}"></div><div class="customer-private">🔒 اطلاعات شما محرمانه است و برای ثبت سفارش و ارتباط ضروری فروشگاه استفاده می‌شود.</div><div class="customer-actions"><button class="customer-save" onclick="saveCustomerAndContinue('${escapeHTML(nextAction)}')">ادامه و ثبت اطلاعات ✓</button><button class="customer-cancel" onclick="closeCustomerRegistration()">انصراف</button></div></div>`;
+ document.body.appendChild(m);
+}
+function closeCustomerRegistration(){document.getElementById("customerRegisterModal")?.remove();}
+async function saveCustomerAndContinue(nextAction="checkout"){
+ const firstName=document.getElementById("customerFirstName")?.value.trim()||"",lastName=document.getElementById("customerLastName")?.value.trim()||"",phone=normalizeIranPhone(document.getElementById("customerPhone")?.value||"");
+ if(firstName.length<2)return showToast("نام را درست وارد کن"); if(lastName.length<2)return showToast("نام خانوادگی را درست وارد کن"); if(!/^09\d{9}$/.test(phone))return showToast("شماره تلفن معتبر نیست");
+ const customer={firstName,lastName,phone,fullName:`${firstName} ${lastName}`.trim(),updatedAt:new Date().toISOString()}; localStorage.setItem("mahanCustomer",JSON.stringify(customer)); closeCustomerRegistration(); if(nextAction==="checkout")await submitOrder(customer);
+}
+async function checkout(){ const c=getCustomer(); if(!cart.length)return showToast("سبد خرید شما خالی است"); if(!c||!c.firstName||!c.lastName||!/^09\d{9}$/.test(normalizeIranPhone(c.phone)))return openCustomerRegistration("checkout"); await submitOrder(c); }
+async function submitOrder(customer){
+ const items=cart.map(item=>{const p=products.find(x=>String(x.id)===String(item.id)||String(x.docId)===String(item.id)||String(x.code)===String(item.id));return p?{id:p.id,code:p.code,name:p.name,qty:Number(item.qty||0),unitPrice:getFinalPrice(p),category:p.category}:null}).filter(Boolean);
+ if(!items.length)return showToast("محصولات سبد خرید دیگر در دسترس نیستند"); const total=items.reduce((s,x)=>s+x.unitPrice*x.qty,0); const order={customer:{firstName:customer.firstName,lastName:customer.lastName,fullName:customer.fullName,phone:customer.phone},items,total,status:"new",createdAt:new Date().toISOString()};
+ try{const r=await fetch(WORKER_URL+"/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(order)}),d=await r.json().catch(()=>({}));if(!r.ok)throw new Error(d?.error?.message||d?.error||`HTTP ${r.status}`);cart=[];saveData();showToast("سفارش با موفقیت برای فروشگاه ثبت شد ✓");go("/");}catch(e){console.error(e);showToast("ثبت سفارش انجام نشد: "+e.message);}
+}
+
+
+
+/* =========================================================
+   FAVORITES
+========================================================= */
+
+function toggleFavorite(id){
+
+    const found =
+        favorites.find(
+            x =>
+                String(x) ===
+                String(id)
+        );
+
+
+    if(found !== undefined){
+
+        favorites =
+            favorites.filter(
+                x =>
+                    String(x) !==
+                    String(id)
+            );
+
+
+        showToast(
+            "از علاقه‌مندی‌ها حذف شد"
+        );
+
+    }else{
+
+        favorites.push(
+            id
+        );
+
+
+        showToast(
+            "به علاقه‌مندی‌ها اضافه شد"
+        );
+
+    }
+
+
+    saveData();
+
+
+    render(
+        getRoute()
+    );
+
+}
+
+
+function renderFavorites(){
+
+    let list =
+        products.filter(
+            p =>
+                favorites.some(
+                    id =>
+                        String(id) ===
+                        String(p.id)
+                )
+        );
+
+
+    list =
+        sortProducts(
+            list
+        );
+
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <main class="page">
+
+            <div class="container">
+
+                <div class="page-title">
+
+                    <div>
+
+                        <h1>
+                            علاقه‌مندی‌ها
+                        </h1>
+
+                        <p>
+                            ${list.length}
+                            محصول
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                ${
+                    list.length
+
+                        ?
+
+                        `
+
+                        ${sortFilters()}
+
+                        <div class="products">
+
+                            ${
+                                list
+                                    .map(productCard)
+                                    .join("")
+                            }
+
+                        </div>
+
+                        `
+
+                        :
+
+                        emptyResult(
+                            "♡",
+                            "هنوز محصولی به علاقه‌مندی‌ها اضافه نشده"
+                        )
+                }
+
+            </div>
+
+        </main>
+
+    `;
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function globalSearch(){
+
+    const input =
+        document.getElementById(
+            "globalSearch"
+        );
+
+
+    const q =
+        input
+            ? input.value.trim()
+            : "";
+
+
+    if(!q)
+        return;
+
+
+    go(
+        "/search/" +
+        encodeURIComponent(q)
+    );
+
+}
+
+
+function renderSearch(q){
+
+    const query =
+        String(q || "")
+            .toLowerCase()
+            .trim();
+
+
+    let results =
+        products.filter(
+            p => {
+
+                const categoryName =
+                    categories[
+                        p.category
+                    ]
+                        ? categories[
+                            p.category
+                          ].name
+                        : "";
+
+
+                const text = [
+
+                    p.name,
+
+                    p.search,
+
+                    p.brand,
+
+                    p.cat,
+
+                    p.category,
+
+                    categoryName,
+
+                    p.goldCat,
+
+                    p.subcategory,
+
+                    p.desc,
+
+                    p.specs,
+
+                    p.code
+
+                ]
+                .join(" ")
+                .toLowerCase();
+
+
+                return text.includes(
+                    query
+                );
+
+            }
+        );
+
+
+    results =
+        sortProducts(
+            results
+        );
+
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <main class="page">
+
+            <div class="container">
+
+                <div class="page-title">
+
+                    <div>
+
+                        <h1>
+                            نتایج جستجو
+                        </h1>
+
+                        <p>
+
+                            برای «${escapeHTML(q)}»
+
+                            <br>
+
+                            ${results.length}
+                            نتیجه
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                ${sortFilters()}
+
+
+                ${
+                    results.length
+
+                        ?
+
+                        `
+
+                        <div class="products">
+
+                            ${
+                                results
+                                    .map(productCard)
+                                    .join("")
+                            }
+
+                        </div>
+
+                        `
+
+                        :
+
+                        emptyResult(
+                            "🔎",
+                            "محصولی با این عبارت پیدا نشد"
+                        )
+                }
+
+            </div>
+
+        </main>
+
+    `;
+
+}
+
+
+/* =========================================================
+   DISCOUNT
+========================================================= */
+
+function renderDiscount(){
+
+    let list =
+        products.filter(
+            p =>
+                Number(
+                    p.discount || 0
+                ) > 0
+        );
+
+
+    list =
+        sortProducts(
+            list
+        );
+
+
+    document.getElementById(
+        "app"
+    ).innerHTML = `
+
+        <main class="page">
+
+            <div class="container">
+
+                <div class="page-title">
+
+                    <div>
+
+                        <h1>
+                            🔥 تخفیف‌ها
+                        </h1>
+
+                        <p>
+                            ${list.length}
+                            محصول دارای تخفیف
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                ${sortFilters()}
+
+
+                ${
+                    list.length
+
+                        ?
+
+                        `
+
+                        <div class="products">
+
+                            ${
+                                list
+                                    .map(productCard)
+                                    .join("")
+                            }
+
+                        </div>
+
+                        `
+
+                        :
+
+                        emptyResult(
+                            "🔥",
+                            "در حال حاضر محصول تخفیف‌دار نداریم"
+                        )
+                }
+
+            </div>
+
+        </main>
+
+    `;
+
+}
+
+
+/* =========================================================
+   LAWS
+========================================================= */
+
+
+
 function renderLaws(){
 
     const rules = settings.rulesText || DEFAULT_SETTINGS.rulesText;
@@ -4003,15 +6882,14 @@ Object.assign(
 ========================================================= */
 
 function initialRender(){
-
     updateCartCount();
-
     applySiteSettings();
-
-    render(
-        getRoute()
-    );
-
+    // هر بار که خود سایت از ابتدا باز می‌شود، ورود از خانه شروع می‌شود.
+    // مسیرهای داخلی فقط با کلیک داخل سایت تغییر می‌کنند.
+    if(location.hash !== "#/" ){
+        history.replaceState({},"","#/");
+    }
+    render("/");
 }
 
 
