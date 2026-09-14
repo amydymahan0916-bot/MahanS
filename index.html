@@ -1667,6 +1667,31 @@ footer{
 
 }
 
+
+/* =========================================================
+   MAHAN CENTER PREMIUM UI OVERRIDES
+========================================================= */
+.home-intro{padding-top:12px;transform:translateY(-18px)}
+.home-box{position:relative;overflow:hidden;padding:27px 35px 23px;border-color:#242424}
+.home-box:before{content:"";position:absolute;inset:-80px -40px auto;height:180px;background:radial-gradient(circle,rgba(25,214,107,.14),transparent 68%);pointer-events:none}
+.home-badge{position:relative;display:inline-flex;padding:5px 12px;border:1px solid rgba(25,214,107,.28);border-radius:99px;color:#19d66b;background:rgba(25,214,107,.06);font-size:10px;margin-bottom:9px}
+.home-logo-small{position:relative;margin-bottom:5px}
+.home-box h1{position:relative;margin-bottom:7px}
+.home-description{position:relative;white-space:pre-line;line-height:1.9}
+.stats{position:relative;margin-top:13px;gap:12px}
+.stat{position:relative;overflow:hidden;padding:12px 10px 11px;min-height:90px;background:linear-gradient(145deg,#161616,#0d0d0d);border-radius:20px;box-shadow:inset 0 1px rgba(255,255,255,.025)}
+.stat:after{content:"";position:absolute;inset:auto -25px -40px;width:100px;height:100px;border-radius:50%;background:currentColor;opacity:.05}
+.stat-icon{font-size:18px;margin-bottom:1px}.stat strong{font-size:27px;line-height:1.25}.stat span{font-size:11px}
+.stat-users{color:var(--green)}.stat-orders{color:#ffc400}.stat-satisfaction{color:#ff3947}.stat-orders strong,.stat-orders span{color:#fff}.stat-users strong,.stat-users span{color:var(--green)}.stat-satisfaction strong,.stat-satisfaction span{color:#ff5360}
+.nav a{position:relative;overflow:hidden}.nav-home{border-color:rgba(229,9,20,.28)!important}.nav-categories{border-color:rgba(25,214,107,.28)!important}.nav-discount{border-color:rgba(255,196,0,.28)!important}.nav-laws{border-color:rgba(255,196,0,.28)!important}.nav-support{border-color:rgba(80,170,255,.28)!important}
+.nav-home:hover,.nav-home.active{background:var(--red)!important;border-color:var(--red)!important;color:#fff!important}.nav-categories:hover,.nav-categories.active{background:var(--green)!important;border-color:var(--green)!important;color:#06120a!important}.nav-discount:hover,.nav-discount.active{background:var(--yellow)!important;border-color:var(--yellow)!important;color:#111!important}.nav-laws:hover,.nav-laws.active{background:var(--yellow)!important;border-color:var(--yellow)!important;color:#111!important}.nav-support:hover,.nav-support.active{background:#287bd7!important;border-color:#287bd7!important;color:#fff!important}
+.laws-page{max-width:950px}.laws-hero{display:flex;align-items:center;gap:16px;padding:18px 22px;margin-bottom:15px;border:1px solid #292929;border-radius:22px;background:linear-gradient(135deg,#151515,#0b0b0b);box-shadow:0 15px 45px rgba(0,0,0,.25)}.laws-hero-icon{width:55px;height:55px;display:grid;place-items:center;border-radius:17px;background:rgba(229,9,20,.12);border:1px solid rgba(229,9,20,.35);font-size:27px}.laws-hero h1{font-size:23px}.laws-hero p{color:#e50914;font-size:12px}.laws-box{min-height:0;padding:22px;background:linear-gradient(145deg,#111,#0c0c0c)}.laws-title{padding:13px 15px;margin-bottom:14px;border-right:3px solid var(--red);border-radius:10px;background:#151515;color:#ddd;font-size:13px}.laws-list{display:grid;gap:10px}.law-item{display:flex;gap:13px;padding:17px;border:1px solid #242424;border-radius:17px;background:linear-gradient(135deg,#151515,#0d0d0d);transition:.22s}.law-item:hover{transform:translateY(-2px);border-color:rgba(229,9,20,.5)}.law-number{flex:0 0 38px;height:38px;border-radius:12px;display:grid;place-items:center;background:rgba(229,9,20,.13);border:1px solid rgba(229,9,20,.45);color:#ff3340;font-weight:bold;font-size:17px}.law-body{flex:1}.law-body h2{font-size:15px;color:#ff3340;margin-bottom:4px}.law-body p{color:#62b7ff;font-size:12.5px;line-height:2.05}.laws-footer{text-align:center;color:#888;font-size:12px;padding-top:17px;margin-top:14px;border-top:1px solid #242424}.laws-footer::first-letter{color:var(--red)}
+.support-page{max-width:950px}.support-hero-pro{position:relative;overflow:hidden;text-align:center;padding:31px 25px 27px;margin-bottom:16px;border:1px solid #292929;border-radius:29px;background:radial-gradient(circle at 50% 0,rgba(255,196,0,.15),transparent 42%),radial-gradient(circle at 100% 100%,rgba(25,214,107,.09),transparent 36%),#101010;box-shadow:0 25px 80px rgba(0,0,0,.35)}.support-orbit{position:relative;width:90px;height:90px;margin:0 auto 8px}.support-orbit:before,.support-orbit:after{content:"";position:absolute;inset:-7px;border:1px solid rgba(255,196,0,.22);border-radius:50%;animation:orbitPulse 2.5s ease-in-out infinite}.support-orbit:after{inset:-14px;border-color:rgba(25,214,107,.1);animation-delay:.5s}@keyframes orbitPulse{50%{transform:scale(1.06);opacity:.55}}
+.support-hero-pro .support-avatar{position:relative;width:78px;height:78px;font-size:37px;margin:0;z-index:2}.support-status{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border:1px solid rgba(25,214,107,.22);border-radius:99px;color:#19d66b;background:rgba(25,214,107,.05);font-size:10px;margin:4px 0 9px}.support-status i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green)}.support-hero-pro h1{font-size:25px;margin-bottom:5px}.support-hero-pro p{max-width:650px;margin:auto;color:#999;font-size:12px}.support-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.support-channel{position:relative;overflow:hidden;padding:20px;border:1px solid #292929;border-radius:22px;background:linear-gradient(145deg,#151515,#0c0c0c);transition:.25s}.support-channel:before{content:"";position:absolute;right:-50px;top:-70px;width:150px;height:150px;border-radius:50%;background:currentColor;opacity:.045}.support-channel:hover{transform:translateY(-4px);box-shadow:0 20px 45px rgba(0,0,0,.3)}.phone-channel{color:var(--green)}.rubika-channel{color:#55aaff}.channel-top{display:flex;align-items:center;justify-content:space-between;color:#aaa;font-size:11px}.channel-icon{width:47px;height:47px;display:grid;place-items:center;border-radius:15px;background:#1b1b1b;border:1px solid #303030;font-size:22px}.support-channel h2{font-size:16px;color:#fff;margin-top:14px}.channel-value{display:block;color:currentColor;font-size:21px;direction:ltr;text-align:right;margin-top:5px}.support-channel p{color:#888;font-size:11px;min-height:38px;margin:7px 0 14px}.channel-actions{display:flex;gap:8px}.channel-actions button{flex:1;padding:10px;border-radius:12px;font-weight:bold;border:1px solid #333}.channel-copy{background:#191919;color:#ddd}.channel-main{background:currentColor;border-color:currentColor;color:#07100b!important}.rubika-channel .channel-main{color:#07101a!important}.support-note{display:flex;align-items:center;gap:12px;margin-top:14px;padding:15px 17px;border:1px solid rgba(255,196,0,.2);border-radius:17px;background:rgba(255,196,0,.045)}.support-note>span{font-size:25px}.support-note strong{font-size:12px;color:#ffc400}.support-note p{font-size:10px;color:#888;margin-top:2px}
+.law-modal{position:relative;max-width:540px;padding:25px;border:1px solid #343434;background:radial-gradient(circle at 50% 0,rgba(25,214,107,.1),transparent 40%),linear-gradient(145deg,#171717,#0a0a0a);border-radius:29px;box-shadow:0 35px 110px #000}.law-modal-top{display:flex;align-items:center;justify-content:space-between}.law-modal-icon{margin:0;width:58px;height:58px;background:rgba(25,214,107,.12);color:var(--green);border:1px solid rgba(25,214,107,.35)}.law-modal-close{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;background:#191919;color:#777;font-size:20px}.law-modal-label{color:var(--green);font-size:10px;margin-top:15px}.law-modal h2{font-size:22px;margin:2px 0 7px}.law-modal p{color:#aaa;line-height:1.9}.law-modal-points{display:flex;flex-wrap:wrap;justify-content:center;gap:7px;margin:0 0 18px}.law-modal-points span{padding:5px 9px;border-radius:9px;background:#151515;border:1px solid #292929;color:#999;font-size:9px}.accept-btn,.reject-btn{transition:.2s}.accept-btn{background:var(--green);box-shadow:0 8px 25px rgba(25,214,107,.12)}.accept-btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.reject-btn{background:var(--red);box-shadow:0 8px 25px rgba(229,9,20,.12)}.reject-btn:hover{transform:translateY(-2px);background:#ff1723}
+.product-card{border-radius:23px;background:linear-gradient(145deg,#151515,#0d0d0d);box-shadow:0 12px 35px rgba(0,0,0,.18)}.product-card:hover{border-color:rgba(25,214,107,.5);box-shadow:0 18px 45px rgba(0,0,0,.38)}.product-image{height:235px;background:radial-gradient(circle,#202020,#141414)}.product-image img{padding:15px;transition:.3s}.product-card:hover .product-image img{transform:scale(1.035)}.product-info{padding:16px 16px 12px}.product-title{font-size:15px;font-weight:bold}.product-desc{line-height:1.8}.product-price{color:#fff;font-size:17px}.product-actions{padding:0 16px 16px}.product-actions button{border-radius:12px}.product-actions .buy{box-shadow:0 7px 20px rgba(25,214,107,.1)}
+@media(max-width:700px){.home-intro{transform:translateY(-8px)}.home-box{padding:23px 15px 17px;border-radius:26px}.home-logo-small{width:78px;height:78px}.home-box h1{font-size:25px}.home-description{font-size:12px;line-height:1.85}.stats{gap:7px}.stat{padding:10px 5px;min-height:80px}.stat strong{font-size:22px}.stat span{font-size:9px}.stat-icon{font-size:15px}.laws-hero{padding:15px}.laws-hero h1{font-size:19px}.laws-box{padding:13px}.law-item{padding:13px;gap:9px}.law-number{flex-basis:33px;height:33px;font-size:15px}.law-body h2{font-size:13px}.law-body p{font-size:11px;line-height:2}.support-grid{grid-template-columns:1fr}.support-hero-pro{padding:25px 15px}.support-hero-pro h1{font-size:21px}.channel-actions{flex-direction:column}.products{grid-template-columns:repeat(2,1fr);gap:10px}.product-image{height:185px}.product-info{padding:12px}.product-actions{padding:0 12px 12px;flex-direction:column}.product-actions button{width:100%}.modal-actions{grid-template-columns:1fr}.law-modal{padding:20px}.law-modal-points{justify-content:flex-start}}
+
 </style>
 
 </head>
@@ -1768,7 +1793,7 @@ footer{
 
         <div class="container nav">
 
-            <a
+            <a class="nav-home"
                 href="#/"
                 data-route="/"
                 onclick="go('/');return false"
@@ -1777,7 +1802,7 @@ footer{
             </a>
 
 
-            <a
+            <a class="nav-categories"
                 href="#/categories"
                 data-route="/categories"
                 onclick="go('/categories');return false"
@@ -1786,7 +1811,7 @@ footer{
             </a>
 
 
-            <a
+            <a class="nav-discount"
                 href="#/discount"
                 data-route="/discount"
                 onclick="go('/discount');return false"
@@ -1795,7 +1820,7 @@ footer{
             </a>
 
 
-            <a
+            <a class="nav-laws"
                 href="#/laws"
                 data-route="/laws"
                 onclick="go('/laws');return false"
@@ -1804,7 +1829,7 @@ footer{
             </a>
 
 
-            <a
+            <a class="nav-support"
                 href="#/support"
                 data-route="/support"
                 onclick="go('/support');return false"
@@ -1943,53 +1968,39 @@ footer{
 <script type="module">
 
 /* =========================================================
-   FIREBASE
+   CLOUDFLARE WORKER
+   سایت اصلی از Worker داده می‌گیرد تا وابسته به اتصال مستقیم
+   مرورگر به Firebase نباشد.
 ========================================================= */
 
-import {
-    initializeApp
-} from
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+const WORKER_URL =
+    "https://curly-cherry-da35.amydypiam064.workers.dev";
 
-import {
-    getFirestore,
-    collection,
-    getDocs,
-    getDoc,
-    doc
-} from
-"https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+async function workerFetch(path){
 
+    const response = await fetch(
+        WORKER_URL + path,
+        {
+            method:"GET",
+            cache:"no-store",
+            headers:{
+                "Accept":"application/json"
+            }
+        }
+    );
 
-const firebaseConfig = {
+    const data = await response.json().catch(() => ({}));
 
-    apiKey:
-    "AIzaSyDlrv12gAydgbx1qPJXAIm0kzcSeJF5pNs",
+    if(!response.ok)
+        throw new Error(
+            data?.error?.message ||
+            data?.error ||
+            `HTTP ${response.status}`
+        );
 
-    authDomain:
-    "mahan-center.firebaseapp.com",
+    return data;
 
-    projectId:
-    "mahan-center",
-
-    storageBucket:
-    "mahan-center.firebasestorage.app",
-
-    messagingSenderId:
-    "720478821753",
-
-    appId:
-    "1:720478821753:web:7a431c1a3f9e3abd7923a"
-
-};
-
-
-const firebaseApp =
-    initializeApp(firebaseConfig);
-
-
-const db =
-    getFirestore(firebaseApp);
+}
 
 
 /* =========================================================
@@ -2093,19 +2104,19 @@ const DEFAULT_SETTINGS = {
     "ماهان سنتر ایران",
 
     welcomeText:
-    "ماهان سنتر ایران یک فروشگاه آنلاین برای ارائه محصولات متنوع و باکیفیت است. هدف ما فراهم کردن تجربه‌ای ساده، سریع و حرفه‌ای برای انتخاب و خرید شماست. محصولات در دسته‌بندی‌های مختلف ارائه می‌شوند تا بتوانید راحت‌تر محصول موردنظر خود را پیدا کنید. ما تلاش می‌کنیم اطلاعات محصولات را شفاف و کامل در اختیار شما قرار دهیم.",
+    `خوش اومدی به ماهان سنتر ایران 🖤\n\nاینجا سعی کردیم همه‌چی رو ساده و راحت برات آماده کنیم؛\nکه بتونی با خیال راحت بگردی، انتخاب کنی و خریدتو انجام بدی.\n\nمرسی که بهمون سر زدی و بهمون اعتماد کردی ❤️\nامیدواریم از حضورت توی ماهان سنتر لذت ببری.\n\nماهان سنتر | ارتش تک‌نفره ⚡`,
 
     rulesText:
-    "لطفاً قبل از ثبت سفارش قوانین و شرایط فروشگاه را مطالعه کنید.",
+    `قوانین و شرایط خرید ماهان سنتر 🖤\n\n۱. توجه به قیمت کالاهای گران‌قیمت\nدر صورت خرید کالاهای گران‌قیمت مانند طلا، گوشی‌های مدل بالا و سایر کالاهای با قیمت متغیر، لطفاً قبل از ثبت سفارش و پرداخت، حتماً با بخش پشتیبانی تماس بگیرید؛ چرا که قیمت این محصولات ممکن است به‌صورت لحظه‌ای تغییر کند.\n\n۲. مهلت مرجوعی کالا\nتمامی کالاها به‌جز طلا، در صورت رعایت شرایط مرجوعی، تا ۷ روز پس از دریافت کالا امکان بازگشت دارند.\n\n۳. شرایط مرجوعی\nکالا باید در همان وضعیت اولیه، سالم و بدون استفاده باشد و بسته‌بندی و متعلقات آن نیز حفظ شده باشد. کالاهای آسیب‌دیده یا استفاده‌شده شامل شرایط مرجوعی نخواهند بود.\n\n۴. طلا و کالاهای سفارشی\nبه دلیل نوسان قیمت و شرایط خاص این محصولات، کالاهای طلا قابل مرجوعی نیستند؛ بنابراین پیش از خرید، مشخصات و قیمت را با دقت بررسی کنید.\n\n۵. بررسی سفارش\nلطفاً هنگام ثبت سفارش، مشخصات، رنگ، مدل، تعداد و سایر جزئیات کالا را با دقت بررسی کنید. مسئولیت انتخاب اشتباه بر عهده خریدار خواهد بود.\n\n۶. پشتیبانی\nدر صورت وجود هرگونه سؤال یا ابهام، قبل از پرداخت با پشتیبانی در ارتباط باشید. ما تلاش می‌کنیم خریدی مطمئن و بدون دردسر برای شما فراهم کنیم.\n\nماهان سنتر | ارتش تک‌نفره ⚡`,
 
     contactText:
-    "برای ارتباط با فروشگاه می‌توانید از راه‌های ارتباطی اعلام‌شده در سایت استفاده کنید.",
+    "پشتیبانی ماهان سنتر ایران | پاسخ‌گویی قبل و بعد از خرید",
 
     supportText:
-    "در صورت داشتن هرگونه سؤال یا مشکل، با پشتیبانی تماس بگیرید.",
+    "هرجا برای انتخاب، قیمت، سفارش یا خرید سؤال داشتی، از یکی از راه‌های زیر مستقیم با ما در ارتباط باش.",
 
-    supportPhone:"",
-    supportRubika:"",
+    supportPhone:"09332540425",
+    supportRubika:"omidi__xx",
 
     couponCode:"",
 
@@ -2113,11 +2124,11 @@ const DEFAULT_SETTINGS = {
 
     showStats:true,
 
-    activeUsers:0,
+    activeUsers:150,
 
-    successfulOrders:0,
+    successfulOrders:11,
 
-    satisfaction:0,
+    satisfaction:75,
 
     categories:
     DEFAULT_CATEGORIES.map(
@@ -2686,7 +2697,9 @@ function inferCategoryImage(category){
 function normalizeProduct(docSnap){
 
     const data =
-        docSnap.data() || {};
+        typeof docSnap?.data === "function"
+            ? (docSnap.data() || {})
+            : (docSnap || {});
 
 
     let images = [];
@@ -2779,7 +2792,8 @@ function normalizeProduct(docSnap){
 
     const rawCode =
         data.code ??
-        docSnap.id;
+        docSnap?.id ??
+        "";
 
 
     const numericCode =
@@ -2812,7 +2826,7 @@ function normalizeProduct(docSnap){
 
         id:publicId,
 
-        docId:docSnap.id,
+        docId:docSnap?.id || data.code || "",
 
         code:String(rawCode),
 
@@ -2919,95 +2933,39 @@ async function loadSettings(){
 
     try{
 
-        const snap =
-            await getDoc(
-                doc(
-                    db,
-                    "settings",
-                    "site"
-                )
-            );
+        const data = await workerFetch("/categories");
+        const remoteCategories = Array.isArray(data?.categories)
+            ? data.categories
+            : [];
 
+        settings = {
+            ...DEFAULT_SETTINGS,
+            categories: remoteCategories.length
+                ? remoteCategories
+                : DEFAULT_SETTINGS.categories
+        };
 
-        if(snap.exists()){
-
-            const data =
-                snap.data() || {};
-
-
-            settings = {
-
-                ...DEFAULT_SETTINGS,
-
-                ...data,
-
-                categories:
-                Array.isArray(data.categories)
-                    ? data.categories
-                    : DEFAULT_CATEGORIES
-
-            };
-
-        }else{
-
-            settings = {
-
-                ...DEFAULT_SETTINGS,
-
-                categories:
-                    DEFAULT_CATEGORIES
-
-            };
-
-        }
-
-
-        categories =
-            getCategories();
-
-
+        categories = getCategories();
         applySiteSettings();
-
-
         return true;
-
 
     }catch(error){
 
-        console.error(
-            "Settings Firebase error:",
-            error
-        );
+        console.error("Worker settings error:", error);
 
-
-        /*
-           اطلاعات قبلی سایت حفظ می‌شود.
-           سایت از کار نمی‌افتد.
-        */
         settings = {
-
             ...DEFAULT_SETTINGS,
-
-            categories:
-                DEFAULT_CATEGORIES
-
+            categories: DEFAULT_CATEGORIES
         };
 
-
-        categories =
-            getCategories();
-
-
+        categories = getCategories();
         applySiteSettings();
 
-
         showSmallFirebaseError(
-            "اتصال به تنظیمات فروشگاه برقرار نشد."
+            "اتصال به اطلاعات فروشگاه برقرار نشد."
         );
 
-
         return false;
-
     }
 
 }
@@ -3019,139 +2977,41 @@ async function loadSettings(){
 
 async function loadProducts(){
 
-    const WORKER_PRODUCTS_URL =
-        "https://curly-cherry-da35.amydypiam064.workers.dev/products";
-
     try{
 
-        const response =
-            await fetch(
-                WORKER_PRODUCTS_URL,
-                {
-                    method: "GET",
-                    cache: "no-store"
-                }
-            );
+        const data = await workerFetch("/products");
+        const raw = Array.isArray(data)
+            ? data
+            : (Array.isArray(data?.products)
+                ? data.products
+                : (Array.isArray(data?.documents) ? data.documents : []));
 
-        if(!response.ok){
-            throw new Error(
-                "Worker HTTP " + response.status
-            );
-        }
-
-        const data =
-            await response.json();
-
-        let rawList = [];
-
-        if(Array.isArray(data)){
-            rawList = data;
-        }
-        else if(Array.isArray(data.documents)){
-            rawList = data.documents;
-        }
-        else if(Array.isArray(data.products)){
-            rawList = data.products;
-        }
-
-        const list =
-            rawList.map(item => {
-
-                if(item && item.fields){
-
-                    const fields = item.fields;
-
-                    const getValue = field => {
-
-                        if(!field || typeof field !== "object"){
-                            return "";
-                        }
-
-                        if(field.stringValue !== undefined){
-                            return field.stringValue;
-                        }
-
-                        if(field.integerValue !== undefined){
-                            return Number(field.integerValue);
-                        }
-
-                        if(field.doubleValue !== undefined){
-                            return Number(field.doubleValue);
-                        }
-
-                        if(field.booleanValue !== undefined){
-                            return field.booleanValue;
-                        }
-
-                        return "";
-                    };
-
-                    return normalizeProduct({
-                        code: getValue(fields.code),
-                        category: getValue(fields.category),
-                        brand: getValue(fields.brand),
-                        goldCat: getValue(fields.goldCat),
-                        name: getValue(fields.name),
-                        search: getValue(fields.search),
-                        price: getValue(fields.price),
-                        image: getValue(fields.image),
-                        icon: getValue(fields.icon),
-                        description: getValue(fields.description),
-                        specs: getValue(fields.specs),
-                        stock: getValue(fields.stock),
-                        discount: getValue(fields.discount),
-                        createdAt: getValue(fields.createdAt),
-                        image2: getValue(fields.image2),
-                        image3: getValue(fields.image3)
-                    });
-                }
-
-                return normalizeProduct(item);
-            });
+        const list = raw.map(normalizeProduct);
 
         list.sort((a,b) => {
-
             const ad = getCreatedTime(a.createdAt);
             const bd = getCreatedTime(b.createdAt);
-
-            if(ad !== bd)
-                return bd - ad;
-
+            if(ad !== bd) return bd - ad;
             const an = Number(a.code);
             const bn = Number(b.code);
-
-            if(Number.isFinite(an) && Number.isFinite(bn)){
-                return bn - an;
-            }
-
-            return String(a.name).localeCompare(
-                String(b.name),
-                "fa"
-            );
+            if(Number.isFinite(an) && Number.isFinite(bn)) return bn - an;
+            return String(a.name).localeCompare(String(b.name), "fa");
         });
 
         products = list;
-
-        console.log(
-            "MAHAN CENTER PRODUCTS FROM WORKER:",
-            products.length
-        );
-
+        console.log("MAHAN CENTER PRODUCTS:", products.length);
         return true;
 
     }catch(error){
 
-        console.error(
-            "Products Worker error:",
-            error
-        );
-
+        console.error("Products Worker error:", error);
         showSmallFirebaseError(
-            "ارتباط با فروشگاه برقرار نشد."
+            "دریافت محصولات از سرور فروشگاه انجام نشد."
         );
-
         return false;
+
     }
+
 }
 
 
@@ -3488,2999 +3348,42 @@ function render(route){
 
 function renderHome(){
 
-    const storeName =
-        settings.storeName ||
-        "ماهان سنتر ایران";
+    const storeName = settings.storeName || "ماهان سنتر ایران";
+    const welcome = settings.welcomeText || DEFAULT_SETTINGS.welcomeText;
 
-
-    const welcome =
-        settings.welcomeText ||
-        "ماهان سنتر ایران یک فروشگاه آنلاین برای ارائه محصولات متنوع و باکیفیت است.";
-
-
-    /*
-       توجه:
-       اینجا عمداً هیچ دسته‌بندی،
-       محصول،
-       پیشنهاد،
-       بنر یا بخش دیگری وجود ندارد.
-    */
-
-    document.getElementById(
-        "app"
-    ).innerHTML = `
-
+    document.getElementById("app").innerHTML = `
         <main class="page">
-
             <div class="container">
-
                 <section class="home-intro">
-
                     <div class="home-box">
-
-                        <img
-                            class="home-logo-small"
-                            src="logo.jpg"
-                            alt="${escapeHTML(storeName)}"
-                            onerror="this.style.display='none'"
-                        >
-
-                        <h1>
-
-                            خوش آمدید به
-
-                            <br>
-
-                            ${formatStoreName(
-                                storeName
-                            )}
-
-                        </h1>
-
-
-                        <p class="home-description">
-
-                            ${escapeHTML(
-                                welcome
-                            )}
-
-                        </p>
-
-
-                        ${
-                            settings.showStats === false
-                                ? ""
-                                :
-                                `
-
-                                <div class="stats">
-
-                                    <div class="stat">
-
-                                        <strong>
-                                            ${formatNumber(
-                                                settings.activeUsers ??
-                                                settings.users ??
-                                                0
-                                            )}
-                                        </strong>
-
-                                        <span>
-                                            کاربران فعال
-                                        </span>
-
-                                    </div>
-
-
-                                    <div class="stat">
-
-                                        <strong>
-                                            ${formatNumber(
-                                                settings.successfulOrders ??
-                                                0
-                                            )}
-                                        </strong>
-
-                                        <span>
-                                            سفارش موفق
-                                        </span>
-
-                                    </div>
-
-
-                                    <div class="stat">
-
-                                        <strong>
-                                            ${formatNumber(
-                                                settings.satisfaction ??
-                                                0
-                                            )}%
-                                        </strong>
-
-                                        <span>
-                                            رضایت
-                                        </span>
-
-                                    </div>
-
+                        <div class="home-badge">✦ خوش اومدی ✦</div>
+                        <img class="home-logo-small" src="logo.jpg" alt="${escapeHTML(storeName)}" onerror="this.style.display='none'">
+                        <h1>${formatStoreName(storeName)}</h1>
+                        <p class="home-description">${escapeHTML(welcome)}</p>
+                        ${settings.showStats === false ? "" : `
+                            <div class="stats">
+                                <div class="stat stat-users">
+                                    <div class="stat-icon">👥</div>
+                                    <strong>${formatNumber(150)}</strong>
+                                    <span>کاربران سایت</span>
                                 </div>
-
-                                `
-                        }
-
+                                <div class="stat stat-orders">
+                                    <div class="stat-icon">🛒</div>
+                                    <strong>${formatNumber(11)}</strong>
+                                    <span>خرید موفق</span>
+                                </div>
+                                <div class="stat stat-satisfaction">
+                                    <div class="stat-icon">❤️</div>
+                                    <strong>${formatNumber(75)}%</strong>
+                                    <span>رضایت</span>
+                                </div>
+                            </div>
+                        `}
                     </div>
-
                 </section>
-
             </div>
-
         </main>
-
     `;
-
-}
-
-
-/* =========================================================
-   CATEGORY CARD
-========================================================= */
-
-function categoryCard(key){
-
-    const c =
-        categories[key];
-
-
-    if(!c)
-        return "";
-
-
-    const image =
-        resolveImage(
-            c.image || ""
-        ) ||
-        inferCategoryImage(c);
-
-
-    const subs =
-        Array.isArray(
-            c.subcategories
-        )
-            ? c.subcategories.slice(0,3)
-            : [];
-
-
-    const route =
-        "/category/" +
-        encodeURIComponent(key);
-
-
-    return `
-
-        <a
-            class="category"
-            href="#${route}"
-            onclick='go(${JSON.stringify(route)});return false'
-        >
-
-            <img
-                class="category-image"
-                src="${escapeHTML(image)}"
-                alt="${escapeHTML(c.name)}"
-                onerror="this.src='${escapeHTML(
-                    inferCategoryImage(c)
-                )}'"
-            >
-
-            <div class="category-overlay"></div>
-
-            <div class="category-content">
-
-                <div class="category-icon">
-                    ${escapeHTML(
-                        c.icon || "📦"
-                    )}
-                </div>
-
-                <div class="category-name">
-                    ${escapeHTML(
-                        c.name
-                    )}
-                </div>
-
-                <div class="category-sub">
-
-                    ${
-                        subs.length
-                            ? escapeHTML(
-                                subs.join(" • ")
-                              )
-                            : "مشاهده محصولات"
-                    }
-
-                </div>
-
-            </div>
-
-        </a>
-
-    `;
-
-}
-
-
-/* =========================================================
-   CATEGORIES PAGE
-========================================================= */
-
-function renderCategories(){
-
-    const keys =
-        Object.keys(
-            categories
-        );
-
-
-    document.getElementById(
-        "app"
-    ).innerHTML = `
-
-        <main class="page">
-
-            <div class="container">
-
-                <div class="page-title">
-
-                    <div>
-
-                        <h1>
-                            دسته‌بندی‌ها
-                        </h1>
-
-                        <p>
-                            انتخاب دسته‌بندی محصولات
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="categories">
-
-                    ${
-                        keys.length
-                            ? keys
-                                .map(categoryCard)
-                                .join("")
-                            : emptyResult(
-                                "📂",
-                                "هنوز دسته‌بندی‌ای ثبت نشده است"
-                              )
-                    }
-
-                </div>
-
-            </div>
-
-        </main>
-
-    `;
-
-}
-
-
-/* =========================================================
-   SORT
-========================================================= */
-
-function getFinalPrice(p){
-
-    const price =
-        Number(
-            p.price || 0
-        );
-
-
-    const discount =
-        Number(
-            p.discount || 0
-        );
-
-
-    return discount > 0
-        ? Math.round(
-            price -
-            (
-                price *
-                discount /
-                100
-            )
-          )
-        : price;
-
-}
-
-
-function sortProducts(list){
-
-    const arr =
-        [...list];
-
-
-    if(
-        currentSort ===
-        "newest"
-    ){
-
-        arr.sort(
-            (a,b) => {
-
-                const at =
-                    getCreatedTime(
-                        a.createdAt
-                    );
-
-                const bt =
-                    getCreatedTime(
-                        b.createdAt
-                    );
-
-
-                if(at !== bt)
-                    return bt - at;
-
-
-                return Number(
-                    b.code || 0
-                )
-                -
-                Number(
-                    a.code || 0
-                );
-
-            }
-        );
-
-    }
-
-
-    else if(
-        currentSort ===
-        "oldest"
-    ){
-
-        arr.sort(
-            (a,b) => {
-
-                const at =
-                    getCreatedTime(
-                        a.createdAt
-                    );
-
-                const bt =
-                    getCreatedTime(
-                        b.createdAt
-                    );
-
-
-                if(at !== bt)
-                    return at - bt;
-
-
-                return Number(
-                    a.code || 0
-                )
-                -
-                Number(
-                    b.code || 0
-                );
-
-            }
-        );
-
-    }
-
-
-    else if(
-        currentSort ===
-        "cheap"
-    ){
-
-        arr.sort(
-            (a,b) =>
-                getFinalPrice(a) -
-                getFinalPrice(b)
-        );
-
-    }
-
-
-    else if(
-        currentSort ===
-        "expensive"
-    ){
-
-        arr.sort(
-            (a,b) =>
-                getFinalPrice(b) -
-                getFinalPrice(a)
-        );
-
-    }
-
-
-    else if(
-        currentSort ===
-        "discount"
-    ){
-
-        arr.sort(
-            (a,b) =>
-                Number(
-                    b.discount || 0
-                )
-                -
-                Number(
-                    a.discount || 0
-                )
-        );
-
-    }
-
-
-    return arr;
-
-}
-
-
-function getSortName(){
-
-    const names = {
-
-        newest:"جدیدترین",
-
-        oldest:"قدیمی‌ترین",
-
-        cheap:"ارزان‌ترین",
-
-        expensive:"گران‌ترین",
-
-        discount:"بیشترین تخفیف"
-
-    };
-
-
-    return (
-        names[currentSort] ||
-        "مرتب‌سازی"
-    );
-
-}
-
-
-function sortFilters(){
-
-    const items = [
-
-        ["newest","جدیدترین"],
-
-        ["oldest","قدیمی‌ترین"],
-
-        ["cheap","ارزان‌ترین"],
-
-        ["expensive","گران‌ترین"],
-
-        ["discount","بیشترین تخفیف"]
-
-    ];
-
-
-    return `
-
-        <div class="sort-area">
-
-            <div class="sort-box">
-
-                <button
-                    class="sort-toggle"
-                    onclick="toggleSortMenu(event)"
-                >
-
-                    <span>
-
-                        مرتب‌سازی:
-
-                        <strong>
-                            ${getSortName()}
-                        </strong>
-
-                    </span>
-
-                    <span>
-                        ⌄
-                    </span>
-
-                </button>
-
-
-                <div
-                    class="sort-menu"
-                    id="sortMenu"
-                >
-
-                    ${
-                        items
-                            .map(
-                                ([key,name]) =>
-                                `
-
-                                <button
-                                    class="sort-option ${
-                                        currentSort === key
-                                            ? "active"
-                                            : ""
-                                    }"
-                                    onclick="changeSort('${key}')"
-                                >
-                                    ${name}
-                                </button>
-
-                                `
-                            )
-                            .join("")
-                    }
-
-                </div>
-
-            </div>
-
-        </div>
-
-    `;
-
-}
-
-
-function toggleSortMenu(event){
-
-    if(event)
-        event.stopPropagation();
-
-
-    const menu =
-        document.getElementById(
-            "sortMenu"
-        );
-
-
-    if(menu)
-        menu.classList.toggle(
-            "open"
-        );
-
-}
-
-
-function changeSort(sort){
-
-    currentSort =
-        String(
-            sort ||
-            "newest"
-        );
-
-
-    render(
-        getRoute()
-    );
-
-}
-
-
-/* =========================================================
-   CATEGORY HELPERS
-========================================================= */
-
-function getProductSubcategory(p){
-
-    return String(
-
-        p.subcategory ||
-        p.subCat ||
-        p.sub_category ||
-        p.childCategory ||
-        p.childCat ||
-        p.goldCat ||
-        ""
-
-    ).trim();
-
-}
-
-
-function productBelongsToCategory(
-    product,
-    categoryId
-){
-
-    const cat =
-        categories[
-            String(categoryId)
-        ];
-
-
-    const values = [
-
-        product.category,
-
-        product.cat,
-
-        product.categoryId,
-
-        product.categoryName
-
-    ]
-    .map(normalizeText)
-    .filter(Boolean);
-
-
-    const wantedId =
-        normalizeText(
-            categoryId
-        );
-
-
-    const wantedName =
-        normalizeText(
-            cat?.name
-        );
-
-
-    return (
-
-        values.includes(
-            wantedId
-        )
-
-        ||
-
-        (
-            wantedName &&
-            values.includes(
-                wantedName
-            )
-        )
-
-    );
-
-}
-
-
-function getCategorySubcategories(
-    cat,
-    categoryProducts
-){
-
-    const configured =
-        Array.isArray(
-            cat?.subcategories
-        )
-            ? cat.subcategories.filter(
-                Boolean
-              )
-            : [];
-
-
-    const derived =
-        categoryProducts
-            .map(
-                getProductSubcategory
-            )
-            .filter(Boolean);
-
-
-    return [
-        ...new Set([
-            ...configured,
-            ...derived
-        ])
-    ];
-
-}
-
-
-function renderSubcategories(
-    cat,
-    categoryProducts
-){
-
-    const list =
-        getCategorySubcategories(
-            cat,
-            categoryProducts
-        );
-
-
-    if(!list.length)
-        return "";
-
-
-    return `
-
-        <div class="subcategories">
-
-            <button
-                class="subcategory-btn ${
-                    currentSubcategory === "all"
-                        ? "active"
-                        : ""
-                }"
-                onclick="changeSubcategory('all')"
-            >
-                همه
-            </button>
-
-
-            ${
-                list
-                    .map(
-                        sub =>
-                        `
-
-                        <button
-                            class="subcategory-btn ${
-                                currentSubcategory === sub
-                                    ? "active"
-                                    : ""
-                            }"
-                            onclick='changeSubcategory(${JSON.stringify(sub)})'
-                        >
-                            ${escapeHTML(sub)}
-                        </button>
-
-                        `
-                    )
-                    .join("")
-            }
-
-        </div>
-
-    `;
-
-}
-
-
-function changeSubcategory(sub){
-
-    currentSubcategory =
-        String(
-            sub ||
-            "all"
-        );
-
-
-    const route =
-        getRoute();
-
-
-    const parts =
-        route
-            .split("/")
-            .filter(Boolean);
-
-
-    const cat =
-        decodeURIComponent(
-            parts[1] || ""
-        );
-
-
-    if(
-        currentSubcategory ===
-        "all"
-    ){
-
-        go(
-            "/category/" +
-            encodeURIComponent(cat)
-        );
-
-    }else{
-
-        go(
-            "/category/" +
-            encodeURIComponent(cat) +
-            "/" +
-            encodeURIComponent(
-                currentSubcategory
-            )
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   CATEGORY PAGE
-========================================================= */
-
-function renderCategory(
-    cat,
-    sub
-){
-
-    const category =
-        categories[
-            String(cat)
-        ];
-
-
-    let categoryProducts =
-        products.filter(
-            p =>
-                productBelongsToCategory(
-                    p,
-                    cat
-                )
-        );
-
-
-    const allProducts =
-        [...categoryProducts];
-
-
-    if(
-        sub &&
-        sub !== "all"
-    ){
-
-        categoryProducts =
-            categoryProducts.filter(
-                p =>
-                    getProductSubcategory(p) ===
-                    String(sub)
-            );
-
-    }
-
-
-    currentSubcategory =
-        sub || "all";
-
-
-    categoryProducts =
-        sortProducts(
-            categoryProducts
-        );
-
-
-    const categoryName =
-        category
-            ? category.name
-            : "محصولات";
-
-
-    document.getElementById(
-        "app"
-    ).innerHTML = `
-
-        <main class="page">
-
-            <div class="container">
-
-                <div class="page-title">
-
-                    <div>
-
-                        <h1>
-                            ${escapeHTML(
-                                categoryName
-                            )}
-                        </h1>
-
-                        <p>
-
-                            ${
-                                sub &&
-                                sub !== "all"
-                                    ? "زیر دسته: " +
-                                      escapeHTML(sub)
-                                    : allProducts.length +
-                                      " محصول"
-                            }
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                ${renderSubcategories(
-                    category,
-                    allProducts
-                )}
-
-
-                ${sortFilters()}
-
-
-                ${
-                    categoryProducts.length
-
-                        ?
-
-                        `
-
-                        <div class="products">
-
-                            ${
-                                categoryProducts
-                                    .map(productCard)
-                                    .join("")
-                            }
-
-                        </div>
-
-                        `
-
-                        :
-
-                        emptyResult(
-                            "📦",
-                            "محصولی در این دسته وجود ندارد"
-                        )
-                }
-
-            </div>
-
-        </main>
-
-    `;
-
-}
-
-
-/* =========================================================
-   PHONE
-========================================================= */
-
-function renderPhones(){
-
-    let filtered =
-        currentPhoneBrand === "all"
-
-            ?
-
-            products.filter(
-                p =>
-                    productBelongsToCategory(
-                        p,
-                        "mobile"
-                    )
-            )
-
-            :
-
-            products.filter(
-                p =>
-                    productBelongsToCategory(
-                        p,
-                        "mobile"
-                    )
-                    &&
-                    normalizeText(
-                        p.brand
-                    ) ===
-                    normalizeText(
-                        currentPhoneBrand
-                    )
-            );
-
-
-    const brands = [
-
-        ["all","همه"],
-
-        ["iphone","آیفون"],
-
-        ["samsung","سامسونگ"],
-
-        ["xiaomi","شیائومی"],
-
-        ["nokia","نوکیا"]
-
-    ];
-
-
-    filtered =
-        sortProducts(
-            filtered
-        );
-
-
-    document.getElementById(
-        "app"
-    ).innerHTML = `
-
-        <main class="page">
-
-            <div class="container">
-
-                <div class="page-title">
-
-                    <div>
-
-                        <h1>
-                            گوشی موبایل
-                        </h1>
-
-                        <p>
-                            ${filtered.length}
-                            محصول
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="subcategories">
-
-                    ${
-                        brands
-                            .map(
-                                ([key,name]) =>
-                                `
-
-                                <button
-                                    class="subcategory-btn ${
-                                        currentPhoneBrand === key
-                                            ? "active"
-                                            : ""
-                                    }"
-                                    onclick="filterPhones('${key}')"
-                                >
-                                    ${name}
-                                </button>
-
-                                `
-                            )
-                            .join("")
-                    }
-
-                </div>
-
-
-                ${sortFilters()}
-
-
-                <div class="products">
-
-                    ${
-                        filtered.length
-
-                            ?
-
-                            filtered
-                                .map(productCard)
-                                .join("")
-
-                            :
-
-                            emptyResult(
-                                "📱",
-                                "محصولی پیدا نشد"
-                            )
-                    }
-
-                </div>
-
-            </div>
-
-        </main>
-
-    `;
-
-}
-
-
-function filterPhones(brand){
-
-    currentPhoneBrand =
-        brand;
-
-
-    renderPhones();
-
-}
-
-
-/* =========================================================
-   PRODUCT IMAGES
-========================================================= */
-
-function getProductImages(p){
-
-    const images = [
-
-        p.image,
-
-        p.image2,
-
-        p.image3,
-
-        ...(Array.isArray(p.images)
-            ? p.images
-            : [])
-
-    ]
-    .filter(Boolean)
-    .map(resolveImage);
-
-
-    return [
-        ...new Set(
-            images
-        )
-    ].slice(0,3);
-
-}
-
-
-/* =========================================================
-   CARD IMAGE
-========================================================= */
-
-function productImageHTML(p){
-
-    const images =
-        getProductImages(p);
-
-
-    const first =
-        images[0];
-
-
-    const id =
-        escapeHTML(
-            String(p.id)
-        );
-
-
-    if(!first){
-
-        return `
-
-            <div class="product-image">
-
-                <span>
-                    ${escapeHTML(
-                        p.icon ||
-                        "🛍️"
-                    )}
-                </span>
-
-            </div>
-
-        `;
-
-    }
-
-
-    const arrows =
-        images.length > 1
-
-            ?
-
-            `
-
-            <button
-                class="image-arrow right"
-                onclick='event.preventDefault();event.stopPropagation();changeCardImage(${JSON.stringify(String(p.id))},1)'
-            >
-                ›
-            </button>
-
-
-            <button
-                class="image-arrow left"
-                onclick='event.preventDefault();event.stopPropagation();changeCardImage(${JSON.stringify(String(p.id))},-1)'
-            >
-                ‹
-            </button>
-
-
-            <div
-                class="image-number"
-                id="cardImageNumber-${id}"
-            >
-                1 / ${images.length}
-            </div>
-
-            `
-
-            : "";
-
-
-    return `
-
-        <div
-            class="product-image"
-            id="productImage-${id}"
-        >
-
-            <img
-                id="cardImg-${id}"
-                src="${escapeHTML(first)}"
-                alt="${escapeHTML(p.name)}"
-                onerror="
-                    this.onerror=null;
-                    this.style.display='none';
-                "
-            >
-
-            ${arrows}
-
-        </div>
-
-    `;
-
-}
-
-
-function changeCardImage(
-    id,
-    amount
-){
-
-    const p =
-        products.find(
-            x =>
-                String(x.id) ===
-                String(id)
-        );
-
-
-    if(!p)
-        return;
-
-
-    const images =
-        getProductImages(p);
-
-
-    if(images.length <= 1)
-        return;
-
-
-    if(
-        cardImageIndexes[id] ===
-        undefined
-    ){
-
-        cardImageIndexes[id] =
-            0;
-
-    }
-
-
-    cardImageIndexes[id] +=
-        Number(
-            amount || 0
-        );
-
-
-    if(
-        cardImageIndexes[id] < 0
-    ){
-
-        cardImageIndexes[id] =
-            images.length - 1;
-
-    }
-
-
-    if(
-        cardImageIndexes[id] >=
-        images.length
-    ){
-
-        cardImageIndexes[id] =
-            0;
-
-    }
-
-
-    const img =
-        document.getElementById(
-            "cardImg-" + id
-        );
-
-
-    const number =
-        document.getElementById(
-            "cardImageNumber-" + id
-        );
-
-
-    if(img){
-
-        img.src =
-            images[
-                cardImageIndexes[id]
-            ];
-
-    }
-
-
-    if(number){
-
-        number.textContent =
-            (
-                cardImageIndexes[id] + 1
-            ) +
-            " / " +
-            images.length;
-
-    }
-
-}
-
-
-/* =========================================================
-   PRODUCT CARD
-========================================================= */
-
-function productCard(p){
-
-    const isFav =
-        favorites.some(
-            x =>
-                String(x) ===
-                String(p.id)
-        );
-
-
-    const price =
-        Number(
-            p.price || 0
-        );
-
-
-    const discount =
-        Number(
-            p.discount || 0
-        );
-
-
-    const finalPrice =
-        getFinalPrice(p);
-
-
-    const stock =
-        Number(
-            p.stock || 0
-        );
-
-
-    const stockHTML =
-        getStockHTML(
-            stock
-        );
-
-
-    const productId =
-        JSON.stringify(
-            String(p.id)
-        );
-
-
-    const route =
-        "/product/" +
-        encodeURIComponent(
-            String(p.id)
-        );
-
-
-    return `
-
-        <article class="product-card">
-
-            <button
-                class="favorite ${
-                    isFav
-                        ? "active"
-                        : ""
-                }"
-                onclick='toggleFavorite(${productId})'
-                title="علاقه‌مندی"
-            >
-
-                ${
-                    isFav
-                        ? "♥"
-                        : "♡"
-                }
-
-            </button>
-
-
-            <a
-                href="#${route}"
-                onclick='go(${JSON.stringify(route)});return false'
-            >
-
-                ${productImageHTML(p)}
-
-
-                <div class="product-info">
-
-                    <div class="product-title">
-
-                        ${escapeHTML(
-                            p.name
-                        )}
-
-                    </div>
-
-
-                    <div class="product-desc">
-
-                        ${escapeHTML(
-                            p.desc || ""
-                        )}
-
-                    </div>
-
-
-                    <div class="product-price">
-
-                        ${
-                            discount > 0
-
-                                ?
-
-                                `
-
-                                <del
-                                    style="
-                                        color:#777;
-                                        font-size:11px
-                                    "
-                                >
-
-                                    ${price.toLocaleString("en-US")}
-                                    تومان
-
-                                </del>
-
-                                <br>
-
-                                <span class="discount-label">
-
-                                    ${discount}%
-                                    تخفیف
-
-                                </span>
-
-                                `
-
-                                : ""
-                        }
-
-
-                        ${finalPrice.toLocaleString("en-US")}
-
-                        <small>
-                            تومان
-                        </small>
-
-                    </div>
-
-
-                    <div
-                        class="stock ${
-                            stock > 10
-                                ? "green"
-                                : stock > 0
-                                    ? "yellow"
-                                    : "red"
-                        }"
-                    >
-
-                        ${stockHTML}
-
-                    </div>
-
-                </div>
-
-            </a>
-
-
-            <div class="product-actions">
-
-                <button
-                    onclick='go(${JSON.stringify(route)})'
-                >
-                    جزئیات
-                </button>
-
-
-                <button
-                    class="buy"
-                    onclick='addToCart(${productId},1)'
-                    ${stock <= 0 ? "disabled" : ""}
-                >
-
-                    ${
-                        stock <= 0
-                            ? "ناموجود"
-                            : "افزودن به سبد"
-                    }
-
-                </button>
-
-            </div>
-
-        </article>
-
-    `;
-
-}
-
-
-function getStockHTML(stock){
-
-    stock =
-        Number(
-            stock || 0
-        );
-
-
-    if(stock > 10){
-
-        return `
-            🟢
-            ${formatNumber(stock)}
-            عدد در انبار موجود می‌باشد
-        `;
-
-    }
-
-
-    if(stock > 0){
-
-        return `
-            🟡
-            ${formatNumber(stock)}
-            عدد در انبار موجود می‌باشد
-        `;
-
-    }
-
-
-    return `
-        🔴
-        در انبار موجود نداریم
-    `;
-
-}
-
-
-/* =========================================================
-   PRODUCT DETAIL
-========================================================= */
-
-function renderProduct(id){
-
-    const p =
-        products.find(
-            x =>
-                String(x.id) ===
-                    String(id)
-
-                ||
-
-                String(x.docId) ===
-                    String(id)
-
-                ||
-
-                String(x.code) ===
-                    String(id)
-        );
-
-
-    if(!p){
-
-        document.getElementById(
-            "app"
-        ).innerHTML = `
-
-            <div class="page">
-
-                <div class="container">
-
-                    ${emptyResult(
-                        "❌",
-                        "محصول پیدا نشد"
-                    )}
-
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    tempQty = 1;
-
-
-    const images =
-        getProductImages(p);
-
-
-    detailImageIndexes[
-        p.id
-    ] = 0;
-
-
-    const price =
-        Number(
-            p.price || 0
-        );
-
-
-    const discount =
-        Number(
-            p.discount || 0
-        );
-
-
-    const finalPrice =
-        getFinalPrice(p);
-
-
-    const stock =
-        Number(
-            p.stock || 0
-        );
-
-
-    const productId =
-        JSON.stringify(
-            String(p.id)
-        );
-
-
-    document.getElementById(
-        "app"
-    ).innerHTML = `
-
-        <main class="page">
-
-            <div class="container">
-
-                <div class="product-detail">
-
-                    <div class="detail-gallery">
-
-                        <div class="detail-gallery-main">
-
-                            ${
-                                images[0]
-
-                                    ?
-
-                                    `
-
-                                    <img
-                                        id="detailMainImage"
-                                        src="${escapeHTML(images[0])}"
-                                        alt="${escapeHTML(p.name)}"
-                                        onerror="
-                                            this.onerror=null;
-                                            this.style.display='none';
-                                        "
-                                    >
-
-                                    `
-
-                                    :
-
-                                    `
-
-                                    <span>
-                                        ${escapeHTML(
-                                            p.icon ||
-                                            "🛍️"
-                                        )}
-                                    </span>
-
-                                    `
-                            }
-
-                        </div>
-
-
-                        ${
-                            images.length > 1
-
-                                ?
-
-                                `
-
-                                <button
-                                    class="detail-arrow right"
-                                    onclick='changeDetailImage(${productId},1)'
-                                >
-                                    ›
-                                </button>
-
-
-                                <button
-                                    class="detail-arrow left"
-                                    onclick='changeDetailImage(${productId},-1)'
-                                >
-                                    ‹
-                                </button>
-
-
-                                <div
-                                    class="detail-dots"
-                                    id="detailDots"
-                                >
-
-                                    ${
-                                        images
-                                            .map(
-                                                (x,i) =>
-                                                `
-
-                                                <span
-                                                    class="detail-dot ${
-                                                        i === 0
-                                                            ? "active"
-                                                            : ""
-                                                    }"
-                                                ></span>
-
-                                                `
-                                            )
-                                            .join("")
-                                    }
-
-                                </div>
-
-                                `
-
-                                : ""
-                        }
-
-                    </div>
-
-
-                    <div class="detail-info">
-
-                        <h1>
-                            ${escapeHTML(
-                                p.name
-                            )}
-                        </h1>
-
-
-                        <div class="detail-desc">
-
-                            ${escapeHTML(
-                                p.desc ||
-                                "توضیحات محصول ثبت نشده است."
-                            )}
-
-                        </div>
-
-
-                        <div class="detail-price">
-
-                            ${
-                                discount > 0
-
-                                    ?
-
-                                    `
-
-                                    <del
-                                        style="
-                                            color:#777;
-                                            font-size:14px
-                                        "
-                                    >
-
-                                        ${price.toLocaleString("en-US")}
-                                        تومان
-
-                                    </del>
-
-                                    <br>
-
-                                    ${finalPrice.toLocaleString("en-US")}
-                                    تومان
-
-                                    `
-
-                                    :
-
-                                    `
-
-                                    ${finalPrice.toLocaleString("en-US")}
-
-                                    <small>
-                                        تومان
-                                    </small>
-
-                                    `
-                            }
-
-                        </div>
-
-
-                        ${
-                            discount > 0
-
-                                ?
-
-                                `
-
-                                <div class="detail-discount">
-
-                                    🏷️
-                                    ${discount}%
-                                    تخفیف
-
-                                    <br>
-
-                                    قیمت بعد تخفیف:
-
-                                    ${finalPrice.toLocaleString("en-US")}
-                                    تومان
-
-                                </div>
-
-                                `
-
-                                : ""
-                        }
-
-
-                        <div
-                            class="
-                                detail-stock
-                                ${
-                                    stock > 10
-                                        ? "stock green"
-                                        : stock > 0
-                                            ? "stock yellow"
-                                            : "stock red"
-                                }
-                            "
-                        >
-
-                            ${getStockHTML(
-                                stock
-                            )}
-
-                        </div>
-
-
-                        <div class="product-specs">
-
-                            <div class="product-specs-title">
-
-                                مشخصات محصول
-
-                            </div>
-
-
-                            <div class="product-specs-text">
-
-                                ${escapeHTML(
-                                    p.specs ||
-                                    "مشخصات محصول ثبت نشده است."
-                                )}
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="quantity">
-
-                            <button
-                                onclick="changeTempQty(-1)"
-                            >
-                                −
-                            </button>
-
-
-                            <strong id="tempQty">
-                                1
-                            </strong>
-
-
-                            <button
-                                onclick="changeTempQty(1)"
-                            >
-                                +
-                            </button>
-
-                        </div>
-
-
-                        <button
-                            class="primary-btn"
-                            onclick='addToCart(${productId},window.tempQty)'
-                            ${stock <= 0 ? "disabled" : ""}
-                        >
-
-                            ${
-                                stock <= 0
-                                    ? "ناموجود"
-                                    : "افزودن به سبد خرید"
-                            }
-
-                        </button>
-
-
-                        <button
-                            class="secondary-btn"
-                            style="margin-right:8px"
-                            onclick='toggleFavorite(${productId})'
-                        >
-
-                            ${
-                                favorites.some(
-                                    x =>
-                                        String(x) ===
-                                        String(p.id)
-                                )
-
-                                    ?
-
-                                    "♥ حذف از علاقه‌مندی"
-
-                                    :
-
-                                    "♡ علاقه‌مندی"
-                            }
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </main>
-
-    `;
-
-
-    window.tempQty =
-        tempQty;
-
-}
-
-
-function changeDetailImage(
-    id,
-    amount
-){
-
-    const p =
-        products.find(
-            x =>
-                String(x.id) ===
-                String(id)
-        );
-
-
-    if(!p)
-        return;
-
-
-    const images =
-        getProductImages(p);
-
-
-    if(images.length <= 1)
-        return;
-
-
-    if(
-        detailImageIndexes[id] ===
-        undefined
-    ){
-
-        detailImageIndexes[id] =
-            0;
-
-    }
-
-
-    detailImageIndexes[id] +=
-        Number(
-            amount || 0
-        );
-
-
-    if(
-        detailImageIndexes[id] < 0
-    ){
-
-        detailImageIndexes[id] =
-            images.length - 1;
-
-    }
-
-
-    if(
-        detailImageIndexes[id] >=
-        images.length
-    ){
-
-        detailImageIndexes[id] =
-            0;
-
-    }
-
-
-    const img =
-        document.getElementById(
-            "detailMainImage"
-        );
-
-
-    if(img){
-
-        img.src =
-            images[
-                detailImageIndexes[id]
-            ];
-
-    }
-
-
-    document
-        .querySelectorAll(
-            ".detail-dot"
-        )
-        .forEach(
-            (dot,index) => {
-
-                dot.classList.toggle(
-                    "active",
-                    index ===
-                    detailImageIndexes[id]
-                );
-
-            }
-        );
-
-}
-
-
-function changeTempQty(amount){
-
-    tempQty +=
-        Number(
-            amount || 0
-        );
-
-
-    if(tempQty < 1)
-        tempQty = 1;
-
-
-    if(tempQty > 99)
-        tempQty = 99;
-
-
-    window.tempQty =
-        tempQty;
-
-
-    const el =
-        document.getElementById(
-            "tempQty"
-        );
-
-
-    if(el)
-        el.textContent =
-            tempQty;
-
-}
-
-
-/* =========================================================
-   CART
-========================================================= */
-
-function addToCart(
-    id,
-    qty
-){
-
-    qty =
-        Number(
-            qty || 1
-        );
-
-
-    if(
-        !Number.isFinite(qty) ||
-        qty < 1
-    ){
-
-        qty = 1;
-
-    }
-
-
-    const p =
-        products.find(
-            x =>
-                String(x.id) ===
-                    String(id)
-
-                ||
-
-                String(x.docId) ===
-                    String(id)
-
-                ||
-
-                String(x.code) ===
-                    String(id)
-        );
-
-
-    if(!p){
-
-        showToast(
-            "محصول پیدا نشد"
-        );
-
-        return;
-
-    }
-
-
-    const stock =
-        Number(
-            p.stock || 0
-        );
-
-
-    if(stock <= 0){
-
-        showToast(
-            "این محصول موجود نیست"
-        );
-
-        return;
-
-    }
-
-
-    const item =
-        cart.find(
-            x =>
-                String(x.id) ===
-                String(id)
-        );
-
-
-    const currentQty =
-        item
-            ? Number(
-                item.qty || 0
-              )
-            : 0;
-
-
-    if(
-        currentQty + qty >
-        stock
-    ){
-
-        showToast(
-            "تعداد انتخابی بیشتر از موجودی است"
-        );
-
-        return;
-
-    }
-
-
-    if(item){
-
-        item.qty += qty;
-
-    }else{
-
-        cart.push({
-
-            id:p.id,
-
-            qty:qty
-
-        });
-
-    }
-
-
-    saveData();
-
-
-    showToast(
-        "محصول به سبد خرید اضافه شد ✓"
-    );
-
-}
-
-
-function cartQty(
-    id,
-    amount
-){
-
-    const item =
-        cart.find(
-            x =>
-                String(x.id) ===
-                String(id)
-        );
-
-
-    if(!item)
-        return;
-
-
-    const p =
-        products.find(
-            x =>
-                String(x.id) ===
-                String(id)
-                ||
-                String(x.docId) ===
-                String(id)
-                ||
-                String(x.code) ===
-                String(id)
-        );
-
-
-    item.qty +=
-        Number(
-            amount || 0
-        );
-
-
-    if(p){
-
-        item.qty =
-            Math.min(
-                item.qty,
-                Number(
-                    p.stock || 0
-                )
-            );
-
-    }
-
-
-    if(item.qty < 1){
-
-        cart =
-            cart.filter(
-                x =>
-                    String(x.id) !==
-                    String(id)
-            );
-
-    }
-
-
-    saveData();
-
-
-    renderCart();
-
-}
-
-
-function removeFromCart(id){
-
-    cart =
-        cart.filter(
-            x =>
-                String(x.id) !==
-                String(id)
-        );
-
-
-    saveData();
-
-
-    renderCart();
-
-
-    showToast(
-        "محصول از سبد حذف شد"
-    );
-
-}
-
-
-/* =========================================================
-   CART PAGE
-========================================================= */
-
-function renderCart(){
-
-    const items =
-        cart
-            .map(
-                item => {
-
-                    const p =
-                        products.find(
-                            x =>
-                                String(x.id) ===
-                                    String(item.id)
-
-                                ||
-
-                                String(x.docId) ===
-                                    String(item.id)
-
-                                ||
-
-                                String(x.code) ===
-                                    String(item.id)
-                        );
-
-
-                    return p
-                        ? {
-                            ...p,
-                            qty:
-                                Number(
-                                    item.qty || 0
-                                )
-                          }
-                        : null;
-
-                }
-            )
-            .filter(Boolean);
-
-
-    if(!items.length){
-
-        document.getElementById(
-            "app"
-        ).innerHTML = `
-
-            <main class="page">
-
-                <div class="container cart-page">
-
-                    ${emptyResult(
-                        "🛒",
-                        "سبد خرید شما خالی است"
-                    )}
-
-                </div>
-
-            </main>
-
-        `;
-
-        return;
-
-    }
-
-
-    const total =
-        items.reduce(
-            (sum,item) =>
-                sum +
-                getFinalPrice(item) *
-                item.qty,
-            0
-        );
-
-
-    document.getElementById(
-        "app"
-    ).innerHTML = `
-
-        <main class="page">
-
-            <div class="container cart-page">
-
-                <div class="page-title">
-
-                    <div>
-
-                        <h1>
-                            سبد خرید
-                        </h1>
-
-                        <p>
-                            ${items.length}
-                            محصول
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                ${
-                    items
-                        .map(
-                            item => {
-
-                                const finalPrice =
-                                    getFinalPrice(item);
-
-
-                                const pid =
-                                    JSON.stringify(
-                                        String(item.id)
-                                    );
-
-
-                                return `
-
-                                    <div class="cart-item">
-
-                                        <div class="cart-icon">
-
-                                            ${
-                                                item.image
-
-                                                    ?
-
-                                                    `
-
-                                                    <img
-                                                        src="${escapeHTML(item.image)}"
-                                                        alt="${escapeHTML(item.name)}"
-                                                        onerror="this.style.display='none'"
-                                                    >
-
-                                                    `
-
-                                                    :
-
-                                                    escapeHTML(
-                                                        item.icon ||
-                                                        "🛍️"
-                                                    )
-                                            }
-
-                                        </div>
-
-
-                                        <div class="cart-item-info">
-
-                                            <h3>
-                                                ${escapeHTML(
-                                                    item.name
-                                                )}
-                                            </h3>
-
-                                            <p>
-                                                ${finalPrice.toLocaleString("en-US")}
-                                                تومان
-                                            </p>
-
-                                        </div>
-
-
-                                        <div class="qty">
-
-                                            <button
-                                                onclick='cartQty(${pid},-1)'
-                                            >
-                                                −
-                                            </button>
-
-
-                                            <strong>
-                                                ${item.qty}
-                                            </strong>
-
-
-                                            <button
-                                                onclick='cartQty(${pid},1)'
-                                            >
-                                                +
-                                            </button>
-
-                                        </div>
-
-
-                                        <button
-                                            class="remove"
-                                            onclick='removeFromCart(${pid})'
-                                        >
-                                            ×
-                                        </button>
-
-                                    </div>
-
-                                `;
-
-                            }
-                        )
-                        .join("")
-                }
-
-
-                <div class="cart-summary">
-
-                    <div class="summary-row">
-
-                        <span>
-                            جمع کل
-                        </span>
-
-                        <strong>
-                            ${total.toLocaleString("en-US")}
-                            تومان
-                        </strong>
-
-                    </div>
-
-
-                    <div class="summary-row total">
-
-                        <span>
-                            مبلغ نهایی
-                        </span>
-
-                        <strong>
-                            ${total.toLocaleString("en-US")}
-                            تومان
-                        </strong>
-
-                    </div>
-
-
-                    <button
-                        class="primary-btn"
-                        style="width:100%;margin-top:10px"
-                        onclick="checkout()"
-                    >
-                        ثبت سفارش
-                    </button>
-
-                </div>
-
-            </div>
-
-        </main>
-
-    `;
-
-}
-
-
-function checkout(){
-
-    showToast(
-        "بخش ثبت سفارش به‌زودی فعال می‌شود"
-    );
-
-}
-
-
-/* =========================================================
-   FAVORITES
-========================================================= */
-
-function toggleFavorite(id){
-
-    const found =
-        favorites.find(
-            x =>
-                String(x) ===
-                String(id)
-        );
-
-
-    if(found !== undefined){
-
-        favorites =
-            favorites.filter(
-                x =>
-                    String(x) !==
-                    String(id)
-            );
-
-
-        showToast(
-            "از علاقه‌مندی‌ها حذف شد"
-        );
-
-    }else{
-
-        favorites.push(
-            id
-        );
-
-
-        showToast(
-            "به علاقه‌مندی‌ها اضافه شد"
-        );
-
-    }
-
-
-    saveData();
-
-
-    render(
-        getRoute()
-    );
-
-}
-
-
-function renderFavorites(){
-
-    let list =
-        products.filter(
-            p =>
-                favorites.some(
-                    id =>
-                        String(id) ===
-                        String(p.id)
-                )
-        );
-
-
-    list =
-        sortProducts(
-            list
-        );
-
-
-    document.getElementById(
-        "app"
-    ).innerHTML = `
-
-        <main class="page">
-
-            <div class="container">
-
-                <div class="page-title">
-
-                    <div>
-
-                        <h1>
-                            علاقه‌مندی‌ها
-                        </h1>
-
-                        <p>
-                            ${list.length}
-                            محصول
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                ${
-                    list.length
-
-                        ?
-
-                        `
-
-                        ${sortFilters()}
-
-                        <div class="products">
-
-                            ${
-                                list
-                                    .map(productCard)
-                                    .join("")
-                            }
-
-                        </div>
-
-                        `
-
-                        :
-
-                        emptyResult(
-                            "♡",
-                            "هنوز محصولی به علاقه‌مندی‌ها اضافه نشده"
-                        )
-                }
-
-            </div>
-
-        </main>
-
-    `;
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function globalSearch(){
-
-    const input =
-        document.getElementById(
-            "globalSearch"
-        );
-
-
-    const q =
-        input
-            ? input.value.trim()
-            : "";
-
-
-    if(!q)
-        return;
-
-
-    go(
-        "/search/" +
-        encodeURIComponent(q)
-    );
-
-}
-
-
-function renderSearch(q){
-
-    const query =
-        String(q || "")
-            .toLowerCase()
-            .trim();
-
-
-    let results =
-        products.filter(
-            p => {
-
-                const categoryName =
-                    categories[
-                        p.category
-                    ]
-                        ? categories[
-                            p.category
-                          ].name
-                        : "";
-
-
-                const text = [
-
-                    p.name,
-
-                    p.search,
-
-                    p.brand,
-
-                    p.cat,
-
-                    p.category,
-
-                    categoryName,
-
-                    p.goldCat,
-
-                    p.subcategory,
-
-                    p.desc,
-
-                    p.specs,
-
-                    p.code
-
-                ]
-                .join(" ")
-                .toLowerCase();
-
-
-                return text.includes(
-                    query
-                );
-
-            }
-        );
-
-
-    results =
-        sortProducts(
-            results
-        );
-
-
-    document.getElementById(
-        "app"
-    ).innerHTML = `
-
-        <main class="page">
-
-            <div class="container">
-
-                <div class="page-title">
-
-                    <div>
-
-                        <h1>
-                            نتایج جستجو
-                        </h1>
-
-                        <p>
-
-                            برای «${escapeHTML(q)}»
-
-                            <br>
-
-                            ${results.length}
-                            نتیجه
-
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                ${sortFilters()}
-
-
-                ${
-                    results.length
-
-                        ?
-
-                        `
-
-                        <div class="products">
-
-                            ${
-                                results
-                                    .map(productCard)
-                                    .join("")
-                            }
-
-                        </div>
-
-                        `
-
-                        :
-
-                        emptyResult(
-                            "🔎",
-                            "محصولی با این عبارت پیدا نشد"
-                        )
-                }
-
-            </div>
-
-        </main>
-
-    `;
-
-}
-
-
-/* =========================================================
-   DISCOUNT
-========================================================= */
-
-function renderDiscount(){
-
-    let list =
-        products.filter(
-            p =>
-                Number(
-                    p.discount || 0
-                ) > 0
-        );
-
-
-    list =
-        sortProducts(
-            list
-        );
-
-
-    document.getElementById(
-        "app"
-    ).innerHTML = `
-
-        <main class="page">
-
-            <div class="container">
-
-                <div class="page-title">
-
-                    <div>
-
-                        <h1>
-                            🔥 تخفیف‌ها
-                        </h1>
-
-                        <p>
-                            ${list.length}
-                            محصول دارای تخفیف
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                ${sortFilters()}
-
-
-                ${
-                    list.length
-
-                        ?
-
-                        `
-
-                        <div class="products">
-
-                            ${
-                                list
-                                    .map(productCard)
-                                    .join("")
-                            }
-
-                        </div>
-
-                        `
-
-                        :
-
-                        emptyResult(
-                            "🔥",
-                            "در حال حاضر محصول تخفیف‌دار نداریم"
-                        )
-                }
-
-            </div>
-
-        </main>
-
-    `;
-
 }
 
 
@@ -6490,62 +3393,41 @@ function renderDiscount(){
 
 function renderLaws(){
 
-    const rules =
-        settings.rulesText ||
-        "متن قوانین هنوز توسط مدیریت سایت ثبت نشده است.";
+    const rules = settings.rulesText || DEFAULT_SETTINGS.rulesText;
+    const sections = [
+        ["۱", "توجه به قیمت کالاهای گران‌قیمت", "در صورت خرید کالاهای گران‌قیمت مانند طلا، گوشی‌های مدل بالا و سایر کالاهای با قیمت متغیر، لطفاً قبل از ثبت سفارش و پرداخت، حتماً با بخش پشتیبانی تماس بگیرید؛ چرا که قیمت این محصولات ممکن است به‌صورت لحظه‌ای تغییر کند."],
+        ["۲", "مهلت مرجوعی کالا", "تمامی کالاها به‌جز طلا، در صورت رعایت شرایط مرجوعی، تا ۷ روز پس از دریافت کالا امکان بازگشت دارند."],
+        ["۳", "شرایط مرجوعی", "کالا باید در همان وضعیت اولیه، سالم و بدون استفاده باشد و بسته‌بندی و متعلقات آن نیز حفظ شده باشد. کالاهای آسیب‌دیده یا استفاده‌شده شامل شرایط مرجوعی نخواهند بود."],
+        ["۴", "طلا و کالاهای سفارشی", "به دلیل نوسان قیمت و شرایط خاص این محصولات، کالاهای طلا قابل مرجوعی نیستند؛ بنابراین پیش از خرید، مشخصات و قیمت را با دقت بررسی کنید."],
+        ["۵", "بررسی سفارش", "لطفاً هنگام ثبت سفارش، مشخصات، رنگ، مدل، تعداد و سایر جزئیات کالا را با دقت بررسی کنید. مسئولیت انتخاب اشتباه بر عهده خریدار خواهد بود."],
+        ["۶", "پشتیبانی", "در صورت وجود هرگونه سؤال یا ابهام، قبل از پرداخت با پشتیبانی در ارتباط باشید. ما تلاش می‌کنیم خریدی مطمئن و بدون دردسر برای شما فراهم کنیم."]
+    ];
 
-
-    document.getElementById(
-        "app"
-    ).innerHTML = `
-
+    document.getElementById("app").innerHTML = `
         <main class="page">
-
-            <div class="container">
-
-                <div class="page-title">
-
-                    <div>
-
-                        <h1>
-                            📜 قوانین سایت
-                        </h1>
-
-                        <p>
-                            قوانین و شرایط استفاده از فروشگاه
-                        </p>
-
-                    </div>
-
+            <div class="container laws-page">
+                <div class="laws-hero">
+                    <div class="laws-hero-icon">📜</div>
+                    <div><h1>قوانین و شرایط خرید</h1><p>ماهان سنتر ایران 🖤</p></div>
                 </div>
-
-
                 <div class="laws-box">
-
-                    <div
-                        class="${
-                            rules.trim()
-                                ? "laws-content"
-                                : "laws-empty"
-                        }"
-                    >
-
-                        ${
-                            rules.trim()
-                                ? escapeHTML(rules)
-                                : "متن قوانین هنوز توسط مدیریت ثبت نشده است."
-                        }
-
+                    <div class="laws-title">قبل از خرید، این موارد را با دقت مطالعه کنید.</div>
+                    <div class="laws-list">
+                        ${sections.map(([n,title,text]) => `
+                            <article class="law-item">
+                                <div class="law-number">${n}</div>
+                                <div class="law-body">
+                                    <h2>${escapeHTML(title)}</h2>
+                                    <p>${escapeHTML(text)}</p>
+                                </div>
+                            </article>
+                        `).join("")}
                     </div>
-
+                    <div class="laws-footer">ماهان سنتر | ارتش تک‌نفره ⚡</div>
                 </div>
-
             </div>
-
         </main>
-
     `;
-
 }
 
 
@@ -6592,223 +3474,51 @@ function normalizeRubika(value){
 
 function renderSupport(){
 
-    const phone =
-        settings.supportPhone ||
-        "";
+    const phone = settings.supportPhone || "09332540425";
+    const rubika = normalizeRubika(settings.supportRubika || "omidi__xx");
+    const supportText = settings.supportText || DEFAULT_SETTINGS.supportText;
+    const storeName = settings.storeName || "ماهان سنتر ایران";
 
-
-    const rubika =
-        normalizeRubika(
-            settings.supportRubika
-        );
-
-
-    const supportText =
-        settings.supportText ||
-        "برای ارتباط با پشتیبانی یکی از روش‌های زیر را انتخاب کنید.";
-
-
-    const contactText =
-        settings.contactText ||
-        "";
-
-
-    const storeName =
-        settings.storeName ||
-        "ماهان سنتر ایران";
-
-
-    document.getElementById(
-        "app"
-    ).innerHTML = `
-
+    document.getElementById("app").innerHTML = `
         <main class="page">
-
-            <div class="container support-page">
-
-                <div class="support-header">
-
-                    <div class="support-avatar">
-                        👨🏻‍💻
+            <div class="container support-page support-pro">
+                <section class="support-hero-pro">
+                    <div class="support-orbit">
+                        <div class="support-avatar">👨🏻‍💻</div>
                     </div>
+                    <div class="support-status"><i></i> پشتیبانی آماده پاسخ‌گویی</div>
+                    <h1>مرکز پشتیبانی ${formatStoreName(storeName)}</h1>
+                    <p>${escapeHTML(supportText)}</p>
+                </section>
 
-                    <h1>
-                        پشتیبانی ${formatStoreName(
-                            storeName
-                        )}
-                    </h1>
+                <div class="support-grid">
+                    <article class="support-channel phone-channel">
+                        <div class="channel-top"><div class="channel-icon">☎</div><span>تماس مستقیم</span></div>
+                        <h2>شماره تماس فروشگاه</h2>
+                        <strong class="channel-value">${escapeHTML(phone)}</strong>
+                        <p>برای سؤال درباره قیمت، سفارش و خرید با ما تماس بگیر.</p>
+                        <div class="channel-actions">
+                            <button class="channel-copy" onclick='copyText(${JSON.stringify(phone)})'>کپی شماره</button>
+                            <button class="channel-main" onclick="callPhone()">تماس با پشتیبانی ↗</button>
+                        </div>
+                    </article>
 
-                    <p>
-                        ${escapeHTML(
-                            supportText
-                        )}
-                    </p>
-
+                    <article class="support-channel rubika-channel">
+                        <div class="channel-top"><div class="channel-icon">◈</div><span>ارتباط در روبیکا</span></div>
+                        <h2>آیدی روبیکا</h2>
+                        <strong class="channel-value">@${escapeHTML(rubika)}</strong>
+                        <p>اگر پیام دادن برات راحت‌تره، از روبیکا با ما در ارتباط باش.</p>
+                        <div class="channel-actions">
+                            <button class="channel-copy" onclick='copyText(${JSON.stringify("@"+rubika)})'>کپی آیدی</button>
+                            <button class="channel-main" onclick="openRubika()">ارسال پیام ↗</button>
+                        </div>
+                    </article>
                 </div>
 
-
-                ${
-                    contactText
-
-                        ?
-
-                        `
-
-                        <div class="contact-card">
-
-                            <div class="contact-icon">
-                                ℹ️
-                            </div>
-
-                            <div class="contact-info">
-
-                                <small>
-                                    اطلاعات تماس
-                                </small>
-
-                                <strong>
-                                    ${escapeHTML(
-                                        contactText
-                                    )}
-                                </strong>
-
-                            </div>
-
-                        </div>
-
-                        `
-
-                        : ""
-                }
-
-
-                ${
-                    phone
-
-                        ?
-
-                        `
-
-                        <div class="contact-card">
-
-                            <div class="contact-icon">
-                                📞
-                            </div>
-
-
-                            <div class="contact-info">
-
-                                <small>
-                                    شماره تماس
-                                </small>
-
-                                <strong>
-                                    ${escapeHTML(phone)}
-                                </strong>
-
-                            </div>
-
-
-                            <div class="contact-actions">
-
-                                <button
-                                    onclick='copyText(${JSON.stringify(phone)})'
-                                >
-                                    کپی
-                                </button>
-
-
-                                <button
-                                    class="contact-main"
-                                    onclick="callPhone()"
-                                >
-                                    تماس
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                        `
-
-                        : ""
-                }
-
-
-                ${
-                    rubika
-
-                        ?
-
-                        `
-
-                        <div class="contact-card">
-
-                            <div class="contact-icon">
-                                💬
-                            </div>
-
-
-                            <div class="contact-info">
-
-                                <small>
-                                    آیدی روبیکا
-                                </small>
-
-                                <strong>
-                                    @${escapeHTML(rubika)}
-                                </strong>
-
-                            </div>
-
-
-                            <div class="contact-actions">
-
-                                <button
-                                    onclick='copyText(${JSON.stringify("@"+rubika)})'
-                                >
-                                    کپی
-                                </button>
-
-
-                                <button
-                                    class="contact-main"
-                                    onclick="openRubika()"
-                                >
-                                    پیام دادن
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                        `
-
-                        : ""
-                }
-
-
-                ${
-                    !phone &&
-                    !rubika &&
-                    !contactText
-
-                        ?
-
-                        emptyResult(
-                            "📞",
-                            "اطلاعات پشتیبانی هنوز توسط مدیریت ثبت نشده است"
-                        )
-
-                        : ""
-                }
-
+                <div class="support-note"><span>⚡</span><div><strong>قبل از پرداخت مطمئن شو</strong><p>برای کالاهای گران‌قیمت مثل طلا و گوشی‌های مدل بالا، حتماً قبل از پرداخت با پشتیبانی هماهنگ کن.</p></div></div>
             </div>
-
         </main>
-
     `;
-
 }
 
 
@@ -7004,41 +3714,15 @@ function showFirstVisitLaw(){
     modal.innerHTML = `
 
         <div class="law-modal">
-
-            <div class="law-modal-icon">
-                📜
-            </div>
-
-
-            <h2>
-                دوست عزیز
-            </h2>
-
-
-            <p>
-                قبل از خرید قوانین سایت را کامل مطالعه بفرمایید.
-            </p>
-
-
+            <div class="law-modal-top"><span class="law-modal-icon">📜</span><span class="law-modal-close">×</span></div>
+            <div class="law-modal-label">قبل از خرید</div>
+            <h2>قوانین و شرایط خرید</h2>
+            <p>برای یک خرید مطمئن، قوانین ماهان سنتر ایران را قبل از ادامه مطالعه کن.</p>
+            <div class="law-modal-points"><span>✓ شرایط مرجوعی</span><span>✓ قیمت کالاهای متغیر</span><span>✓ راه‌های پشتیبانی</span></div>
             <div class="modal-actions">
-
-                <button
-                    class="accept-btn"
-                    onclick="acceptLawAndOpen()"
-                >
-                    پذیرش و خواندن قوانین
-                </button>
-
-
-                <button
-                    class="reject-btn"
-                    onclick="rejectLawModal()"
-                >
-                    رد کردن
-                </button>
-
+                <button class="accept-btn" onclick="acceptLawAndOpen()">📖 پذیرش و خواندن قوانین</button>
+                <button class="reject-btn" onclick="rejectLawModal()">✕ رد کردن</button>
             </div>
-
         </div>
 
     `;
