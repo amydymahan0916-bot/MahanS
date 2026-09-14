@@ -6980,13 +6980,11 @@ function initialRender(){
     updateCartCount();
     applySiteSettings();
 
-    // اگر کاربر صفحه‌ای مثل پشتیبانی/دسته‌بندی را رفرش کرد،
-    // همان مسیر حفظ می‌شود و دوباره به خانه برنمی‌گردد.
+    // مسیر فعلی در URL حفظ می‌شود؛ فقط اگر هیچ مسیری وجود نداشت، خانه را قرار می‌دهیم.
+    // اینجا render انجام نمی‌دهیم تا هنگام Refresh دو بار صفحه رندر نشود.
     if(!location.hash){
         history.replaceState({},"","#/");
     }
-
-    render(getRoute());
 }
 
 /* =========================================================
@@ -7000,10 +6998,10 @@ async function initializeStore(){
     if(storeInitialized) return;
     storeInitialized = true;
 
-    // یک بار صفحه پایه را نشان بده؛ سپس اطلاعات را همزمان بگیر.
+    // فقط تنظیمات اولیه را انجام می‌دهیم؛ رندر نهایی بعد از دریافت داده‌ها یک بار انجام می‌شود.
     initialRender();
 
-    const [settingsOK, productsOK] = await Promise.all([
+    await Promise.all([
         loadSettings(),
         loadProducts()
     ]);
@@ -7011,7 +7009,7 @@ async function initializeStore(){
     categories = getCategories();
     applySiteSettings();
 
-    // بعد از کامل شدن داده‌ها فقط یک بار رندر نهایی.
+    // یک رندر نهایی؛ مسیر موجود در URL دقیقاً حفظ می‌شود.
     render(getRoute());
 
     setTimeout(showFirstVisitLaw, 700);
