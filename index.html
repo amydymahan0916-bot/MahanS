@@ -1692,6 +1692,25 @@ footer{
 .product-card{border-radius:23px;background:linear-gradient(145deg,#151515,#0d0d0d);box-shadow:0 12px 35px rgba(0,0,0,.18)}.product-card:hover{border-color:rgba(25,214,107,.5);box-shadow:0 18px 45px rgba(0,0,0,.38)}.product-image{height:235px;background:radial-gradient(circle,#202020,#141414)}.product-image img{padding:15px;transition:.3s}.product-card:hover .product-image img{transform:scale(1.035)}.product-info{padding:16px 16px 12px}.product-title{font-size:15px;font-weight:bold}.product-desc{line-height:1.8}.product-price{color:#fff;font-size:17px}.product-actions{padding:0 16px 16px}.product-actions button{border-radius:12px}.product-actions .buy{box-shadow:0 7px 20px rgba(25,214,107,.1)}
 @media(max-width:700px){.home-intro{transform:translateY(-8px)}.home-box{padding:23px 15px 17px;border-radius:26px}.home-logo-small{width:78px;height:78px}.home-box h1{font-size:25px}.home-description{font-size:12px;line-height:1.85}.stats{gap:7px}.stat{padding:10px 5px;min-height:80px}.stat strong{font-size:22px}.stat span{font-size:9px}.stat-icon{font-size:15px}.laws-hero{padding:15px}.laws-hero h1{font-size:19px}.laws-box{padding:13px}.law-item{padding:13px;gap:9px}.law-number{flex-basis:33px;height:33px;font-size:15px}.law-body h2{font-size:13px}.law-body p{font-size:11px;line-height:2}.support-grid{grid-template-columns:1fr}.support-hero-pro{padding:25px 15px}.support-hero-pro h1{font-size:21px}.channel-actions{flex-direction:column}.products{grid-template-columns:repeat(2,1fr);gap:10px}.product-image{height:185px}.product-info{padding:12px}.product-actions{padding:0 12px 12px;flex-direction:column}.product-actions button{width:100%}.modal-actions{grid-template-columns:1fr}.law-modal{padding:20px}.law-modal-points{justify-content:flex-start}}
 
+
+/* ================= PROFESSIONAL CATEGORIES ================= */
+.categories{gap:18px}
+.category-pro{min-height:205px;border-radius:24px;border-color:#252525;background:#101010;isolation:isolate}
+.category-pro .category-image{opacity:.62;filter:saturate(.88);transition:transform .45s ease,opacity .35s ease,filter .35s ease}
+.category-pro:hover .category-image{transform:scale(1.07);opacity:.72;filter:saturate(1)}
+.category-pro .category-overlay{background:linear-gradient(to top,rgba(0,0,0,.96) 0%,rgba(0,0,0,.58) 48%,rgba(0,0,0,.08) 100%)}
+.category-content-pro{width:100%;padding:0 18px 17px;text-align:right}
+.category-topline{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:7px}
+.category-count{display:inline-flex;padding:4px 8px;border-radius:8px;background:rgba(0,0,0,.48);border:1px solid rgba(255,255,255,.12);color:#aaa;font-size:9px}
+.category-arrow{width:28px;height:28px;display:grid;place-items:center;border-radius:9px;background:rgba(25,214,107,.13);border:1px solid rgba(25,214,107,.28);color:var(--green);font-size:15px;transition:.25s}
+.category-pro:hover .category-arrow{transform:translateX(-3px);background:var(--green);color:#06120a}
+.category-pro .category-name{font-size:19px;line-height:1.4;text-shadow:0 2px 12px #000}
+.category-pro .category-sub{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;color:#aaa;font-size:9px}
+.category-pro .category-sub span{padding:3px 7px;border-radius:7px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.09)}
+.category-pro .category-sub span:first-child{color:#ddd}
+@media(max-width:950px){.category-pro{min-height:185px}}
+@media(max-width:600px){.categories{gap:9px}.category-pro{min-height:145px;border-radius:17px}.category-content-pro{padding:0 10px 10px}.category-pro .category-name{font-size:12px}.category-topline{margin-bottom:4px}.category-count{font-size:7px;padding:3px 5px}.category-arrow{width:23px;height:23px;font-size:12px}.category-pro .category-sub{gap:3px;margin-top:4px;font-size:7px}.category-pro .category-sub span{padding:2px 4px}.category-pro .category-icon{display:none}}
+
 .customer-modal-backdrop{position:fixed;inset:0;z-index:7000;background:rgba(0,0,0,.86);backdrop-filter:blur(16px);display:flex;align-items:center;justify-content:center;padding:14px;animation:customerFade .25s ease}.customer-modal{position:relative;overflow:hidden;width:min(560px,100%);max-height:92vh;overflow-y:auto;background:radial-gradient(circle at 50% -10%,rgba(25,214,107,.16),transparent 38%),linear-gradient(145deg,#171717,#080808);border:1px solid #343434;border-radius:32px;padding:25px;box-shadow:0 35px 120px #000,0 0 50px rgba(25,214,107,.06);text-align:right}.customer-modal:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,transparent,rgba(255,255,255,.025),transparent);transform:translateX(-100%);animation:customerShine 4s ease-in-out infinite}.customer-modal-icon{width:70px;height:70px;margin:0 auto 10px;border-radius:22px;display:grid;place-items:center;background:linear-gradient(145deg,rgba(25,214,107,.2),rgba(25,214,107,.05));border:1px solid rgba(25,214,107,.38);font-size:32px;box-shadow:0 12px 35px rgba(25,214,107,.08)}.customer-modal-tag{text-align:center;color:var(--green);font-size:10px;font-weight:800;letter-spacing:.3px}.customer-modal h2{text-align:center;font-size:24px;margin:5px 0 8px}.customer-modal>p{text-align:center;color:#999;font-size:11px;line-height:2;margin:0 auto 16px;max-width:460px}.customer-order-preview{display:flex;align-items:center;gap:10px;padding:11px 13px;margin-bottom:14px;border:1px solid #292929;border-radius:15px;background:#0d0d0d}.customer-order-preview .cop-icon{width:38px;height:38px;display:grid;place-items:center;border-radius:11px;background:#171717;border:1px solid #292929;font-size:17px}.customer-order-preview strong{display:block;color:#fff;font-size:11px}.customer-order-preview span{display:block;color:#777;font-size:9px;margin-top:3px}.customer-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}.customer-field{position:relative}.customer-field.full{grid-column:1/-1}.customer-field label{display:block;color:#888;font-size:9px;margin:0 0 5px 3px}.customer-form input{width:100%;padding:13px 14px;border-radius:14px;background:#080808;border:1px solid #2d2d2d;color:#fff;outline:none;font-size:12px;transition:.2s}.customer-form input::placeholder{color:#555}.customer-form input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(25,214,107,.07);transform:translateY(-1px)}.customer-private{display:flex;align-items:flex-start;gap:9px;margin-top:13px;padding:12px;border-radius:14px;background:rgba(25,214,107,.045);border:1px solid rgba(25,214,107,.16);color:#8dba9e;font-size:9px;line-height:1.9}.customer-private b{color:var(--green);font-size:15px;line-height:1}.customer-actions{display:grid;grid-template-columns:1.6fr .7fr;gap:9px;margin-top:14px}.customer-actions button{border:0;border-radius:14px;padding:13px;font-weight:900;font-size:12px;cursor:pointer;transition:.2s}.customer-save{background:var(--green);color:#06120a;box-shadow:0 10px 28px rgba(25,214,107,.13)}.customer-save:hover{transform:translateY(-2px);filter:brightness(1.06)}.customer-cancel{background:#241012;color:#ff6570;border:1px solid #64151c!important}.customer-cancel:hover{background:#321215}.customer-phone-hint{font-size:8px;color:#555;margin:5px 3px 0}.customer-phone-hint b{color:#777}.order-success-backdrop{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.88);backdrop-filter:blur(16px);animation:successFade .25s ease}.order-success-card{position:relative;overflow:hidden;width:min(600px,100%);text-align:center;background:radial-gradient(circle at 50% 0,rgba(25,214,107,.13),transparent 38%),linear-gradient(145deg,#151515,#080808);border:1px solid rgba(25,214,107,.32);border-radius:31px;padding:34px 25px 25px;box-shadow:0 30px 100px rgba(0,0,0,.72),0 0 55px rgba(25,214,107,.08)}.order-success-card:before{content:"";position:absolute;width:180px;height:180px;left:-100px;bottom:-110px;border-radius:50%;background:rgba(255,196,0,.06)}.order-success-check{width:82px;height:82px;border-radius:26px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:43px;font-weight:900;color:#07120b;background:linear-gradient(145deg,#36ef86,#19d66b);box-shadow:0 0 40px rgba(25,214,107,.22);animation:successPop .45s ease}.order-success-badge{display:inline-flex;padding:6px 11px;border-radius:99px;background:rgba(25,214,107,.07);border:1px solid rgba(25,214,107,.2);color:#19d66b;font-weight:800;font-size:10px;margin-bottom:10px}.order-success-card h2{font-size:25px;line-height:1.7;margin:0 0 7px;color:#fff}.order-success-card>p{color:#aaa;line-height:1.9;margin:0 auto 18px;font-size:11px}.order-success-message{display:flex;flex-direction:column;gap:7px;text-align:right;padding:18px;border-radius:19px;background:linear-gradient(135deg,rgba(25,214,107,.09),rgba(25,214,107,.025));border:1px solid rgba(25,214,107,.19)}.order-success-message strong{color:#fff;font-size:16px;line-height:1.8}.order-success-message span{color:#9faaa5;font-size:12px;line-height:2}.order-success-next{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.order-success-next div{padding:10px;border-radius:13px;background:#0c0c0c;border:1px solid #242424;color:#777;font-size:9px;line-height:1.8}.order-success-next b{display:block;color:#ddd;font-size:10px}.order-success-note{font-size:10px;color:#666;line-height:1.8;margin:14px 0}.order-success-btn{width:100%;border:0;border-radius:15px;padding:14px 18px;background:#19d66b;color:#06130b;font-weight:900;font-size:13px;cursor:pointer}.order-success-btn:hover{filter:brightness(1.08);transform:translateY(-1px)}@keyframes customerFade{from{opacity:0;transform:scale(.98)}to{opacity:1;transform:none}}@keyframes customerShine{0%,70%,100%{transform:translateX(-100%)}85%{transform:translateX(100%)}}@keyframes successPop{from{transform:scale(.75);opacity:0}to{transform:scale(1);opacity:1}}@keyframes successFade{from{opacity:0}to{opacity:1}}@media(max-width:600px){.customer-modal{padding:20px;border-radius:25px}.customer-form{grid-template-columns:1fr}.customer-field.full{grid-column:auto}.customer-actions,.order-success-next{grid-template-columns:1fr}.order-success-card{padding:28px 18px 20px;border-radius:24px}.order-success-card h2{font-size:20px}}
 
 /* ================= SUPPORT COMMAND CENTER ================= */
@@ -1936,7 +1955,7 @@ footer{
                     </h1>
 
                     <p class="home-description">
-                        در حال آماده‌سازی اطلاعات فروشگاه...
+                        به فروشگاه ماهان سنتر ایران خوش آمدید.
                     </p>
 
                     <div
@@ -2332,8 +2351,75 @@ function normalizeText(value){
     return String(value ?? "")
         .trim()
         .toLowerCase()
-        .replace(/\s+/g," ");
+        .replace(/\u200c/g,"")
+        .replace(/\s+/g," ")
+        .replace(/[يى]/g,"ی")
+        .replace(/ك/g,"ک")
+        .replace(/ۀ/g,"ه")
+        .replace(/ة/g,"ه")
+        .replace(/[أإٱ]/g,"ا")
+        .replace(/ؤ/g,"و")
+        .replace(/ئ/g,"ی");
 
+}
+
+function normalizeSubcategoryText(value){
+    return normalizeText(value);
+}
+
+function getProductSubcategoryValues(p){
+    return [
+        p?.subcategory,
+        p?.subCat,
+        p?.sub_category,
+        p?.childCategory,
+        p?.childCat,
+        p?.goldCat
+    ].filter(v => String(v ?? "").trim() !== "");
+}
+
+function getProductSubcategory(p){
+    return String(getProductSubcategoryValues(p)[0] || "").trim();
+}
+
+function productSearchText(p){
+    return normalizeSubcategoryText([
+        p?.name, p?.brand, p?.subcategory, p?.subCat,
+        p?.sub_category, p?.childCategory, p?.childCat,
+        p?.goldCat, p?.search, p?.description
+    ].filter(Boolean).join(" "));
+}
+
+function productMatchesSubcategory(p, selected){
+    const wanted = normalizeSubcategoryText(selected);
+    if(!wanted || wanted === "همه" || wanted === "all") return true;
+
+    const explicit = getProductSubcategoryValues(p)
+        .map(normalizeSubcategoryText);
+    if(explicit.includes(wanted)) return true;
+
+    const aliases = {
+        "ایفون":["ایفون","iphone","apple"],
+        "آیفون":["ایفون","iphone","apple"],
+        "سامسونگ":["سامسونگ","samsung"],
+        "شیائومی":["شیائومی","شیومی","xiaomi"],
+        "نوکیا":["نوکیا","nokia"],
+        "گردنبند":["گردنبند","necklace"],
+        "پابند":["پابند","anklet"],
+        "النگو":["النگو","bangle"],
+        "انگشتر":["انگشتر","ring"],
+        "ست":["ست","set"],
+        "اسپرت":["اسپرت","sport"],
+        "مجلسی":["مجلسی","formal"],
+        "مردانه":["مردانه","men","male"],
+        "زنانه":["زنانه","women","female"],
+        "لباس مجلسی":["لباس مجلسی","مجلسی","formal"]
+    };
+
+    const text = productSearchText(p);
+    return (aliases[wanted] || [wanted]).some(x =>
+        text.includes(normalizeSubcategoryText(x))
+    );
 }
 
 
@@ -3424,85 +3510,50 @@ function renderHome(){
 
 function categoryCard(key){
 
-    const c =
-        categories[key];
-
-
-    if(!c)
-        return "";
-
+    const c = categories[key];
+    if(!c) return "";
 
     const image =
-        resolveImage(
-            c.image || ""
-        ) ||
+        resolveImage(c.image || "") ||
         inferCategoryImage(c);
 
+    const subs = Array.isArray(c.subcategories)
+        ? c.subcategories.slice(0,4)
+        : [];
 
-    const subs =
-        Array.isArray(
-            c.subcategories
-        )
-            ? c.subcategories.slice(0,3)
-            : [];
+    const productCount = products.filter(p =>
+        productBelongsToCategory(p, key)
+    ).length;
 
-
-    const route =
-        "/category/" +
-        encodeURIComponent(key);
-
+    const route = "/category/" + encodeURIComponent(key);
 
     return `
-
         <a
-            class="category"
+            class="category category-pro"
             href="#${route}"
             onclick='go(${JSON.stringify(route)});return false'
         >
-
             <img
                 class="category-image"
                 src="${escapeHTML(image)}"
                 alt="${escapeHTML(c.name)}"
-                onerror="this.src='${escapeHTML(
-                    inferCategoryImage(c)
-                )}'"
+                onerror="this.src='${escapeHTML(inferCategoryImage(c))}'"
             >
-
             <div class="category-overlay"></div>
-
-            <div class="category-content">
-
-                <div class="category-icon">
-                    ${escapeHTML(
-                        c.icon || "📦"
-                    )}
+            <div class="category-content category-content-pro">
+                <div class="category-topline">
+                    <span class="category-count">${formatNumber(productCount)} محصول</span>
+                    <span class="category-arrow">←</span>
                 </div>
-
-                <div class="category-name">
-                    ${escapeHTML(
-                        c.name
-                    )}
-                </div>
-
+                <div class="category-name">${escapeHTML(c.name)}</div>
                 <div class="category-sub">
-
-                    ${
-                        subs.length
-                            ? escapeHTML(
-                                subs.join(" • ")
-                              )
-                            : "مشاهده محصولات"
-                    }
-
+                    ${subs.length
+                        ? subs.map(s => `<span>${escapeHTML(s)}</span>`).join("")
+                        : "<span>مشاهده محصولات</span>"}
                 </div>
-
             </div>
-
         </a>
-
     `;
-
 }
 
 
@@ -3879,23 +3930,6 @@ function changeSort(sort){
    CATEGORY HELPERS
 ========================================================= */
 
-function getProductSubcategory(p){
-
-    return String(
-
-        p.subcategory ||
-        p.subCat ||
-        p.sub_category ||
-        p.childCategory ||
-        p.childCat ||
-        p.goldCat ||
-        ""
-
-    ).trim();
-
-}
-
-
 function productBelongsToCategory(
     product,
     categoryId
@@ -4027,7 +4061,8 @@ function renderSubcategories(
 
                         <button
                             class="subcategory-btn ${
-                                currentSubcategory === sub
+                                normalizeSubcategoryText(currentSubcategory) ===
+                                    normalizeSubcategoryText(sub)
                                     ? "active"
                                     : ""
                             }"
@@ -4136,8 +4171,7 @@ function renderCategory(
         categoryProducts =
             categoryProducts.filter(
                 p =>
-                    getProductSubcategory(p) ===
-                    String(sub)
+                    productMatchesSubcategory(p, sub)
             );
 
     }
@@ -7001,16 +7035,17 @@ function initialRender(){
     updateCartCount();
     applySiteSettings();
 
-    // مسیر فعلی در URL حفظ می‌شود؛ فقط اگر هیچ مسیری وجود نداشت، خانه را قرار می‌دهیم.
-    // اینجا render انجام نمی‌دهیم تا هنگام Refresh دو بار صفحه رندر نشود.
     if(!location.hash){
         history.replaceState({},"","#/");
     }
+
+    // صفحه فوراً با پوسته اصلی نمایش داده می‌شود؛ دیگر صفحه «در حال دریافت...» دیده نمی‌شود.
+    render(getRoute());
 }
 
 /* =========================================================
    INITIALIZE STORE
-   فقط یک رندر واقعی بعد از دریافت داده‌ها
+   رندر اولیه فوری + همگام‌سازی بی‌صدا
 ========================================================= */
 
 let storeInitialized = false;
@@ -7019,8 +7054,11 @@ async function initializeStore(){
     if(storeInitialized) return;
     storeInitialized = true;
 
-    // فقط تنظیمات اولیه را انجام می‌دهیم؛ رندر نهایی بعد از دریافت داده‌ها یک بار انجام می‌شود.
     initialRender();
+
+    const initialStoreName = settings.storeName;
+    const initialWelcome = settings.welcomeText;
+    const routeBeforeLoad = getRoute();
 
     await Promise.all([
         loadSettings(),
@@ -7030,8 +7068,15 @@ async function initializeStore(){
     categories = getCategories();
     applySiteSettings();
 
-    // یک رندر نهایی؛ مسیر موجود در URL دقیقاً حفظ می‌شود.
-    render(getRoute());
+    // در خانه، اگر متن اصلی تغییر نکرده باشد هیچ رندر دومی انجام نمی‌شود.
+    // در صفحات محصول/دسته‌بندی، داده تازه برای نمایش لازم است.
+    const homeChanged =
+        initialStoreName !== settings.storeName ||
+        initialWelcome !== settings.welcomeText;
+
+    if(routeBeforeLoad !== "/" || homeChanged){
+        render(getRoute());
+    }
 
     setTimeout(showFirstVisitLaw, 700);
 }
