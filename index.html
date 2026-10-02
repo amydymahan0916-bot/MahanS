@@ -2113,15 +2113,19 @@ const DEFAULT_CATEGORIES = [
 
     {
         id:"clothes",
-        name:"پوشاک",
-        icon:"👕",
-        image:"",
-        subcategories:[
-            "تی‌شرت",
-            "شلوار",
-            "هودی",
-            "مانتو",
-            "لباس مجلسی"
+    name:"پوشاک",
+    icon:"👕",
+    image:"",
+    subcategories:[
+        "پیراهن",
+        "شلوار",
+        "تی‌شرت",
+        "هودی",
+        "شلوارک",
+        "کت شلوار",
+        "لباس خواب",
+        "مانتو",
+        "لباس مجلسی"
         ]
     },
 
@@ -2396,71 +2400,227 @@ function productSearchText(p){
 }
 
 function productMatchesSubcategory(p, selected){
-    const wanted = normalizeSubcategoryText(selected);
-    if(!wanted || wanted === "همه" || wanted === "all") return true;
 
-    const explicit = getProductSubcategoryValues(p)
-        .map(normalizeSubcategoryText);
-    if(explicit.includes(wanted)) return true;
+    const wanted =
+        normalizeSubcategoryText(selected);
+
+    if(
+        !wanted ||
+        wanted === "همه" ||
+        wanted === "all"
+    )
+        return true;
+
+
+    /*
+       اول از همه خود فیلد زیر‌دسته محصول
+       بررسی می‌شود.
+    */
+    const explicit =
+        getProductSubcategoryValues(p)
+            .map(normalizeSubcategoryText);
+
+
+    if(
+        explicit.includes(wanted)
+    )
+        return true;
+
+
+    /*
+       اگر زیر‌دسته محصول خالی یا اشتباه بود،
+       از نام و اطلاعات محصول هم تشخیص می‌دهیم.
+    */
+    const text =
+        productSearchText(p);
+
 
     const aliases = {
-        "ایفون":["ایفون","iphone","apple"],
-        "آیفون":["ایفون","iphone","apple"],
-        "سامسونگ":["سامسونگ","samsung"],
-        "شیائومی":["شیائومی","شیومی","xiaomi"],
-        "نوکیا":["نوکیا","nokia"],
-        "گردنبند":["گردنبند","necklace"],
-        "پابند":["پابند","anklet"],
-        "النگو":["النگو","bangle"],
-        "انگشتر":["انگشتر","ring"],
-        "ست":["ست","set"],
-        "اسپرت":["اسپرت","sport"],
-        "مجلسی":["مجلسی","formal"],
-        "مردانه":["مردانه","men","male"],
-        "زنانه":["زنانه","women","female"],
-        "لباس مجلسی":["لباس مجلسی","مجلسی","formal"]
+
+        "ایفون":[
+            "ایفون",
+            "iphone",
+            "apple"
+        ],
+
+        "آیفون":[
+            "ایفون",
+            "iphone",
+            "apple"
+        ],
+
+        "سامسونگ":[
+            "سامسونگ",
+            "samsung"
+        ],
+
+        "شیائومی":[
+            "شیائومی",
+            "شیومی",
+            "xiaomi"
+        ],
+
+        "نوکیا":[
+            "نوکیا",
+            "nokia"
+        ],
+
+
+        "گردنبند":[
+            "گردنبند",
+            "necklace"
+        ],
+
+        "پابند":[
+            "پابند",
+            "anklet"
+        ],
+
+        "النگو":[
+            "النگو",
+            "bangle"
+        ],
+
+        "انگشتر":[
+            "انگشتر",
+            "ring"
+        ],
+
+        "ست":[
+            "ست",
+            "set"
+        ],
+
+
+        "اسپرت":[
+            "اسپرت",
+            "sport"
+        ],
+
+        "مجلسی":[
+            "مجلسی",
+            "formal"
+        ],
+
+        "مردانه":[
+            "مردانه",
+            "men",
+            "male"
+        ],
+
+        "زنانه":[
+            "زنانه",
+            "women",
+            "female"
+        ],
+
+
+        "پیراهن":[
+            "پیراهن",
+            "pira han",
+            "shirt",
+            "dress shirt"
+        ],
+
+        "تی شرت":[
+            "تی شرت",
+            "تیشرت",
+            "tshirt",
+            "t-shirt"
+        ],
+
+        "تی‌شرت":[
+            "تی شرت",
+            "تیشرت",
+            "tshirt",
+            "t-shirt"
+        ],
+
+        "هودی":[
+            "هودی",
+            "hoodie"
+        ],
+
+        "شلوار":[
+            "شلوار",
+            "trouser",
+            "trousers",
+            "pants"
+        ],
+
+        "شلوارک":[
+            "شلوارک",
+            "shorts"
+        ],
+
+        "کت شلوار":[
+            "کت شلوار",
+            "کت‌ شلوار",
+            "کتوشلوار",
+            "کت و شلوار",
+            "suit"
+        ],
+
+        "لباس خواب":[
+            "لباس خواب",
+            "sleepwear",
+            "nightwear",
+            "pajama",
+            "pajamas"
+        ],
+
+        "مانتو":[
+            "مانتو",
+            "manteau"
+        ],
+
+        "لباس مجلسی":[
+            "لباس مجلسی",
+            "formal dress",
+            "evening dress"
+        ]
+
     };
 
-    const text = productSearchText(p);
-    return (aliases[wanted] || [wanted]).some(x =>
-        text.includes(normalizeSubcategoryText(x))
+
+    const candidates =
+        aliases[wanted] || [wanted];
+
+
+    /*
+       برای شلوار و شلوارک حواسمان هست
+       که «شلوارک» اشتباهی به عنوان «شلوار»
+       شناخته نشود.
+    */
+    if(
+        wanted ===
+        normalizeSubcategoryText("شلوار")
+    ){
+
+        if(
+            text.includes(
+                normalizeSubcategoryText("شلوارک")
+            )
+        )
+            return false;
+
+    }
+
+
+    return candidates.some(
+        term => {
+
+            const normalized =
+                normalizeSubcategoryText(term);
+
+            return text.includes(
+                normalized
+            );
+
+        }
     );
-}
 
-
-function getCreatedTime(value){
-
-    if(!value)
-        return 0;
-
-    if(typeof value === "number")
-        return value;
-
-    if(
-        typeof value === "object" &&
-        value.seconds !== undefined
-    ){
-
-        return Number(value.seconds) * 1000;
-
-    }
-
-    if(
-        typeof value.toMillis === "function"
-    ){
-
-        return value.toMillis();
-
-    }
-
-    const time =
-        new Date(value).getTime();
-
-    return Number.isFinite(time)
-        ? time
-        : 0;
-
-}
+      }
 
 
 /* =========================================================
