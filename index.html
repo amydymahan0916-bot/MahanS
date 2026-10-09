@@ -7111,12 +7111,10 @@ setInterval(
                 settings.storeName;
 
 
-            await loadSettings();
-
-
-            await loadProducts();
-
-
+            await Promise.all([
+    loadSettings(),
+    loadProducts()
+]);
             categories =
                 getCategories();
 
