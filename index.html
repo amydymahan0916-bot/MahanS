@@ -44,8 +44,8 @@ body{
     min-height:100vh;
 }
 
-/* جلوگیری از نمایش محتوای پیش‌فرض قبل از آماده شدن مسیر واقعی */
-#app{visibility:hidden}
+/* صفحه اصلی هرگز به‌خاطر خطای جاوااسکریپت مخفی نمی‌ماند */
+#app{visibility:visible}
 #app.ready{visibility:visible}
 
 
@@ -1766,74 +1766,6 @@ footer{
     .order-success-card{padding:28px 18px 20px;border-radius:22px}
     .order-success-card h2{font-size:20px}
 }
-
-/* MAHAN CENTER 2.0 — account, entry flow, category polish, maintenance */
-.category-pro{border:1px solid rgba(25,214,107,.25);box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);background-clip:padding-box}
-.category-pro:focus-visible{outline:2px solid var(--green);outline-offset:3px}
-.nav-account{border-color:rgba(25,214,107,.28)!important}
-.account-page .container{max-width:1100px}
-.account-hero{position:relative;overflow:hidden;padding:30px;border:1px solid #292929;border-radius:26px;background:radial-gradient(circle at 85% 0,rgba(25,214,107,.14),transparent 38%),linear-gradient(145deg,#151515,#090909);box-shadow:0 18px 50px rgba(0,0,0,.25)}
-.account-icon{display:grid;place-items:center;width:62px;height:62px;border-radius:19px;background:#15251b;border:1px solid #23653c;font-size:29px;margin-bottom:14px}
-.account-kicker{font-size:10px;letter-spacing:2px;color:var(--green);margin-bottom:8px}
-.account-hero h1{font-size:clamp(23px,4vw,34px);margin-bottom:7px}
-.account-hero p{color:#aaa;margin-bottom:18px}
-.account-shortcuts,.account-links{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}
-.account-shortcuts a,.account-links a{padding:10px 13px;background:#151515;border:1px solid #333;border-radius:12px;font-size:12px}
-.account-shortcuts a:hover,.account-links a:hover{border-color:var(--green);color:var(--green)}
-.account-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:16px;margin-top:18px;align-items:start}
-.account-panel{min-width:0;background:#101010;border:1px solid #292929;border-radius:22px;padding:20px}
-.account-panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:17px}
-.account-panel-head h2{font-size:18px}
-.account-panel-head span{font-size:11px;color:#888}
-.account-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.account-fields label{display:grid;gap:7px;color:#aaa;font-size:12px}
-.account-fields input,.account-fields textarea{width:100%;min-width:0;background:#080808;color:#fff;border:1px solid #303030;border-radius:11px;padding:12px;font:inherit;font-size:13px;outline:none}
-.account-fields input:focus,.account-fields textarea:focus{border-color:var(--green)}
-.account-fields textarea{resize:vertical}
-.account-full{grid-column:1/-1}
-.account-primary{display:inline-flex;align-items:center;justify-content:center;margin-top:15px;padding:12px 18px;background:var(--green);color:#06120a;border:0;border-radius:12px;font-weight:900;cursor:pointer}
-.account-refresh{background:#1a1a1a;color:#fff;border:1px solid #333;border-radius:10px;padding:8px 10px;cursor:pointer}
-.account-orders{display:grid;gap:11px}
-.account-order{background:#0a0a0a;border:1px solid #292929;border-radius:15px;padding:14px}
-.account-order-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.account-order-top b{font-size:13px;overflow-wrap:anywhere}
-.account-status{font-size:10px;background:rgba(25,214,107,.1);color:var(--green);border:1px solid rgba(25,214,107,.25);padding:5px 8px;border-radius:30px}
-.account-order-meta{font-size:10px;color:#777;margin-top:7px}
-.account-order-items{border-top:1px solid #222;margin-top:10px;padding-top:7px;color:#bbb;font-size:12px}
-.account-order-items div{display:flex;justify-content:space-between;gap:8px;padding:3px 0}
-.account-order-items span{color:#888;white-space:nowrap}
-.account-order-total{color:#ffc400;font-weight:bold;font-size:12px;margin-top:10px}
-.account-empty,.account-loading{padding:25px 12px;text-align:center;color:#999;background:#0a0a0a;border:1px dashed #333;border-radius:14px}
-.account-empty>span{display:block;font-size:28px;margin-bottom:8px}
-.account-empty b{display:block;color:#ddd;margin-bottom:5px}
-.account-empty p{font-size:12px;line-height:1.8}
-.account-empty a{display:inline-block;margin-top:10px;color:var(--green)}
-.entry-choice-modal{max-width:520px}
-.entry-choice-modal .law-modal-label{font-size:12px;color:#999}
-.entry-choice-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:20px 0 12px}
-.entry-choice-actions button{padding:13px;border-radius:12px;font-weight:900}
-.entry-guest{background:var(--red);color:#fff}
-.entry-register{background:var(--green);color:#06120a}
-.entry-choice-modal small{display:block;color:#888;line-height:1.8}
-.terms-notice{position:fixed;z-index:9999;left:16px;right:16px;bottom:18px;max-width:570px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 15px;border:1px solid #333;border-right:3px solid var(--green);border-radius:15px;background:rgba(13,13,13,.97);box-shadow:0 15px 45px rgba(0,0,0,.5);animation:termsIn .25s ease;transition:opacity .3s,transform .3s}
-.terms-notice>div{display:flex;align-items:center;gap:10px;font-size:12px}
-.terms-notice-icon{font-size:21px}
-.terms-notice button{width:34px;height:34px;flex:0 0 34px;border:0;border-radius:50%;background:var(--red);color:#fff;font-size:26px;line-height:1;cursor:pointer}
-.terms-notice.is-hiding{opacity:0;transform:translateY(12px)}
-@keyframes termsIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-.maintenance-screen{min-height:75vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:35px 20px;background:radial-gradient(circle at 50% 15%,rgba(25,214,107,.13),transparent 36%),#070707}
-.maintenance-mark{width:74px;height:74px;display:grid;place-items:center;border-radius:22px;border:1px solid var(--green);color:var(--green);font-size:23px;font-weight:900;box-shadow:0 0 35px rgba(25,214,107,.12)}
-.maintenance-kicker{font-size:10px;letter-spacing:3px;color:var(--green);margin-top:18px}
-.maintenance-screen h1{font-size:clamp(24px,5vw,38px);margin:12px 0}
-.maintenance-screen p{color:#aaa;max-width:520px;line-height:2}
-.maintenance-time{margin-top:20px;padding:12px 16px;border:1px solid #333;border-radius:12px;background:#111;color:#ddd}
-.maintenance-screen button{margin-top:18px;background:var(--green);color:#06120a;border:0;border-radius:12px;padding:12px 22px;font-weight:900}
-@media(max-width:760px){.account-layout{grid-template-columns:1fr}.account-panel{padding:15px}.account-hero{padding:22px}.account-fields{grid-template-columns:1fr}.account-full{grid-column:auto}.entry-choice-actions{grid-template-columns:1fr}}
-
-
-.smart-back-button{display:inline-flex;align-items:center;gap:8px;margin:0 0 16px;padding:9px 13px;border:1px solid #333;border-radius:11px;background:#111;color:#ddd;font:inherit;font-size:12px;cursor:pointer;transition:.2s}
-.smart-back-button:hover{border-color:var(--green);color:var(--green);transform:translateX(2px)}
-
 </style>
 
 </head>
@@ -1953,12 +1885,12 @@ footer{
             </a>
 
 
-            <a class="nav-account"
-                href="#/account"
-                data-route="/account"
-                onclick="go('/account');return false"
+            <a class="nav-discount"
+                href="#/discount"
+                data-route="/discount"
+                onclick="go('/discount');return false"
             >
-                👤 حساب کاربری
+                🔥 تخفیف‌ها
             </a>
 
 
@@ -3392,44 +3324,7 @@ window.addEventListener(
    RENDER
 ========================================================= */
 
-let mahanRouteStack = [];
-function smartBack(){
-    if(mahanRouteStack.length>1){
-        mahanRouteStack.pop();
-        const previous=mahanRouteStack[mahanRouteStack.length-1]||"/";
-        go(previous);
-    }else{
-        go("/categories");
-    }
-}
-function addSmartBackButton(route){
-    const app=document.getElementById("app");
-    if(!app)return;
-    app.querySelectorAll("[data-smart-back]").forEach(el=>el.remove());
-    if(route==="/")return;
-    const container=app.querySelector("main.page .container");
-    if(!container)return;
-    const button=document.createElement("button");
-    button.type="button";
-    button.dataset.smartBack="1";
-    button.className="smart-back-button";
-    button.innerHTML="← بازگشت به صفحه قبل";
-    button.addEventListener("click",smartBack);
-    container.insertBefore(button,container.firstChild);
-}
-function optimizeRenderedImages(){
-    const images=[...document.querySelectorAll("#app img")];
-    images.forEach((img,index)=>{
-        img.decoding="async";
-        if(index>1 && !img.hasAttribute("loading"))img.loading="lazy";
-    });
-}
-
 function render(route){
-    if(mahanRouteStack[mahanRouteStack.length-1]!==route){
-        mahanRouteStack.push(route);
-        if(mahanRouteStack.length>30)mahanRouteStack.shift();
-    }
 
     settings =
         settings ||
@@ -3462,11 +3357,6 @@ function render(route){
         route === "/discount"
     )
         renderDiscount();
-
-    else if(
-        route === "/account"
-    )
-        renderAccount();
 
     else if(
         route === "/favorites"
@@ -3556,8 +3446,6 @@ function render(route){
     }
 
 
-    addSmartBackButton(route);
-    optimizeRenderedImages();
     updateActiveNav();
 
 }
@@ -3669,13 +3557,9 @@ function categoryCard(key){
 function renderCategories(){
 
     const keys =
-        Object.keys(categories).sort((a,b) => {
-            const ao = Number(categories[a]?.order);
-            const bo = Number(categories[b]?.order);
-            const av = Number.isFinite(ao) ? ao : 999999;
-            const bv = Number.isFinite(bo) ? bo : 999999;
-            return av - bv || String(categories[a]?.name||"").localeCompare(String(categories[b]?.name||""),"fa");
-        });
+        Object.keys(
+            categories
+        );
 
 
     document.getElementById(
@@ -6045,8 +5929,6 @@ function openCustomerRegistration(nextAction="checkout"){
      <div class="customer-field"><label>نام</label><input id="customerFirstName" autocomplete="given-name" placeholder="مثلاً ماهان" value="${escapeHTML(c.firstName||"")}"></div>
      <div class="customer-field"><label>نام خانوادگی</label><input id="customerLastName" autocomplete="family-name" placeholder="مثلاً امیدی" value="${escapeHTML(c.lastName||"")}"></div>
      <div class="customer-field full"><label>شماره تلفن</label><input id="customerPhone" inputmode="tel" autocomplete="tel" maxlength="13" placeholder="09123456789" value="${escapeHTML(c.phone||"")}"><div class="customer-phone-hint">شماره را به شکل <b>09xxxxxxxxx</b> وارد کن.</div></div>
-     <div class="customer-field"><label>کد پستی</label><input id="customerPostalCode" inputmode="numeric" maxlength="10" autocomplete="postal-code" placeholder="کد پستی ۱۰ رقمی" value="${escapeHTML(c.postalCode||"")}"></div>
-     <div class="customer-field full"><label>آدرس کامل</label><textarea id="customerAddress" autocomplete="street-address" placeholder="استان، شهر، خیابان، کوچه، پلاک و واحد">${escapeHTML(c.address||"")}</textarea></div>
    </div>
    <div class="customer-private"><b>🔒</b><span>اطلاعات شما محرمانه است و فقط برای ثبت، پیگیری و هماهنگی همین سفارش استفاده می‌شود.</span></div>
    <div class="customer-actions"><button class="customer-save" onclick="saveCustomerAndContinue('${escapeHTML(nextAction)}')">تأیید اطلاعات و ثبت سفارش ✓</button><button class="customer-cancel" onclick="closeCustomerRegistration()">انصراف</button></div>
@@ -6056,24 +5938,9 @@ function openCustomerRegistration(nextAction="checkout"){
 }
 function closeCustomerRegistration(){document.getElementById("customerRegisterModal")?.remove();}
 async function saveCustomerAndContinue(nextAction="checkout"){
- const firstName=document.getElementById("customerFirstName")?.value.trim()||"";
- const lastName=document.getElementById("customerLastName")?.value.trim()||"";
- const phone=normalizeIranPhone(document.getElementById("customerPhone")?.value||"");
- const postalCode=(document.getElementById("customerPostalCode")?.value||"").replace(/\D/g,"").slice(0,10);
- const address=document.getElementById("customerAddress")?.value.trim()||"";
- if(firstName.length<2)return showToast("نام را درست وارد کن");
- if(lastName.length<2)return showToast("نام خانوادگی را درست وارد کن");
- if(!/^09\d{9}$/.test(phone))return showToast("شماره تلفن معتبر نیست");
- if(postalCode && postalCode.length!==10)return showToast("کد پستی باید ۱۰ رقم باشد");
- if(nextAction==="checkout" && address.length<8)return showToast("برای ثبت سفارش آدرس کامل را وارد کن");
- const customer={...getCustomer(),firstName,lastName,phone,fullName:`${firstName} ${lastName}`.trim(),postalCode,address,updatedAt:new Date().toISOString()};
- localStorage.setItem("mahanCustomer",JSON.stringify(customer));
- try{
-   await fetch(WORKER_URL+"/customers",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(customer)});
- }catch(e){console.warn("Customer sync deferred",e)}
- closeCustomerRegistration();
- if(nextAction==="checkout")await submitOrder(customer);
- else if(nextAction==="account"){localStorage.setItem("mahanEntryChoice","registered");showTermsNotice();go("/account");}
+ const firstName=document.getElementById("customerFirstName")?.value.trim()||"",lastName=document.getElementById("customerLastName")?.value.trim()||"",phone=normalizeIranPhone(document.getElementById("customerPhone")?.value||"");
+ if(firstName.length<2)return showToast("نام را درست وارد کن"); if(lastName.length<2)return showToast("نام خانوادگی را درست وارد کن"); if(!/^09\d{9}$/.test(phone))return showToast("شماره تلفن معتبر نیست");
+ const customer={firstName,lastName,phone,fullName:`${firstName} ${lastName}`.trim(),updatedAt:new Date().toISOString()}; localStorage.setItem("mahanCustomer",JSON.stringify(customer)); closeCustomerRegistration(); if(nextAction==="checkout")await submitOrder(customer);
 }
 async function checkout(){ const c=getCustomer(); if(!cart.length)return showToast("سبد خرید شما خالی است"); if(!c||!c.firstName||!c.lastName||!/^09\d{9}$/.test(normalizeIranPhone(c.phone)))return openCustomerRegistration("checkout"); await submitOrder(c); }
 function showOrderSuccess(order){
@@ -6107,7 +5974,7 @@ async function submitOrder(customer){
  const items=cart.map(item=>{const p=products.find(x=>String(x.id)===String(item.id)||String(x.docId)===String(item.id)||String(x.code)===String(item.id));return p?{id:p.id,code:p.code,name:p.name,qty:Number(item.qty||0),unitPrice:getFinalPrice(p),category:p.category}:null}).filter(Boolean);
  if(!items.length)return showToast("محصولات سبد خرید دیگر در دسترس نیستند");
  const total=items.reduce((s,x)=>s+x.unitPrice*x.qty,0);
- const order={customer:{firstName:customer.firstName,lastName:customer.lastName,fullName:customer.fullName,phone:customer.phone,postalCode:customer.postalCode||"",address:customer.address||""},items,total,status:"new",createdAt:new Date().toISOString()};
+ const order={customer:{firstName:customer.firstName,lastName:customer.lastName,fullName:customer.fullName,phone:customer.phone},items,total,status:"new",createdAt:new Date().toISOString()};
  try{
    const r=await fetch(WORKER_URL+"/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(order)});
    const d=await r.json().catch(()=>({}));
@@ -6601,98 +6468,6 @@ function normalizeRubika(value){
 }
 
 
-
-/* =========================================================
-   ACCOUNT — profile, order history and favorites
-========================================================= */
-function statusLabel(status){
- const map={new:"در انتظار بررسی",pending:"در انتظار بررسی",confirmed:"تأیید شده",processing:"در حال آماده‌سازی",preparing:"در حال آماده‌سازی",shipped:"ارسال شده",delivered:"تحویل شده",cancelled:"لغو شده"};
- return map[String(status||"new").toLowerCase()]||String(status||"در انتظار بررسی");
-}
-async function renderAccount(){
- const app=document.getElementById("app");
- const customer=getCustomer();
- if(!customer || !customer.phone){
-   app.innerHTML=`<main class="page"><div class="container"><section class="account-hero"><div class="account-icon">👤</div><h1>حساب کاربری ماهان سنتر</h1><p>برای مدیریت مشخصات و دیدن سفارش‌ها، ابتدا اطلاعاتت را ثبت کن.</p><button class="account-primary" onclick="openCustomerRegistration('account')">ثبت‌نام / تکمیل اطلاعات</button><div class="account-links"><a href="#/discount" onclick="go('/discount');return false">🔥 مشاهده تخفیف‌ها</a><a href="#/favorites" onclick="go('/favorites');return false">❤️ علاقه‌مندی‌ها</a></div></section></div></main>`;
-   return;
- }
- app.innerHTML=`<main class="page account-page"><div class="container">
-   <section class="account-hero"><div class="account-icon">👤</div><div class="account-kicker">MAHAN CENTER · MY ACCOUNT</div><h1>سلام ${escapeHTML(customer.firstName||"دوست عزیز")} 👋</h1><p>مشخصاتت را مدیریت کن و آخرین وضعیت سفارش‌هایت را ببین.</p><div class="account-shortcuts"><a href="#/discount" onclick="go('/discount');return false">🔥 تخفیف‌ها</a><a href="#/favorites" onclick="go('/favorites');return false">❤️ علاقه‌مندی‌ها</a><a href="#/support" onclick="go('/support');return false">🎧 پشتیبانی</a></div></section>
-   <div class="account-layout">
-    <section class="account-panel"><div class="account-panel-head"><h2>مشخصات من</h2><span>ویرایش اطلاعات</span></div>
-     <form id="accountProfileForm" onsubmit="saveAccountProfile(event)">
-      <div class="account-fields">
-       <label>نام<input id="accountFirstName" required minlength="2" value="${escapeHTML(customer.firstName||"")}"></label>
-       <label>نام خانوادگی<input id="accountLastName" required minlength="2" value="${escapeHTML(customer.lastName||"")}"></label>
-       <label>شماره تماس<input id="accountPhone" dir="ltr" inputmode="tel" maxlength="13" required value="${escapeHTML(customer.phone||"")}"></label>
-       <label>کد پستی<input id="accountPostalCode" inputmode="numeric" maxlength="10" value="${escapeHTML(customer.postalCode||"")}"></label>
-       <label class="account-full">آدرس کامل<textarea id="accountAddress" rows="3">${escapeHTML(customer.address||"")}</textarea></label>
-      </div><button class="account-primary" type="submit">ذخیره تغییرات ✓</button>
-     </form>
-    </section>
-    <section class="account-panel"><div class="account-panel-head"><h2>سفارش‌های من</h2><button class="account-refresh" onclick="loadMyOrders()">↻ بروزرسانی</button></div><div id="myOrders" class="account-orders"><div class="account-loading">در حال دریافت سفارش‌ها…</div></div></section>
-   </div>
-  </div></main>`;
- loadMyOrders();
-}
-async function saveAccountProfile(event){
- event?.preventDefault();
- const old=getCustomer()||{};
- const firstName=document.getElementById("accountFirstName")?.value.trim()||"";
- const lastName=document.getElementById("accountLastName")?.value.trim()||"";
- const phone=normalizeIranPhone(document.getElementById("accountPhone")?.value||"");
- const postalCode=(document.getElementById("accountPostalCode")?.value||"").replace(/\D/g,"").slice(0,10);
- const address=document.getElementById("accountAddress")?.value.trim()||"";
- if(firstName.length<2||lastName.length<2)return showToast("نام و نام خانوادگی را بررسی کن");
- if(!/^09\d{9}$/.test(phone))return showToast("شماره تماس معتبر نیست");
- if(postalCode && postalCode.length!==10)return showToast("کد پستی باید ۱۰ رقم باشد");
- const customer={...old,firstName,lastName,fullName:`${firstName} ${lastName}`.trim(),phone,postalCode,address,updatedAt:new Date().toISOString()};
- localStorage.setItem("mahanCustomer",JSON.stringify(customer));
- try{
-  const r=await fetch(WORKER_URL+"/customers",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(customer)});
-  if(!r.ok)throw new Error("HTTP "+r.status);
-  showToast("مشخصات با موفقیت ذخیره شد ✓");
-  renderAccount();
- }catch(error){showToast("اطلاعات در این دستگاه ذخیره شد؛ همگام‌سازی سرور انجام نشد.");console.error(error)}
-}
-async function loadMyOrders(){
- const host=document.getElementById("myOrders");
- const customer=getCustomer();
- if(!host||!customer?.phone)return;
- host.innerHTML='<div class="account-loading">در حال دریافت سفارش‌ها…</div>';
- try{
-  const response=await fetch(WORKER_URL+"/orders?phone="+encodeURIComponent(customer.phone),{cache:"no-store"});
-  const data=await response.json();
-  if(!response.ok)throw new Error(data?.message||"HTTP "+response.status);
-  const all=Array.isArray(data)?data:(data.orders||[]);
-  const mine=all.filter(o=>normalizeIranPhone(o.customer?.phone||"")===normalizeIranPhone(customer.phone)).sort((a,b)=>(Date.parse(b.createdAt||"")||0)-(Date.parse(a.createdAt||"")||0));
-  if(!mine.length){host.innerHTML='<div class="account-empty"><span>🧾</span><b>هنوز سفارشی ثبت نکرده‌ای</b><p>بعد از ثبت سفارش، وضعیت و جزئیات آن اینجا نمایش داده می‌شود.</p><a href="#/" onclick="go('/');return false">رفتن به فروشگاه</a></div>';return;}
-  host.innerHTML=mine.map(o=>`<article class="account-order"><div class="account-order-top"><b>سفارش ${escapeHTML(o.orderId||o.id||"—")}</b><span class="account-status">${escapeHTML(statusLabel(o.status))}</span></div><div class="account-order-meta">${escapeHTML(o.createdAt?new Date(o.createdAt).toLocaleString("fa-IR"):"تاریخ ثبت نامشخص")}</div><div class="account-order-items">${(o.items||[]).map(x=>`<div>${escapeHTML(x.name||"محصول")} <span>× ${Number(x.qty||1).toLocaleString("fa-IR")}</span></div>`).join("")}</div><div class="account-order-total">مبلغ سفارش: ${Number(o.total||0).toLocaleString("fa-IR")} تومان</div></article>`).join("");
- }catch(error){host.innerHTML='<div class="account-empty"><span>⚠️</span><b>فعلاً دریافت سفارش‌ها ممکن نیست</b><p>اتصال فروشگاه را بررسی کن و دوباره تلاش کن.</p><button class="account-primary" onclick="loadMyOrders()">تلاش دوباره</button></div>';console.error("Account orders",error)}
-}
-
-/* =========================================================
-   ENTRY CHOICE + TEMPORARY TERMS NOTICE
-========================================================= */
-function showTermsNotice(){
- const existing=document.getElementById("termsNotice");if(existing)existing.remove();
- const el=document.createElement("div");el.id="termsNotice";el.className="terms-notice";
- el.innerHTML=`<div><span class="terms-notice-icon">📜</span><span>لطفاً قوانین و مقررات فروشگاه را مطالعه کنید.</span></div><button aria-label="بستن اعلان قوانین" onclick="dismissTermsNotice()">×</button>`;
- document.body.appendChild(el);
- clearTimeout(window.__termsNoticeTimer);
- window.__termsNoticeTimer=setTimeout(dismissTermsNotice,10000);
-}
-function dismissTermsNotice(){const el=document.getElementById("termsNotice");if(!el)return;el.classList.add("is-hiding");clearTimeout(window.__termsNoticeTimer);setTimeout(()=>el.remove(),350);}
-function showFirstVisitLaw(){
- if(localStorage.getItem("mahanEntryChoice")){showTermsNotice();return;}
- if(document.getElementById("mahanEntryModal"))return;
- const modal=document.createElement("div");modal.id="mahanEntryModal";modal.className="modal-backdrop";
- modal.innerHTML=`<div class="law-modal entry-choice-modal"><div class="law-modal-top"><span class="law-modal-icon">🛍️</span><span class="law-modal-label">به ماهان سنتر خوش آمدی</span></div><h2>برای خرید آماده‌ای؟</h2><p>برای ثبت سفارش، تکمیل اطلاعات حساب کاربری لازم است. می‌توانی فعلاً به‌عنوان مهمان محصولات را ببینی.</p><div class="entry-choice-actions"><button class="entry-guest" onclick="continueAsGuest()">ورود به‌عنوان مهمان</button><button class="entry-register" onclick="startEntryRegistration()">ساخت حساب کاربری</button></div><small>ورود به‌عنوان مهمان امکان مشاهده فروشگاه را می‌دهد؛ ثبت سفارش نیازمند ثبت اطلاعات است.</small></div>`;
- document.body.appendChild(modal);
-}
-function continueAsGuest(){localStorage.setItem("mahanEntryChoice","guest");document.getElementById("mahanEntryModal")?.remove();showTermsNotice();}
-function startEntryRegistration(){document.getElementById("mahanEntryModal")?.remove();openCustomerRegistration("account");}
-
 function renderSupport(){
     const phone = settings.supportPhone || "09332540425";
     const rubika = normalizeRubika(settings.supportRubika || "omidi__xx");
@@ -6921,6 +6696,107 @@ function fallbackCopy(text){
 /* =========================================================
    FIRST VISIT LAW
 ========================================================= */
+
+function showFirstVisitLaw(){
+
+    if(
+        localStorage.getItem(
+            "mahanLawSeen"
+        )
+    )
+        return;
+
+
+    if(
+        document.getElementById(
+            "lawWelcomeModal"
+        )
+    )
+        return;
+
+
+    const modal =
+        document.createElement(
+            "div"
+        );
+
+
+    modal.className =
+        "modal-backdrop";
+
+
+    modal.id =
+        "lawWelcomeModal";
+
+
+    modal.innerHTML = `
+
+        <div class="law-modal">
+            <div class="law-modal-top"><span class="law-modal-icon">📜</span><span class="law-modal-close">×</span></div>
+            <div class="law-modal-label">قبل از خرید</div>
+            <h2>قوانین و شرایط خرید</h2>
+            <p>برای یک خرید مطمئن، قوانین ماهان سنتر ایران را قبل از ادامه مطالعه کن.</p>
+            <div class="law-modal-points"><span>✓ شرایط مرجوعی</span><span>✓ قیمت کالاهای متغیر</span><span>✓ راه‌های پشتیبانی</span></div>
+            <div class="modal-actions">
+                <button class="accept-btn" onclick="acceptLawAndOpen()">📖 پذیرش و خواندن قوانین</button>
+                <button class="reject-btn" onclick="rejectLawModal()">✕ رد کردن</button>
+            </div>
+        </div>
+
+    `;
+
+
+    document.body.appendChild(
+        modal
+    );
+
+}
+
+
+function acceptLawAndOpen(){
+
+    localStorage.setItem(
+        "mahanLawSeen",
+        "1"
+    );
+
+
+    const modal =
+        document.getElementById(
+            "lawWelcomeModal"
+        );
+
+
+    if(modal)
+        modal.remove();
+
+
+    go(
+        "/laws"
+    );
+
+}
+
+
+function rejectLawModal(){
+
+    localStorage.setItem(
+        "mahanLawSeen",
+        "1"
+    );
+
+
+    const modal =
+        document.getElementById(
+            "lawWelcomeModal"
+        );
+
+
+    if(modal)
+        modal.remove();
+
+}
+
 
 /* =========================================================
    NAV
@@ -7171,35 +7047,61 @@ async function initializeStore(){
     if(storeInitialized) return;
     storeInitialized = true;
 
-    initialRender();
-
-    // اطلاعات لازم برای اولین نمایش کامل سایت، یک‌جا دریافت می‌شوند.
-    // بعد از آماده شدن داده‌ها فقط یک بار صفحه فعلی رندر می‌شود.
-    const [settingsLoaded, productsLoaded] = await Promise.all([
-        loadSettings(),
-        loadProducts()
-    ]);
-
-    if(!settingsLoaded && !productsLoaded){
-        const app=document.getElementById("app");
-        if(app){
-            document.getElementById("firebaseStatus")?.remove();
-            app.innerHTML=`<main class="maintenance-screen"><div class="maintenance-mark">MC</div><div class="maintenance-kicker">MAHAN CENTER IRAN</div><h1>در حال به‌روزرسانی هستیم</h1><p>فروشگاه موقتاً در دسترس نیست. لطفاً کمی بعد دوباره مراجعه کنید.</p><div class="maintenance-time">زمان اعلام‌شده برای بازگشایی: فردا ساعت ۱۰ صبح</div><button onclick="location.reload()">تلاش دوباره ↻</button></main>`;
-            app.classList.add("ready");
-        }
-        return;
-    }
-
-    categories = getCategories();
-    applySiteSettings();
-
-    render(getRoute());
-
-    // فقط بعد از رندر واقعی مسیر، محتوای صفحه قابل مشاهده می‌شود.
     const app = document.getElementById("app");
     if(app) app.classList.add("ready");
 
-    setTimeout(showFirstVisitLaw, 700);
+    try{
+        initialRender();
+
+        // تنظیمات و محصولات مستقل بارگیری می‌شوند؛ خطای یکی نباید
+        // جلوی نمایش سایت و نتیجه بارگیری دیگری را بگیرد.
+        const results = await Promise.allSettled([
+            loadSettings(),
+            loadProducts()
+        ]);
+
+        console.log("MAHAN CENTER LOAD RESULTS:", results.map(r => r.status));
+        categories = getCategories();
+        applySiteSettings();
+
+        try{
+            render(getRoute());
+        }catch(renderError){
+            console.error("MAHAN CENTER RENDER ERROR:", renderError);
+            if(app){
+                app.innerHTML = `
+                    <main class="page"><div class="container">
+                        <section class="home-box" style="margin:25px auto;text-align:center">
+                            <h1>ماهان سنتر ایران</h1>
+                            <p style="margin:12px 0;color:#bbb">اطلاعات دریافت شد، اما نمایش صفحه با خطا روبه‌رو شد.</p>
+                            <p style="margin:12px 0;color:#999;font-size:12px">صفحه را تازه‌سازی کنید. اگر مشکل باقی ماند، خطای JavaScript در مرورگر باید بررسی شود.</p>
+                            <button class="primary-btn" onclick="location.reload()">تلاش دوباره</button>
+                        </section>
+                    </div></main>`;
+            }
+        }
+
+        setTimeout(() => {
+            try{ showFirstVisitLaw(); }
+            catch(error){ console.error("First visit notice error:", error); }
+        }, 700);
+    }catch(error){
+        console.error("MAHAN CENTER STARTUP ERROR:", error);
+        if(app){
+            app.innerHTML = `
+                <main class="page"><div class="container">
+                    <section class="home-box" style="margin:25px auto;text-align:center">
+                        <h1>ماهان سنتر ایران</h1>
+                        <p style="margin:12px 0;color:#bbb">در بارگذاری فروشگاه مشکلی پیش آمد.</p>
+                        <p style="margin:12px 0;color:#999;font-size:12px">اتصال و اطلاعات فروشگاه ممکن است در دسترس باشند؛ خطای اجرای صفحه باید بررسی شود.</p>
+                        <button class="primary-btn" onclick="location.reload()">بارگذاری دوباره</button>
+                    </section>
+                </div></main>`;
+        }
+    }finally{
+        // حتی اگر رندر یا دریافت اطلاعات خطا داد، محتوای app مخفی نمی‌ماند.
+        if(app) app.classList.add("ready");
+    }
 }
 
 
