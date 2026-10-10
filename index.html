@@ -2052,27 +2052,39 @@ const WORKER_URL =
 
 async function workerFetch(path){
 
-    const response = await fetch(
-        WORKER_URL + path,
-        {
-            method:"GET",
-            cache:"no-store",
-            headers:{
-                "Accept":"application/json"
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+
+    try{
+        const response = await fetch(
+            WORKER_URL + path,
+            {
+                method:"GET",
+                cache:"no-store",
+                signal: controller.signal,
+                headers:{
+                    "Accept":"application/json"
+                }
             }
-        }
-    );
-
-    const data = await response.json().catch(() => ({}));
-
-    if(!response.ok)
-        throw new Error(
-            data?.error?.message ||
-            data?.error ||
-            `HTTP ${response.status}`
         );
 
-    return data;
+        const data = await response.json().catch(() => ({}));
+
+        if(!response.ok)
+            throw new Error(
+                data?.error?.message ||
+                data?.error ||
+                `HTTP ${response.status}`
+            );
+
+        return data;
+    }catch(error){
+        if(error?.name === "AbortError")
+            throw new Error("اتصال به سرور بیش از ۸ ثانیه طول کشید.");
+        throw error;
+    }finally{
+        clearTimeout(timeout);
+    }
 
 }
 
@@ -6769,21 +6781,29 @@ async function initializeStore(){
 
     initialRender();
 
-    // اطلاعات لازم برای اولین نمایش کامل سایت، یک‌جا دریافت می‌شوند.
-    // بعد از آماده شدن داده‌ها فقط یک بار صفحه فعلی رندر می‌شود.
-    await Promise.all([
+    // هر دو درخواست را با هم انجام می‌دهیم؛ اگر Worker قطع باشد
+    // صفحه نباید برای همیشه سفید بماند.
+    const results = await Promise.allSettled([
         loadSettings(),
         loadProducts()
     ]);
 
+    const settingsOK = results[0].status === "fulfilled" && results[0].value === true;
+    const productsOK = results[1].status === "fulfilled" && results[1].value === true;
+
     categories = getCategories();
     applySiteSettings();
-
     render(getRoute());
 
-    // فقط بعد از رندر واقعی مسیر، محتوای صفحه قابل مشاهده می‌شود.
+    // حتی در حالت خطای سرور، محتوای صفحه را از حالت visibility:hidden خارج کن.
     const app = document.getElementById("app");
     if(app) app.classList.add("ready");
+
+    // اگر اطلاعات اصلی فروشگاه از Worker نیامد، صفحه نگهداری نمایش داده می‌شود.
+    if(!settingsOK || !productsOK){
+        setTimeout(showMaintenancePage, 100);
+        return;
+    }
 
     setTimeout(showFirstVisitLaw, 700);
 }
