@@ -5007,6 +5007,10 @@ function renderProduct(id){
 
             <div class="container">
 
+                <div class="product-detail-page-head">
+                    <button class="product-back-red" onclick="go('/');return false">← بازگشت به فروشگاه</button>
+                </div>
+
                 <div class="product-detail">
 
                     <div class="detail-gallery">
@@ -5944,10 +5948,11 @@ function openCustomerRegistration(nextAction="checkout"){
      <div class="customer-field"><label>نام</label><input id="customerFirstName" autocomplete="given-name" placeholder="مثلاً ماهان" value="${escapeHTML(c.firstName||"")}"></div>
      <div class="customer-field"><label>نام خانوادگی</label><input id="customerLastName" autocomplete="family-name" placeholder="مثلاً امیدی" value="${escapeHTML(c.lastName||"")}"></div>
      <div class="customer-field full"><label>شماره تلفن</label><input id="customerPhone" inputmode="tel" autocomplete="tel" maxlength="13" placeholder="09123456789" value="${escapeHTML(c.phone||"")}"><div class="customer-phone-hint">شماره را به شکل <b>09xxxxxxxxx</b> وارد کن.</div></div>
+     <div class="customer-field full"><label>کد پستی</label><input id="customerPostalCode" inputmode="numeric" autocomplete="postal-code" maxlength="10" placeholder="۱۰ رقم" value="${escapeHTML(c.postalCode||"")}"></div>
      <div class="customer-field full"><label>نشانی کامل</label><input id="customerAddress" autocomplete="street-address" placeholder="استان، شهر، خیابان، پلاک" value="${escapeHTML(c.address||"")}"></div>
    </div>
    <div class="customer-private"><b>🔒</b><span>اطلاعات شما محرمانه است و فقط برای ثبت، پیگیری و هماهنگی همین سفارش استفاده می‌شود.</span></div>
-   <div class="customer-actions"><button class="customer-save" onclick="saveCustomerAndContinue('${escapeHTML(nextAction)}')">تأیید اطلاعات و ثبت سفارش ✓</button><button class="customer-cancel" onclick="closeCustomerRegistration()">انصراف</button></div>
+   <div class="customer-actions"><button class="customer-save" onclick="saveCustomerAndContinue('${escapeHTML(nextAction)}')">${nextAction === "checkout" ? "تأیید اطلاعات و ثبت سفارش ✓" : "ذخیره اطلاعات حساب ✓"}</button><button class="customer-cancel" onclick="closeCustomerRegistration()">انصراف</button></div>
  </div>`;
  document.body.appendChild(m);
  setTimeout(()=>document.getElementById("customerFirstName")?.focus(),120);
@@ -5957,7 +5962,8 @@ async function saveCustomerAndContinue(nextAction="checkout"){
  const firstName=document.getElementById("customerFirstName")?.value.trim()||"",lastName=document.getElementById("customerLastName")?.value.trim()||"",phone=normalizeIranPhone(document.getElementById("customerPhone")?.value||"");
  if(firstName.length<2)return showToast("نام را درست وارد کن"); if(lastName.length<2)return showToast("نام خانوادگی را درست وارد کن"); if(!/^09\d{9}$/.test(phone))return showToast("شماره تلفن معتبر نیست");
  const address=document.getElementById("customerAddress")?.value.trim()||getCustomer()?.address||"";
- const customer={...getCustomer(),firstName,lastName,phone,fullName:`${firstName} ${lastName}`.trim(),address,updatedAt:new Date().toISOString()};
+ const postalCode=(document.getElementById("customerPostalCode")?.value||getCustomer()?.postalCode||"").replace(/\D/g,"").slice(0,10);
+ const customer={...getCustomer(),firstName,lastName,phone,fullName:`${firstName} ${lastName}`.trim(),address,postalCode,updatedAt:new Date().toISOString()};
  localStorage.setItem("mahanCustomer",JSON.stringify(customer));
  try{await fetch(WORKER_URL+"/customers",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(customer)});}catch(e){console.warn("Customer sync unavailable",e)}
  closeCustomerRegistration(); if(nextAction==="checkout")await submitOrder(customer); else renderAccount();
@@ -5991,27 +5997,27 @@ function showOrderSuccess(order){
 }
 
 async function submitOrder(customer){
- const items=cart.map(item=>{const p=products.find(x=>String(x.id)===String(item.id)||String(x.docId)===String(item.id)||String(x.code)===String(item.id));return p?{id:p.id,code:p.code,name:p.name,qty:Number(item.qty||0),unitPrice:getFinalPrice(p),category:p.category}:null}).filter(Boolean);
+ const items=cart.map(item=>{const p=products.find(x=>String(x.id)===String(item.id)||String(x.docId)===String(item.id)||String(x.code)===String(item.id));return p?{id:p.id,code:p.code,name:p.name,qty:Number(item.qty||0),unitPrice:getFinalPrice(p),category:p.category,image:(getProductImages(p)||[])[0]||""}:null}).filter(Boolean);
  if(!items.length)return showToast("محصولات سبد خرید دیگر در دسترس نیستند");
  const total=items.reduce((s,x)=>s+x.unitPrice*x.qty,0);
- const order={customer:{firstName:customer.firstName,lastName:customer.lastName,fullName:customer.fullName,phone:customer.phone},items,total,status:"new",createdAt:new Date().toISOString()};
+ const order={customer:{firstName:customer.firstName,lastName:customer.lastName,fullName:customer.fullName,phone:customer.phone,address:customer.address||"",postalCode:customer.postalCode||""},items,total,status:"new",createdAt:new Date().toISOString()};
  try{
    const r=await fetch(WORKER_URL+"/orders",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(order)});
    const d=await r.json().catch(()=>({}));
-   if(!r.ok)throw new Error(d?.error?.message||d?.error||`HTTP ${r.status}`);
-
-   // فقط بعد از ثبت موفق سفارش، سبد خرید کاملاً خالی می‌شود.
+   if(!r.ok || d.success===false)throw new Error(d?.message||d?.error?.message||d?.error||`HTTP ${r.status}`);
+   const saved=d.order||{...order,orderId:"ORD-"+Date.now()};
+   const localOrders=safeJSON(localStorage.getItem("mahanOrders"),[]);
+   localOrders.unshift(saved);
+   localStorage.setItem("mahanOrders",JSON.stringify(localOrders.slice(0,50)));
    cart=[];
    saveData();
    updateCartCount();
-   render(getRoute());
-   showOrderSuccess(order);
+   showOrderSuccess(saved);
  }catch(e){
    console.error(e);
-   showToast("ثبت سفارش انجام نشد: "+e.message);
+   showToast("ثبت سفارش انجام نشد: "+(e?.message||"خطای نامشخص"));
  }
 }
-
 
 
 /* =========================================================
@@ -6921,6 +6927,10 @@ Object.assign(
         openCustomerRegistration,
         closeCustomerRegistration,
         saveCustomerAndContinue,
+        welcomeAsGuest,
+        welcomeRegister,
+        acceptLawAndOpen,
+        rejectLawModal,
 
         changeTempQty,
 
@@ -6956,18 +6966,73 @@ Object.assign(
 
 
 
-function renderAccount(){
+async function renderAccount(){
  const c=getCustomer();
- const orders=safeJSON(localStorage.getItem("mahanOrders"),[]);
- const phone=c?.phone||'';
- const mine=orders.filter(o=>String(o.customer?.phone||'')===String(phone));
- const statusLabel={new:'ثبت شده',review:'در حال بررسی',processing:'در حال آماده‌سازی',ready:'آماده ارسال',shipped:'ارسال شده',delivered:'تحویل شده',cancelled:'لغو شده'};
- document.getElementById('app').innerHTML=`<main class="page"><div class="container"><div class="page-title"><div><h1>حساب کاربری</h1><p>مشخصات و پیگیری سفارش‌های شما</p></div><button class="btn" onclick="go('/');return false">← بازگشت</button></div>
- <section class="account-panel"><div class="account-head"><span>👤</span><div><h2>${c?escapeHTML(c.fullName||'کاربر ماهان سنتر'):'هنوز وارد حساب نشده‌اید'}</h2><p>${c?escapeHTML(c.phone||''): 'برای دیدن اطلاعات و سفارش‌ها ثبت‌نام کنید.'}</p></div></div>
- ${c?`<div class="account-details"><div><small>نام</small><b>${escapeHTML(c.firstName||'-')}</b></div><div><small>نام خانوادگی</small><b>${escapeHTML(c.lastName||'-')}</b></div><div><small>شماره تماس</small><b>${escapeHTML(c.phone||'-')}</b></div><div><small>نشانی</small><b>${escapeHTML(c.address||'-')}</b></div></div><button class="account-action" onclick="openCustomerRegistration('account')">ویرایش مشخصات</button>`:`<button class="account-action" onclick="openCustomerRegistration('account')">ثبت‌نام / تکمیل اطلاعات</button>`}</section>
- <section class="account-panel"><h2>سفارش‌های من</h2>${mine.length?mine.map(o=>`<article class="account-order"><div><b>سفارش ${escapeHTML(o.orderId||o.id||'-')}</b><small>${escapeHTML(o.createdAt||'')}</small></div><span>${escapeHTML(statusLabel[o.status]||o.status||'ثبت شده')}</span><strong>${Number(o.total||0).toLocaleString('fa-IR')} تومان</strong></article>`).join(''):'<p class="account-empty">سفارشی برای نمایش در این دستگاه پیدا نشد. سفارش‌هایی که با حساب شما ثبت شوند اینجا نمایش داده می‌شوند.</p>'}</section>
+ const app=document.getElementById('app');
+ if(!app)return;
+ const statusMap={new:{label:'ثبت شده',cls:'new'},review:{label:'در حال بررسی',cls:'review'},processing:{label:'در حال آماده‌سازی',cls:'processing'},ready:{label:'آماده ارسال',cls:'ready'},shipped:{label:'ارسال شده',cls:'shipped'},delivered:{label:'تحویل شده',cls:'delivered'},cancelled:{label:'لغو شده',cls:'cancelled'}};
+ const localOrders=safeJSON(localStorage.getItem('mahanOrders'),[]);
+ const phone=normalizeIranPhone(c?.phone||'');
+ let mine=localOrders.filter(o=>normalizeIranPhone(o?.customer?.phone||'')===phone);
+ const totalSpent=mine.reduce((s,o)=>s+Number(o.total||0),0);
+ const active=mine.filter(o=>!['delivered','cancelled'].includes(o.status)).length;
+ app.innerHTML=`<main class="page account-page-premium"><div class="container account-pro-wrap">
+   <div class="account-hero">
+     <div class="account-hero-glow"></div><div class="account-avatar">👤</div>
+     <div class="account-hero-copy"><span class="account-kicker">MAHAN CENTER · PERSONAL AREA</span><h1>${c?escapeHTML(c.fullName||'حساب کاربری شما'):'حساب کاربری شما'}</h1><p>${c?`شماره حساب: ${escapeHTML(c.phone||'')}`:'برای ثبت سفارش و مشاهده وضعیت سفارش‌ها، اطلاعاتت را ثبت کن.'}</p></div>
+     <div class="account-hero-actions">${c?`<button class="account-outline" onclick="openCustomerRegistration('account')">✎ ویرایش اطلاعات</button>`:`<button class="account-primary" onclick="openCustomerRegistration('account')">ثبت اطلاعات</button>`}<button class="account-outline" onclick="refreshAccountOrders()">↻ بروزرسانی</button></div>
+   </div>
+   ${c?`<section class="account-info-card"><div class="account-section-title"><div><span>اطلاعات حساب</span><small>اطلاعات تماس و ارسال</small></div><b>✓ ثبت شده</b></div><div class="account-details-pro"><div><small>نام و نام خانوادگی</small><strong>${escapeHTML(c.fullName||'-')}</strong></div><div><small>شماره موبایل</small><strong dir="ltr">${escapeHTML(c.phone||'-')}</strong></div><div><small>کد پستی</small><strong dir="ltr">${escapeHTML(c.postalCode||'-')}</strong></div><div class="wide"><small>نشانی</small><strong>${escapeHTML(c.address||'-')}</strong></div></div></section>`:''}
+   <div class="account-stats"><div><span>سفارش‌ها</span><strong id="accountOrdersCount">${mine.length}</strong></div><div><span>در حال پیگیری</span><strong id="accountActiveCount">${active}</strong></div><div><span>مجموع خرید</span><strong id="accountSpent">${totalSpent.toLocaleString('fa-IR')} <small>تومان</small></strong></div></div>
+   <section class="account-orders-card"><div class="account-section-title"><div><span>سفارش‌های من</span><small>هر محصول را جداگانه می‌توانی پیگیری کنی</small></div><button class="account-mini-btn" onclick="refreshAccountOrders()">↻ بروزرسانی</button></div><div id="accountOrdersList">${renderAccountOrdersHTML(mine,statusMap)}</div></section>
+   <div class="account-help-strip"><span>🔐</span><div><strong>پیگیری ساده و شفاف</strong><p>وضعیت سفارش‌ها از پنل مدیریت به‌روزرسانی می‌شود و آخرین وضعیت در حساب کاربری نمایش داده خواهد شد.</p></div><button onclick="go('/support')">پشتیبانی</button></div>
  </div></main>`;
+ if(c) await refreshAccountOrders();
 }
+
+function renderAccountOrdersHTML(orders,statusMap){
+ if(!orders.length)return `<div class="account-empty-pro"><div>📦</div><h3>هنوز سفارشی نداری</h3><p>بعد از ثبت موفق سفارش، شماره سفارش و وضعیت آن همین‌جا نمایش داده می‌شود.</p><button onclick="go('/')">شروع خرید</button></div>`;
+ return orders.map(o=>{const st=statusMap[o.status]||{label:o.status||'ثبت شده',cls:'new'};const id=String(o.orderId||o.id||'');const date=o.createdAt?new Date(o.createdAt).toLocaleString('fa-IR'):'-';return `<article class="account-order-pro"><div class="order-pro-head"><div><span>سفارش ${escapeHTML(id||'-')}</span><small>${escapeHTML(date)}</small></div><b class="order-status-pill ${st.cls}">${st.label}</b><strong>${Number(o.total||0).toLocaleString('fa-IR')} تومان</strong></div><div class="order-pro-items">${(o.items||[]).map((item,idx)=>`<div class="order-product-row"><div class="order-product-thumb">${item.image?`<img src="${escapeHTML(item.image)}" alt="">`:'🛍️'}</div><div class="order-product-main"><b>${escapeHTML(item.name||'محصول')}</b><span>تعداد: ${Number(item.qty||1).toLocaleString('fa-IR')} · ${Number(item.unitPrice||0).toLocaleString('fa-IR')} تومان</span></div><button class="track-product-btn" onclick='showOrderStatus(${JSON.stringify(id)},${idx})'>📦 پیگیری وضعیت</button></div>`).join('')}</div></article>`}).join('');
+}
+
+async function refreshAccountOrders(){
+ const c=getCustomer();
+ const box=document.getElementById('accountOrdersList');
+ if(!c||!box)return;
+ box.innerHTML='<div class="account-loading">در حال دریافت آخرین وضعیت سفارش‌ها…</div>';
+ let orders=safeJSON(localStorage.getItem('mahanOrders'),[]);
+ try{
+   const r=await fetch(WORKER_URL+'/orders',{cache:'no-store'});
+   const d=await r.json().catch(()=>({}));
+   if(r.ok && Array.isArray(d.orders)){
+      const phone=normalizeIranPhone(c.phone);
+      const serverMine=d.orders.filter(o=>normalizeIranPhone(o?.customer?.phone||'')===phone);
+      const map=new Map();
+      [...orders,...serverMine].forEach(o=>map.set(String(o.orderId||o.id||o.createdAt),o));
+      orders=[...map.values()].sort((a,b)=>String(b.createdAt||'').localeCompare(String(a.createdAt||'')));
+      localStorage.setItem('mahanOrders',JSON.stringify(orders.slice(0,50)));
+   }
+ }catch(e){ console.warn('Account orders sync unavailable',e); }
+ const statusMap={new:{label:'ثبت شده',cls:'new'},review:{label:'در حال بررسی',cls:'review'},processing:{label:'در حال آماده‌سازی',cls:'processing'},ready:{label:'آماده ارسال',cls:'ready'},shipped:{label:'ارسال شده',cls:'shipped'},delivered:{label:'تحویل شده',cls:'delivered'},cancelled:{label:'لغو شده',cls:'cancelled'}};
+ const phone=normalizeIranPhone(c.phone||'');
+ const mine=orders.filter(o=>normalizeIranPhone(o?.customer?.phone||'')===phone);
+ box.innerHTML=renderAccountOrdersHTML(mine,statusMap);
+ const count=document.getElementById('accountOrdersCount'); if(count)count.textContent=mine.length;
+ const active=document.getElementById('accountActiveCount'); if(active)active.textContent=mine.filter(o=>!['delivered','cancelled'].includes(o.status)).length;
+ const spent=document.getElementById('accountSpent'); if(spent)spent.innerHTML=`${mine.reduce((s,o)=>s+Number(o.total||0),0).toLocaleString('fa-IR')} <small>تومان</small>`;
+}
+
+function showOrderStatus(orderId,itemIndex){
+ const orders=safeJSON(localStorage.getItem('mahanOrders'),[]);
+ const order=orders.find(o=>String(o.orderId||o.id||'')===String(orderId));
+ if(!order)return showToast('اطلاعات این سفارش هنوز در دستگاه ذخیره نشده است؛ یک‌بار بروزرسانی حساب را بزن.');
+ const labels={new:'ثبت سفارش',review:'در حال بررسی',processing:'در حال آماده‌سازی',ready:'آماده ارسال',shipped:'ارسال شده',delivered:'تحویل شده',cancelled:'لغو شده'};
+ const steps=['new','review','processing','ready','shipped','delivered']; const current=steps.indexOf(order.status); const item=order.items?.[Number(itemIndex)||0];
+ const modal=document.createElement('div'); modal.className='order-track-backdrop'; modal.id='orderTrackModal';
+ modal.innerHTML=`<div class="order-track-card"><button class="order-track-close" onclick="document.getElementById('orderTrackModal')?.remove()">×</button><span class="track-kicker">ORDER TRACKING</span><h2>پیگیری سفارش</h2><p class="track-id">${escapeHTML(orderId)}</p>${item?`<div class="track-product"><div>${item.image?`<img src="${escapeHTML(item.image)}" alt="">`:'🛍️'}</div><section><b>${escapeHTML(item.name||'محصول')}</b><span>تعداد ${Number(item.qty||1).toLocaleString('fa-IR')}</span></section></div>`:''}<div class="track-current">وضعیت فعلی: <strong>${escapeHTML(labels[order.status]||order.status||'ثبت شده')}</strong></div><div class="track-timeline">${steps.map((st,i)=>`<div class="track-step ${i<current?'done':''} ${i===current?'active':''} ${order.status==='cancelled'&&i===current?'cancelled':''}"><span>${i<current?'✓':i+1}</span><b>${labels[st]}</b></div>`).join('')}</div>${order.status==='cancelled'?'<div class="track-cancelled">این سفارش لغو شده است. برای اطلاعات بیشتر با پشتیبانی تماس بگیر.</div>':''}<button class="account-primary track-close-btn" onclick="document.getElementById('orderTrackModal')?.remove()">متوجه شدم</button></div>`;
+ document.body.appendChild(modal);
+}
+
 
 
 /* =========================================================
@@ -7160,6 +7225,18 @@ premiumPatchStyle.textContent=`
 `;
 document.head.appendChild(premiumPatchStyle);
 function showMaintenancePage(){if(document.getElementById('mahanMaintenance'))return;const el=document.createElement('div');el.id='mahanMaintenance';el.className='maintenance-screen';el.innerHTML=`<div class="maintenance-card"><div class="maintenance-logo">🛍️</div><h1>در حال بروزرسانی هستیم</h1><p>در حال حاضر ارتباط با فروشگاه برقرار نیست. تیم ماهان سنتر در حال بررسی و آماده‌سازی مجدد خدمات است.</p><div class="maintenance-time">زمان بازگشایی اعلام‌شده: فردا ساعت 10:00 صبح</div><p style="font-size:10px;margin-top:16px">اگر اتصال سرور دوباره برقرار شود، صفحه را تازه‌سازی کنید.</p><button class="account-action" onclick="location.reload()">تلاش مجدد</button></div>`;document.body.appendChild(el)}
+
+/* GLOBAL HANDLERS: this file is a module, so inline HTML onclick handlers need explicit window bindings. */
+Object.assign(window,{go,render,addToCart,cartQty,removeFromCart,toggleFavorite,changeDetailImage,changeTempQty,changeSort,changeSubcategory,filterPhones,globalSearch,toggleSortMenu,callPhone,openRubika,copyText,checkout,openCustomerRegistration,closeCustomerRegistration,saveCustomerAndContinue,welcomeAsGuest,welcomeRegister,acceptLawAndOpen,rejectLawModal,renderAccount,refreshAccountOrders,showOrderStatus,showOrderSuccess,showToast});
+
+const accountPremiumStyle=document.createElement('style');
+accountPremiumStyle.textContent=`
+.product-detail-page-head{display:flex;justify-content:flex-start;margin:0 0 12px}.product-back-red{border:1px solid rgba(229,9,20,.55);background:linear-gradient(145deg,#2a090c,#140606);color:#ff5b64;border-radius:14px;padding:11px 16px;font-weight:900;cursor:pointer;box-shadow:0 8px 25px rgba(229,9,20,.08);transition:.2s}.product-back-red:hover{transform:translateY(-2px);background:#e50914;color:#fff}
+.account-page-premium{padding-top:8px}.account-pro-wrap{max-width:1050px}.account-hero{position:relative;overflow:hidden;display:flex;align-items:center;gap:16px;padding:22px;margin-bottom:15px;border:1px solid #29372f;border-radius:28px;background:linear-gradient(145deg,#151a16,#080908);box-shadow:0 24px 70px rgba(0,0,0,.35)}.account-hero-glow{position:absolute;width:230px;height:230px;right:-80px;top:-130px;border-radius:50%;background:rgba(25,214,107,.09);filter:blur(3px)}.account-avatar{position:relative;width:68px;height:68px;flex:0 0 68px;display:grid;place-items:center;border-radius:22px;background:linear-gradient(145deg,#1d4d31,#0b1710);border:1px solid #356947;font-size:31px}.account-hero-copy{position:relative;flex:1}.account-kicker{color:#19d66b;font-size:8px;letter-spacing:1.3px}.account-hero h1{font-size:25px;margin:4px 0}.account-hero p{color:#888;font-size:11px}.account-hero-actions{position:relative;display:flex;gap:7px;flex-wrap:wrap}.account-primary,.account-outline,.account-mini-btn{border-radius:12px;padding:10px 13px;font-weight:900;cursor:pointer}.account-primary{border:1px solid #19d66b;background:#19d66b;color:#06120a}.account-outline,.account-mini-btn{border:1px solid #303830;background:#121512;color:#ccc}.account-info-card,.account-orders-card{margin-bottom:15px;padding:20px;border:1px solid #292929;border-radius:24px;background:linear-gradient(145deg,#121212,#090909);box-shadow:0 15px 50px rgba(0,0,0,.25)}.account-section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.account-section-title span{display:block;font-size:16px;font-weight:900}.account-section-title small{display:block;color:#777;font-size:9px;margin-top:4px}.account-section-title>b{padding:5px 9px;border-radius:99px;background:rgba(25,214,107,.08);border:1px solid rgba(25,214,107,.2);color:#19d66b;font-size:9px}.account-details-pro{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.account-details-pro>div{padding:13px;border:1px solid #242424;border-radius:15px;background:#0b0b0b}.account-details-pro .wide{grid-column:1/-1}.account-details-pro small{display:block;color:#666;font-size:9px;margin-bottom:6px}.account-details-pro strong{display:block;color:#eee;font-size:11px;overflow-wrap:anywhere}.account-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:15px}.account-stats>div{padding:16px;border:1px solid #292929;border-radius:19px;background:linear-gradient(145deg,#141414,#0a0a0a)}.account-stats span{display:block;color:#777;font-size:9px}.account-stats strong{display:block;color:#19d66b;font-size:22px;margin-top:5px}.account-stats small{font-size:8px;color:#777}.account-order-pro{border:1px solid #272727;border-radius:19px;background:#0c0c0c;margin-bottom:10px;overflow:hidden}.order-pro-head{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;padding:14px;border-bottom:1px solid #222}.order-pro-head span{display:block;font-weight:900;font-size:12px}.order-pro-head small{display:block;color:#666;font-size:9px;margin-top:4px}.order-pro-head>strong{font-size:11px;color:#ddd}.order-status-pill{padding:6px 10px;border-radius:99px;font-size:9px;border:1px solid #31553d;color:#19d66b;background:#0e1711}.order-status-pill.review{color:#ffc400;border-color:#5c4d1a;background:#181506}.order-status-pill.processing,.order-status-pill.ready{color:#62b7ff;border-color:#254c69;background:#0c151d}.order-status-pill.shipped{color:#b58cff;border-color:#49376b;background:#140f1d}.order-status-pill.delivered{color:#19d66b}.order-status-pill.cancelled{color:#ff5963;border-color:#64252b;background:#1a0d0f}.order-product-row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:10px;padding:12px;border-bottom:1px solid #1d1d1d}.order-product-row:last-child{border-bottom:0}.order-product-thumb{width:52px;height:52px;border-radius:13px;background:#151515;border:1px solid #282828;display:grid;place-items:center;overflow:hidden}.order-product-thumb img{width:100%;height:100%;object-fit:cover}.order-product-main b{display:block;font-size:11px;color:#eee}.order-product-main span{display:block;color:#777;font-size:9px;margin-top:5px}.track-product-btn{border:1px solid #2d4f3a;background:#101b14;color:#19d66b;border-radius:11px;padding:9px 10px;font-size:9px;font-weight:900;cursor:pointer}.account-empty-pro{text-align:center;padding:35px 15px;color:#777}.account-empty-pro>div{font-size:34px}.account-empty-pro h3{color:#ddd;margin:8px 0 4px}.account-empty-pro p{font-size:10px;line-height:2}.account-empty-pro button{margin-top:12px;border:0;border-radius:12px;background:#19d66b;color:#06120a;padding:10px 18px;font-weight:900}.account-loading{text-align:center;padding:35px;color:#777;font-size:11px}.account-help-strip{display:flex;align-items:center;gap:12px;padding:15px 17px;border:1px solid rgba(255,196,0,.18);border-radius:18px;background:rgba(255,196,0,.035)}.account-help-strip>span{font-size:23px}.account-help-strip div{flex:1}.account-help-strip strong{font-size:11px;color:#ffc400}.account-help-strip p{font-size:9px;color:#777;line-height:1.9;margin-top:3px}.account-help-strip button{border:1px solid #3b3b3b;background:#171717;color:#ddd;border-radius:11px;padding:9px 12px;font-weight:800}.order-track-backdrop{position:fixed;inset:0;z-index:999999;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.86);backdrop-filter:blur(14px)}.order-track-card{position:relative;width:min(600px,100%);max-height:90vh;overflow:auto;padding:25px;border:1px solid #2c4133;border-radius:27px;background:linear-gradient(145deg,#151815,#080908);box-shadow:0 30px 100px #000b}.order-track-close{position:absolute;left:15px;top:15px;width:31px;height:31px;border:1px solid #3a2023;border-radius:50%;background:#1a0b0d;color:#ff5963;font-size:19px}.track-kicker{color:#19d66b;font-size:8px;letter-spacing:1.5px}.order-track-card h2{font-size:24px;margin:5px 0}.track-id{color:#666;font-size:10px;direction:ltr}.track-product{display:flex;align-items:center;gap:10px;margin:15px 0;padding:11px;border:1px solid #252525;border-radius:15px;background:#0c0c0c}.track-product>div{width:48px;height:48px;border-radius:12px;background:#151515;display:grid;place-items:center;overflow:hidden}.track-product img{width:100%;height:100%;object-fit:cover}.track-product section b{display:block;font-size:11px}.track-product section span{display:block;color:#777;font-size:9px;margin-top:4px}.track-current{padding:13px;border-radius:14px;background:rgba(25,214,107,.06);border:1px solid rgba(25,214,107,.15);color:#aaa;font-size:10px}.track-current strong{color:#19d66b}.track-timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:18px 0}.track-step{text-align:center;color:#555;font-size:8px}.track-step span{display:grid;place-items:center;width:28px;height:28px;margin:0 auto 6px;border-radius:50%;border:1px solid #2c2c2c;background:#111}.track-step.done,.track-step.active{color:#bbb}.track-step.done span{background:#12301e;border-color:#2a6840;color:#19d66b}.track-step.active span{background:#19d66b;border-color:#19d66b;color:#06120a;font-weight:900;box-shadow:0 0 20px rgba(25,214,107,.2)}.track-step.cancelled span{background:#e50914;color:#fff;border-color:#e50914}.track-cancelled{margin:10px 0;padding:11px;border-radius:13px;background:#1b0c0e;border:1px solid #542027;color:#ff6670;font-size:10px}.track-close-btn{width:100%;margin-top:10px}@media(max-width:700px){.account-hero{align-items:flex-start;flex-wrap:wrap}.account-hero-copy{min-width:calc(100% - 84px)}.account-hero-actions{width:100%}.account-hero-actions button{flex:1}.account-details-pro{grid-template-columns:1fr 1fr}.account-details-pro .wide{grid-column:1/-1}.account-stats strong{font-size:18px}.order-pro-head{grid-template-columns:1fr auto}.order-pro-head>strong{grid-column:1/-1}.order-product-row{grid-template-columns:48px 1fr}.order-product-thumb{width:48px;height:48px}.track-product-btn{grid-column:2}.track-timeline{grid-template-columns:repeat(3,1fr);row-gap:14px}}
+`;
+document.head.appendChild(accountPremiumStyle);
+
+Object.assign(window,{go,render,addToCart,cartQty,removeFromCart,toggleFavorite,changeDetailImage,changeTempQty,changeSort,changeSubcategory,filterPhones,globalSearch,toggleSortMenu,callPhone,openRubika,copyText,checkout,openCustomerRegistration,closeCustomerRegistration,saveCustomerAndContinue,welcomeAsGuest,welcomeRegister,acceptLawAndOpen,rejectLawModal,renderAccount,refreshAccountOrders,showOrderStatus,showOrderSuccess,showToast});
 
 updateCartCount();
 
