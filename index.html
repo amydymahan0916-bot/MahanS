@@ -44,8 +44,8 @@ body{
     min-height:100vh;
 }
 
-/* صفحه اصلی هرگز به‌خاطر خطای جاوااسکریپت مخفی نمی‌ماند */
-#app{visibility:visible}
+/* جلوگیری از نمایش محتوای پیش‌فرض قبل از آماده شدن مسیر واقعی */
+#app{visibility:hidden}
 #app.ready{visibility:visible}
 
 
@@ -1885,12 +1885,12 @@ footer{
             </a>
 
 
-            <a class="nav-discount"
-                href="#/discount"
-                data-route="/discount"
-                onclick="go('/discount');return false"
+            <a class="nav-discount nav-account"
+                href="#/account"
+                data-route="/account"
+                onclick="go('/account');return false"
             >
-                🔥 تخفیف‌ها
+                👤 حساب کاربری
             </a>
 
 
@@ -3357,6 +3357,9 @@ function render(route){
         route === "/discount"
     )
         renderDiscount();
+
+    else if(route === "/account")
+        renderAccount();
 
     else if(
         route === "/favorites"
@@ -5929,6 +5932,7 @@ function openCustomerRegistration(nextAction="checkout"){
      <div class="customer-field"><label>نام</label><input id="customerFirstName" autocomplete="given-name" placeholder="مثلاً ماهان" value="${escapeHTML(c.firstName||"")}"></div>
      <div class="customer-field"><label>نام خانوادگی</label><input id="customerLastName" autocomplete="family-name" placeholder="مثلاً امیدی" value="${escapeHTML(c.lastName||"")}"></div>
      <div class="customer-field full"><label>شماره تلفن</label><input id="customerPhone" inputmode="tel" autocomplete="tel" maxlength="13" placeholder="09123456789" value="${escapeHTML(c.phone||"")}"><div class="customer-phone-hint">شماره را به شکل <b>09xxxxxxxxx</b> وارد کن.</div></div>
+     <div class="customer-field full"><label>نشانی کامل</label><input id="customerAddress" autocomplete="street-address" placeholder="استان، شهر، خیابان، پلاک" value="${escapeHTML(c.address||"")}"></div>
    </div>
    <div class="customer-private"><b>🔒</b><span>اطلاعات شما محرمانه است و فقط برای ثبت، پیگیری و هماهنگی همین سفارش استفاده می‌شود.</span></div>
    <div class="customer-actions"><button class="customer-save" onclick="saveCustomerAndContinue('${escapeHTML(nextAction)}')">تأیید اطلاعات و ثبت سفارش ✓</button><button class="customer-cancel" onclick="closeCustomerRegistration()">انصراف</button></div>
@@ -5940,7 +5944,11 @@ function closeCustomerRegistration(){document.getElementById("customerRegisterMo
 async function saveCustomerAndContinue(nextAction="checkout"){
  const firstName=document.getElementById("customerFirstName")?.value.trim()||"",lastName=document.getElementById("customerLastName")?.value.trim()||"",phone=normalizeIranPhone(document.getElementById("customerPhone")?.value||"");
  if(firstName.length<2)return showToast("نام را درست وارد کن"); if(lastName.length<2)return showToast("نام خانوادگی را درست وارد کن"); if(!/^09\d{9}$/.test(phone))return showToast("شماره تلفن معتبر نیست");
- const customer={firstName,lastName,phone,fullName:`${firstName} ${lastName}`.trim(),updatedAt:new Date().toISOString()}; localStorage.setItem("mahanCustomer",JSON.stringify(customer)); closeCustomerRegistration(); if(nextAction==="checkout")await submitOrder(customer);
+ const address=document.getElementById("customerAddress")?.value.trim()||getCustomer()?.address||"";
+ const customer={...getCustomer(),firstName,lastName,phone,fullName:`${firstName} ${lastName}`.trim(),address,updatedAt:new Date().toISOString()};
+ localStorage.setItem("mahanCustomer",JSON.stringify(customer));
+ try{await fetch(WORKER_URL+"/customers",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(customer)});}catch(e){console.warn("Customer sync unavailable",e)}
+ closeCustomerRegistration(); if(nextAction==="checkout")await submitOrder(customer); else renderAccount();
 }
 async function checkout(){ const c=getCustomer(); if(!cart.length)return showToast("سبد خرید شما خالی است"); if(!c||!c.firstName||!c.lastName||!/^09\d{9}$/.test(normalizeIranPhone(c.phone)))return openCustomerRegistration("checkout"); await submitOrder(c); }
 function showOrderSuccess(order){
@@ -6698,325 +6706,37 @@ function fallbackCopy(text){
 ========================================================= */
 
 function showFirstVisitLaw(){
-
-    if(
-        localStorage.getItem(
-            "mahanLawSeen"
-        )
-    )
-        return;
-
-
-    if(
-        document.getElementById(
-            "lawWelcomeModal"
-        )
-    )
-        return;
-
-
-    const modal =
-        document.createElement(
-            "div"
-        );
-
-
-    modal.className =
-        "modal-backdrop";
-
-
-    modal.id =
-        "lawWelcomeModal";
-
-
-    modal.innerHTML = `
-
-        <div class="law-modal">
-            <div class="law-modal-top"><span class="law-modal-icon">📜</span><span class="law-modal-close">×</span></div>
-            <div class="law-modal-label">قبل از خرید</div>
-            <h2>قوانین و شرایط خرید</h2>
-            <p>برای یک خرید مطمئن، قوانین ماهان سنتر ایران را قبل از ادامه مطالعه کن.</p>
-            <div class="law-modal-points"><span>✓ شرایط مرجوعی</span><span>✓ قیمت کالاهای متغیر</span><span>✓ راه‌های پشتیبانی</span></div>
-            <div class="modal-actions">
-                <button class="accept-btn" onclick="acceptLawAndOpen()">📖 پذیرش و خواندن قوانین</button>
-                <button class="reject-btn" onclick="rejectLawModal()">✕ رد کردن</button>
-            </div>
-        </div>
-
-    `;
-
-
-    document.body.appendChild(
-        modal
-    );
-
+    if(localStorage.getItem("mahanWelcomeSeen")) return;
+    if(document.getElementById("lawWelcomeModal")) return;
+    const modal=document.createElement("div");
+    modal.className="modal-backdrop";
+    modal.id="lawWelcomeModal";
+    modal.innerHTML=`<div class="law-modal welcome-choice">
+      <div class="law-modal-top"><span class="law-modal-icon">🛍️</span><span class="law-modal-close" onclick="document.getElementById('lawWelcomeModal')?.remove()">×</span></div>
+      <div class="law-modal-label">MAHAN CENTER IRAN</div>
+      <h2>به ماهان سنتر ایران خوش آمدید</h2>
+      <p>کاربر گرامی، برای ثبت سفارش به ثبت اطلاعات نیاز دارید. می‌توانید ابتدا به‌عنوان مهمان وارد فروشگاه شوید یا همین حالا ثبت‌نام کنید.</p>
+      <div class="modal-actions"><button class="reject-btn" onclick="welcomeAsGuest()">ورود به عنوان مهمان</button><button class="accept-btn" onclick="welcomeRegister()">ثبت‌نام و ادامه</button></div>
+    </div>`;
+    document.body.appendChild(modal);
 }
+function welcomeAsGuest(){localStorage.setItem("mahanWelcomeSeen","1");document.getElementById("lawWelcomeModal")?.remove();}
+function welcomeRegister(){localStorage.setItem("mahanWelcomeSeen","1");document.getElementById("lawWelcomeModal")?.remove();openCustomerRegistration("account");}
+function acceptLawAndOpen(){welcomeRegister();}
+function rejectLawModal(){welcomeAsGuest();}
 
-
-function acceptLawAndOpen(){
-
-    localStorage.setItem(
-        "mahanLawSeen",
-        "1"
-    );
-
-
-    const modal =
-        document.getElementById(
-            "lawWelcomeModal"
-        );
-
-
-    if(modal)
-        modal.remove();
-
-
-    go(
-        "/laws"
-    );
-
+function renderAccount(){
+ const c=getCustomer();
+ const orders=safeJSON(localStorage.getItem("mahanOrders"),[]);
+ const phone=c?.phone||'';
+ const mine=orders.filter(o=>String(o.customer?.phone||'')===String(phone));
+ const statusLabel={new:'ثبت شده',review:'در حال بررسی',processing:'در حال آماده‌سازی',ready:'آماده ارسال',shipped:'ارسال شده',delivered:'تحویل شده',cancelled:'لغو شده'};
+ document.getElementById('app').innerHTML=`<main class="page"><div class="container"><div class="page-title"><div><h1>حساب کاربری</h1><p>مشخصات و پیگیری سفارش‌های شما</p></div><button class="btn" onclick="go('/');return false">← بازگشت</button></div>
+ <section class="account-panel"><div class="account-head"><span>👤</span><div><h2>${c?escapeHTML(c.fullName||'کاربر ماهان سنتر'):'هنوز وارد حساب نشده‌اید'}</h2><p>${c?escapeHTML(c.phone||''): 'برای دیدن اطلاعات و سفارش‌ها ثبت‌نام کنید.'}</p></div></div>
+ ${c?`<div class="account-details"><div><small>نام</small><b>${escapeHTML(c.firstName||'-')}</b></div><div><small>نام خانوادگی</small><b>${escapeHTML(c.lastName||'-')}</b></div><div><small>شماره تماس</small><b>${escapeHTML(c.phone||'-')}</b></div><div><small>نشانی</small><b>${escapeHTML(c.address||'-')}</b></div></div><button class="account-action" onclick="openCustomerRegistration('account')">ویرایش مشخصات</button>`:`<button class="account-action" onclick="openCustomerRegistration('account')">ثبت‌نام / تکمیل اطلاعات</button>`}</section>
+ <section class="account-panel"><h2>سفارش‌های من</h2>${mine.length?mine.map(o=>`<article class="account-order"><div><b>سفارش ${escapeHTML(o.orderId||o.id||'-')}</b><small>${escapeHTML(o.createdAt||'')}</small></div><span>${escapeHTML(statusLabel[o.status]||o.status||'ثبت شده')}</span><strong>${Number(o.total||0).toLocaleString('fa-IR')} تومان</strong></article>`).join(''):'<p class="account-empty">سفارشی برای نمایش در این دستگاه پیدا نشد. سفارش‌هایی که با حساب شما ثبت شوند اینجا نمایش داده می‌شوند.</p>'}</section>
+ </div></main>`;
 }
-
-
-function rejectLawModal(){
-
-    localStorage.setItem(
-        "mahanLawSeen",
-        "1"
-    );
-
-
-    const modal =
-        document.getElementById(
-            "lawWelcomeModal"
-        );
-
-
-    if(modal)
-        modal.remove();
-
-}
-
-
-/* =========================================================
-   NAV
-========================================================= */
-
-function updateActiveNav(){
-
-    const route =
-        getRoute();
-
-
-    document
-        .querySelectorAll(
-            ".nav a"
-        )
-        .forEach(
-            a => {
-
-                const r =
-                    a.dataset.route;
-
-
-                a.classList.toggle(
-                    "active",
-
-                    r === route
-
-                    ||
-
-                    (
-                        r ===
-                        "/categories"
-
-                        &&
-
-                        route.startsWith(
-                            "/category/"
-                        )
-                    )
-
-                );
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   EMPTY
-========================================================= */
-
-function emptyResult(
-    icon,
-    text
-){
-
-    return `
-
-        <div class="no-result">
-
-            <div>
-                ${icon}
-            </div>
-
-            ${escapeHTML(text)}
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   TOAST
-========================================================= */
-
-function showToast(
-    message
-){
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-
-    if(!toast)
-        return;
-
-
-    toast.textContent =
-        String(
-            message || ""
-        );
-
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        window.mahanToastTimer
-    );
-
-
-    window.mahanToastTimer =
-        setTimeout(
-            () => {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            2500
-        );
-
-}
-
-
-/* =========================================================
-   CLOSE SORT
-========================================================= */
-
-document.addEventListener(
-    "click",
-    function(event){
-
-        const menu =
-            document.getElementById(
-                "sortMenu"
-            );
-
-
-        const toggle =
-            document.querySelector(
-                ".sort-toggle"
-            );
-
-
-        if(
-            menu &&
-            toggle &&
-            !menu.contains(
-                event.target
-            ) &&
-            !toggle.contains(
-                event.target
-            )
-        ){
-
-            menu.classList.remove(
-                "open"
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   EXPOSE TO WINDOW
-========================================================= */
-
-Object.assign(
-    window,
-    {
-
-        go,
-
-        globalSearch,
-
-        toggleFavorite,
-
-        addToCart,
-
-        cartQty,
-
-        removeFromCart,
-
-        checkout,
-
-        openCustomerRegistration,
-        closeCustomerRegistration,
-        saveCustomerAndContinue,
-
-        changeTempQty,
-
-        changeCardImage,
-
-        changeDetailImage,
-
-        toggleSortMenu,
-
-        changeSort,
-
-        changeSubcategory,
-
-        filterPhones,
-
-        callPhone,
-
-        openRubika,
-
-        copyText,
-
-        acceptLawAndOpen,
-
-        rejectLawModal,
-
-        getRoute,
-
-        render
-
-    }
-);
 
 
 /* =========================================================
@@ -7047,61 +6767,25 @@ async function initializeStore(){
     if(storeInitialized) return;
     storeInitialized = true;
 
+    initialRender();
+
+    // اطلاعات لازم برای اولین نمایش کامل سایت، یک‌جا دریافت می‌شوند.
+    // بعد از آماده شدن داده‌ها فقط یک بار صفحه فعلی رندر می‌شود.
+    await Promise.all([
+        loadSettings(),
+        loadProducts()
+    ]);
+
+    categories = getCategories();
+    applySiteSettings();
+
+    render(getRoute());
+
+    // فقط بعد از رندر واقعی مسیر، محتوای صفحه قابل مشاهده می‌شود.
     const app = document.getElementById("app");
     if(app) app.classList.add("ready");
 
-    try{
-        initialRender();
-
-        // تنظیمات و محصولات مستقل بارگیری می‌شوند؛ خطای یکی نباید
-        // جلوی نمایش سایت و نتیجه بارگیری دیگری را بگیرد.
-        const results = await Promise.allSettled([
-            loadSettings(),
-            loadProducts()
-        ]);
-
-        console.log("MAHAN CENTER LOAD RESULTS:", results.map(r => r.status));
-        categories = getCategories();
-        applySiteSettings();
-
-        try{
-            render(getRoute());
-        }catch(renderError){
-            console.error("MAHAN CENTER RENDER ERROR:", renderError);
-            if(app){
-                app.innerHTML = `
-                    <main class="page"><div class="container">
-                        <section class="home-box" style="margin:25px auto;text-align:center">
-                            <h1>ماهان سنتر ایران</h1>
-                            <p style="margin:12px 0;color:#bbb">اطلاعات دریافت شد، اما نمایش صفحه با خطا روبه‌رو شد.</p>
-                            <p style="margin:12px 0;color:#999;font-size:12px">صفحه را تازه‌سازی کنید. اگر مشکل باقی ماند، خطای JavaScript در مرورگر باید بررسی شود.</p>
-                            <button class="primary-btn" onclick="location.reload()">تلاش دوباره</button>
-                        </section>
-                    </div></main>`;
-            }
-        }
-
-        setTimeout(() => {
-            try{ showFirstVisitLaw(); }
-            catch(error){ console.error("First visit notice error:", error); }
-        }, 700);
-    }catch(error){
-        console.error("MAHAN CENTER STARTUP ERROR:", error);
-        if(app){
-            app.innerHTML = `
-                <main class="page"><div class="container">
-                    <section class="home-box" style="margin:25px auto;text-align:center">
-                        <h1>ماهان سنتر ایران</h1>
-                        <p style="margin:12px 0;color:#bbb">در بارگذاری فروشگاه مشکلی پیش آمد.</p>
-                        <p style="margin:12px 0;color:#999;font-size:12px">اتصال و اطلاعات فروشگاه ممکن است در دسترس باشند؛ خطای اجرای صفحه باید بررسی شود.</p>
-                        <button class="primary-btn" onclick="location.reload()">بارگذاری دوباره</button>
-                    </section>
-                </div></main>`;
-        }
-    }finally{
-        // حتی اگر رندر یا دریافت اطلاعات خطا داد، محتوای app مخفی نمی‌ماند.
-        if(app) app.classList.add("ready");
-    }
+    setTimeout(showFirstVisitLaw, 700);
 }
 
 
@@ -7219,6 +6903,24 @@ setInterval(
 /* =========================================================
    START
 ========================================================= */
+
+
+/* MAHAN CENTER 2.0 — UI additions */
+const premiumPatchStyle=document.createElement('style');
+premiumPatchStyle.textContent=`
+.nav a{border:1px solid #292929;border-radius:13px;padding:11px 15px;transition:transform .2s,box-shadow .2s;box-shadow:inset 0 1px 0 #ffffff08}
+.nav a:hover{transform:translateY(-2px);box-shadow:0 9px 25px #0008}
+.categories .category-card,.categories .category-pro{border:1px solid #303b33;box-shadow:0 12px 30px #0004;transition:transform .22s,border-color .22s,box-shadow .22s}
+.categories .category-card:hover,.categories .category-pro:hover{transform:translateY(-3px);border-color:#19d66b;box-shadow:0 16px 36px #19d66b12}
+.account-panel{margin:16px 0;padding:22px;border:1px solid #2b352e;border-radius:24px;background:linear-gradient(145deg,#131713,#090a09);box-shadow:0 18px 55px #0005}
+.account-head{display:flex;align-items:center;gap:14px}.account-head>span{width:54px;height:54px;display:grid;place-items:center;background:#102318;border:1px solid #245638;border-radius:17px;font-size:26px}.account-head p,.account-empty{color:#999;font-size:12px;line-height:2;margin-top:5px}
+.account-details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}.account-details>div{padding:12px;border:1px solid #282828;border-radius:13px;background:#0a0a0a}.account-details small,.account-details b{display:block}.account-details small{color:#777;font-size:10px;margin-bottom:5px}.account-details b{font-size:12px;overflow-wrap:anywhere}
+.account-action{margin-top:16px;background:#19d66b;color:#06120a;font-weight:900;padding:12px 18px;border-radius:12px}.account-order{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid #252525}.account-order:last-child{border-bottom:0}.account-order small{display:block;color:#777;margin-top:5px;font-size:10px}.account-order span{padding:6px 10px;border:1px solid #275237;border-radius:99px;color:#19d66b;font-size:10px}.account-order strong{color:#fff;font-size:12px}
+.maintenance-screen{position:fixed;inset:0;z-index:999999;background:radial-gradient(circle at 80% 10%,#19d66b19,transparent 30%),radial-gradient(circle at 10% 90%,#e5091418,transparent 28%),#050505;display:grid;place-items:center;padding:22px;color:#fff;text-align:center}.maintenance-card{width:min(620px,100%);padding:34px 24px;border:1px solid #26372b;border-radius:30px;background:linear-gradient(145deg,#111611,#080808);box-shadow:0 30px 100px #000b}.maintenance-logo{font-size:38px}.maintenance-card h1{font-size:clamp(23px,5vw,34px);margin:15px 0;color:#19d66b}.maintenance-card p{color:#aaa;line-height:2}.maintenance-time{display:inline-block;margin-top:18px;padding:10px 16px;border:1px solid #5c2024;border-radius:12px;background:#1a0c0d;color:#ff5963;font-weight:900}
+@media(max-width:600px){.account-details{grid-template-columns:1fr}.account-order{align-items:flex-start;flex-direction:column}}
+`;
+document.head.appendChild(premiumPatchStyle);
+function showMaintenancePage(){if(document.getElementById('mahanMaintenance'))return;const el=document.createElement('div');el.id='mahanMaintenance';el.className='maintenance-screen';el.innerHTML=`<div class="maintenance-card"><div class="maintenance-logo">🛍️</div><h1>در حال بروزرسانی هستیم</h1><p>در حال حاضر ارتباط با فروشگاه برقرار نیست. تیم ماهان سنتر در حال بررسی و آماده‌سازی مجدد خدمات است.</p><div class="maintenance-time">زمان بازگشایی اعلام‌شده: فردا ساعت 10:00 صبح</div><p style="font-size:10px;margin-top:16px">اگر اتصال سرور دوباره برقرار شود، صفحه را تازه‌سازی کنید.</p><button class="account-action" onclick="location.reload()">تلاش مجدد</button></div>`;document.body.appendChild(el)}
 
 updateCartCount();
 
