@@ -6737,6 +6737,225 @@ function welcomeRegister(){localStorage.setItem("mahanWelcomeSeen","1");document
 function acceptLawAndOpen(){welcomeRegister();}
 function rejectLawModal(){welcomeAsGuest();}
 
+function updateActiveNav(){
+
+    const route =
+        getRoute();
+
+
+    document
+        .querySelectorAll(
+            ".nav a"
+        )
+        .forEach(
+            a => {
+
+                const r =
+                    a.dataset.route;
+
+
+                a.classList.toggle(
+                    "active",
+
+                    r === route
+
+                    ||
+
+                    (
+                        r ===
+                        "/categories"
+
+                        &&
+
+                        route.startsWith(
+                            "/category/"
+                        )
+                    )
+
+                );
+
+            }
+        );
+
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+function emptyResult(
+    icon,
+    text
+){
+
+    return `
+
+        <div class="no-result">
+
+            <div>
+                ${icon}
+            </div>
+
+            ${escapeHTML(text)}
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function showToast(
+    message
+){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    if(!toast)
+        return;
+
+
+    toast.textContent =
+        String(
+            message || ""
+        );
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        window.mahanToastTimer
+    );
+
+
+    window.mahanToastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2500
+        );
+
+}
+
+
+/* =========================================================
+   CLOSE SORT
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(event){
+
+        const menu =
+            document.getElementById(
+                "sortMenu"
+            );
+
+
+        const toggle =
+            document.querySelector(
+                ".sort-toggle"
+            );
+
+
+        if(
+            menu &&
+            toggle &&
+            !menu.contains(
+                event.target
+            ) &&
+            !toggle.contains(
+                event.target
+            )
+        ){
+
+            menu.classList.remove(
+                "open"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   EXPOSE TO WINDOW
+========================================================= */
+
+Object.assign(
+    window,
+    {
+
+        go,
+
+        globalSearch,
+
+        toggleFavorite,
+
+        addToCart,
+
+        cartQty,
+
+        removeFromCart,
+
+        checkout,
+
+        openCustomerRegistration,
+        closeCustomerRegistration,
+        saveCustomerAndContinue,
+
+        changeTempQty,
+
+        changeCardImage,
+
+        changeDetailImage,
+
+        toggleSortMenu,
+
+        changeSort,
+
+        changeSubcategory,
+
+        filterPhones,
+
+        callPhone,
+
+        openRubika,
+
+        copyText,
+
+        acceptLawAndOpen,
+
+        rejectLawModal,
+
+        getRoute,
+
+        render
+
+    }
+);
+
+
+
+
 function renderAccount(){
  const c=getCustomer();
  const orders=safeJSON(localStorage.getItem("mahanOrders"),[]);
