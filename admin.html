@@ -139,13 +139,14 @@ async function saveCategory(){
  finally{b.disabled=false;b.textContent='💾 ذخیره دسته‌بندی'}
 }
 async function deleteCategory(encoded){const id=decodeURIComponent(encoded),c=categories.find(x=>String(x.id)===id);if(!c)return toast('دسته‌بندی پیدا نشد','error');const used=products.filter(p=>String(p.category)===id).length;if(!confirm(`«${c.name}» حذف شود؟${used?'\n\n⚠️ '+used+' محصول به آن متصل است.':''}`))return;try{await api('/categories/'+encodeURIComponent(id),{method:'DELETE'});await loadCategories();toast('دسته‌بندی حذف شد ✓')}catch(e){toast('حذف دسته‌بندی انجام نشد: '+e.message,'error')}}
-async function moveCategory(encoded,delta){const id=decodeURIComponent(encoded),i=categories.findIndex(c=>String(c.id)===id),j=i+delta;if(i<0||j<0||j>=categories.length)return;const next=[...categories];[next[i],next[j]]=[next[j],next[i]];try{await api('/categories/reorder',{method:'PUT',body:JSON.stringify({ids:next.map(c=>c.id)})});categories=next;renderCategories();fillCategories();toast('ترتیب دسته‌بندی‌ها ذخیره شد ✓')}catch(e){toast('ذخیره ترتیب انجام نشد: '+e.message,'error')}}
+async function moveCategory(encoded,delta){const id=decodeURIComponent(encoded),i=categories.findIndex(c=>String(c.id)===id),j=i+delta;if(i<0||j<0||j>=categories.length)return;const next=[...categories];[next[i],next[j]]=[next[j],next[i]];try{const r=await api('/categories/reorder',{method:'PUT',body:JSON.stringify({ids:next.map(c=>c.id)})});const server=Array.isArray(r?.categories)?r.categories:next;categories=server.slice().sort((a,b)=>(Number(a.sortOrder)||999999)-(Number(b.sortOrder)||999999));renderCategories();fillCategories();toast('ترتیب دسته‌بندی‌ها ذخیره شد ✓')}catch(e){toast('ذخیره ترتیب انجام نشد: '+e.message,'error')}}
 async function saveCategoryOrder(){
  const inputs=[...document.querySelectorAll('.category-order-input')];
  const seen=new Set();
  for(const input of inputs){const n=Number(input.value);if(!Number.isInteger(n)||n<1)return toast('شماره ردیف هر دسته‌بندی باید عدد صحیح و حداقل ۱ باشد','error');if(seen.has(n))return toast('شماره ردیف تکراری است؛ برای هر دسته شماره جداگانه بگذار','error');seen.add(n)}
  const next=[...categories].map(c=>({...c,sortOrder:Number(document.querySelector(`.category-order-input[data-category-id="${CSS.escape(String(c.id))}"]`)?.value)||categories.indexOf(c)+1})).sort((a,b)=>a.sortOrder-b.sortOrder);
- try{const r=await api('/categories/reorder',{method:'PUT',body:JSON.stringify({ids:next.map(c=>c.id)})});if(r?.success===false)throw new Error(r.message||'Worker ترتیب را ذخیره نکرد');categories=next;renderCategories();fillCategories();toast('ترتیب دسته‌بندی‌ها ذخیره شد ✓')}catch(e){toast('ذخیره ترتیب ناموفق بود: '+e.message,'error')}
+ const ids=next.map(c=>String(c.id));
+ try{const r=await api('/categories/reorder',{method:'PUT',body:JSON.stringify({ids})});if(r?.success===false)throw new Error(r.message||'Worker ترتیب را ذخیره نکرد');const server=Array.isArray(r?.categories)?r.categories:next;categories=server.slice().sort((a,b)=>(Number(a.sortOrder)||999999)-(Number(b.sortOrder)||999999));renderCategories();fillCategories();toast('ترتیب دسته‌بندی‌ها ذخیره شد ✓')}catch(e){toast('ذخیره ترتیب ناموفق بود: '+e.message,'error')}
 }
 function renderOrderStatusPanel(){
  const el=$('orderStatusList');if(!el)return;
