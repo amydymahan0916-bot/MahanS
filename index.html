@@ -3300,6 +3300,11 @@ function updateCartCount(){
 
 function go(path){
     const target = String(path || "/");
+    const current = getRoute();
+    // مسیر فعلی را نگه می‌داریم تا دکمه برگشت محصول به همان صفحه برگردد.
+    if(current && current !== target && !current.startsWith("/product/")) {
+        window.__mahanLastListingRoute = current;
+    }
     const hash = "#" + target;
 
     if(location.hash === hash){
@@ -3310,6 +3315,12 @@ function go(path){
 
     // فقط تغییر مسیر؛ رندر را hashchange یک بار انجام می‌دهد.
     location.hash = hash;
+}
+
+function goBackFromProduct(){
+    const previous = String(window.__mahanLastListingRoute || "");
+    const target = previous && !previous.startsWith("/product/") ? previous : "/";
+    go(target);
 }
 
 
@@ -5016,7 +5027,7 @@ function renderProduct(id){
             <div class="container">
 
                 <div class="product-detail-page-head">
-                    <button class="product-back-red" onclick="go('/');return false">← بازگشت به فروشگاه</button>
+                    <button class="product-back-red" onclick="goBackFromProduct();return false">← بازگشت به محصولات قبلی</button>
                 </div>
 
                 <div class="product-detail">
