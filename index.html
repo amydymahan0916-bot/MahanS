@@ -2670,85 +2670,57 @@ function mergeCategories(raw){
 
     const source =
         Array.isArray(raw)
-            ? raw
+            ? raw.filter(Boolean).map((c,index)=>({...c,__sourceIndex:index}))
             : [];
+
+    // ترتیب ذخیره‌شده در Worker مرجع اصلی نمایش دسته‌هاست.
+    source.sort((a,b)=>{
+        const ao=Number(a?.sortOrder), bo=Number(b?.sortOrder);
+        const av=Number.isFinite(ao) && ao>0 ? ao : 999999;
+        const bv=Number.isFinite(bo) && bo>0 ? bo : 999999;
+        return av-bv || Number(a.__sourceIndex)-Number(b.__sourceIndex);
+    });
 
     const map = {};
 
-    DEFAULT_CATEGORIES.forEach(c => {
-
-        map[String(c.id)] = {
-
-            ...c,
-
-            subcategories:
-            Array.isArray(c.subcategories)
-                ? [...c.subcategories]
-                : []
-
-        };
-
-    });
-
-
-    source.forEach((c,index) => {
-
-        if(!c)
-            return;
-
-        const id =
-            String(
-                c.id ||
-                "category_" + index
-            );
-
+    // اول دسته‌های دریافتی از سرور را با همان ترتیب می‌سازیم.
+    source.forEach((c,index)=>{
+        const id=String(c.id || "category_" + index);
         if(map[id]){
-
-            map[id] = {
-
+            map[id]={
                 ...map[id],
                 ...c,
-
-                subcategories:
-                Array.isArray(c.subcategories)
+                subcategories:Array.isArray(c.subcategories)
                     ? [...c.subcategories]
                     : map[id].subcategories
-
             };
-
         }else{
-
-            map[id] = {
-
+            map[id]={
                 ...c,
-
-                id:id,
-
-                name:
-                    c.name ||
-                    "دسته‌بندی",
-
-                icon:
-                    c.icon ||
-                    "📦",
-
-                image:
-                    c.image ||
-                    "",
-
-                subcategories:
-                Array.isArray(c.subcategories)
+                id,
+                name:c.name || "دسته‌بندی",
+                icon:c.icon || "📦",
+                image:c.image || "",
+                subcategories:Array.isArray(c.subcategories)
                     ? [...c.subcategories]
                     : []
-
             };
-
         }
-
     });
 
-    return map;
+    // فقط دسته‌های پیش‌فرضِ غایب را در انتهای لیست اضافه می‌کنیم.
+    DEFAULT_CATEGORIES.forEach(c=>{
+        const id=String(c.id);
+        if(!map[id]){
+            map[id]={
+                ...c,
+                subcategories:Array.isArray(c.subcategories)?[...c.subcategories]:[]
+            };
+        }
+    });
 
+    Object.values(map).forEach(c=>{ delete c.__sourceIndex; });
+    return map;
 }
 
 
