@@ -3129,44 +3129,52 @@ async function loadSettings(){
 ========================================================= */
 
 async function loadProducts(){
+    const CACHE_KEY = "mahanProductsCache_v1";
+    const MAX_AGE = 60 * 1000;
+    let cached = null;
 
-    try{
+    // داده‌ی قبلی را فوری نشان بده؛ بازدیدهای تکراری منتظر شبکه نمی‌مانند.
+    try {
+        cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+        if (cached && Array.isArray(cached.products)) {
+            products = cached.products.map(normalizeProduct);
+        }
+    } catch (_) { cached = null; }
 
-        const data = await workerFetch("/products");
-        const raw = Array.isArray(data)
-            ? data
-            : (Array.isArray(data?.products)
-                ? data.products
-                : (Array.isArray(data?.documents) ? data.documents : []));
-
-        const list = raw.map(normalizeProduct);
-
-        list.sort((a,b) => {
-            const ad = getCreatedTime(a.createdAt);
-            const bd = getCreatedTime(b.createdAt);
-            if(ad !== bd) return bd - ad;
-            const an = Number(a.code);
-            const bn = Number(b.code);
-            if(Number.isFinite(an) && Number.isFinite(bn)) return bn - an;
-            return String(a.name).localeCompare(String(b.name), "fa");
-        });
-
-        products = list;
-        console.log("MAHAN CENTER PRODUCTS:", products.length);
+    const freshEnough = cached && Array.isArray(cached.products) &&
+        Number.isFinite(cached.savedAt) && Date.now() - cached.savedAt < MAX_AGE;
+    if (freshEnough) {
+        console.log("MAHAN CENTER: local product cache", products.length);
         return true;
-
-    }catch(error){
-
-        console.error("Products Worker error:", error);
-        showSmallFirebaseError(
-            "دریافت محصولات از سرور فروشگاه انجام نشد."
-        );
-        return false;
-
     }
 
+    try {
+        const data = await workerFetch("/products");
+        const raw = Array.isArray(data) ? data :
+            (Array.isArray(data?.products) ? data.products :
+            (Array.isArray(data?.documents) ? data.documents : []));
+        const list = raw.map(normalizeProduct);
+        list.sort((a,b) => {
+            const ad = getCreatedTime(a.createdAt), bd = getCreatedTime(b.createdAt);
+            if (ad !== bd) return bd - ad;
+            const an = Number(a.code), bn = Number(b.code);
+            if (Number.isFinite(an) && Number.isFinite(bn)) return bn - an;
+            return String(a.name).localeCompare(String(b.name), "fa");
+        });
+        products = list;
+        try { localStorage.setItem(CACHE_KEY, JSON.stringify({savedAt:Date.now(), products:list})); } catch (_) {}
+        console.log("MAHAN CENTER PRODUCTS:", products.length);
+        return true;
+    } catch(error) {
+        console.error("Products Worker error:", error);
+        if (cached && Array.isArray(cached.products)) {
+            products = cached.products.map(normalizeProduct);
+            return true; // داده‌ی ذخیره‌شده اجازه می‌دهد سایت هنگام قطعی موقت باز بماند.
+        }
+        showSmallFirebaseError("دریافت محصولات از سرور فروشگاه انجام نشد.");
+        return false;
+    }
 }
-
 
 /* =========================================================
    FIREBASE ERROR
@@ -7002,10 +7010,11 @@ async function refreshAccountOrders(){
  box.innerHTML='<div class="account-loading">در حال دریافت آخرین وضعیت سفارش‌ها…</div>';
  let orders=safeJSON(localStorage.getItem('mahanOrders'),[]);
  try{
-   const r=await fetch(WORKER_URL+'/orders',{cache:'no-store'});
+   const phone=normalizeIranPhone(c.phone);
+   const r=await fetch(WORKER_URL+'/orders?phone='+encodeURIComponent(phone),{cache:'no-store'});
    const d=await r.json().catch(()=>({}));
    if(r.ok && Array.isArray(d.orders)){
-      const phone=normalizeIranPhone(c.phone);
+      // Worker فقط سفارش‌های همین مشتری را برمی‌گرداند؛ دیگر کل مجموعه سفارش‌ها دانلود نمی‌شود.
       const serverMine=d.orders.filter(o=>normalizeIranPhone(o?.customer?.phone||'')===phone);
       const map=new Map();
       [...orders,...serverMine].forEach(o=>map.set(String(o.orderId||o.id||o.createdAt),o));
