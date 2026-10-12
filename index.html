@@ -3270,29 +3270,62 @@ function updateCartCount(){
    ROUTER
 ========================================================= */
 
-function go(path){
+function getRouteStack(){
+    try{
+        const value = JSON.parse(sessionStorage.getItem("mahanRouteStack") || "[]");
+        return Array.isArray(value) ? value.filter(Boolean) : [];
+    }catch(e){ return []; }
+}
+
+function setRouteStack(stack){
+    try{
+        sessionStorage.setItem("mahanRouteStack", JSON.stringify(stack.slice(-30)));
+    }catch(e){}
+}
+
+function go(path, options){
     const target = String(path || "/");
     const current = getRoute();
-    // مسیر فعلی را نگه می‌داریم تا دکمه برگشت محصول به همان صفحه برگردد.
-    if(current && current !== target && !current.startsWith("/product/")) {
-        window.__mahanLastListingRoute = current;
+    const opts = options || {};
+    const stack = getRouteStack();
+
+    if(!opts.isBack && current !== target){
+        if(stack[stack.length - 1] !== current){
+            stack.push(current);
+            setRouteStack(stack);
+        }
     }
+
     const hash = "#" + target;
 
     if(location.hash === hash){
         render(target);
-        window.scrollTo({top:0,behavior:"smooth"});
+        requestAnimationFrame(() => window.scrollTo({top:0,left:0,behavior:"auto"}));
         return;
     }
 
-    // فقط تغییر مسیر؛ رندر را hashchange یک بار انجام می‌دهد.
     location.hash = hash;
 }
 
+function goBack(){
+    const stack = getRouteStack();
+
+    while(stack.length){
+        const target = String(stack.pop() || "/");
+        if(target && target !== getRoute()){
+            setRouteStack(stack);
+            go(target, {isBack:true});
+            requestAnimationFrame(() => window.scrollTo({top:0,left:0,behavior:"auto"}));
+            return;
+        }
+    }
+
+    setRouteStack([]);
+    go("/", {isBack:true});
+}
+
 function goBackFromProduct(){
-    const previous = String(window.__mahanLastListingRoute || "");
-    const target = previous && !previous.startsWith("/product/") ? previous : "/";
-    go(target);
+    goBack();
 }
 
 
@@ -3318,6 +3351,10 @@ window.addEventListener(
         render(
             getRoute()
         );
+
+        requestAnimationFrame(() => {
+            window.scrollTo({top:0,left:0,behavior:"auto"});
+        });
 
     }
 );
@@ -3575,6 +3612,10 @@ function renderCategories(){
         <main class="page">
 
             <div class="container">
+
+                <div class="page-back-head">
+                    <button class="page-back-btn" onclick="go("/categories",{isBack:true});return false">← بازگشت</button>
+                </div>
 
                 <div class="page-title">
 
@@ -4200,6 +4241,10 @@ function renderCategory(
 
             <div class="container">
 
+                <div class="page-back-head">
+                    <button class="page-back-btn" onclick="goBack();return false">← بازگشت</button>
+                </div>
+
                 <div class="page-title">
 
                     <div>
@@ -4338,6 +4383,10 @@ function renderPhones(){
         <main class="page">
 
             <div class="container">
+
+                <div class="page-back-head">
+                    <button class="page-back-btn" onclick="goBack();return false">← بازگشت</button>
+                </div>
 
                 <div class="page-title">
 
@@ -4999,7 +5048,7 @@ function renderProduct(id){
             <div class="container">
 
                 <div class="product-detail-page-head">
-                    <button class="product-back-red" onclick="goBackFromProduct();return false">← بازگشت به محصولات قبلی</button>
+                    <button class="product-back-red" onclick="goBack();return false">← بازگشت</button>
                 </div>
 
                 <div class="product-detail">
@@ -5751,6 +5800,10 @@ function renderCart(){
         <main class="page">
 
             <div class="container cart-page">
+
+                <div class="page-back-head">
+                    <button class="page-back-btn" onclick="goBack();return false">← بازگشت</button>
+                </div>
 
                 <div class="page-title">
 
@@ -7223,7 +7276,7 @@ Object.assign(window,{go,render,addToCart,cartQty,removeFromCart,toggleFavorite,
 
 const accountPremiumStyle=document.createElement('style');
 accountPremiumStyle.textContent=`
-.product-detail-page-head{display:flex;justify-content:flex-start;margin:0 0 12px}.product-back-red{border:1px solid rgba(229,9,20,.55);background:linear-gradient(145deg,#2a090c,#140606);color:#ff5b64;border-radius:14px;padding:11px 16px;font-weight:900;cursor:pointer;box-shadow:0 8px 25px rgba(229,9,20,.08);transition:.2s}.product-back-red:hover{transform:translateY(-2px);background:#e50914;color:#fff}
+.page-back-head{display:flex;justify-content:flex-start;align-items:center;direction:ltr;margin:0 0 14px}.page-back-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:9px 15px;border:1px solid rgba(229,9,20,.55);background:linear-gradient(145deg,#2a090c,#140606);color:#ff5b64;border-radius:13px;font-weight:900;cursor:pointer;box-shadow:0 8px 25px rgba(229,9,20,.08);transition:.2s}.page-back-btn:hover{transform:translateY(-2px);background:#e50914;color:#fff}.product-detail-page-head{display:flex;justify-content:flex-start;align-items:center;direction:ltr;margin:0 0 12px}.product-back-red{border:1px solid rgba(229,9,20,.55);background:linear-gradient(145deg,#2a090c,#140606);color:#ff5b64;border-radius:14px;padding:11px 16px;font-weight:900;cursor:pointer;box-shadow:0 8px 25px rgba(229,9,20,.08);transition:.2s}.product-back-red:hover{transform:translateY(-2px);background:#e50914;color:#fff}
 .account-page-premium{padding-top:8px}.account-pro-wrap{max-width:1050px}.account-hero{position:relative;overflow:hidden;display:flex;align-items:center;gap:16px;padding:22px;margin-bottom:15px;border:1px solid #29372f;border-radius:28px;background:linear-gradient(145deg,#151a16,#080908);box-shadow:0 24px 70px rgba(0,0,0,.35)}.account-hero-glow{position:absolute;width:230px;height:230px;right:-80px;top:-130px;border-radius:50%;background:rgba(25,214,107,.09);filter:blur(3px)}.account-avatar{position:relative;width:68px;height:68px;flex:0 0 68px;display:grid;place-items:center;border-radius:22px;background:linear-gradient(145deg,#1d4d31,#0b1710);border:1px solid #356947;font-size:31px}.account-hero-copy{position:relative;flex:1}.account-kicker{color:#19d66b;font-size:8px;letter-spacing:1.3px}.account-hero h1{font-size:25px;margin:4px 0}.account-hero p{color:#888;font-size:11px}.account-hero-actions{position:relative;display:flex;gap:7px;flex-wrap:wrap}.account-primary,.account-outline,.account-mini-btn{border-radius:12px;padding:10px 13px;font-weight:900;cursor:pointer}.account-primary{border:1px solid #19d66b;background:#19d66b;color:#06120a}.account-outline,.account-mini-btn{border:1px solid #303830;background:#121512;color:#ccc}.account-info-card,.account-orders-card{margin-bottom:15px;padding:20px;border:1px solid #292929;border-radius:24px;background:linear-gradient(145deg,#121212,#090909);box-shadow:0 15px 50px rgba(0,0,0,.25)}.account-section-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.account-section-title span{display:block;font-size:16px;font-weight:900}.account-section-title small{display:block;color:#777;font-size:9px;margin-top:4px}.account-section-title>b{padding:5px 9px;border-radius:99px;background:rgba(25,214,107,.08);border:1px solid rgba(25,214,107,.2);color:#19d66b;font-size:9px}.account-details-pro{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.account-details-pro>div{padding:13px;border:1px solid #242424;border-radius:15px;background:#0b0b0b}.account-details-pro .wide{grid-column:1/-1}.account-details-pro small{display:block;color:#666;font-size:9px;margin-bottom:6px}.account-details-pro strong{display:block;color:#eee;font-size:11px;overflow-wrap:anywhere}.account-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:15px}.account-stats>div{padding:16px;border:1px solid #292929;border-radius:19px;background:linear-gradient(145deg,#141414,#0a0a0a)}.account-stats span{display:block;color:#777;font-size:9px}.account-stats strong{display:block;color:#19d66b;font-size:22px;margin-top:5px}.account-stats small{font-size:8px;color:#777}.account-order-pro{border:1px solid #272727;border-radius:19px;background:#0c0c0c;margin-bottom:10px;overflow:hidden}.order-pro-head{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px;padding:14px;border-bottom:1px solid #222}.order-pro-head span{display:block;font-weight:900;font-size:12px}.order-pro-head small{display:block;color:#666;font-size:9px;margin-top:4px}.order-pro-head>strong{font-size:11px;color:#ddd}.order-status-pill{padding:6px 10px;border-radius:99px;font-size:9px;border:1px solid #31553d;color:#19d66b;background:#0e1711}.order-status-pill.review{color:#ffc400;border-color:#5c4d1a;background:#181506}.order-status-pill.processing,.order-status-pill.ready{color:#62b7ff;border-color:#254c69;background:#0c151d}.order-status-pill.shipped{color:#b58cff;border-color:#49376b;background:#140f1d}.order-status-pill.delivered{color:#19d66b}.order-status-pill.cancelled{color:#ff5963;border-color:#64252b;background:#1a0d0f}.order-product-row{display:grid;grid-template-columns:52px 1fr auto;align-items:center;gap:10px;padding:12px;border-bottom:1px solid #1d1d1d}.order-product-row:last-child{border-bottom:0}.order-product-thumb{width:52px;height:52px;border-radius:13px;background:#151515;border:1px solid #282828;display:grid;place-items:center;overflow:hidden}.order-product-thumb img{width:100%;height:100%;object-fit:cover}.order-product-main b{display:block;font-size:11px;color:#eee}.order-product-main span{display:block;color:#777;font-size:9px;margin-top:5px}.track-product-btn{border:1px solid #2d4f3a;background:#101b14;color:#19d66b;border-radius:11px;padding:9px 10px;font-size:9px;font-weight:900;cursor:pointer}.account-empty-pro{text-align:center;padding:35px 15px;color:#777}.account-empty-pro>div{font-size:34px}.account-empty-pro h3{color:#ddd;margin:8px 0 4px}.account-empty-pro p{font-size:10px;line-height:2}.account-empty-pro button{margin-top:12px;border:0;border-radius:12px;background:#19d66b;color:#06120a;padding:10px 18px;font-weight:900}.account-loading{text-align:center;padding:35px;color:#777;font-size:11px}.account-help-strip{display:flex;align-items:center;gap:12px;padding:15px 17px;border:1px solid rgba(255,196,0,.18);border-radius:18px;background:rgba(255,196,0,.035)}.account-help-strip>span{font-size:23px}.account-help-strip div{flex:1}.account-help-strip strong{font-size:11px;color:#ffc400}.account-help-strip p{font-size:9px;color:#777;line-height:1.9;margin-top:3px}.account-help-strip button{border:1px solid #3b3b3b;background:#171717;color:#ddd;border-radius:11px;padding:9px 12px;font-weight:800}.order-track-backdrop{position:fixed;inset:0;z-index:999999;display:grid;place-items:center;padding:16px;background:rgba(0,0,0,.86);backdrop-filter:blur(14px)}.order-track-card{position:relative;width:min(600px,100%);max-height:90vh;overflow:auto;padding:25px;border:1px solid #2c4133;border-radius:27px;background:linear-gradient(145deg,#151815,#080908);box-shadow:0 30px 100px #000b}.order-track-close{position:absolute;left:15px;top:15px;width:31px;height:31px;border:1px solid #3a2023;border-radius:50%;background:#1a0b0d;color:#ff5963;font-size:19px}.track-kicker{color:#19d66b;font-size:8px;letter-spacing:1.5px}.order-track-card h2{font-size:24px;margin:5px 0}.track-id{color:#666;font-size:10px;direction:ltr}.track-product{display:flex;align-items:center;gap:10px;margin:15px 0;padding:11px;border:1px solid #252525;border-radius:15px;background:#0c0c0c}.track-product>div{width:48px;height:48px;border-radius:12px;background:#151515;display:grid;place-items:center;overflow:hidden}.track-product img{width:100%;height:100%;object-fit:cover}.track-product section b{display:block;font-size:11px}.track-product section span{display:block;color:#777;font-size:9px;margin-top:4px}.track-current{padding:13px;border-radius:14px;background:rgba(25,214,107,.06);border:1px solid rgba(25,214,107,.15);color:#aaa;font-size:10px}.track-current strong{color:#19d66b}.track-timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:18px 0}.track-step{text-align:center;color:#555;font-size:8px}.track-step span{display:grid;place-items:center;width:28px;height:28px;margin:0 auto 6px;border-radius:50%;border:1px solid #2c2c2c;background:#111}.track-step.done,.track-step.active{color:#bbb}.track-step.done span{background:#12301e;border-color:#2a6840;color:#19d66b}.track-step.active span{background:#19d66b;border-color:#19d66b;color:#06120a;font-weight:900;box-shadow:0 0 20px rgba(25,214,107,.2)}.track-step.cancelled span{background:#e50914;color:#fff;border-color:#e50914}.track-cancelled{margin:10px 0;padding:11px;border-radius:13px;background:#1b0c0e;border:1px solid #542027;color:#ff6670;font-size:10px}.track-close-btn{width:100%;margin-top:10px}@media(max-width:700px){.account-hero{align-items:flex-start;flex-wrap:wrap}.account-hero-copy{min-width:calc(100% - 84px)}.account-hero-actions{width:100%}.account-hero-actions button{flex:1}.account-details-pro{grid-template-columns:1fr 1fr}.account-details-pro .wide{grid-column:1/-1}.account-stats strong{font-size:18px}.order-pro-head{grid-template-columns:1fr auto}.order-pro-head>strong{grid-column:1/-1}.order-product-row{grid-template-columns:48px 1fr}.order-product-thumb{width:48px;height:48px}.track-product-btn{grid-column:2}.track-timeline{grid-template-columns:repeat(3,1fr);row-gap:14px}}
 `;
 document.head.appendChild(accountPremiumStyle);
