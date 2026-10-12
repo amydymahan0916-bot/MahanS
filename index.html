@@ -3613,10 +3613,6 @@ function renderCategories(){
 
             <div class="container">
 
-                <div class="page-back-head">
-                    <button class="page-back-btn" onclick="go("/categories",{isBack:true});return false">← بازگشت</button>
-                </div>
-
                 <div class="page-title">
 
                     <div>
@@ -4242,7 +4238,7 @@ function renderCategory(
             <div class="container">
 
                 <div class="page-back-head">
-                    <button class="page-back-btn" onclick="goBack();return false">← بازگشت</button>
+                    <button class="page-back-btn" type="button" onclick="window.goBack();return false">← بازگشت</button>
                 </div>
 
                 <div class="page-title">
@@ -4385,7 +4381,7 @@ function renderPhones(){
             <div class="container">
 
                 <div class="page-back-head">
-                    <button class="page-back-btn" onclick="goBack();return false">← بازگشت</button>
+                    <button class="page-back-btn" type="button" onclick="window.goBack();return false">← بازگشت</button>
                 </div>
 
                 <div class="page-title">
@@ -5048,7 +5044,7 @@ function renderProduct(id){
             <div class="container">
 
                 <div class="product-detail-page-head">
-                    <button class="product-back-red" onclick="goBack();return false">← بازگشت</button>
+                    <button class="product-back-red" type="button" onclick="window.goBack();return false">← بازگشت</button>
                 </div>
 
                 <div class="product-detail">
@@ -5802,7 +5798,7 @@ function renderCart(){
             <div class="container cart-page">
 
                 <div class="page-back-head">
-                    <button class="page-back-btn" onclick="goBack();return false">← بازگشت</button>
+                    <button class="page-back-btn" type="button" onclick="window.goBack();return false">← بازگشت</button>
                 </div>
 
                 <div class="page-title">
@@ -7272,7 +7268,7 @@ document.head.appendChild(premiumPatchStyle);
 function showMaintenancePage(){if(document.getElementById('mahanMaintenance'))return;const el=document.createElement('div');el.id='mahanMaintenance';el.className='maintenance-screen';el.innerHTML=`<div class="maintenance-card"><div class="maintenance-logo">🛍️</div><h1>در حال بروزرسانی هستیم</h1><p>در حال حاضر ارتباط با فروشگاه برقرار نیست. تیم ماهان سنتر در حال بررسی و آماده‌سازی مجدد خدمات است.</p><div class="maintenance-time">زمان بازگشایی اعلام‌شده: فردا ساعت 10:00 صبح</div><p style="font-size:10px;margin-top:16px">اگر اتصال سرور دوباره برقرار شود، صفحه را تازه‌سازی کنید.</p><button class="account-action" onclick="location.reload()">تلاش مجدد</button></div>`;document.body.appendChild(el)}
 
 /* GLOBAL HANDLERS: this file is a module, so inline HTML onclick handlers need explicit window bindings. */
-Object.assign(window,{go,render,addToCart,cartQty,removeFromCart,toggleFavorite,changeDetailImage,changeTempQty,changeSort,changeSubcategory,filterPhones,globalSearch,toggleSortMenu,callPhone,openRubika,copyText,checkout,openCustomerRegistration,closeCustomerRegistration,saveCustomerAndContinue,welcomeAsGuest,welcomeRegister,acceptLawAndOpen,rejectLawModal,renderAccount,refreshAccountOrders,showOrderStatus,showOrderSuccess,showToast});
+Object.assign(window,{go,goBack,goBackFromProduct,render,addToCart,cartQty,removeFromCart,toggleFavorite,changeDetailImage,changeTempQty,changeSort,changeSubcategory,filterPhones,globalSearch,toggleSortMenu,callPhone,openRubika,copyText,checkout,openCustomerRegistration,closeCustomerRegistration,saveCustomerAndContinue,welcomeAsGuest,welcomeRegister,acceptLawAndOpen,rejectLawModal,renderAccount,refreshAccountOrders,showOrderStatus,showOrderSuccess,showToast});
 
 const accountPremiumStyle=document.createElement('style');
 accountPremiumStyle.textContent=`
@@ -7281,7 +7277,7 @@ accountPremiumStyle.textContent=`
 `;
 document.head.appendChild(accountPremiumStyle);
 
-Object.assign(window,{go,render,addToCart,cartQty,removeFromCart,toggleFavorite,changeDetailImage,changeTempQty,changeSort,changeSubcategory,filterPhones,globalSearch,toggleSortMenu,callPhone,openRubika,copyText,checkout,openCustomerRegistration,closeCustomerRegistration,saveCustomerAndContinue,welcomeAsGuest,welcomeRegister,acceptLawAndOpen,rejectLawModal,renderAccount,refreshAccountOrders,showOrderStatus,showOrderSuccess,showToast});
+Object.assign(window,{go,goBack,goBackFromProduct,render,addToCart,cartQty,removeFromCart,toggleFavorite,changeDetailImage,changeTempQty,changeSort,changeSubcategory,filterPhones,globalSearch,toggleSortMenu,callPhone,openRubika,copyText,checkout,openCustomerRegistration,closeCustomerRegistration,saveCustomerAndContinue,welcomeAsGuest,welcomeRegister,acceptLawAndOpen,rejectLawModal,renderAccount,refreshAccountOrders,showOrderStatus,showOrderSuccess,showToast});
 
 updateCartCount();
 
